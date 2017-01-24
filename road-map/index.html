@@ -1,0 +1,22 @@
+---
+layout: page
+---
+
+{% assign index = site.data.api-commons.api-road-map %}
+{% assign apiroadmap = index[0] %}
+
+<h1>{{ apiroadmap.title }}</h1>
+<p><img src="{{ apiroadmap.image }}" align="right" width="75" style="padding: 5px;" /></p>
+<p>{{ apiroadmap.header }}</p>
+<center>
+<table cellpadding="10" cellspacing="10" width="90%" style="margin-bottom: 10px;">
+	{% for plans in apiroadmap.plans %}
+    <tr>
+  		<td align="left" valign="top">
+  			({{ plans.date | date: "%D" }}) <strong>{{ plans.title }}</strong> - {{ plans.description }}
+  		</td>
+    </tr>
+	{% endfor %}
+</table>
+</center>
+<p>{{ apiroadmap.footer }}</p>

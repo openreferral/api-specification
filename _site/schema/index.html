@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  
+  <link rel="icon" href="/favicon.ico">
+
+  <title>Spec</title>
+
+  <link href="/css/bootstrap.css" rel="stylesheet">
+
+  <script src="/js/jquery-latest.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/github.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/utility.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Human Services Data Specification (HSDS)</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+        
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li class="active"><a href="/schema/">Data Schema</a></li>
+        <li class="active"><a href="/definition/">API Definition</a></li>
+        <li class="active"><a href="/contact/">Contact</a></li>
+      </ul>     
+    </div>   
+  </div>
+</nav>
+<div class="container">
+    <div style="padding: 50px;">
+        <div class="page">
+
+            <div class="page">
+  <h2>Human Services Data Specification (HSDS) Schema - HTML</h2>
+  <p>This is the schema for the HSDS format. It is available as an HTML list, JSON schema, as well as a YAML version of the schema, for different uses. If you are looking for a machine readable definition for the HSDS API, there is <a href="/api/">a separate OpenAPI Spec available for the project</a>.</p>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">There Are A Handful Of Ways To Engage:</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/schema/">HTML Outline <span class="sr-only">(current)</span></a></li>
+        <li><a href="/schema/json/">JSON Schema</a></li>
+        <li><a href="/schema/yaml/">YAML Schema</a></li>
+        <li><a href="/schema/discussion/">Discussion</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<table cellpadding="3" cellspacing="2" width="100%" border="0" style="margin-top: 0px;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+    <td>
+      <table width="100%" border="0" style="padding-top: 10px;">
+        <tr>
+        <td align="center" style="margin-left: 90px; margin-right: 90px;">
+          
+            
+                
+                
+                
+
+                <table cellpadding="3" cellspacing="2" width="100%" border="0">
+
+                    
+                    
+                    
+
+                    
+
+                    <tr style="background-color: #D3D3D3;">
+                      <td align="left" style="font-size: 18px; font-weight: bold; padding: 10px;">Human Services Data Specification (HSDS)</td>
+                      <td align="right" style="padding: 10px;">
+                        
+                          <a href="http://adopta-agency.github.io/open-referral-api/api-commons/schema.json" target="_blank" title="View JSON Schema" style="font-size: 16px; font-weight: normal;">Schema</a>
+                        
+                      </td>
+                    </tr>
+                    <tr id="methods-for-schema">
+                      <td colspan="2">
+                        <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
+                            
+
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>organization</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>name</strong> (string) </li>
+                                                                
+                                    <li><strong>alternate_name</strong> (string) </li>
+                                                                
+                                    <li><strong>description</strong> (string) </li>
+                                                                
+                                    <li><strong>email</strong> (string) </li>
+                                                                
+                                    <li><strong>url</strong> (string) </li>
+                                                                
+                                    <li><strong>tax_status</strong> (string) </li>
+                                                                
+                                    <li><strong>tax_id</strong> (string) </li>
+                                                                
+                                    <li><strong>year_incorporated</strong> (date) </li>
+                                                                
+                                    <li><strong>legal_status</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>program</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>organization_id</strong> (string) </li>
+                                                                
+                                    <li><strong>name</strong> (string) </li>
+                                                                
+                                    <li><strong>alternate_name</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>service</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>organization_id</strong> (string) </li>
+                                                                
+                                    <li><strong>program_id</strong> (string) </li>
+                                                                
+                                    <li><strong>location_id</strong> (string) </li>
+                                                                
+                                    <li><strong>name</strong> (string) </li>
+                                                                
+                                    <li><strong>alternate_name</strong> (string) </li>
+                                                                
+                                    <li><strong>url</strong> (string) </li>
+                                                                
+                                    <li><strong>email</strong> (string) </li>
+                                                                
+                                    <li><strong>status</strong> (string) </li>
+                                                                
+                                    <li><strong>application_process</strong> (string) </li>
+                                                                
+                                    <li><strong>wait_time</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>service_at_location</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>location_id</strong> (string) </li>
+                                                                
+                                    <li><strong>url</strong> (string) </li>
+                                                                
+                                    <li><strong>email</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>location</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>organization_id</strong> (string) </li>
+                                                                
+                                    <li><strong>name</strong> (string) </li>
+                                                                
+                                    <li><strong>alternate_name</strong> (string) </li>
+                                                                
+                                    <li><strong>transportation</strong> (string) </li>
+                                                                
+                                    <li><strong>latitude</strong> (float) </li>
+                                                                
+                                    <li><strong>longitude</strong> (float) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>phone</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>location_id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_id</strong> (string) </li>
+                                                                
+                                    <li><strong>organization_id</strong> (string) </li>
+                                                                
+                                    <li><strong>contact_id</strong> (string) </li>
+                                                                
+                                    <li><strong>number</strong> (string) </li>
+                                                                
+                                    <li><strong>extension</strong> (number) </li>
+                                                                
+                                    <li><strong>type</strong> (string) </li>
+                                                                
+                                    <li><strong>department</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>contact</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>organization_id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_id</strong> (string) </li>
+                                                                
+                                    <li><strong>name</strong> (string) </li>
+                                                                
+                                    <li><strong>title</strong> (string) </li>
+                                                                
+                                    <li><strong>department</strong> (string) </li>
+                                                                
+                                    <li><strong>email</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>physical_address</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>location_id</strong> (string) </li>
+                                                                
+                                    <li><strong>attention</strong> (string) </li>
+                                                                
+                                    <li><strong>address_1</strong> (string) </li>
+                                                                
+                                    <li><strong>address_2</strong> (string) </li>
+                                                                
+                                    <li><strong>address_3</strong> (string) </li>
+                                                                
+                                    <li><strong>address_4</strong> (string) </li>
+                                                                
+                                    <li><strong>city</strong> (string) </li>
+                                                                
+                                    <li><strong>state_province</strong> (string) </li>
+                                                                
+                                    <li><strong>postal_code</strong> (string) </li>
+                                                                
+                                    <li><strong>country</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>postal_address</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>location_id</strong> (string) </li>
+                                                                
+                                    <li><strong>attention</strong> (string) </li>
+                                                                
+                                    <li><strong>address_1</strong> (string) </li>
+                                                                
+                                    <li><strong>address_2</strong> (string) </li>
+                                                                
+                                    <li><strong>address_3</strong> (string) </li>
+                                                                
+                                    <li><strong>address_4</strong> (string) </li>
+                                                                
+                                    <li><strong>city</strong> (string) </li>
+                                                                
+                                    <li><strong>state_province</strong> (string) </li>
+                                                                
+                                    <li><strong>postal_code</strong> (string) </li>
+                                                                
+                                    <li><strong>country</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>regular_schedule</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_id</strong> (string) </li>
+                                                                
+                                    <li><strong>location_id</strong> (string) </li>
+                                                                
+                                    <li><strong>weekday</strong> (integer) </li>
+                                                                
+                                    <li><strong>opens_at</strong> (time) </li>
+                                                                
+                                    <li><strong>closes_at</strong> (time) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>holiday_schedule</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_id</strong> (string) </li>
+                                                                
+                                    <li><strong>location_id</strong> (string) </li>
+                                                                
+                                    <li><strong>closed</strong> (boolean) </li>
+                                                                
+                                    <li><strong>opens_at</strong> (time) </li>
+                                                                
+                                    <li><strong>closes_at</strong> (time) </li>
+                                                                
+                                    <li><strong>start_date</strong> (date) </li>
+                                                                
+                                    <li><strong>end_date</strong> (date) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>funding</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>organization_id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_id</strong> (string) </li>
+                                                                
+                                    <li><strong>source</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>eligibility</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_id</strong> (string) </li>
+                                                                
+                                    <li><strong>eligibility</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>service_area</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_area</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>required_document</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_id</strong> (string) </li>
+                                                                
+                                    <li><strong>document</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>fee</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_id</strong> (string) </li>
+                                                                
+                                    <li><strong>fee</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>payment_accepted</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_id</strong> (string) </li>
+                                                                
+                                    <li><strong>payment</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>intepretation_services</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_id</strong> (string) </li>
+                                                                
+                                    <li><strong>language</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>language</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>service_id</strong> (string) </li>
+                                                                
+                                    <li><strong>location_id</strong> (string) </li>
+                                                                
+                                    <li><strong>language</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>accessibility_for_disabilities</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>location_id</strong> (string) </li>
+                                                                
+                                    <li><strong>accessibility</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>metadata</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>resource_id</strong> (string) </li>
+                                                                
+                                    <li><strong>last_action_date</strong> (string) </li>
+                                                                
+                                    <li><strong>last_action_type</strong> (string) </li>
+                                                                
+                                    <li><strong>field_name</strong> (string) </li>
+                                                                
+                                    <li><strong>previous_value</strong> (string) </li>
+                                                                
+                                    <li><strong>replacement_value</strong> (string) </li>
+                                                                
+                                    <li><strong>updated_by</strong> (string) </li>
+                                
+                                </ul>
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>meta_table_description</strong></p>
+                                <ul>
+                                                                
+                                    <li><strong>id</strong> (string) </li>
+                                                                
+                                    <li><strong>name</strong> (string) </li>
+                                                                
+                                    <li><strong>language</strong> (string) </li>
+                                                                
+                                    <li><strong>character_set</strong> (string) </li>
+                                
+                                </ul>
+                            
+                          
+                          
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+
+</div>
+
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .panel-footer ul{
+       margin-top: 5px;
+    }
+    .panel-footer ul li {
+        display: inline;
+        margin-left: 10px;
+        margin-right: 10px;
+    }    
+    .panel-footer ul a{
+       color: #FFF;
+    }    
+</style>
+<footer class="panel-footer">
+  <div class="container" align="center">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/terms-of-service/">Terms of Service</a></li>
+        <li><a href="/privacy-policay/">Privacy Policy</a></li>
+        <li><a href="/about/">About</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

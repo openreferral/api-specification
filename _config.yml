@@ -1,1 +1,123 @@
-theme: jekyll-theme-cayman
+title:        Open Referral API
+url:          http://adopta-agency.github.io/open-referral-api/
+
+version:      1.1.1
+
+logo:         https://s3.amazonaws.com/kinlane-productions/adopta-agency/open-referral/openreferral-logo.png
+logo_width:   65
+logo_bottom_padding: 10
+
+author:
+  name:       'Kin Lane'
+  email:      'info@apievangelist.com'
+markdown:     kramdown
+
+permalink: /:categories/:year/:month/:day/:title/
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
+
+categories_path : /categories.html
+tags_path : /tags.html
+
+get_color: 009900;
+post_color: 0000ff;
+put_color: FF0080;
+delete_color: FF9900;
+
+org: adopta-agency
+repo: open-referral-api
+resource: human
+oauthio: qUDL4eZqKPFb41SwuWIYIwLR6jI
+
+# Masthead title
+masthead_link: http://adopta-agency.github.io/open-referral-api/
+masthead_font_size: 75
+masthead_title: '{"Open Referral API"}'
+
+# Feature
+feature_title: API Design Providers Guide
+feature_link: http://apis.how/xzca4kr2wb
+feature_image_source: https://s3.amazonaws.com/kinlane-productions/whitepapers/3scale/report-image-api-design.png
+feature_image_width: 45
+
+# Project
+project_image: https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-robots.jpeg
+project_summary: This is the master portal where I access all of the APIs I depend on to run the API Evangelist network of sites. Visit the getting started page to kick things off, and if you have any questions let me know. These APIs are meant to run my own infrastructure, and are always in development, but I encourage others to poke around, and let me know their thoughts.
+
+# Navigation
+navigation:
+  - label1: Home
+    link1: /open-referral-api/
+    size1: 80
+    extend: 0
+    label2:
+    link2:
+    size2: 0
+    padding: 10
+    decorate: 0
+  - label1: Getting Started
+    link1: /open-referral-api/getting-started/
+    size1: 80
+    extend: 0
+    label2:
+    link2:
+    size2: 0
+    padding: 2
+    decorate: 0
+  - label1: Documentation
+    link1: /open-referral-api/documentation/
+    size1: 80
+    extend: 0
+    label2:
+    link2:
+    size2: 0
+    padding: 2
+    decorate: 0
+  - label1: Support
+    link1: /open-referral-api/support/
+    size1: 80
+    extend: 0
+    label2:
+    link2:
+    size2: 0
+    padding: 2
+    decorate: 0
+  - label1: Return to Open Referral
+    link1: http://openreferral.org
+    size1: 80
+    extend: 0
+    label2:
+    link2:
+    size2: 10
+    padding: 10
+    decorate: 2
+  - label1: Return to API Evangelist
+    link1: http://apievangelist.com
+    size1: 80
+    extend: 0
+    label2:
+    link2:
+    size2: 10
+    padding: 2
+    decorate: 1
+
+# Footer Navigation
+footernavigation:
+  - label: API 100K View
+    link: http://apievangelist.com
+  - label: News
+    link: /news/
+  - label: Partners
+    link: http://apievangelist.com/partners/
+  - label: APIs.json
+    link: http://apisjson.org
+  - label: About Kin Lane
+    link: http://kinlane.com
+  - label: Branding Guidelines
+    link: http://apievangelist.com/branding-guidelines.html
+  - label: Contact
+    link: http://kinlane.com/contacts/
+
+# sponsors
+sponsors_margin_top: 15
+sponsors_padding_top: 3
+sponsors_json_url: https://s3.amazonaws.com/kinlane-productions/json/sponsors.json

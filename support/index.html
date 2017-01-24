@@ -1,0 +1,21 @@
+---
+layout: page
+---
+
+{% assign index = site.data.api-commons.api-support %}
+{% assign apisupport = index[0] %}
+
+<h1>{{ apisupport.title }}</h1>
+<p><img src="{{ apisupport.image }}" align="right" width="75" style="padding: 5px;" /></p>
+<p>{{ apisupport.header }}</p>
+<table cellpadding="10" cellspacing="10" width="100%">
+	<tr>
+	{% for resource in apisupport.resources %}
+		<td align="center" valign="top">
+			<a href="{{ resource.url }}"><img src="{{ resource.image }}" width="75" align="center"></a>
+			<a href="{{ resource.url }}">{{ resource.title }}</a>
+		</td>
+	{% endfor %}
+	</tr>
+</table>
+<p>{{ apisupport.footer }}</p>
