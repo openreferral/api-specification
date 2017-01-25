@@ -413,7 +413,7 @@ function processAPIsJSON($apisURL)
   });
 }
 
-$apisURL = "https://raw.githubusercontent.com/adopta-agency/open-referral-miami/master/_data/apis.yaml";
+$apisURL = "https://raw.githubusercontent.com/{{ site.github_org }}/{{ site.github_repo }}/master/_data/apis.yaml";
 
 // Process It!!
 processAPIsJSON($apisURL);
