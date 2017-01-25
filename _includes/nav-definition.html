@@ -4,10 +4,6 @@
       <a class="navbar-brand" href="#">How To Engage:</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      {{ page.slug }}
-      {% if page.slug == 'docs' %}
-rawwwr!
-      {% endif %}
       <ul class="nav navbar-nav">
         <li{% if page.slug == 'docs' %} class="active"{% endif %}><a href="/definition/">Documentation</a></li>
         <li{% if page.slug == 'json' %} class="active"{% endif %}><a href="/definition/json/">OpenAPI Spec (JSON)</a></li>
