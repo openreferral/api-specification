@@ -128,14 +128,6 @@ title: 'Human Services Data Specification (HSDS) OpenAPI Spec - Documentation'
 
                     {% endfor %}
 
-                    <tr style="background-color: #D3D3D3;">
-                      <td align="left" style="font-size: 18px; font-weight: bold; padding: 10px;">{{ api.name }}</td>
-                      <td align="right" style="padding: 10px;">
-                        {% if openapi_spec_url != null and openapi_spec_url != empty %}
-                          <a href="{{ site.url }}{{ openapi_spec_url }}" target="_blank" title="View OpenAPI Spec" style="font-size: 16px; font-weight: normal;">Spec</a>
-                        {% endif %}
-                      </td>
-                    </tr>
                     <tr id="methods-for-{{ pathname }}">
                       <td colspan="2">
                         <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
