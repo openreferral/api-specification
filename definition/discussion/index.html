@@ -338,10 +338,10 @@ function processAPIsJSON($apisURL)
             $basepath = $openapispec['basePath'];
 
             $html = '<tr><td colspan="3"><strong>Host:</strong> ' + $host + '</td></tr>';
-            $('#specListing').append($html);
+            //$('#specListing').append($html);
 
             $html = '<tr><td colspan="3"><strong>Base Path:</strong> ' + $basepath + '</td></tr>';
-            $('#specListing').append($html);
+            //$('#specListing').append($html);
 
             $.each($paths, function(pathKey, pathValue) {
 
