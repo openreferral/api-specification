@@ -49,8 +49,11 @@ title: 'Human Services Data Specification (HSDS) OpenAPI Spec - Discussion'
     }
 </style>
 
-<p>This is a tool for encouraging a conversation around the design of this API. Some who are technical, but others who are not. It uses Github issues to help manage the ongoing conversations around the API and its design. It runs 100% on Github pages, leverage JavaScript and the Github API to do what it does. Users who have been added to the repo, can <a href="https://github.com/settings/tokens">pass in a personal token</a> using the "token" query string variable, and then will be able to annotate and comment on each endpoint.</p>
+<p>This is a tool for encouraging a conversation around the Human Services API definition. Some who are technical, but others who are not. It uses Github issues to help manage the ongoing conversations around the API and its definition. It runs 100% on Github pages, leverage JavaScript and the Github API to do what it does. Users who have been added to the repo, can <a href="https://github.com/settings/tokens">pass in a personal token</a> using the "token" query string variable, and then will be able to annotate and comment on each endpoint.</p>
 <p>All annotations to each endpoint are just added to <a href="https://github.com/{{ site.github_org }}/{{ site.github_repo }}/issues">this Github repos issue management system</a>, using the path as the title, and applying the HTTP verb as a label. You can access everything under issue management, in the <a href="https://github.com/{{ site.github_org }}/{{ site.github_repo }}/">Github repository for this project</a>.</p>
+
+{% include nav-definition.html %}
+
 <center><button style="margin-bottom: 10px;" onclick="showAPIsjson();" type="submit" class="btn btn-default" name="show-apis-json" value="1">View The Index Being Annotated</button></center>
 <script type="text/jscript">
 
