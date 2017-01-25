@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 'Human Services Data Specification (HSDS) OpenAPI Spec - HTML'
+title: 'Human Services Data Specification (HSDS) OpenAPI Spec - Documentation'
 ---
 
 <p>This is the API definition for the HSDS format. It is available as an HTML list, JSON and YAML OpenAPI Specifications. If you are looking for the schema for HSDS, there is <a href="/schema/">a separate JSON schema available for the project</a>.</p>
@@ -78,9 +78,9 @@ title: 'Human Services Data Specification (HSDS) OpenAPI Spec - HTML'
       <table width="100%" border="0" style="padding-top: 10px;">
         <tr>
         <td align="center" style="margin-left: 90px; margin-right: 90px;">
-          
+
             {% assign numberofapis = apijson.apis | size %}
-                
+
                 {% assign api_action_url = '' %}
                 {% for api in apijson.apis %}
 
@@ -97,7 +97,7 @@ title: 'Human Services Data Specification (HSDS) OpenAPI Spec - HTML'
                       {% assign thisname = thisname | replace: ' ','-' %}
 
                       {% if property.type == 'x-openapi-spec' %}
-                      
+
                         {% assign openapi_spec_url = property.url %}
                         {% assign pathname = openapi_spec_url | replace: '_data/api-commons/','' %}
                         {% assign pathname = pathname | replace: '.yaml','' %}
