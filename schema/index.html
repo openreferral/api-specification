@@ -62,34 +62,17 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                       {% endfor %}
                     {% endif %}
 
-                    {% if property.type == 'x-postman %}
-                      {% assign postman_url = property.url %}
-                    {% endif %}
-
-                    {% if property.type == 'x-api-blueprint' %}
-                      {% assign api_blueprint_url = property.url %}
-                    {% endif %}
-
-                    {% if property.type == 'x-api-actions' %}
-                      {% assign api_action_url = property.url %}
-                    {% endif %}
-
                   {% endfor %}
 
                     <tr style="background-color: #D3D3D3;">
                       <td align="left" style="font-size: 18px; font-weight: bold; padding: 10px;">{{ api.name }}</td>
-                      <td align="right" style="padding: 10px;">
-                        {% if json_schema_url != null and json_schema_url != empty %}
-                          <a href="{{ site.url }}{{ json_schema_url }}" target="_blank" title="View JSON Schema" style="font-size: 16px; font-weight: normal;">Schema</a>
-                        {% endif %}
-                      </td>
+                      <td align="right" style="padding: 10px;"></td>
                     </tr>
                     <tr id="methods-for-{{ pathname }}">
                       <td colspan="2">
                         <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
 
-                          {{ json_schema }}<br />
-                          {% for schema in json_schema.definitions %}
+                          {% for schema in openapi_spec_json.definitions %}
 
                             {% assign definition = schema[0] %}
                             {% assign definition_entry = schema[1] %}
