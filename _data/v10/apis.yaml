@@ -1,93 +1,34 @@
 - name: "Human Services Data Specification (HSDS) (v1.0)"
-  description: "The Human Services Data Specification (Open Referral) is an exchange format for publishing machine readable data about health, human, and social services, their locations, and the organizations that provide them. For the purposes of this specification, human services are broadly defined, ranging from food assistance to job training and health care. This is the current active v1.0 of the specification. "
+  description: "The Human Services Data Specification (Open Referral) is an exchange format for publishing machine readable data about health, human, and social services, their locations, and the organizations that provide them. For the purposes of this specification, human services are broadly defined, ranging from food assistance to job training and health care. This is the current v1.0 definition for the specification."
   image: "https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-family.png"
   tags:
-    - Human Services
-    - Organizations
-    - Locations
-    - Services
-    - Open Referral
-    - API
-    - Application Programming Interface
-    - Developers
-  created: '2017-01-23'
-  modified: '2017-03-01'
-  url: http://miami.open.211.adopta.agency/apis.json
-  specificationVersion: '0.14'
+    - "API"
+    - "Schema"
+    - "Data"
+    - "Human Services"
+  created: "2016-04-09"
+  modified: "2017-04-10"
+  url: "http://spec.open.referral.adopta.agency/"
+  specificationVersion: "0.14"
   apis:
-  - name: Miami Open211 API
-    description: API access to the Miami Open211 human services data, including organizations, locations, and services.
-    image: http://miami.open.211.adopta.agency/images/switchboard-miami-logo.png
-    humanURL: http://miami.open.211.adopta.agency/
-    baseURL: "https://miamiopen211-api.herokuapp.com"
-    tags:
-      - Human Services
-      - Locations
-      - Services
-      - Open Referral
-      - API
-      - Application Programming Interface
-      - Developers
-    properties:
-    - type: x-openapi
-      url: /data/openapi.json
-    - type: x-json-schema
-      url: /data/schema.json
-    - type: x-api-filters
-      url: api-commons/api-filter.yaml
-  x-common:
-  - type: x-authentication-overview
-    url: /authentication/
-  - type: x-base-url-for-api
-    url: http://api.kinlane.com
-  - type: x-blog
-    url: /blog/
-  - type: x-blog-rss-feed
-    url: blog.xml
-  - type: x-change-log
-    url: /change-log/
-  - type: x-portal
-    url: http://miami.open.211.adopta.agency/
-  - type: x-documentation
-    url: /documentation/
-  - type: x-faq
-    url: /frequently-asked-questions/
-  - type: x-getting-started
-    url: /getting-started/
-  - type: x-github
-    url: https://github.com/miami-open-211/developer-portal/
-  - type: x-issues
-    url: /issues/
-  - type: x-status
-    url: /status/
-  - type: x-login
-    url: https://miamiopen211-api.herokuapp.com/users/sign_in
-  - type: x-privacy-policy-page
-    url: /privacy-policy/
-  - type: x-road-map
-    url: /road-map/
-  - type: x-selfservice-registration
-    url: https://miamiopen211-api.herokuapp.com/users/sign_up
-  - type: x-status-dashboard
-    url: /status/
-  - type: x-api-science
-    url: https://api.apiscience.com/v1/monitors/1572918/uptime.json?preset=lastDay
-  - type: x-support-overview-page
-    url: /support/
-  - type: x-terms-of-service-page
-    url: /terms-of-service/
-  - type: x-twitter
-    url: https://twitter.com/apievangelist
-  - type: x-twitter
-    url: https://twitter.com/apievangelist
-  - type: x-twitter
-    url: https://twitter.com/apievangelist
-  - type: x-postman
-    url: http://miami.open.211.adopta.agency/postman_collection.json
-  - type: x-code-page
-    url: /code/
+    - name: "Human Services Data Specification (HSDS)"
+      description: "The Human Services Data Specification (Open Referral) is an exchange format for publishing machine readable data about health, human, and social services, their locations, and the organizations that provide them. For the purposes of this specification, human services are broadly defined, ranging from food assistance to job training and health care."
+      image: "https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-family.png"
+      humanURL: "https://example.com"
+      baseURL: "https://api.example.com"
+      tags:
+        - "API"
+        - "Schema"
+        - "Data"
+        - "Human Services"
+      properties:
+        - type: "x-openapi-spec"
+          url: "v10/openapi.yaml"
+        - type: "x-json-schema"
+          url: "v10/schema.yaml"
+  x-common: []
   include: []
   maintainers:
-  - FN: Greg Bloom
-    x-twitter: open_referral
-    email: bloom@openreferral.org
+    - FN: "Kin Lane"
+      x-twitter: "apievangelist"
+      email: "info@apievangelist.com"

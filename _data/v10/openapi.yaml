@@ -1,0 +1,421 @@
+- swagger: '2.0'
+  info:
+    title: "Open Referral API"
+    description: "This is a specification describing the Open Referral API, using the Human Services Specification. This has been extracted from the Ohana API deployment, but will be standardized to refer to the universal standard that will apply to any Open Referral compliant API."
+    termsOfService: "https://openreferral.org/documentation/"
+    contact:
+      name: Open Referral
+      url: https://openreferral.org/
+      email: info@openreferral.org
+    license:
+      name: Open Data Commons Public Domain
+      url: http://opendatacommons.org/licenses/pddl/
+    version: v1
+  host: api.example.com
+  basePath: "/"
+  schemes:
+  - http
+  - https
+  produces:
+  - application/json
+  - application/xml
+  paths:
+    "/locations":
+      get:
+        summary: Locations
+        description: Retrieve all of the locations available.
+        operationId: retrieveLocations
+        parameters:
+          - name: Accept
+            in: header
+            type: string
+            required: true
+            default: 'application/vnd.ohanapi+json; version=1'
+          - name: page
+            in: query
+            type: string
+            required: false
+          - name: per_page
+            in: query
+            type: string
+            required: false
+        responses:
+          '200':
+            description: Successful response
+            schema:
+              type: array
+              items:
+                "$ref": "#/definitions/location"
+        tags:
+        - Locations
+    "/categories":
+      get:
+        summary: Categories
+        description: This endpoint retrieves all categories.
+        operationId: getCategories
+        parameters:
+          - name: Accept
+            in: header
+            type: string
+            required: true
+            default: 'application/vnd.ohanapi+json; version=1'
+        responses:
+          '200':
+            description: Successful response
+            schema:
+              type: array
+              items:
+                "$ref": "#/definitions/categories"
+        tags:
+        - Categories
+    "/locations/{location_id}":
+      get:
+        summary: Location
+        description: Retrieve all of the locations available in this database.
+        operationId: retrieveLocation
+        parameters:
+          - name: Accept
+            in: header
+            type: string
+            required: true
+            default: 'application/vnd.ohanapi+json; version=1'
+          - name: location_id
+            in: path
+            type: string
+            required: true
+        responses:
+          '200':
+            description: Successful response
+            schema:
+              type: array
+              items:
+                "$ref": "#/definitions/location"
+        tags:
+          - Locations
+    "/locations/{location_id}/nearby":
+      get:
+        summary: Find Nearby Locations
+        description: This endpoint retrieves all locations that are near the specified location.
+        operationId: findNearbyLocations
+        parameters:
+          - name: Accept
+            in: header
+            type: string
+            required: true
+            default: 'application/vnd.ohanapi+json; version=1'
+          - name: location_id
+            in: path
+            type: string
+            required: true
+          - in: query
+            name: radius
+            description: Default in miles is 0.5, minimum is 0.1.
+            type: string
+          - in: query
+            name: page
+            description: The particular page of results. Default is 1.
+            type: string
+          - in: query
+            name: per_page
+            description: Amount of locations to return per page.
+            type: string
+        responses:
+          '200':
+            description: Successful response
+            schema:
+              type: array
+              items:
+                "$ref": "#/definitions/location"
+        tags:
+        - Locations
+    "/locations/{location_id}/services":
+      get:
+        summary: Services
+        description: Retrieve all services for this location
+        operationId: retrieveLocationServices
+        parameters:
+          - name: Accept
+            in: header
+            type: string
+            required: true
+            default: 'application/vnd.ohanapi+json; version=1'
+          - name: location_id
+            in: path
+            type: string
+            required: true
+        responses:
+          '200':
+            description: Successful response
+            schema:
+              type: array
+              items:
+                "$ref": "#/definitions/service"
+        tags:
+        - Locations
+    "/organizations":
+      get:
+        summary: Organizations
+        description: Retrieve all of the organizations available in this database.
+        operationId: retrieveLOrganizations
+        parameters:
+          - name: Accept
+            in: header
+            type: string
+            required: true
+            default: 'application/vnd.ohanapi+json; version=1'
+          - name: page
+            in: query
+            type: string
+            required: false
+          - name: per_page
+            in: query
+            type: string
+            required: false
+        responses:
+          '200':
+            description: Successful response
+            schema:
+              type: array
+              items:
+                "$ref": "#/definitions/organization"
+        tags:
+        - Organizations
+    "/organizations/{organization_id}":
+      get:
+        summary: Organizations
+        description: Retrieve all of the organizations available in this database.
+        operationId: retrieveLOrganization
+        parameters:
+          - name: Accept
+            in: header
+            type: string
+            required: true
+            default: 'application/vnd.ohanapi+json; version=1'
+          - name: organization_id
+            in: path
+            type: string
+            required: true
+        responses:
+          '200':
+            description: Successful response
+            schema:
+              type: array
+              items:
+                "$ref": "#/definitions/organization"
+        tags:
+        - Organizations
+    "/organizations/{organization_id}/locations":
+      get:
+        summary: Organization Locations
+        description: This endpoint retrieves all locations that belong to a particular
+          organization.
+        operationId: retrieveLOrganizationLocations
+        parameters:
+          - name: Accept
+            in: header
+            type: string
+            required: true
+            default: 'application/vnd.ohanapi+json; version=1'
+          - name: organization_id
+            in: path
+            type: string
+            required: true
+        responses:
+          '200':
+            description: Successful response
+            schema:
+              type: array
+              items:
+                "$ref": "#/definitions/location"
+        tags:
+        - Organizations
+    "/search":
+      get:
+        summary: Search
+        description: This endpoint retrieves all locations that match the criteria based on the parameters below. Multiple parameters can be used at the same time, separated by an ampersand (&).
+        operationId: searchLocations
+        parameters:
+          - name: Accept
+            in: header
+            type: string
+            required: true
+            default: 'application/vnd.ohanapi+json; version=1'
+          - in: query
+            name: category
+            type: string
+          - in: query
+            name: email
+            type: string
+          - in: query
+            name: keyword
+            type: string
+          - in: query
+            name: language
+            type: string
+          - in: query
+            name: lat_lng
+            type: string
+          - in: query
+            name: location
+            type: string
+          - in: query
+            name: org_name
+            type: string
+          - in: query
+            name: radius
+            type: string
+          - in: query
+            name: service_area
+            type: string
+          - in: query
+            name: status
+            type: string
+          - in: query
+            name: page
+            type: string
+          - in: query
+            name: per_page
+            type: string
+        responses:
+          '200':
+            description: Successful response
+            schema:
+              type: array
+              items:
+                "$ref": "#/definitions/location"
+        tags:
+        - Search
+  definitions:
+    categories:
+      properties:
+        id:
+          description: Each location must have a unique identifier
+          type: string
+    location:
+      properties:
+        id:
+          description: Each location must have a unique identifier
+          type: string
+        organization_id:
+          description: Each location must belong to a single organization. The identifier of the organization should be given here.
+          type: string
+        name:
+          description: The name of the location
+          type: string
+        alternate_name:
+          description: An alternative name for the location
+          type: string
+        description:
+          description: A description of this location.
+          type: string
+        transportation:
+          description: A description of the access to public or private transportation to and from the location.
+          type: string
+        latitude:
+          description: Y coordinate of location expressed in decimal degrees in WGS84 datum.
+          type: string
+        longitude:
+          description: X coordinate of location expressed in decimal degrees in WGS84 datum.
+          type: string
+    phone:
+      properties:
+        id:
+          description: Each entry must have a unique identifier
+          type: string
+        location_id:
+          description: The identifier of the location where this phone number is located
+          type: string
+        service_id:
+          description: The identifier of the service for which this is the phone number
+          type: string
+        organization_id:
+          description: The identifier of the organisation for which this is the phone number
+          type: string
+        contact_id:
+          description: The identifier of the contact for which this is the phone number
+          type: string
+        number:
+          description: The phone number
+          type: string
+        extension:
+          description: The extension of the phone number
+          type: string
+        type:
+          description: Whether the phone number relates to a fixed or cellular phone
+          type: string
+        department:
+          description: The department for which this is the phone number
+          type: string
+    service:
+      properties:
+        id:
+          description: Each service must have a unique identifier.
+          type: string
+        organization_id:
+          description: The identifier of the organization that provides this service.
+          type: string
+        location_id:
+          description: The identifier of the location where this service is delivered.
+          type: string
+        program_id:
+          description: The identifier of the program this service is delivered under.
+          type: string
+        name:
+          description: The official or public name of the service.
+          type: string
+        alternate_name:
+          description: Alternative or commonly used name for a service.
+          type: string
+        description:
+          description: A description of the service.
+          type: string
+        url:
+          description: URL of the service
+          type: string
+        email:
+          description: Email address for the service
+          type: string
+        status:
+          description: The current status of the service.
+          type: string
+        application_process:
+          description: The steps needed to access the service.
+          type: string
+        wait_time:
+          description: Time a client may expect to wait before receiving a service.
+          type: string
+        taxonomy_ids:
+          description: A comma separated list of identifiers from the taxonomy table. Advanced users may also include composite categories, using * to combine two taxonomy terms.
+          type: string
+    organization:
+      properties:
+        id:
+          description: Each organization must have a unique identifier.
+          type: string
+        name:
+          description: The official or public name of the organization.
+          type: string
+        alternate_name:
+          description: Alternative or commonly used name for the organization.
+          type: string
+        description:
+          description: A brief summary about the organization. It can contain markup such as HTML or Markdown.
+          type: string
+        email:
+          description: The contact e-mail address for the organization.
+          type: string
+        url:
+          description: The UR of the organization.
+          type: string
+        tax_status:
+          description: Government assigned tax designation for for tax-exempt organizations.
+          type: string
+        tax_id:
+          description: A government issued identifier used for the purpose of tax administration.
+          type: string
+        year_incorporated:
+          description: The year in which the organization was legally formed.
+          type: string
+        legal_status:
+          description: The legal status defines the conditions that an organization is operating under.
+          type: string
