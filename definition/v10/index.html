@@ -14,8 +14,6 @@ slug: docs
 
 {% assign apijson = index[0] %}
 
-HERE2: {{ apijson }}<br />
-
 {% assign contents = site.data.v10 %}
 {% assign apicommons = contents %}
 
@@ -83,7 +81,7 @@ HERE2: {{ apijson }}<br />
       <table width="100%" border="0" style="padding-top: 10px;">
         <tr>
         <td align="center" style="margin-left: 90px; margin-right: 90px;">
-
+            HERE3: {{ apijson.apis }}<br />
             {% assign numberofapis = apijson.apis | size %}
 
                 {% assign api_action_url = '' %}
