@@ -321,10 +321,10 @@ slug: diff
 
                                           {% assign is_diff = 1 %}
                                           {% for compare_path in openapi_spec_1.paths %}
-
+                                          IN: {{ compare_path }}<br />
                                             {% assign compare_with = compare_path[1] %}
                                             {% for compare_method in compare_with %}
-                                              comparing: {{ compare_path }} == {{ this_path }}<br />
+                                              comparing: {{ compare_with }} == {{ this_path }}<br />
                                               {% if compare_path == this_path %}
                                                 {% assign is_diff = 0 %}
                                               {% endif %}
