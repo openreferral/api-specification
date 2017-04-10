@@ -19,6 +19,10 @@ slug: diff
       <!-- Begin v1.0 -->
       <table cellpadding="3" cellspacing="2" width="100%" border="0" style="margin-top: 0px;">
 
+      {% assign path_1_count = 0 %}
+      {% assign definition_1_count = 0 %}
+      {% assign parameter_1_count = 0 %}
+
       {% assign index = site.data.v10.apis %}
 
       {% assign apijson = index[0] %}
@@ -106,6 +110,8 @@ slug: diff
                                         {% assign tagarray = method[1].tags %}
                                         {% assign tag = tagarray[0] %}
 
+                                        {% assign path_1_count = path_1_count | plus: 1 %}
+
                                         {% assign verb = method[0] | upcase %}
 
                                         {% if verb == 'GET' %}
@@ -145,6 +151,9 @@ slug: diff
                   </td>
                 </tr>
               </table>
+
+              <p align="center:"><strong>Number of Paths:</strong> {{ path_1_count }}</p>
+
             </td>
           </tr>
         </table>
@@ -152,6 +161,10 @@ slug: diff
 
       </td>
       <td width="50%" valign="top" />
+
+        {% assign path_2_count = 0 %}
+        {% assign definition_2_count = 0 %}
+        {% assign parameter_2_count = 0 %}
 
         <!-- Begin v1.1 -->
 
@@ -234,8 +247,6 @@ slug: diff
 
                         <table cellpadding="3" cellspacing="2" width="100%" border="0">
 
-                            {% assign api_action_spec = '' %}
-                            {% assign api_action_url = '' %}
                             {% assign openapi_spec_2 = '' %}
 
                             {% for property in api.properties %}
@@ -301,6 +312,7 @@ slug: diff
                                         {% for method in method_json %}
 
                                           {% assign this_path = path[0] %}
+                                          {% assign path_2_count = path_2_count | plus: 1 %}
                                           {% assign summary = method[1].summary %}
                                           {% assign tagarray = method[1].tags %}
                                           {% assign tag = tagarray[0] %}
@@ -362,6 +374,7 @@ slug: diff
                     </td>
                   </tr>
                 </table>
+                <p align="center:"><strong>Number of Paths:</strong> {{ path_2_count }}</p>
               </td>
             </tr>
           </table>
