@@ -18,20 +18,6 @@
   produces:
   - application/json
   paths:
-    "/categories":
-      get:
-        summary: Get all categories
-        description: Get all categories
-        operationId: get-all-categories
-        responses:
-          '200':
-            description: Category Response
-            schema:
-              type: array
-              items:
-                "$ref/": "#/definitions/category"
-        tags:
-        - Categories
     "/contacts/":
       get:
         summary: Get Contacts
