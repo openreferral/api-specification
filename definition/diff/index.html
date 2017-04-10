@@ -315,6 +315,9 @@ slug: diff
                                           {% if verb == 'PUT' %}
                                             {% assign back_color = site.put_color %}
                                           {% endif %}
+                                          {% if verb == 'PATCH' %}
+                                            {% assign back_color = site.patch_color %}
+                                          {% endif %}
                                           {% if verb == 'DELETE' %}
                                             {% assign back_color = site.delete_color %}
                                           {% endif %}
