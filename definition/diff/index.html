@@ -323,13 +323,13 @@ slug: diff
                                           {% endif %}
 
                                           {% assign is_diff = 1 %}
-                                          {% for compare_spec in openapi_spec_2 %}
+                                          {% for compare_spec in openapi_spec_1 %}
                                             {% for compare_path in compare_spec.paths %}
                                               {% assign compare_with = compare_path[0] %}
                                               {% for compare_method in compare_with %}
                                                 {% assign compare_verb = compare_method[0] | upcase %}
                                                 compare: {{ compare_with }} == {{ compare_with }}<br />
-                                                {% if compare_with == compare_with %}                                                
+                                                {% if compare_with == compare_with %}
                                                   {% if compare_verb == verb %}
                                                     {% assign is_diff = 0 %}
                                                   {% endif %}
