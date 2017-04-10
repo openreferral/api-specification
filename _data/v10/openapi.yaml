@@ -117,7 +117,7 @@
               items:
                 "$ref": "#/definitions/location"
         tags:
-        - Organizations
+        - Locations
       delete:
         summary: Delete Location
         description: Deletes an existing location in the system.
@@ -135,7 +135,7 @@
               items:
                 "$ref": "#/definitions/location"
         tags:
-        - Organizations
+        - Locations
     "/locations/{location_id}/nearby":
       get:
         summary: Find Nearby Locations
@@ -223,7 +223,7 @@
               items:
                 "$ref": "#/definitions/address"
         tags:
-        - Organizations
+        - Locations
       delete:
         summary: Delete Location Address
         description: Deletes an existing address for a location in the system.
@@ -245,7 +245,7 @@
               items:
                 "$ref": "#/definitions/address"
         tags:
-        - Organizations
+        - Locations
     "/locations/{location_id}/mail_address":
       post:
         summary: Location Mailing Address
@@ -297,7 +297,7 @@
               items:
                 "$ref": "#/definitions/mail_address"
         tags:
-        - Organizations
+        - Locations
       delete:
         summary: Delete Location Mailing Address
         description: Deletes an existing mailing address for a location in the system.
@@ -319,7 +319,7 @@
               items:
                 "$ref": "#/definitions/mail_address"
         tags:
-        - Organizations
+        - Locations
     "/locations/{location_id}/contacts":
       get:
         summary: Get Location Contacts
@@ -393,7 +393,7 @@
               items:
                 "$ref": "#/definitions/contact"
         tags:
-        - Organizations
+        - Locations
       delete:
         summary: Delete Location Contact
         description: Deletes an existing contact for a location.
@@ -415,7 +415,7 @@
               items:
                 "$ref": "#/definitions/contact"
         tags:
-        - Organizations
+        - Locations
     "/locations/{location_id}/phones":
       post:
         summary: Create Location Phone
@@ -467,7 +467,7 @@
               items:
                 "$ref": "#/definitions/phone"
         tags:
-        - Organizations
+        - Locations
       delete:
         summary: Delete Location Phone
         description: Deletes an existing phone for a location.
@@ -489,7 +489,7 @@
               items:
                 "$ref": "#/definitions/phone"
         tags:
-        - Organizations
+        - Locations
     "/locations/{location_id}/services":
       get:
         summary: Services
