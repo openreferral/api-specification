@@ -22,65 +22,6 @@ slug: v10
       {% assign contents = site.data.v10 %}
       {% assign apicommons = contents %}
 
-      {% assign blog_url = '' %}
-      {% assign blogrss_url = '' %}
-      {% assign portal_url = '' %}
-      {% assign gitub_url = '' %}
-      {% assign twitter_url = '' %}
-      {% assign website_url = '' %}
-
-      {% for common in apijson.x-common %}
-
-        {% if common.type == 'x-getting-started' %}
-          {% assign getting_started_url = common.url %}
-        {% endif %}
-        {% if common.type == 'x-authentication-overview' %}
-          {% assign authentication_url = common.url %}
-        {% endif %}
-        {% if common.type == 'x-faq' %}
-          {% assign faq_url = common.url %}
-        {% endif %}
-        {% if common.type == 'x-login' %}
-          {% assign login_url = common.url %}
-        {% endif %}
-        {% if common.type == 'x-selfservice-registration' %}
-          {% assign signup_url = common.url %}
-        {% endif %}
-
-        {% if common.type == 'x-documentation' %}
-          {% assign documentation_url = common.url %}
-        {% endif %}
-
-        {% if common.type == 'x-code-page' %}
-          {% assign code_page_url = common.url %}
-        {% endif %}
-
-        {% if common.type == 'x-road-map' %}
-          {% assign road_map_url = common.url %}
-        {% endif %}
-        {% if common.type == 'x-issues' %}
-          {% assign issue_url = common.url %}
-        {% endif %}
-        {% if common.type == 'x-change-log' %}
-          {% assign change_log_url = common.url %}
-        {% endif %}
-        {% if common.type == 'x-status' %}
-          {% assign status_dashboard_url = common.url %}
-        {% endif %}
-
-        {% if common.type == 'x-support' %}
-          {% assign support_url = common.url %}
-        {% endif %}
-
-        {% if common.type == 'x-api-plan' %}
-          {% assign api_plan_url = common.url %}
-        {% endif %}
-        {% if common.type == 'x-rate-limit' %}
-          {% assign rate_limit_url = common.url %}
-        {% endif %}
-
-      {% endfor %}
-
         <tr>
           <td>
             <table width="100%" border="0" style="padding-top: 10px;">
@@ -122,18 +63,6 @@ slug: v10
                               {% endfor %}
                             {% endif %}
 
-                            {% if property.type == 'x-postman %}
-                              {% assign postman_url = property.url %}
-                            {% endif %}
-
-                            {% if property.type == 'x-api-blueprint' %}
-                              {% assign api_blueprint_url = property.url %}
-                            {% endif %}
-
-                            {% if property.type == 'x-api-actions' %}
-                              {% assign api_action_url = property.url %}
-                            {% endif %}
-
                           {% endfor %}
 
                           <tr id="methods-for-{{ pathname }}">
@@ -162,7 +91,7 @@ slug: v10
 
                                   {% if grouptag != '' %}
                                     <tr>
-                                      <td colspan="3" style="padding-top: 10px; padding-bottom: 10px;"><strong>{{ grouptag }}</strong></td>
+                                      <td colspan="2" style="padding-top: 10px; padding-bottom: 10px;"><strong>{{ grouptag }}</strong></td>
                                     </tr>
                                   {% endif %}
 
@@ -192,7 +121,6 @@ slug: v10
 
                                         {% if tag == grouptag %}
                                           <tr>
-                                            <td style="padding-left: 20px; font-size: 12px;">{{ summary }}</td>
                                             <td style="font-size: 12px;">{{ path[0] }}</td>
                                             <td align="center" style="padding: 5px; width: 75px; background-color:#{{ back_color }}; font-weight: bold; font-size: 11px; color: #FFF;">
                                               {{ verb }}
@@ -330,18 +258,6 @@ slug: v10
                                 {% endfor %}
                               {% endif %}
 
-                              {% if property.type == 'x-postman %}
-                                {% assign postman_url = property.url %}
-                              {% endif %}
-
-                              {% if property.type == 'x-api-blueprint' %}
-                                {% assign api_blueprint_url = property.url %}
-                              {% endif %}
-
-                              {% if property.type == 'x-api-actions' %}
-                                {% assign api_action_url = property.url %}
-                              {% endif %}
-
                             {% endfor %}
 
                             <tr id="methods-for-{{ pathname }}">
@@ -370,7 +286,7 @@ slug: v10
 
                                     {% if grouptag != '' %}
                                       <tr>
-                                        <td colspan="3" style="padding-top: 10px; padding-bottom: 10px;"><strong>{{ grouptag }}</strong></td>
+                                        <td colspan="2" style="padding-top: 10px; padding-bottom: 10px;"><strong>{{ grouptag }}</strong></td>
                                       </tr>
                                     {% endif %}
 
@@ -400,7 +316,6 @@ slug: v10
 
                                           {% if tag == grouptag %}
                                             <tr>
-                                              <td style="padding-left: 20px; font-size: 12px;">{{ summary }}</td>
                                               <td style="font-size: 12px;">{{ path[0] }}</td>
                                               <td align="center" style="padding: 5px; width: 75px; background-color:#{{ back_color }}; font-weight: bold; font-size: 11px; color: #FFF;">
                                                 {{ verb }}
