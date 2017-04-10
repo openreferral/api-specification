@@ -324,7 +324,6 @@ slug: diff
                                           {% for compare_path in compare_spec.paths %}
                                             {% assign compare_with = compare_path[1] %}
                                             {% for compare_method in compare_with %}
-                                              comparing2: {{ compare_with }} == {{ this_path }}<br />
                                               {% if compare_path == this_path %}
                                                 {% assign is_diff = 0 %}
                                               {% endif %}
