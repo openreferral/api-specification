@@ -322,7 +322,6 @@ slug: diff
                                           {% assign is_diff = 1 %}
                                           {% for compare_spec in openapi_spec_2 %}
                                           {% for compare_path in compare_spec.paths %}
-                                          IN: {{ compare_path }}<br />
                                             {% assign compare_with = compare_path[1] %}
                                             {% for compare_method in compare_with %}
                                               comparing: {{ compare_with }} == {{ this_path }}<br />

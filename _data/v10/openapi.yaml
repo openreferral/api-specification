@@ -180,6 +180,28 @@
                 "$ref": "#/definitions/organization"
         tags:
         - Organizations
+    "/organizations":
+      post:
+        summary: Organizations
+        description: Creates a new organization in the system.
+        operationId: createOrganizations
+        parameters:
+          - name: body
+            in: body
+            type: array
+            schema:
+              type: array
+              items:
+                "$ref": "#/definitions/organization"
+        responses:
+          '200':
+            description: Successful response
+            schema:
+              type: array
+              items:
+                "$ref": "#/definitions/organization"
+        tags:
+        - Organizations
     "/organizations/{organization_id}":
       get:
         summary: Organizations
