@@ -18,7 +18,7 @@
   produces:
   - application/json
   paths:
-    "/locations":
+    "/locations/":
       get:
         summary: Locations
         description: Retrieve all of the locations available.
@@ -67,7 +67,7 @@
                 "$ref": "#/definitions/location"
         tags:
         - Locations
-    "/locations/{location_id}":
+    "/locations/{location_id}/":
       get:
         summary: Location
         description: Retrieve all of the locations available in this database.
@@ -134,7 +134,7 @@
                 "$ref": "#/definitions/location"
         tags:
         - Locations
-    "/locations/{location_id}/nearby":
+    "/locations/{location_id}/nearby/":
       get:
         summary: Find Nearby Locations
         description: This endpoint retrieves all locations that are near the specified location.
@@ -170,7 +170,7 @@
                 "$ref": "#/definitions/location"
         tags:
         - Locations
-    "/locations/{location_id}/address":
+    "/locations/{location_id}/address/":
       post:
         summary: Location Address
         description: Creates a new address for a location
@@ -192,7 +192,7 @@
                 "$ref": "#/definitions/address"
         tags:
         - Locations
-    "/locations/{location_id}/address/{address_id}":
+    "/locations/{location_id}/address/{address_id}/":
       patch:
         summary: Update Location Address
         description: Updates an existing address for a location in the system.
@@ -244,7 +244,7 @@
                 "$ref": "#/definitions/address"
         tags:
         - Locations
-    "/locations/{location_id}/mail_address":
+    "/locations/{location_id}/mail_address/":
       post:
         summary: Location Mailing Address
         description: Creates a new mailing address for a location
@@ -266,7 +266,7 @@
                 "$ref": "#/definitions/mailingaddress"
         tags:
         - Locations
-    "/locations/{location_id}/address/{mail_address_id}":
+    "/locations/{location_id}/address/{mail_address_id}/":
       patch:
         summary: Update Location Mailing Address
         description: Updates an existing mailing address for a location in the system.
@@ -318,7 +318,7 @@
                 "$ref": "#/definitions/mail_address"
         tags:
         - Locations
-    "/locations/{location_id}/contacts":
+    "/locations/{location_id}/contacts/":
       get:
         summary: Get Location Contacts
         description: Retrieve all of the contacts for a location
@@ -362,7 +362,7 @@
                 "$ref": "#/definitions/contact"
         tags:
         - Locations
-    "/locations/{location_id}/contacts/{contact_id}":
+    "/locations/{location_id}/contacts/{contact_id}/":
       patch:
         summary: Update Location Contact
         description: Updates an existing contact for a location.
@@ -414,7 +414,7 @@
                 "$ref": "#/definitions/contact"
         tags:
         - Locations
-    "/locations/{location_id}/phones":
+    "/locations/{location_id}/phones/":
       post:
         summary: Create Location Phone
         description: Creates a new phone for a location
@@ -436,7 +436,7 @@
                 "$ref": "#/definitions/phone"
         tags:
         - Locations
-    "/locations/{location_id}/phones/{phone_id}":
+    "/locations/{location_id}/phones/{phone_id}/":
       patch:
         summary: Update Location Phone
         description: Updates an existing phone for a location.
@@ -488,7 +488,7 @@
                 "$ref": "#/definitions/phone"
         tags:
         - Locations
-    "/locations/{location_id}/services":
+    "/locations/{location_id}/services/":
       get:
         summary: Services
         description: Retrieve all services for this location
@@ -533,7 +533,7 @@
                 "$ref": "#/definitions/phone"
         tags:
         - Locations
-    "/locations/{location_id}/services/{service_id}":
+    "/locations/{location_id}/services/{service_id}/":
       patch:
         summary: Update Location Service
         description: Updates an existing service for a location.
@@ -585,7 +585,7 @@
                 "$ref": "#/definitions/service"
         tags:
         - Locations
-    "/organizations":
+    "/organizations/":
       get:
         summary: Organizations
         description: Retrieve all of the organizations available in this database.
@@ -634,7 +634,7 @@
                 "$ref": "#/definitions/organization"
         tags:
         - Organizations
-    "/organizations/{organization_id}":
+    "/organizations/{organization_id}/":
       get:
         summary: Organizations
         description: Retrieve all of the organizations available in this database.
@@ -700,7 +700,7 @@
                 "$ref": "#/definitions/organization"
         tags:
         - Organizations
-    "/organizations/{organization_id}/locations":
+    "/organizations/{organization_id}/locations/":
       get:
         summary: Organization Locations
         description: This endpoint retrieves all locations that belong to a particular
@@ -725,27 +725,7 @@
                 "$ref": "#/definitions/location"
         tags:
         - Organizations
-    "/categories":
-      get:
-        summary: Categories
-        description: This endpoint retrieves all categories.
-        operationId: getCategories
-        parameters:
-          - name: Accept
-            in: header
-            type: string
-            required: true
-            default: 'application/vnd.ohanapi+json; version=1'
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/categories"
-        tags:
-        - Categories
-    "/search":
+    "/search/":
       get:
         summary: Search
         description: This endpoint retrieves all locations that match the criteria based on the parameters below. Multiple parameters can be used at the same time, separated by an ampersand (&).
