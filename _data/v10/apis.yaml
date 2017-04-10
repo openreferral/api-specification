@@ -1,9 +1,9 @@
 - name: "Human Services Data Specification (HSDS) (v1.0)"
-  description: "The Human Services Data Specification (Open Referral) is an exchange format for publishing machine readable data about health, human, and social services, their locations, and the organizations that provide them. For the purposes of this specification, human services are broadly defined, ranging from food assistance to job training and health care. This is the current active v1.0 of the specification."
+  description: "The Human Services Data Specification (Open Referral) is an exchange format for publishing machine readable data about health, human, and social services, their locations, and the organizations that provide them. For the purposes of this specification, human services are broadly defined, ranging from food assistance to job training and health care. This is the current active v1.0 of the specification. "
   image: "https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-family.png"
   tags:
     - Human Services
-    - Organizations    
+    - Organizations
     - Locations
     - Services
     - Open Referral
