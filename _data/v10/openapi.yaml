@@ -10,7 +10,7 @@
     license:
       name: Open Data Commons Public Domain
       url: http://opendatacommons.org/licenses/pddl/
-    version: v1
+    version: v1.0
   host: api.example.com
   basePath: "/"
   schemes:
@@ -1093,4 +1093,4 @@
           type: string
         email:
           description: 'Needs a description.'
-          type: string                    
+          type: string
