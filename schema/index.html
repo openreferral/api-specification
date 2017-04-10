@@ -26,9 +26,9 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
       <table width="100%" border="0" style="padding-top: 10px;">
         <tr>
         <td align="center" style="margin-left: 90px; margin-right: 90px;">
-          
+
             {% assign numberofapis = apijson.apis | size %}
-                
+
                 {% assign api_action_url = '' %}
                 {% for api in apijson.apis %}
 
@@ -44,8 +44,8 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                       {% assign thisname = thisname | append:'/' %}
                       {% assign thisname = thisname | replace: ' ','-' %}
 
-                      {% if property.type == 'x-json-schema' %}
-                      
+                      {% if property.type == 'x-openapi-spec' %}
+
                         {% assign json_schema_url = property.url %}
                         {% assign pathname = json_schema_url | replace: '_data/api-commons/','' %}
                         {% assign pathname = pathname | replace: '.yaml','' %}
@@ -61,7 +61,7 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                           {% endif %}
                         {% endfor %}
                       {% endif %}
-                      
+
 
                     {% endfor %}
 
@@ -76,20 +76,23 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                     <tr id="methods-for-{{ pathname }}">
                       <td colspan="2">
                         <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
-                            
 
-                          {% for schema in json_schema %}
-                            {% for resource in schema.resources %}
-                            
-                                <p style="padding-top: 8px;"><strong>{{ resource.name }}</strong></p>
+
+                          {% for schema in json_schema.definitions %}
+                            {% assign definition = schema[0] %}
+                            {% assign definition_entry = schema[1] %}
+
+                                <p style="padding-top: 8px;"><strong>{{ definition }}</strong></p>
                                 <ul>
-                                {% for field in resource.schema.fields %}                                
-                                    <li><strong>{{ field.name }}</strong> ({{ field.type }}) {{ field.description }}</li>
+                                {% for field in definition_entry.properties %}
+                                    {% assign field_name = field[0] %}
+                                    {% assign field_details = field[1] %}
+                                    <li><strong>{{ field_name }}</strong> ({{ field_details.type }}) {{ field_details.description }}</li>
                                 {% endfor %}
                                 </ul>
                             {% endfor %}
                           {% endfor %}
-                          
+
                         </table>
                       </td>
                     </tr>
@@ -101,4 +104,3 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
       </td>
     </tr>
   </table>
-
