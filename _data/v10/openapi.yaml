@@ -14,11 +14,9 @@
   host: api.example.com
   basePath: "/"
   schemes:
-  - http
   - https
   produces:
   - application/json
-  - application/xml
   paths:
     "/locations":
       get:

@@ -326,11 +326,11 @@ slug: diff
                                           {% for compare_spec in openapi_spec_1 %}
                                             {% for compare_path in compare_spec.paths %}
                                               {% assign compare_with = compare_path[0] %}
-                                              {% for compare_method in compare_with %}
+                                              {% for compare_method in compare_path[1] %}
                                                 {% assign compare_verb = compare_method[0] | upcase %}
                                                 compare1: {{ compare_with }} == {{ this_path }}<br />
                                                 {% if compare_with == this_path %}
-                                                  compare2: {{ compare_verb }} == {{ verb }}<br /><br />                                                  
+                                                  compare2: {{ compare_verb }} == {{ verb }}<br /><br />
                                                   {% if compare_verb == verb %}
 
                                                     {% assign is_diff = 0 %}
