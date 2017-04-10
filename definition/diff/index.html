@@ -320,7 +320,8 @@ slug: diff
                                           {% endif %}
 
                                           {% assign is_diff = 1 %}
-                                          {% for compare_path in openapi_spec_1.paths %}
+                                          {% for compare_spec in openapi_spec_2 %}
+                                          {% for compare_path in compare_spec.paths %}
                                           IN: {{ compare_path }}<br />
                                             {% assign compare_with = compare_path[1] %}
                                             {% for compare_method in compare_with %}
@@ -329,6 +330,7 @@ slug: diff
                                                 {% assign is_diff = 0 %}
                                               {% endif %}
                                             {% endfor %}
+                                          {% endfor %}
                                           {% endfor %}
 
                                           {% if tag == grouptag %}
