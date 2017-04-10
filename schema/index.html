@@ -79,6 +79,7 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
 
 
                           {% for schema in json_schema.definitions %}
+
                             {% assign definition = schema[0] %}
                             {% assign definition_entry = schema[1] %}
 
@@ -90,7 +91,6 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                                     <li><strong>{{ field_name }}</strong> ({{ field_details.type }}) {{ field_details.description }}</li>
                                 {% endfor %}
                                 </ul>
-                            {% endfor %}
                           {% endfor %}
 
                         </table>
