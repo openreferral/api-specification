@@ -324,7 +324,9 @@ slug: diff
                                           {% for compare_path in compare_spec.paths %}
                                             {% assign compare_with = compare_path[1] %}
                                             {% for compare_method in compare_with %}
+                                              {% assign compare_verb = method[0] | upcase %}
                                               {% if compare_with == this_path %}
+                                              {% if compare_verb == verb %}
                                                 {% assign is_diff = 0 %}
                                               {% endif %}
                                             {% endfor %}
