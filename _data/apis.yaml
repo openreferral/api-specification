@@ -1,14 +1,13 @@
-- name: "Human Services Data Specification (HSDS)"
-  description: "The Human Services Data Specification (Open Referral) is an exchange format for publishing machine readable data about health, human, and social services, their locations, and the organizations that provide them. For the purposes of this specification, human services are broadly defined, ranging from food assistance to job training and health care."
+- name: "Human Services Data Specification (HSDS) (v1.1 DRAFT)"
+  description: "The Human Services Data Specification (Open Referral) is an exchange format for publishing machine readable data about health, human, and social services, their locations, and the organizations that provide them. For the purposes of this specification, human services are broadly defined, ranging from food assistance to job training and health care. This is the current working draft for v1.1 of the specification."
   image: "https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-family.png"
-  x-open-ranking: "0"
   tags:
     - "API"
     - "Schema"
     - "Data"
     - "Human Services"
   created: "2016-04-09"
-  modified: "2016-04-09"
+  modified: "2017-04-10"
   url: "http://spec.open.referral.adopta.agency/"
   specificationVersion: "0.14"
   apis:
@@ -16,24 +15,21 @@
       name: "Human Services Data Specification (HSDS)"
       description: "The Human Services Data Specification (Open Referral) is an exchange format for publishing machine readable data about health, human, and social services, their locations, and the organizations that provide them. For the purposes of this specification, human services are broadly defined, ranging from food assistance to job training and health care."
       image: "https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-family.png"
-      humanURL: "http://api.sample.com"
-      baseURL: "/"
+      humanURL: "https://example.com"
+      baseURL: "https://api.example.com"
       tags:
         - "API"
         - "Schema"
         - "Data"
         - "Human Services"
-      properties: 
-        -
-          type: "x-openapi-spec"
+      properties:
+        - type: "x-openapi-spec"
           url: "api-commons/openapi-spec.yaml"
-        -
-          type: "x-json-schema"
+        - type: "x-json-schema"
           url: "api-commons/schema.yaml"
   x-common: []
   include: []
   maintainers:
-    -
-      FN: "Kin Lane"
+    - FN: "Kin Lane"
       x-twitter: "apievangelist"
       email: "info@apievangelist.com"
