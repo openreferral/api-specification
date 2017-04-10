@@ -72,20 +72,6 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                       <td colspan="2">
                         <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
 
-                          {% for schema in openapi_spec_json.definitions %}
-
-                            {% assign definition = schema[0] %}
-                            {% assign definition_entry = schema[1] %}
-
-                                <p style="padding-top: 8px;"><strong>{{ definition }}</strong></p>
-                                <ul>
-                                {% for field in definition_entry.properties %}
-                                    {% assign field_name = field[0] %}
-                                    {% assign field_details = field[1] %}
-                                    <li><strong>{{ field_name }}</strong> ({{ field_details.type }}) {{ field_details.description }}</li>
-                                {% endfor %}
-                                </ul>
-                          {% endfor %}
 
                         </table>
                       </td>
