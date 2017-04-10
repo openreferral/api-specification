@@ -34,36 +34,47 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
 
                 <table cellpadding="3" cellspacing="2" width="100%" border="0">
 
-                    {% assign api_action_spec = '' %}
-                    {% assign api_action_url = '' %}
-                    {% assign json_schema = '' %}
+                  {% assign api_action_spec = '' %}
+                  {% assign api_action_url = '' %}
+                  {% assign openapi_spec_json = '' %}
 
-                    {% for property in api.properties %}
+                  {% for property in api.properties %}
 
-                      {% assign thisname = apijson.name | downcase %}
-                      {% assign thisname = thisname | append:'/' %}
-                      {% assign thisname = thisname | replace: ' ','-' %}
+                    {% assign thisname = apijson.name | downcase %}
+                    {% assign thisname = thisname | append:'/' %}
+                    {% assign thisname = thisname | replace: ' ','-' %}
 
-                      {% if property.type == 'x-openapi-spec' %}
+                    {% if property.type == 'x-openapi-spec' %}
 
-                        {% assign json_schema_url = property.url %}
-                        {% assign pathname = json_schema_url | replace: '_data/api-commons/','' %}
-                        {% assign pathname = pathname | replace: '.yaml','' %}
-                        {% assign pathname = pathname | replace: '.json','' %}
-                        {% assign pathname = pathname | replace: '/','.' %}
-                        {% assign pathname = pathname | replace: 'api-commons.','' %}
+                      {% assign openapi_spec_url = property.url %}
+                      {% assign pathname = openapi_spec_url | replace: '_data/v10/','' %}
+                      {% assign pathname = pathname | replace: '.yaml','' %}
+                      {% assign pathname = pathname | replace: '.json','' %}
+                      {% assign pathname = pathname | replace: '/','.' %}
+                      {% assign pathname = pathname | replace: 'v10.','' %}
 
-                        {% for entry in apicommons %}
-                          {% assign thisname = entry[0] %}
-                          {% assign thisentry = entry[1] %}
-                          {% if thisname == pathname %}
-                            {% assign json_schema = thisentry %}
-                          {% endif %}
-                        {% endfor %}
-                      {% endif %}
+                      {% for entry in apicommons %}
+                        {% assign thisname = entry[0] %}
+                        {% assign thisentry = entry[1] %}
+                        {% if thisname == pathname %}
+                          {% assign openapi_spec_json = thisentry %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
 
+                    {% if property.type == 'x-postman %}
+                      {% assign postman_url = property.url %}
+                    {% endif %}
 
-                    {% endfor %}
+                    {% if property.type == 'x-api-blueprint' %}
+                      {% assign api_blueprint_url = property.url %}
+                    {% endif %}
+
+                    {% if property.type == 'x-api-actions' %}
+                      {% assign api_action_url = property.url %}
+                    {% endif %}
+
+                  {% endfor %}
 
                     <tr style="background-color: #D3D3D3;">
                       <td align="left" style="font-size: 18px; font-weight: bold; padding: 10px;">{{ api.name }}</td>
