@@ -1,5 +1,5 @@
 - name: "Human Services Data Specification (HSDS) (v1.1 DRAFT)"
-  description: "The Human Services Data Specification (Open Referral) is an exchange format for publishing machine readable data about health, human, and social services, their locations, and the organizations that provide them. For the purposes of this specification, human services are broadly defined, ranging from food assistance to job training and health care. This is the current working draft for v1.1 of the specification."
+  description: "The Human Services Data Specification (Open Referral) is an exchange format for publishing machine readable data about health, human, and social services, their locations, and the organizations that provide them. For the purposes of this specification, human services are broadly defined, ranging from food assistance to job training and health care. This is the current working draft  for v1.1 of the specification."
   image: "https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-family.png"
   tags:
     - "API"
@@ -11,8 +11,7 @@
   url: "http://spec.open.referral.adopta.agency/"
   specificationVersion: "0.14"
   apis:
-    -
-      name: "Human Services Data Specification (HSDS)"
+    - name: "Human Services Data Specification (HSDS)"
       description: "The Human Services Data Specification (Open Referral) is an exchange format for publishing machine readable data about health, human, and social services, their locations, and the organizations that provide them. For the purposes of this specification, human services are broadly defined, ranging from food assistance to job training and health care."
       image: "https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-family.png"
       humanURL: "https://example.com"
@@ -24,7 +23,7 @@
         - "Human Services"
       properties:
         - type: "x-openapi-spec"
-          url: "api-commons/openapi-spec.yaml"
+          url: "api-commons/openapi.yaml"
         - type: "x-json-schema"
           url: "api-commons/schema.yaml"
   x-common: []
