@@ -87,7 +87,7 @@ slug: docs
                 {% assign api_action_url = '' %}
                 {% for api in apijson.apis %}
 
-                <table cellpadding="3" cellspacing="2" width="100%" border="0">
+                <table cellpadding="3" cellspacing="2" width="100%" border="1">
 
                     {% assign api_action_spec = '' %}
                     {% assign api_action_url = '' %}
@@ -102,11 +102,11 @@ slug: docs
                       {% if property.type == 'x-openapi-spec' %}
 
                         {% assign openapi_spec_url = property.url %}
-                        {% assign pathname = openapi_spec_url | replace: '_data/api-commons/','' %}
+                        {% assign pathname = openapi_spec_url | replace: '_data/v10/','' %}
                         {% assign pathname = pathname | replace: '.yaml','' %}
                         {% assign pathname = pathname | replace: '.json','' %}
                         {% assign pathname = pathname | replace: '/','.' %}
-                        {% assign pathname = pathname | replace: 'api-commons.','' %}
+                        {% assign pathname = pathname | replace: 'v10.','' %}
 
                         {% for entry in apicommons %}
                           {% assign thisname = entry[0] %}
