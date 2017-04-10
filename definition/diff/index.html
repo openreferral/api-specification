@@ -37,7 +37,7 @@ slug: diff
 
                           {% assign api_action_spec = '' %}
                           {% assign api_action_url = '' %}
-                          {% assign openapi_spec_json = '' %}
+                          {% assign openapi_spec_1 = '' %}
 
                           {% for property in api.properties %}
 
@@ -58,7 +58,7 @@ slug: diff
                                 {% assign thisname = entry[0] %}
                                 {% assign thisentry = entry[1] %}
                                 {% if thisname == pathname %}
-                                  {% assign openapi_spec_json = thisentry %}
+                                  {% assign openapi_spec_1 = thisentry %}
                                 {% endif %}
                               {% endfor %}
                             {% endif %}
@@ -69,7 +69,7 @@ slug: diff
                             <td colspan="2">
                               <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
                                 {% assign taglist = '' %}
-                                {% for spec in openapi_spec_json %}
+                                {% for spec in openapi_spec_1 %}
                                   {% for path in spec.paths %}
                                     {% assign method_json = path[1] %}
                                     {% for method in method_json %}
@@ -87,7 +87,7 @@ slug: diff
                                 {% assign tagArray = taglist | split: "," %}
                                 {% for grouptag in tagArray %}
 
-                                  {% for spec in openapi_spec_json %}
+                                  {% for spec in openapi_spec_1 %}
 
                                   {% if grouptag != '' %}
                                     <tr>
@@ -235,7 +235,7 @@ slug: diff
 
                             {% assign api_action_spec = '' %}
                             {% assign api_action_url = '' %}
-                            {% assign openapi_spec_json = '' %}
+                            {% assign openapi_spec_1 = '' %}
 
                             {% for property in api.properties %}
 
@@ -256,7 +256,7 @@ slug: diff
                                   {% assign thisname = entry[0] %}
                                   {% assign thisentry = entry[1] %}
                                   {% if thisname == pathname %}
-                                    {% assign openapi_spec_json = thisentry %}
+                                    {% assign openapi_spec_2 = thisentry %}
                                   {% endif %}
                                 {% endfor %}
                               {% endif %}
@@ -267,7 +267,7 @@ slug: diff
                               <td colspan="2">
                                 <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
                                   {% assign taglist = '' %}
-                                  {% for spec in openapi_spec_json %}
+                                  {% for spec in openapi_spec_2 %}
                                     {% for path in spec.paths %}
                                       {% assign method_json = path[1] %}
                                       {% for method in method_json %}
@@ -285,7 +285,7 @@ slug: diff
                                   {% assign tagArray = taglist | split: "," %}
                                   {% for grouptag in tagArray %}
 
-                                    {% for spec in openapi_spec_json %}
+                                    {% for spec in openapi_spec_2 %}
 
                                     {% if grouptag != '' %}
                                       <tr>
