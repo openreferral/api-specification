@@ -82,7 +82,7 @@
                 "$ref": "#/definitions/contacts"
         tags:
         - Contacts
-    "/contacts/:contact_id/":
+    "/contacts/{contact_id}/":
       get:
         summary: Get Contact
         description: Get Contact
@@ -156,7 +156,7 @@
               type: array
               items:
                 "$ref": "#/definitions/contact"
-    "/contacts/:contact_id/phones/":
+    "/contacts/{contact_id}/phones/":
       get:
         summary: Get Phones
         description: Get Phones
@@ -206,7 +206,7 @@
                 "$ref": "#/definitions/phone"
         tags:
         - Contact - Phones
-    "/contacts/:contact_id/phones/:phone_id/":
+    "/contacts/{contact_id}/phones/{phone_id}/":
       get:
         summary: Get Phone
         description: get Phone
@@ -336,7 +336,7 @@
                 "$ref": "#/definitions/location"
         tags:
         - Locations
-    "/locations/:location_id/":
+    "/locations/{location_id}/":
       get:
         summary: Get Location
         description: Get Location
@@ -405,7 +405,7 @@
                 "$ref": "#/definitions/location"
         tags:
         - Locations
-    "/locations/:location_id/holiday_schedule/":
+    "/locations/{location_id}/holiday_schedule/":
       get:
         summary: Get Holiday Schedule
         description: Get Holiday Schedule
@@ -458,7 +458,7 @@
                 "$ref": "#/definitions/holiday_schedule"
         tags:
         - Location - Holiday Schedule
-    "/locations/:location_id/holiday_schedule/:holiday_schedule_id/":
+    "/locations/{location_id}/holiday_schedule/{holiday_schedule_id}/":
       get:
         summary: Get Holiday Schedule
         description: Get Holiday Schedule
@@ -534,7 +534,7 @@
                 "$ref": "#/definitions/holiday_schedule"
         tags:
         - Location - Holiday Schedule
-    "/locations/:location_id/languages/":
+    "/locations/{location_id}/languages/":
       get:
         summary: Get Languages
         description: Get Languages
@@ -575,7 +575,7 @@
                 "$ref": "#/definitions/language"
         tags:
         - Location - Language
-    "/locations/:location_id/languages/:language_id/":
+    "/locations/{location_id}/languages/{language_id}/":
       get:
         summary: Get Languages
         description: Get Languages
@@ -639,7 +639,7 @@
                 "$ref": "#/definitions/language"
         tags:
         - Location - Language
-    "/locations/:location_id/postal_address":
+    "/locations/{location_id}/postal_address":
       get:
         summary: Get Postal Address
         description: Get Postal Address
@@ -704,7 +704,7 @@
                 "$ref": "#/definitions/postal_address"
         tags:
         - Location - Postal Address
-    "/locations/:location_id/postal_address/:postal_address_id":
+    "/locations/{location_id}/postal_address/{postal_address_id}":
       get:
         summary: Get Postal Address
         description: Get Postal Address
@@ -792,7 +792,7 @@
                 "$ref": "#/definitions/postal_address"
         tags:
         - Location - Postal Address
-    "/locations/:location_id/physical_address":
+    "/locations/{location_id}/physical_address":
       get:
         summary: Get Physical Address
         description: Get Physical Address
@@ -857,7 +857,7 @@
                 "$ref": "#/definitions/postal_address"
         tags:
         - Location - Physical Address
-    "/locations/:location_id/physical_address/:postal_address_id":
+    "/locations/{location_id}/physical_address/{postal_address_id}":
       get:
         summary: Get Physical Address
         description: Get Physical Address
@@ -945,7 +945,7 @@
                 "$ref": "#/definitions/postal_address"
         tags:
         - Location - Physical Address
-    "/locations/:location_id/phones":
+    "/locations/{location_id}/phones":
       get:
         summary: Get Phones
         description: Get Phones
@@ -995,7 +995,7 @@
                 "$ref": "#/definitions/phone"
         tags:
         - Location - Phones
-    "/locations/:location_id/phones/:phone_id":
+    "/locations/{location_id}/phones/{phone_id}":
       get:
         summary: Get Phone
         description: get Phone
@@ -1068,7 +1068,7 @@
                 "$ref": "#/definitions/phone"
         tags:
         - Location - Phones
-    "/locations/:location_id/regular_schedule":
+    "/locations/{location_id}/regular_schedule":
       get:
         summary: Get Regular Schedule
         description: Get Regular Schedule
@@ -1115,7 +1115,7 @@
                 "$ref": "#/definitions/regular_schedule"
         tags:
         - Location - Regular Schedule
-    "/locations/:location_id/regular_schedule/:regular_schedule_id/":
+    "/locations/{location_id}/regular_schedule/{regular_schedule_id}/":
       get:
         summary: Get Regular Schedule
         description: Get Regular Schedule
@@ -1185,7 +1185,7 @@
                 "$ref": "#/definitions/regular_schedule"
         tags:
         - Location - Regular Schedule
-    "/locations/:location_id/services/":
+    "/locations/{location_id}/services/":
       get:
         summary: Get Service
         description: Get Service
@@ -1241,7 +1241,7 @@
                 "$ref": "#/definitions/service"
         tags:
         - Location - Services
-    "/locations/:location_id/services/:service_id/":
+    "/locations/{location_id}/services/{service_id}/":
       get:
         summary: Get Service
         description: Get Service
@@ -1323,7 +1323,7 @@
                 "$ref": "#/definitions/service"
         tags:
         - Location - Services
-    "/locations/:location_id/accessibility_for_disabilities/":
+    "/locations/{location_id}/accessibility_for_disabilities/":
       get:
         summary: Get Accessibility For Disabilities
         description: Get Accessibility For Disabilities
@@ -1364,7 +1364,7 @@
                 "$ref": "#/definitions/accessibility_for_disabilities"
         tags:
         - Location - Accessibility For Disabilities
-    "/locations/:location_id/accessibility_for_disabilities/:accessibility_for_disabilities_id/":
+    "/locations/{location_id}/accessibility_for_disabilities/{accessibility_for_disabilities_id}/":
       get:
         summary: Get Accessibility For Disabilities
         description: Get Accessibility For Disabilities
@@ -1478,7 +1478,7 @@
                 "$ref": "#/definitions/metadata"
         tags:
         - Metadata
-    "/metadata/:metadata_id":
+    "/metadata/{metadata_id}":
       get:
         summary: Get Service
         description: Get Service
@@ -1582,7 +1582,7 @@
                 "$ref": "#/definitions/organization"
         tags:
         - Organizations
-    "/organizations/:organization_id":
+    "/organizations/{organization_id}":
       get:
         summary: Get Organization
         description: Get Organization
@@ -1665,7 +1665,7 @@
               type: array
               items:
                 "$ref": "#/definitions/organization"
-    "/organizations/:organization_id/contacts":
+    "/organizations/{organization_id}/contacts":
       get:
         summary: Get Contacts
         description: Get Contacts
@@ -1765,7 +1765,7 @@
                 "$ref": "#/definitions/contact"
         tags:
         - Organization - Contacts
-    "/organizations/:organization_id/contacts/:contact_id/":
+    "/organizations/{organization_id}/contacts/{contact_id}/":
       get:
         summary: Get Contact
         description: Get Contact
@@ -1838,7 +1838,7 @@
                 "$ref": "#/definitions/contact"
         tags:
         - Organization - Contacts
-    "/organizations/:organization_id/funding/":
+    "/organizations/{organization_id}/funding/":
       get:
         summary: Get Funding
         description: Get Funding
@@ -1879,7 +1879,7 @@
                 "$ref": "#/definitions/funding"
         tags:
         - Organization - Funding
-    "/organizations/:organization_id/funding/:funding_id/":
+    "/organizations/{organization_id}/funding/{funding_id}/":
       get:
         summary: Get Funding
         description: Get Funding
@@ -1943,7 +1943,7 @@
                 "$ref": "#/definitions/funding"
         tags:
         - Organization - Funding
-    "/organizations/:organization_id/locations":
+    "/organizations/{organization_id}/locations":
       get:
         summary: Get Location
         description: Get Location
@@ -1996,7 +1996,7 @@
                 "$ref": "#/definitions/location"
         tags:
         - Organization - Locations
-    "/organizations/:organization_id/locations/:location_id/":
+    "/organizations/{organization_id}/locations/{location_id}/":
       get:
         summary: Update Existing Location
         description: Update Existing Location
@@ -2072,7 +2072,7 @@
                 "$ref": "#/definitions/location"
         tags:
         - Organization - Locations
-    "/organizations/:organization_id/phones":
+    "/organizations/{organization_id}/phones":
       get:
         summary: Get Phones
         description: Get Phones
@@ -2119,7 +2119,7 @@
                 "$ref": "#/definitions/phone"
         tags:
         - Organization - Phones
-    "/organizations/:organization_id/phones/:phone_id":
+    "/organizations/{organization_id}/phones/{phone_id}":
       get:
         summary: Get Phone
         description: get Phone
@@ -2192,7 +2192,7 @@
                 "$ref": "#/definitions/phone"
         tags:
         - Organization - Phones
-    "/organizations/:organization_id/programs":
+    "/organizations/{organization_id}/programs":
       get:
         summary: Get Programs
         description: Get Programs
@@ -2236,7 +2236,7 @@
                 "$ref": "#/definitions/program"
         tags:
         - Organization - Programs
-    "/organizations/:organization_id/programs/:program_id/":
+    "/organizations/{organization_id}/programs/{program_id}/":
       get:
         summary: Get Program
         description: Get Program
@@ -2303,7 +2303,7 @@
                 "$ref": "#/definitions/program"
         tags:
         - Organization - Programs
-    "/organizations/:organization_id/programs/:program_id/services/":
+    "/organizations/{organization_id}/programs/{program_id}/services/":
       get:
         summary: Get Service
         description: Get Service
@@ -2347,7 +2347,7 @@
                 "$ref": "#/definitions/service"
         tags:
         - Organization - Program Services
-    "/organizations/:organization_id/programs/:program_id/services/:service_id/":
+    "/organizations/{organization_id}/programs/{program_id}/services/{service_id}/":
       get:
         summary: Get Service
         description: Get Service
@@ -2414,7 +2414,7 @@
                 "$ref": "#/definitions/service"
         tags:
         - Organization - Program Services
-    "/organizations/:organization_id/services":
+    "/organizations/{organization_id}/services":
       get:
         summary: Get Services
         description: Get Services
@@ -2458,7 +2458,7 @@
                 "$ref": "#/definitions/service"
         tags:
         - Organization - Services
-    "/organizations/:organization_id/services/:service_id/":
+    "/organizations/{organization_id}/services/{service_id}/":
       get:
         summary: Get Service
         description: Get Service
@@ -2622,7 +2622,7 @@
                 "$ref": "#/definitions/services"
         tags:
         - Services
-    "/services/:service_id/":
+    "/services/{service_id}/":
       get:
         summary: Get Service
         description: Get Service
@@ -2704,7 +2704,7 @@
               type: array
               items:
                 "$ref": "#/definitions/service"
-    "/services/:service_id/categories":
+    "/services/{service_id}/categories":
       put:
         summary: Update a service’s categories
         description: Update a service’s categories
@@ -2723,7 +2723,7 @@
             description: OK
         tags:
         - Service - Categories
-    "/services/:service_id/contacts":
+    "/services/{service_id}/contacts":
       get:
         summary: Get Contacts
         description: Get Contacts
@@ -2770,7 +2770,7 @@
                 "$ref": "#/definitions/contact"
         tags:
         - Service - Contacts
-    "/services/:service_id/contacts/:contact_id/":
+    "/services/{service_id}/contacts/{contact_id}/":
       get:
         summary: Get Contact
         description: Get Contact
@@ -2843,7 +2843,7 @@
                 "$ref": "#/definitions/contact"
         tags:
         - Service - Contacts
-    "/services/:service_id/eligibility/":
+    "/services/{service_id}/eligibility/":
       get:
         summary: Get Eligibility
         description: Get Eligibility
@@ -2884,7 +2884,7 @@
                 "$ref": "#/definitions/eligibility"
         tags:
         - Service - Eligibility
-    "/services/:service_id/eligibility/:eligibility_id/":
+    "/services/{service_id}/eligibility/{eligibility_id}/":
       get:
         summary: Get Eligibility
         description: Get Eligibility
@@ -2948,7 +2948,7 @@
                 "$ref": "#/definitions/eligibility"
         tags:
         - Service - Eligibility
-    "/services/:service_id/fees/":
+    "/services/{service_id}/fees/":
       get:
         summary: Get Fees
         description: Get Fees
@@ -2989,7 +2989,7 @@
                 "$ref": "#/definitions/fee"
         tags:
         - Service - Fees
-    "/services/:service_id/fees/:feed_id/":
+    "/services/{service_id}/fees/{feed_id}/":
       get:
         summary: Get Fees
         description: Get Fees
@@ -3053,7 +3053,7 @@
                 "$ref": "#/definitions/fee"
         tags:
         - Service - Fees
-    "/services/:service_id/funding/":
+    "/services/{service_id}/funding/":
       get:
         summary: Get Funding
         description: Get Funding
@@ -3094,7 +3094,7 @@
                 "$ref": "#/definitions/funding"
         tags:
         - Service - Funding
-    "/services/:service_id/funding/:funding_id/":
+    "/services/{service_id}/funding/{funding_id}/":
       get:
         summary: Get Funding
         description: Get Funding
@@ -3158,7 +3158,7 @@
                 "$ref": "#/definitions/funding"
         tags:
         - Service - Funding
-    "/services/:service_id/holiday_schedule/":
+    "/services/{service_id}/holiday_schedule/":
       get:
         summary: Get Holiday Schedule
         description: Get Holiday Schedule
@@ -3211,7 +3211,7 @@
                 "$ref": "#/definitions/holiday_schedule"
         tags:
         - Service - Holiday Schedule
-    "/services/:service_id/holiday_schedule/:holiday_schedule_id/":
+    "/services/{service_id}/holiday_schedule/{holiday_schedule_id}/":
       get:
         summary: Get Holiday Schedule
         description: Get Holiday Schedule
@@ -3287,7 +3287,7 @@
                 "$ref": "#/definitions/holiday_schedule"
         tags:
         - Service - Holiday Schedule
-    "/services/:service_id/intepretation_services/":
+    "/services/{service_id}/intepretation_services/":
       get:
         summary: Get Interpretation Services
         description: Get Interpretation Services
@@ -3328,7 +3328,7 @@
                 "$ref": "#/definitions/intepretation_services"
         tags:
         - Service - Interpretation Services
-    "/services/:service_id/intepretation_services/:intepretation_services_id/":
+    "/services/{service_id}/intepretation_services/{intepretation_services_id}/":
       get:
         summary: Get Interpretation Services
         description: Get Interpretation Services
@@ -3392,7 +3392,7 @@
                 "$ref": "#/definitions/intepretation_services"
         tags:
         - Service - Interpretation Services
-    "/services/:service_id/languages/":
+    "/services/{service_id}/languages/":
       get:
         summary: Get Languages
         description: Get Languages
@@ -3433,7 +3433,7 @@
                 "$ref": "#/definitions/language"
         tags:
         - Service - Languages
-    "/services/:service_id/languages/:language_id/":
+    "/services/{service_id}/languages/{language_id}/":
       get:
         summary: Get Languages
         description: Get Languages
@@ -3497,7 +3497,7 @@
                 "$ref": "#/definitions/language"
         tags:
         - Service - Languages
-    "/services/:service_id/payment_accepted/":
+    "/services/{service_id}/payment_accepted/":
       get:
         summary: Get Payment Accepted
         description: Get Payment Accepted
@@ -3535,7 +3535,7 @@
                 "$ref": "#/definitions/payment_accepted"
         tags:
         - Service - Payment Accepted
-    "/services/:service_id/payment_accepted/:payment_accepted_id/":
+    "/services/{service_id}/payment_accepted/{payment_accepted_id}/":
       get:
         summary: Get Payment Accepted
         description: Get Payment Accepted
@@ -3602,7 +3602,7 @@
                 "$ref": "#/definitions/payment_accepted"
         tags:
         - Service - Payment Accepted
-    "/services/:service_id/phones":
+    "/services/{service_id}/phones":
       get:
         summary: Get Phones
         description: Get Phones
@@ -3652,7 +3652,7 @@
                 "$ref": "#/definitions/phone"
         tags:
         - Service - Phones
-    "/services/:service_id/phones/:phone_id":
+    "/services/{service_id}/phones/{phone_id}":
       get:
         summary: Get Phone
         description: get Phone
@@ -3725,7 +3725,7 @@
                 "$ref": "#/definitions/phone"
         tags:
         - Service - Phones
-    "/services/:service_id/regular_schedule":
+    "/services/{service_id}/regular_schedule":
       get:
         summary: Get Regular Schedule
         description: Get Regular Schedule
@@ -3772,7 +3772,7 @@
                 "$ref": "#/definitions/regular_schedule"
         tags:
         - Service - Regular Schedule
-    "/services/:service_id/regular_schedule/:required_document_id/":
+    "/services/{service_id}/regular_schedule/{required_document_id}/":
       get:
         summary: Get Regular Schedule
         description: Get Regular Schedule
@@ -3842,7 +3842,7 @@
                 "$ref": "#/definitions/regular_schedule"
         tags:
         - Service - Regular Schedule
-    "/services/:service_id/required_document/":
+    "/services/{service_id}/required_document/":
       get:
         summary: Get Required Document
         description: Get Required Document
@@ -3883,7 +3883,7 @@
                 "$ref": "#/definitions/required_document"
         tags:
         - Service - Required Document
-    "/services/:service_id/required_document/:required_document_id/":
+    "/services/{service_id}/required_document/{required_document_id}/":
       get:
         summary: Get Required Document
         description: Get Required Document
@@ -3947,7 +3947,7 @@
                 "$ref": "#/definitions/required_document"
         tags:
         - Service - Required Document
-    "/services/:service_id/service_area/":
+    "/services/{service_id}/service_area/":
       get:
         summary: Get Service Area
         description: Get Service Area
@@ -3988,7 +3988,7 @@
                 "$ref": "#/definitions/required_document"
         tags:
         - Service - Areas
-    "/services/:service_id/service_area/:service_area_id":
+    "/services/{service_id}/service_area/{service_area_id}":
       get:
         summary: Get Service Area
         description: Get Service Area
