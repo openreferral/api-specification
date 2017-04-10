@@ -328,11 +328,8 @@ slug: diff
                                               {% assign compare_with = compare_path[0] %}
                                               {% for compare_method in compare_path[1] %}
                                                 {% assign compare_verb = compare_method[0] | upcase %}
-                                                compare1: {{ compare_with }} == {{ this_path }}<br />
                                                 {% if compare_with == this_path %}
-                                                  compare2: {{ compare_verb }} == {{ verb }}<br /><br />
                                                   {% if compare_verb == verb %}
-
                                                     {% assign is_diff = 0 %}
                                                   {% endif %}
                                                 {% endif %}
