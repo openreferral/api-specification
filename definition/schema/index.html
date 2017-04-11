@@ -24,12 +24,14 @@ slug: docs
             {% assign numberofapis = apijson.apis | size %}
 
                 {% for api in apijson.apis %}
-
+                in1
                 <table cellpadding="3" cellspacing="2" width="100%" border="1">
 
                     {% assign openapi_spec_json = '' %}
 
                     {% for property in api.properties %}
+
+                     in2
 
                       {% assign thisname = apijson.name | downcase %}
                       {% assign thisname = thisname | append:'/' %}
