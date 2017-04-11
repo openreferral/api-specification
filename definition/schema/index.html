@@ -65,6 +65,7 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                           {% for schema in openapi_spec_json.definitions %}
 
                             {% assign definition = schema[0] %}
+                            HERE: {{ definition }}<br />
                             {% assign definition_entry = schema[1] %}
 
                                 <p style="padding-top: 8px;"><strong>{{ definition }}</strong></p>
