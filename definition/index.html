@@ -3,3 +3,209 @@ layout: page
 title: 'Human Services Data Specification (HSDS) OpenAPI Spec v1.1 DRAFT'
 slug: docs
 ---
+
+<p>This is the API definition for the HSDS format (v1.1 DRAFT). It is available as an HTML list, JSON and YAML OpenAPI Specifications. If you are looking for the schema for HSDS, there is <a href="/schema/">a separate JSON schema available for the project</a>. </p>
+
+{% include nav-definition.html %}
+
+<table cellpadding="3" cellspacing="2" width="100%" border="0" style="margin-top: 0px;">
+
+{% assign index = site.data.apis %}
+{% assign apijson = index[0] %}
+{% assign contents = site.data.api-commons %}
+{% assign apicommons = contents %}
+
+{% assign blog_url = '' %}
+{% assign blogrss_url = '' %}
+{% assign portal_url = '' %}
+{% assign gitub_url = '' %}
+{% assign twitter_url = '' %}
+{% assign website_url = '' %}
+
+{% for common in apijson.x-common %}
+
+  {% if common.type == 'x-getting-started' %}
+    {% assign getting_started_url = common.url %}
+  {% endif %}
+  {% if common.type == 'x-authentication-overview' %}
+    {% assign authentication_url = common.url %}
+  {% endif %}
+  {% if common.type == 'x-faq' %}
+    {% assign faq_url = common.url %}
+  {% endif %}
+  {% if common.type == 'x-login' %}
+    {% assign login_url = common.url %}
+  {% endif %}
+  {% if common.type == 'x-selfservice-registration' %}
+    {% assign signup_url = common.url %}
+  {% endif %}
+
+  {% if common.type == 'x-documentation' %}
+    {% assign documentation_url = common.url %}
+  {% endif %}
+
+  {% if common.type == 'x-code-page' %}
+    {% assign code_page_url = common.url %}
+  {% endif %}
+
+  {% if common.type == 'x-road-map' %}
+    {% assign road_map_url = common.url %}
+  {% endif %}
+  {% if common.type == 'x-issues' %}
+    {% assign issue_url = common.url %}
+  {% endif %}
+  {% if common.type == 'x-change-log' %}
+    {% assign change_log_url = common.url %}
+  {% endif %}
+  {% if common.type == 'x-status' %}
+    {% assign status_dashboard_url = common.url %}
+  {% endif %}
+
+  {% if common.type == 'x-support' %}
+    {% assign support_url = common.url %}
+  {% endif %}
+
+  {% if common.type == 'x-api-plan' %}
+    {% assign api_plan_url = common.url %}
+  {% endif %}
+  {% if common.type == 'x-rate-limit' %}
+    {% assign rate_limit_url = common.url %}
+  {% endif %}
+
+{% endfor %}
+
+  <tr>
+    <td>
+      <table width="100%" border="0" style="padding-top: 10px;">
+        <tr>
+        <td align="center" style="margin-left: 90px; margin-right: 90px;">
+
+            {% assign numberofapis = apijson.apis | size %}
+
+                {% assign api_action_url = '' %}
+                {% for api in apijson.apis %}
+
+                <table cellpadding="3" cellspacing="2" width="100%" border="0">
+
+                    {% assign api_action_spec = '' %}
+                    {% assign api_action_url = '' %}
+                    {% assign openapi_spec_json = '' %}
+
+                    {% for property in api.properties %}
+
+                      {% assign thisname = apijson.name | downcase %}
+                      {% assign thisname = thisname | append:'/' %}
+                      {% assign thisname = thisname | replace: ' ','-' %}
+
+                      {% if property.type == 'x-openapi-spec' %}
+
+                        {% assign openapi_spec_url = property.url %}
+                        {% assign pathname = openapi_spec_url | replace: '_data/api-commons/','' %}
+                        {% assign pathname = pathname | replace: '.yaml','' %}
+                        {% assign pathname = pathname | replace: '.json','' %}
+                        {% assign pathname = pathname | replace: '/','.' %}
+                        {% assign pathname = pathname | replace: 'api-commons.','' %}
+
+                        {% for entry in apicommons %}
+                          {% assign thisname = entry[0] %}
+                          {% assign thisentry = entry[1] %}
+                          {% if thisname == pathname %}
+                            {% assign openapi_spec_json = thisentry %}
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}
+
+                      {% if property.type == 'x-postman %}
+                        {% assign postman_url = property.url %}
+                      {% endif %}
+
+                      {% if property.type == 'x-api-blueprint' %}
+                        {% assign api_blueprint_url = property.url %}
+                      {% endif %}
+
+                      {% if property.type == 'x-api-actions' %}
+                        {% assign api_action_url = property.url %}
+                      {% endif %}
+
+                    {% endfor %}
+
+                    <tr id="methods-for-{{ pathname }}">
+                      <td colspan="2">
+                        <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
+                          {% assign taglist = '' %}
+                          {% for spec in openapi_spec_json %}
+                            {% for path in spec.paths %}
+                              {% assign method_json = path[1] %}
+                              {% for method in method_json %}
+                                {% assign tagarray = method[1].tags %}
+                                {% assign tag = tagarray[0] %}
+                                {% if taglist contains tag %}
+                                {% else %}
+                                  {% assign taglist = taglist | append:',' %}
+                                  {% assign taglist = taglist | append:tag %}
+                                {% endif %}
+                              {% endfor %}
+                            {% endfor %}
+                          {% endfor %}
+
+                          {% assign tagArray = taglist | split: "," %}
+                          {% for grouptag in tagArray %}
+
+                            {% for spec in openapi_spec_json %}
+
+                            {% if grouptag != '' %}
+                              <tr>
+                                <td colspan="3" style="padding-top: 10px; padding-bottom: 10px;"><strong>{{ grouptag }}</strong></td>
+                              </tr>
+                            {% endif %}
+
+                              {% for path in spec.paths %}
+                                {% assign method_json = path[1] %}
+                                {% for method in method_json %}
+
+                                  {% assign tagarray = method[1].tags %}
+                                  {% assign tag = tagarray[0] %}
+
+                                  {% assign verb = method[0] | upcase %}
+
+                                  {% if verb == 'GET' %}
+                                    {% assign back_color = site.get_color %}
+                                  {% endif %}
+                                  {% if verb == 'POST' %}
+                                    {% assign back_color = site.post_color %}
+                                  {% endif %}
+                                  {% if verb == 'PUT' %}
+                                    {% assign back_color = site.put_color %}
+                                  {% endif %}
+                                  {% if verb == 'DELETE' %}
+                                    {% assign back_color = site.delete_color %}
+                                  {% endif %}
+
+                                  {% assign summary = method[1].summary %}
+
+                                  {% if tag == grouptag %}
+                                    <tr>
+                                      <td style="padding-left: 20px; font-size: 12px;">{{ summary }}</td>
+                                      <td style="font-size: 12px;">{{ path[0] }}</td>
+                                      <td align="center" style="padding: 5px; width: 75px; background-color:#{{ back_color }}; font-weight: bold; font-size: 11px; color: #FFF;">
+                                        {{ verb }}
+                                      </td>
+                                    </tr>
+                                  {% endif %}
+
+                                {% endfor %}
+                              {% endfor %}
+                            {% endfor %}
+
+                          {% endfor %}
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                {% endfor %}
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>

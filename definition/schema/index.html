@@ -2,3 +2,99 @@
 layout: page
 title: 'Human Services Data Specification (HSDS) Schema - HTML'
 ---
+
+<p>This is the schema for the HSDS format. It is available as an HTML list, JSON schema, as well as a YAML version of the schema, for different uses. If you are looking for a machine readable definition for the HSDS API, there is <a href="/api/">a separate OpenAPI Spec available for the project</a>.</p>
+
+{% include nav-definition.html %}
+
+<table cellpadding="3" cellspacing="2" width="100%" border="0" style="margin-top: 0px;">
+
+{% assign index = site.data.apis %}
+{% assign apijson = index[0] %}
+{% assign contents = site.data.api-commons %}
+{% assign apicommons = contents %}
+
+{% assign blog_url = '' %}
+{% assign blogrss_url = '' %}
+{% assign portal_url = '' %}
+{% assign gitub_url = '' %}
+{% assign twitter_url = '' %}
+{% assign website_url = '' %}
+
+  <tr>
+    <td>
+      <table width="100%" border="0" style="padding-top: 10px;">
+        <tr>
+        <td align="center" style="margin-left: 90px; margin-right: 90px;">
+
+            {% assign numberofapis = apijson.apis | size %}
+
+                {% assign api_action_url = '' %}
+                {% for api in apijson.apis %}
+
+                <table cellpadding="3" cellspacing="2" width="100%" border="0">
+
+                  {% assign api_action_spec = '' %}
+                  {% assign api_action_url = '' %}
+                  {% assign openapi_spec_json = '' %}
+
+                  {% for property in api.properties %}
+
+                    {% assign thisname = apijson.name | downcase %}
+                    {% assign thisname = thisname | append:'/' %}
+                    {% assign thisname = thisname | replace: ' ','-' %}
+
+                    {% if property.type == 'x-openapi-spec' %}
+
+                      {% assign openapi_spec_url = property.url %}
+                      {% assign pathname = openapi_spec_url | replace: '_data/v10/','' %}
+                      {% assign pathname = pathname | replace: '.yaml','' %}
+                      {% assign pathname = pathname | replace: '.json','' %}
+                      {% assign pathname = pathname | replace: '/','.' %}
+                      {% assign pathname = pathname | replace: 'v10.','' %}
+
+                      {% for entry in apicommons %}
+                        {% assign thisname = entry[0] %}
+                        {% assign thisentry = entry[1] %}
+                        {% if thisname == pathname %}
+                          {% assign openapi_spec_json = thisentry %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+
+                  {% endfor %}
+
+                    <tr style="background-color: #D3D3D3;">
+                      <td align="left" style="font-size: 18px; font-weight: bold; padding: 10px;">{{ api.name }}</td>
+                      <td align="right" style="padding: 10px;"></td>
+                    </tr>
+                    <tr id="methods-for-{{ pathname }}">
+                      <td colspan="2">
+                        <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
+
+                          {% for schema in openapi_spec_json.definitions %}
+
+                            {% assign definition = schema[0] %}
+                            {% assign definition_entry = schema[1] %}
+
+                                <p style="padding-top: 8px;"><strong>{{ definition }}</strong></p>
+                                <ul>
+                                {% for field in definition_entry.properties %}
+                                    {% assign field_name = field[0] %}
+                                    {% assign field_details = field[1] %}
+                                    <li><strong>{{ field_name }}</strong> ({{ field_details.type }}) {{ field_details.description }}</li>
+                                {% endfor %}
+                                </ul>
+                          {% endfor %}
+
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                {% endfor %}
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
