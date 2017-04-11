@@ -61,11 +61,11 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                     <tr id="methods-for-{{ pathname }}">
                       <td colspan="2">
                         <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
-                          {{ openapi_spec_json }}<br /><br />
+                          HERE1: {{ openapi_spec_json.definitions }}<br /><br />
                           {% for schema in openapi_spec_json.definitions %}
 
                             {% assign definition = schema[0] %}
-                            HERE: {{ definition }}<br />
+                            HERE2: {{ definition }}<br />
                             {% assign definition_entry = schema[1] %}
 
                                 <p style="padding-top: 8px;"><strong>{{ definition }}</strong></p>
