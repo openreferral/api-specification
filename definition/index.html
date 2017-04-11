@@ -69,7 +69,7 @@ slug: docs
 
                     <tr id="methods-for-{{ pathname }}">
                       <td colspan="2">
-                        <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
+                        <table width="95%" border="1" style="margin-left: 15px; margin-right: 15px;">
                           {% assign taglist = '' %}
                           {% for spec in openapi_spec_json %}
                             {% for path in spec.paths %}
@@ -160,7 +160,7 @@ slug: docs
                                               </tr>
                                               <tr>
                                                 <td align="left" style="font-size: 12px; padding: 10px;">
-                                                    <table style="width: 50%;">
+                                                    <table style="width: 50%;" cellspacing="3" cellpadding="2">
                                                       {% for parameter in parameters %}
                                                         {% if parameter.in == 'header' %}
                                                           <tr>
@@ -196,7 +196,7 @@ slug: docs
                                               </tr>
                                               <tr>
                                                 <td align="left" style="font-size: 12px; padding: 10px;">
-                                                    <table style="width: 50%;">
+                                                    <table style="width: 50%;" cellspacing="3" cellpadding="2">
                                                       {% for parameter in parameters %}
                                                         {% if parameter.in == 'path' %}
                                                           <tr>
@@ -232,7 +232,7 @@ slug: docs
                                               </tr>
                                               <tr>
                                                 <td align="left" style="font-size: 12px; padding: 10px;">
-                                                    <table style="width: 50%;">
+                                                    <table style="width: 50%;" cellspacing="3" cellpadding="2">
                                                       {% for parameter in parameters %}
                                                         {% if parameter.in == 'query' %}
                                                           <tr>
@@ -248,7 +248,7 @@ slug: docs
                                           {% endif %}
                                           <!-- End Parameters -->
                                           </form>
-                      
+
                                         </table>
                                       </td>
                                     </tr>
