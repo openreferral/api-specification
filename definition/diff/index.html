@@ -8,7 +8,7 @@ slug: diff
 
 {% include nav-definition.html %}
 
-<table cellpadding="3" cellspacing="2" width="100%" border="0" style="margin-top: 0px;">
+<table cellpadding="1" cellspacing="1" width="100%" border="0" style="margin-top: 0px;">
   <tr>
     <td align="center" style="font-size: 18px;"><strong>v1.0</strong></td>
     <td align="center" style="font-size: 18px;"><strong>v1.1</strong></td>
@@ -17,7 +17,7 @@ slug: diff
     <td width="49%" valign="top" />
 
       <!-- Begin v1.0 -->
-      <table cellpadding="3" cellspacing="2" width="100%" border="0" style="margin-top: 0px;">
+      <table cellpadding="1" cellspacing="1" width="100%" border="0" style="margin-top: 0px;">
 
       {% assign path_1_count = 0 %}
       {% assign definition_1_count = 0 %}
@@ -38,7 +38,7 @@ slug: diff
 
                       {% for api in apijson.apis %}
 
-                      <table cellpadding="3" cellspacing="2" width="100%" border="0">
+                      <table cellpadding="1" cellspacing="1" width="100%" border="0">
 
                           {% assign api_action_spec = '' %}
                           {% assign api_action_url = '' %}
@@ -166,7 +166,7 @@ slug: diff
 
         <!-- Begin v1.1 -->
 
-        <table cellpadding="3" cellspacing="2" width="100%" border="0" style="margin-top: 0px;">
+        <table cellpadding="1" cellspacing="1" width="100%" border="0" style="margin-top: 0px;">
 
         {% assign index = site.data.apis %}
         {% assign apijson = index[0] %}
@@ -184,7 +184,7 @@ slug: diff
                         {% assign api_action_url = '' %}
                         {% for api in apijson.apis %}
 
-                        <table cellpadding="3" cellspacing="2" width="100%" border="0">
+                        <table cellpadding="1" cellspacing="1" width="100%" border="0">
 
                             {% assign openapi_spec_2 = '' %}
 
