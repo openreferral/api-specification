@@ -62,7 +62,7 @@ slug: docs
                         <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
 
                           {% for spec in openapi_spec_json %}
-
+                            HERE1: {{ spec.definitions }}<br />
                             {% for schema in spec.definitions %}
 
                               {% assign definition = schema[0] %}
