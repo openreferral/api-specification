@@ -8,7 +8,7 @@ slug: diff
 
 {% include nav-definition.html %}
 
-<table cellpadding="3" cellspacing="2" width="100%" border="0" style="margin-top: 0px;">
+<table cellpadding="3" cellspacing="2" width="100%" border="1" style="margin-top: 0px;">
   <tr>
     <td align="center" style="font-size: 18px;"><strong>v1.0</strong></td>
     <td align="center" style="font-size: 18px;"><strong>v1.1</strong></td>
@@ -324,12 +324,12 @@ slug: diff
       </td>
     </tr>
     <tr>
-      <td align='center'>
+      <td align='center' colspan="2">
 
-        <p align="center:"><strong>Number of Paths In v1.0:</strong> {{ path_1_count }}</p>
-        <p align="center:"><strong>Number of Paths In v1.1:</strong> {{ path_2_count }}</p>
+        <p align="center:"><strong>{{ path_1_count }} Paths In v1.0</strong></p>
+        <p align="center:"><strong>{{ path_2_count }} Paths In v1.1</strong></p>
         {% assign path_diff_count = path_2_count | minus: path_1_count %}
-        <p align="center:"><strong>Added Paths:</strong> {{ path_diff_count }}</p>
+        <p align="center:"><strong>Added {{ path_diff_count }} Paths</strong></p>
 
       </td>
     </tr>
