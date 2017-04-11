@@ -2956,8 +2956,8 @@
         operationId: add-payment-accepted
         parameters:
         - in: path
-            name: service_id
-            description: 'The unique service id.'
+          name: service_id
+          description: 'The unique service id.'
         - in: body
           name: body
           schema:
