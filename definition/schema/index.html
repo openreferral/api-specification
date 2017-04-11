@@ -52,18 +52,6 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                       {% endfor %}
                     {% endif %}
 
-                    {% if property.type == 'x-postman %}
-                      {% assign postman_url = property.url %}
-                    {% endif %}
-
-                    {% if property.type == 'x-api-blueprint' %}
-                      {% assign api_blueprint_url = property.url %}
-                    {% endif %}
-
-                    {% if property.type == 'x-api-actions' %}
-                      {% assign api_action_url = property.url %}
-                    {% endif %}
-
                   {% endfor %}
 
                     <tr style="background-color: #D3D3D3;">
@@ -73,7 +61,7 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                     <tr id="methods-for-{{ pathname }}">
                       <td colspan="2">
                         <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
-
+                          {{ openapi_spec_json }}<br /><br />
                           {% for schema in openapi_spec_json.definitions %}
 
                             {% assign definition = schema[0] %}
