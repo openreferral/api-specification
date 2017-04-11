@@ -249,6 +249,36 @@ slug: docs
                                           <!-- End Parameters -->
                                           </form>
 
+                                          <!-- If there are a body -->
+                                          {% assign any_headers = 0 %}
+                                          {% for parameter in parameters %}
+                                            {% if parameter.in == 'body' %}
+                                              {% assign any_body = 1 %}
+                                            {% endif %}
+                                          {% endfor %}
+                                          {% if any_body > 0 %}
+                                            <tr style="background-color: #FFF;">
+                                              <td style="font-size: 12px; padding: 5px;"><strong>Body:</strong></td>
+                                            </tr>
+                                            <tr>
+                                              <td align="left" style="font-size: 12px; padding: 10px;">
+                                                  <table style="width: 50%;" cellspacing="3" cellpadding="2">
+                                                    {% for parameter in parameters %}
+                                                      {% if parameter.in == 'header' %}
+                                                        <tr>
+                                                          <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
+                                                          <td style="padding-left: 5px;">{{ parameter.name }}</td>
+                                                        </tr>
+                                                      {% endif %}
+                                                    {% endfor %}
+                                                  </table>
+                                              </td>
+                                            </tr>
+                                          {% endif %}
+                                        {% endif %}
+                                        <!-- End Body -->
+                                        </form>
+
                                         </table>
                                       </td>
                                     </tr>
