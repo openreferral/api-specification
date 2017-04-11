@@ -3436,7 +3436,13 @@
         summary: Delete Service Area
         description: Delete Service Area
         operationId: delete-service-area
-        parameters: []
+        parameters:
+        - in: path
+          name: service_id
+          description: 'The unique service id.'
+        - in: path
+          name: service_area_id
+          description: 'The unique service area id.'
         responses:
           '200':
             description: Service Area Response
