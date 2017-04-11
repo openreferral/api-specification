@@ -252,7 +252,6 @@ slug: docs
                                           <!-- If there are a body -->
                                           {% assign any_body = 0 %}
                                           {% for parameter in parameters %}
-                                            in: {{ parameter.in }}<br />
                                             {% if parameter.in == 'body' %}
                                               {% assign any_body = 1 %}
                                             {% endif %}
@@ -265,9 +264,9 @@ slug: docs
                                               <td align="left" style="font-size: 12px; padding: 10px;">
                                                   <table style="width: 50%;" cellspacing="3" cellpadding="2">
                                                     {% for parameter in parameters %}
-                                                      {% if parameter.in == 'header' %}
+                                                      {% if parameter.in == 'body' %}
                                                         <tr>
-                                                          <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
+                                                          <td style="width: 35%;" align="right"><strong>{{ parameter.schema }}:</strong></td>
                                                           <td style="padding-left: 5px;"></td>
                                                         </tr>
                                                       {% endif %}
