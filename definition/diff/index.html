@@ -154,8 +154,6 @@ slug: diff
                 </tr>
               </table>
 
-              <p align="center:"><strong>Number of Paths:</strong> {{ path_1_count }}</p>
-
             </td>
           </tr>
         </table>
@@ -317,7 +315,15 @@ slug: diff
                     </td>
                   </tr>
                 </table>
-                <p align="center:"><strong>Number of Paths:</strong> {{ path_2_count }}</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p align="center:"><strong>Number of Paths In v1.0:</strong> {{ path_1_count }}</p>
+                <p align="center:"><strong>Number of Paths In v1.1:</strong> {{ path_2_count }}</p>
+                {% assign path_diff_count = path_2_count | minus: path_1_count %}
+                <p align="center:"><strong>Difference Between:</strong> {{ path_diff_count }}</p>
+
               </td>
             </tr>
           </table>
