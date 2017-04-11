@@ -269,11 +269,10 @@ slug: docs
                                                   <table style="width: 50%;" cellspacing="3" cellpadding="2">
                                                     {% for parameter in parameters %}
                                                       {% if parameter.in == 'body' %}
-                                                        parameter.schema['$ref']
                                                         {% assign this_def = parameter.schema['$ref'] %}
-                                                        {% assign thisname = thisname | replace: ' ','-' %}
+                                                        {% assign this_def = this_def | replace: '#/definitions/','' %}
                                                         <tr>
-                                                          <td style="width: 35%;" align="right"><strong>{{ this_def }}:</strong></td>
+                                                          <td style="width: 35%;" align="right"><strong>{{ this_def }}</strong></td>
                                                           <td style="padding-left: 5px;"></td>
                                                         </tr>
                                                       {% endif %}
