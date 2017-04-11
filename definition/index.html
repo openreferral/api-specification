@@ -133,8 +133,8 @@ slug: docs
 
                                   {% if tag == grouptag %}
                                     <tr>
-                                      <td width="20%" style="background-color: #CCC; padding-left: 20px; font-size: 13px; color:#000;">{{ summary }}</td>
-                                      <td style="font-size: 13px; background-color: #CCC; color:#000;">{{ path[0] }}</td>
+                                      <td width="20%" style="background-color: #CCC; padding-left: 20px; font-size: 13px; color:#000;"><strong>{{ summary }}</strong></td>
+                                      <td style="font-size: 13px; background-color: #CCC; color:#000;"><strong>{{ path[0] }}</strong></td>
                                       <td width="5%" align="center" style="padding: 5px; width: 75px; background-color:#{{ back_color }}; font-weight: bold; font-size: 12px; color: #FFF; height: 10px;">
                                         {{ verb }}
                                       </td>
@@ -196,7 +196,7 @@ slug: docs
                                             <!-- If there are any headers -->
                                             {% if any_path_parameters > 0 %}
                                               <tr style="background-color: #FFF;">
-                                                <td style="font-size: 12px; padding: 5px;"><strong>Path Parameters:</strong></td>
+                                                <td style="font-size: 12px; padding: 5px;"><strong>Path:</strong></td>
                                               </tr>
                                               <tr>
                                                 <td align="left" style="font-size: 12px; padding: 10px;">
@@ -270,7 +270,7 @@ slug: docs
                                               {% assign this_def = this_def | replace: '#','' %}
 
                                               <tr style="background-color: #FFF;">
-                                                <td style="font-size: 12px; padding: 5px;"><strong>Body:</strong></td>
+                                                <td style="font-size: 12px; padding: 5px;"><strong>Body: ({{ this_def }})</strong></td>
                                               </tr>
                                               <tr>
                                                 <td align="left" style="font-size: 12px; padding: 10px;">
@@ -287,7 +287,7 @@ slug: docs
                                                       </table>
                                                   </td>
                                                 </tr>
-                                                                                                     
+
                                               {% endif %}
                                             {% endfor %}
                                           {% endif %}
