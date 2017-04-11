@@ -274,7 +274,7 @@ slug: docs
                                                         {% assign this_def = this_def | replace: '#','' %}
                                                         <tr>
                                                           <td style="width: 35%;" align="right"><strong>{{ this_def }}</strong></td>
-                                                          <td style="padding-left: 5px;">{{ schema }}</td>
+                                                          <td style="padding-left: 5px;">{{ schema[this_def]}}</td>
                                                         </tr>
                                                       {% endif %}
                                                     {% endfor %}
