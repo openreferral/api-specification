@@ -4,7 +4,7 @@ title: 'Human Services Data Specification (HSDS) OpenAPI Spec v1.1 DRAFT'
 slug: docs
 ---
 
-<p>This is the OpenAPI definiton for the Human Services Data Specification (v1.1 DRAFT). It is available as an HTML list or YAML OpenAPI Specifications, as well as a screen for the schema, conversation around it's evolution, and a diff screen between v1.0 and v1.1. If you are looking for the schema for HSDS, there is <a href="https://github.com/openreferral/specification/blob/master/datapackage.json">it is maintained by separate group in a Github repository</a>, with the <a href="https://openreferral.readthedocs.io/en/latest/reference/">documentation published here.</a>. </p>
+<p>This is the schema for the HSDS API definition, as defined in the definitions section of the HSDS OpenAPI definition. If you are looking for the full schema for HSDS, there is <a href="https://github.com/openreferral/specification/blob/master/datapackage.json">it is maintained by separate group in a Github repository</a>, with the <a href="https://openreferral.readthedocs.io/en/latest/reference/">documentation published here.</a>. </p>
 
 {% include nav-definition.html %}
 
@@ -51,18 +51,6 @@ slug: docs
                             {% assign openapi_spec_json = thisentry %}
                           {% endif %}
                         {% endfor %}
-                      {% endif %}
-
-                      {% if property.type == 'x-postman %}
-                        {% assign postman_url = property.url %}
-                      {% endif %}
-
-                      {% if property.type == 'x-api-blueprint' %}
-                        {% assign api_blueprint_url = property.url %}
-                      {% endif %}
-
-                      {% if property.type == 'x-api-actions' %}
-                        {% assign api_action_url = property.url %}
                       {% endif %}
 
                     {% endfor %}
