@@ -58,46 +58,27 @@ slug: docs
                     <tr id="methods-for-{{ pathname }}">
                       <td colspan="2">
                         <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
-                          {% assign taglist = '' %}
+
                           {% for spec in openapi_spec_json %}
-                            {% for path in spec.paths %}
-                              {% assign method_json = path[1] %}
-                              {% for method in method_json %}
-                                {% assign tagarray = method[1].tags %}
-                                {% assign tag = tagarray[0] %}
-                                {% if taglist contains tag %}
-                                {% else %}
-                                  {% assign taglist = taglist | append:',' %}
-                                  {% assign taglist = taglist | append:tag %}
-                                {% endif %}
-                              {% endfor %}
-                            {% endfor %}
-                          {% endfor %}
 
-                          {% assign tagArray = taglist | split: "," %}
-                          {% for grouptag in tagArray %}
+                            {% for schema in openapi_spec_json.definitions %}
 
-                            {% for spec in openapi_spec_json %}
+                              {% assign definition = schema[0] %}
+                              HERE2: {{ definition }}<br />
+                              {% assign definition_entry = schema[1] %}
 
-                              {% for schema in openapi_spec_json.definitions %}
-
-                                {% assign definition = schema[0] %}
-                                HERE2: {{ definition }}<br />
-                                {% assign definition_entry = schema[1] %}
-
-                                    <p style="padding-top: 8px;"><strong>{{ definition }}</strong></p>
-                                    <ul>
-                                    {% for field in definition_entry.properties %}
-                                        {% assign field_name = field[0] %}
-                                        {% assign field_details = field[1] %}
-                                        <li><strong>{{ field_name }}</strong> ({{ field_details.type }}) {{ field_details.description }}</li>
-                                    {% endfor %}
-                                    </ul>
-                              {% endfor %}
-
+                                  <p style="padding-top: 8px;"><strong>{{ definition }}</strong></p>
+                                  <ul>
+                                  {% for field in definition_entry.properties %}
+                                      {% assign field_name = field[0] %}
+                                      {% assign field_details = field[1] %}
+                                      <li><strong>{{ field_name }}</strong> ({{ field_details.type }}) {{ field_details.description }}</li>
+                                  {% endfor %}
+                                  </ul>
                             {% endfor %}
 
                           {% endfor %}
+
                         </table>
                       </td>
                     </tr>
