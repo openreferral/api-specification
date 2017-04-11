@@ -138,7 +138,7 @@ slug: docs
                                     <tr id="{{ slug }}-row">
                                       <td colspan="3" style="padding: 15px;">
 
-                                        <table width="90%" border="1" align="center" cellspacing="3" cellpadding="2">
+                                        <table width="90%" border="0" align="center" cellspacing="3" cellpadding="2">
 
                                           <form id="{{ slug }}-headers">
                                           <!-- Begin Headers -->
@@ -165,7 +165,7 @@ slug: docs
                                                         {% if parameter.in == 'header' %}
                                                           <tr>
                                                             <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
-                                                            <td>{{ parameter.name }}</td>
+                                                            <td style="padding-left: 5px;">{{ parameter.name }}</td>
                                                           </tr>
                                                         {% endif %}
                                                       {% endfor %}
@@ -201,7 +201,7 @@ slug: docs
                                                         {% if parameter.in == 'path' %}
                                                           <tr>
                                                             <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
-                                                            <td>{{ parameter.name }}</td>
+                                                            <td style="padding-left: 5px;">{{ parameter.name }}</td>
                                                           </tr>
                                                         {% endif %}
                                                       {% endfor %}
@@ -237,7 +237,7 @@ slug: docs
                                                         {% if parameter.in == 'query' %}
                                                           <tr>
                                                             <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
-                                                            <td>{{ parameter.name }}</td>
+                                                            <td style="padding-left: 5px;">{{ parameter.name }}</td>
                                                           </tr>
                                                         {% endif %}
                                                       {% endfor %}
