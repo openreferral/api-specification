@@ -10,69 +10,10 @@ slug: docs
 
 <table cellpadding="3" cellspacing="2" width="100%" border="0" style="margin-top: 0px;">
 
-{% assign index = site.data.apis %}
-{% assign apijson = index[0] %}
-{% assign contents = site.data.api-commons %}
-{% assign apicommons = contents %}
-
-{% assign blog_url = '' %}
-{% assign blogrss_url = '' %}
-{% assign portal_url = '' %}
-{% assign gitub_url = '' %}
-{% assign twitter_url = '' %}
-{% assign website_url = '' %}
-
-{% for common in apijson.x-common %}
-
-  {% if common.type == 'x-getting-started' %}
-    {% assign getting_started_url = common.url %}
-  {% endif %}
-  {% if common.type == 'x-authentication-overview' %}
-    {% assign authentication_url = common.url %}
-  {% endif %}
-  {% if common.type == 'x-faq' %}
-    {% assign faq_url = common.url %}
-  {% endif %}
-  {% if common.type == 'x-login' %}
-    {% assign login_url = common.url %}
-  {% endif %}
-  {% if common.type == 'x-selfservice-registration' %}
-    {% assign signup_url = common.url %}
-  {% endif %}
-
-  {% if common.type == 'x-documentation' %}
-    {% assign documentation_url = common.url %}
-  {% endif %}
-
-  {% if common.type == 'x-code-page' %}
-    {% assign code_page_url = common.url %}
-  {% endif %}
-
-  {% if common.type == 'x-road-map' %}
-    {% assign road_map_url = common.url %}
-  {% endif %}
-  {% if common.type == 'x-issues' %}
-    {% assign issue_url = common.url %}
-  {% endif %}
-  {% if common.type == 'x-change-log' %}
-    {% assign change_log_url = common.url %}
-  {% endif %}
-  {% if common.type == 'x-status' %}
-    {% assign status_dashboard_url = common.url %}
-  {% endif %}
-
-  {% if common.type == 'x-support' %}
-    {% assign support_url = common.url %}
-  {% endif %}
-
-  {% if common.type == 'x-api-plan' %}
-    {% assign api_plan_url = common.url %}
-  {% endif %}
-  {% if common.type == 'x-rate-limit' %}
-    {% assign rate_limit_url = common.url %}
-  {% endif %}
-
-{% endfor %}
+  {% assign index = site.data.apis %}
+  {% assign apijson = index[0] %}
+  {% assign contents = site.data.api-commons %}
+  {% assign apicommons = contents %}
 
   <tr>
     <td>
@@ -82,13 +23,10 @@ slug: docs
 
             {% assign numberofapis = apijson.apis | size %}
 
-                {% assign api_action_url = '' %}
                 {% for api in apijson.apis %}
 
                 <table cellpadding="3" cellspacing="2" width="100%" border="0">
 
-                    {% assign api_action_spec = '' %}
-                    {% assign api_action_url = '' %}
                     {% assign openapi_spec_json = '' %}
 
                     {% for property in api.properties %}
@@ -187,8 +125,145 @@ slug: docs
                                     <tr>
                                       <td style="padding-left: 20px; font-size: 12px;">{{ summary }}</td>
                                       <td style="font-size: 12px;">{{ path[0] }}</td>
-                                      <td align="center" style="padding: 5px; width: 75px; background-color:#{{ back_color }}; font-weight: bold; font-size: 11px; color: #FFF;">
+                                      <td align="center" style="padding: 1px; width: 75px; background-color:#{{ back_color }}; font-weight: bold; font-size: 11px; color: #FFF;">
                                         {{ verb }}
+                                      </td>
+                                      <td style="width: 25px;"></td>
+                                      <td><button type="button" class="btn btn-default" onclick="showme('{{ slug }}-row'); return false;">Try</button></tr>
+                                    </tr>
+                                    <tr id="{{ slug }}-row" style="display: none;">
+                                      <td colspan="4" style="padding: 15px;">
+
+                                        <table width="90%" border="0" align="center">
+
+                                          <form id="{{ slug }}-headers">
+                                          <!-- Begin Headers -->
+                                          {% assign number_of_parameters = parameters | size %}
+
+                                          {% if number_of_parameters > 0 %}
+
+                                            {% assign any_headers = 0 %}
+                                            {% for parameter in parameters %}
+                                              {% if parameter.in == 'header' %}
+                                                {% assign any_headers = 1 %}
+                                              {% endif %}
+                                            {% endfor %}
+
+                                            <!-- If there are any headers -->
+                                            {% if any_headers > 0 %}
+                                              <tr style="background-color: #CCC;">
+                                                <td style="font-size: 12px; padding: 5px;"><strong>Headers:</strong></td>
+                                              </tr>
+                                              <tr>
+                                                <td align="left" style="font-size: 12px; padding: 10px;">
+                                                    <table style="width: 50%;">
+                                                      {% for parameter in parameters %}
+                                                        {% if parameter.in == 'header' %}
+                                                          <tr>
+                                                            <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
+                                                            <td><input type="text" name="{{ parameter.name }}" value="" style="width: 100%;" /></td>
+                                                          </tr>
+                                                        {% endif %}
+                                                      {% endfor %}
+                                                    </table>
+                                                </td>
+                                              </tr>
+                                            {% endif %}
+                                          {% endif %}
+                                          <!-- End Headers -->
+                                          </form>
+
+                                          <form id="{{ slug }}-path">
+                                          <!-- Begin Path Parameters -->
+                                          {% assign number_of_parameters = parameters | size %}
+                                          {% if number_of_parameters > 0 %}
+
+                                            {% assign any_path_parameters = 0 %}
+                                            {% for parameter in parameters %}
+                                              {% if parameter.in == 'path' %}
+                                                {% assign any_path_parameters = 1 %}
+                                              {% endif %}
+                                            {% endfor %}
+
+                                            <!-- If there are any headers -->
+                                            {% if any_path_parameters > 0 %}
+                                              <tr style="background-color: #CCC;">
+                                                <td style="font-size: 12px; padding: 5px;"><strong>Path Parameters:</strong></td>
+                                              </tr>
+                                              <tr>
+                                                <td align="left" style="font-size: 12px; padding: 10px;">
+                                                    <table style="width: 50%;">
+                                                      {% for parameter in parameters %}
+                                                        {% if parameter.in == 'path' %}
+                                                          <tr>
+                                                            <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
+                                                            <td><input type="text" name="{{ parameter.name }}" value="" style="width: 100%;" /></td>
+                                                          </tr>
+                                                        {% endif %}
+                                                      {% endfor %}
+                                                    </table>
+                                                </td>
+                                              </tr>
+                                            {% endif %}
+                                          {% endif %}
+                                          <!-- End Path Parameters -->
+                                          </form>
+
+                                          <form id="{{ slug }}-parameters">
+                                          <!-- Begin Parameters -->
+                                          {% assign number_of_parameters = parameters | size %}
+                                          {% if number_of_parameters > 0 %}
+
+                                            {% assign any_parameters = 0 %}
+                                            {% for parameter in parameters %}
+                                              {% if parameter.in == 'query' %}
+                                                {% assign any_parameters = 1 %}
+                                              {% endif %}
+                                            {% endfor %}
+
+                                            <!-- If there are any headers -->
+                                            {% if any_parameters > 0 %}
+                                              <tr style="background-color: #CCC;">
+                                                <td style="font-size: 12px; padding: 5px;"><strong>Parameters:</strong></td>
+                                              </tr>
+                                              <tr>
+                                                <td align="left" style="font-size: 12px; padding: 10px;">
+                                                    <table style="width: 50%;">
+                                                      {% for parameter in parameters %}
+                                                        {% if parameter.in == 'query' %}
+                                                          <tr>
+                                                            <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
+                                                            <td><input type="text" name="{{ parameter.name }}" value="" style="width: 100%;" /></td>
+                                                          </tr>
+                                                        {% endif %}
+                                                      {% endfor %}
+                                                    </table>
+                                                </td>
+                                              </tr>
+                                            {% endif %}
+                                          {% endif %}
+                                          <!-- End Parameters -->
+                                          </form>
+
+                                          <tr style="background-color: #CCC;">
+                                            <td style="font-size: 12px; padding: 5px;"><strong>Response:</strong></td>
+                                          </tr>
+                                          <tr>
+                                            <td style="font-size: 12px; padding: 10px;">
+                                              <textarea id="{{ slug }}-response" style="overflow: auto; height: 5px; width: 100%; border: 0px solid #FFF;"></textarea>
+                                            </td>
+                                          </tr>
+                                          <tr id="{{ slug }}-loading" style="display: none;">
+                                            <td align="center">
+                                              <img src="http://miami.open.211.adopta.agency/images/loading.gif" />
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td align="center"s tyle="font-size: 12px; padding: 25px;">
+                                              <button type="button" class="btn btn-success" onclick="getRequest('{{ slug }}','{{ path[0] }}','{{ api_url }}');">Make API Request</button>
+                                            </td>
+                                          </tr>
+                                        </table>
                                       </td>
                                     </tr>
                                   {% endif %}
