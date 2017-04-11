@@ -9,17 +9,10 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
 
 <table cellpadding="3" cellspacing="2" width="100%" border="0" style="margin-top: 0px;">
 
-{% assign index = site.data.apis %}
-{% assign apijson = index[0] %}
-{% assign contents = site.data.api-commons %}
-{% assign apicommons = contents %}
-
-{% assign blog_url = '' %}
-{% assign blogrss_url = '' %}
-{% assign portal_url = '' %}
-{% assign gitub_url = '' %}
-{% assign twitter_url = '' %}
-{% assign website_url = '' %}
+  {% assign index = site.data.apis %}
+  {% assign apijson = index[0] %}
+  {% assign contents = site.data.api-commons %}
+  {% assign apicommons = contents %}
 
   <tr>
     <td>
@@ -29,13 +22,10 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
 
             {% assign numberofapis = apijson.apis | size %}
 
-                {% assign api_action_url = '' %}
                 {% for api in apijson.apis %}
 
                 <table cellpadding="3" cellspacing="2" width="100%" border="0">
 
-                  {% assign api_action_spec = '' %}
-                  {% assign api_action_url = '' %}
                   {% assign openapi_spec_json = '' %}
 
                   {% for property in api.properties %}
@@ -47,11 +37,11 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                     {% if property.type == 'x-openapi-spec' %}
 
                       {% assign openapi_spec_url = property.url %}
-                      {% assign pathname = openapi_spec_url | replace: '_data/v10/','' %}
+                      {% assign pathname = openapi_spec_url | replace: '_data/api-commons/','' %}
                       {% assign pathname = pathname | replace: '.yaml','' %}
                       {% assign pathname = pathname | replace: '.json','' %}
                       {% assign pathname = pathname | replace: '/','.' %}
-                      {% assign pathname = pathname | replace: 'v10.','' %}
+                      {% assign pathname = pathname | replace: 'api-commons.','' %}
 
                       {% for entry in apicommons %}
                         {% assign thisname = entry[0] %}
@@ -60,6 +50,18 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                           {% assign openapi_spec_json = thisentry %}
                         {% endif %}
                       {% endfor %}
+                    {% endif %}
+
+                    {% if property.type == 'x-postman %}
+                      {% assign postman_url = property.url %}
+                    {% endif %}
+
+                    {% if property.type == 'x-api-blueprint' %}
+                      {% assign api_blueprint_url = property.url %}
+                    {% endif %}
+
+                    {% if property.type == 'x-api-actions' %}
+                      {% assign api_action_url = property.url %}
                     {% endif %}
 
                   {% endfor %}
@@ -71,7 +73,7 @@ title: 'Human Services Data Specification (HSDS) Schema - HTML'
                     <tr id="methods-for-{{ pathname }}">
                       <td colspan="2">
                         <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
-{{ openapi_spec_json }}
+                          
                           {% for schema in openapi_spec_json.definitions %}
 
                             {% assign definition = schema[0] %}
