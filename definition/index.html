@@ -101,16 +101,24 @@ slug: docs
                                 {% assign method_json = path[1] %}
                                 {% for method in method_json %}
 
+                                  {% assign parameters = method[1].parameters %}
+
                                   {% assign tagarray = method[1].tags %}
                                   {% assign tag = tagarray[0] %}
 
                                   {% assign verb = method[0] | upcase %}
+
+                                  {% assign summary = method[1].summary %}
+                                  {% assign slug = path[0] | replace: '/','' %}
 
                                   {% if verb == 'GET' %}
                                     {% assign back_color = site.get_color %}
                                   {% endif %}
                                   {% if verb == 'POST' %}
                                     {% assign back_color = site.post_color %}
+                                  {% endif %}
+                                  {% if verb == 'PATCH' %}
+                                    {% assign back_color = site.patch_color %}
                                   {% endif %}
                                   {% if verb == 'PUT' %}
                                     {% assign back_color = site.put_color %}
@@ -119,9 +127,6 @@ slug: docs
                                     {% assign back_color = site.delete_color %}
                                   {% endif %}
 
-                                  {% assign summary = method[1].summary %}
-                                  {% assign slug = path[0] | replace: '/','' %}
-                                  
                                   {% if tag == grouptag %}
                                     <tr>
                                       <td style="padding-left: 20px; font-size: 12px;">{{ summary }}</td>
