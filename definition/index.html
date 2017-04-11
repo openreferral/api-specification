@@ -250,7 +250,7 @@ slug: docs
                                           </form>
 
                                           <!-- If there are a body -->
-                                          {% assign any_headers = 0 %}
+                                          {% assign any_body = 0 %}
                                           {% for parameter in parameters %}
                                             {% if parameter.in == 'body' %}
                                               {% assign any_body = 1 %}
