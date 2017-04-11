@@ -120,7 +120,8 @@ slug: docs
                                   {% endif %}
 
                                   {% assign summary = method[1].summary %}
-
+                                  {% assign slug = path[0] | replace: '/','' %}
+                                  
                                   {% if tag == grouptag %}
                                     <tr>
                                       <td style="padding-left: 20px; font-size: 12px;">{{ summary }}</td>
