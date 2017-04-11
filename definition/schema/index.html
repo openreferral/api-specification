@@ -49,6 +49,7 @@ slug: docs
                         {% for entry in apicommons %}
                           {% assign thisname = entry[0] %}
                           {% assign thisentry = entry[1] %}
+                          {{ thisname }} == {{ pathname }}<br />
                           {% if thisname == pathname %}
                             {% assign openapi_spec_json = thisentry %}
                           {% endif %}
