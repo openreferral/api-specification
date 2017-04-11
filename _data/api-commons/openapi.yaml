@@ -38,27 +38,10 @@
         description: Create New Contact
         operationId: Create New Contact
         parameters:
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: organization_id
-          description: 'Needs a description.'
-        - in: query
-          name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: title
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
-        - in: query
-          name: email
-          description: 'Needs a description.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact'
         responses:
           '200':
             description: Contact Response
@@ -85,7 +68,7 @@
             schema:
               type: array
               items:
-                "$ref": "#/definitions/contacts"
+                "$ref": "#/definitions/contact"
         tags:
         - Contacts
       put:
@@ -93,34 +76,17 @@
         description: Update Contact
         operationId: update-contact
         parameters:
-        - in: path
-          name: contact_id
-          description: 'Needs a description.'
-        - in: query
-          name: organization_id
-          description: 'Needs a description.'
-        - in: query
-          name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: title
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
-        - in: query
-          name: email
-          description: 'Needs a description.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact'
         responses:
           '200':
             description: Contact Response
             schema:
               type: array
               items:
-                "$ref": "#/definitions/contacts"
+                "$ref": "#/definitions/contact"
         tags:
         - Contacts
       delete:
@@ -150,7 +116,7 @@
         parameters:
         - in: path
           name: contact_id
-          description: 'Needs a description.'
+          description: 'The unique contact id.'
         responses:
           '200':
             description: Phone Response
@@ -167,22 +133,11 @@
         parameters:
         - in: path
           name: contact_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: number
-          description: 'Needs a description.'
-        - in: query
-          name: extension
-          description: 'Needs a description.'
-        - in: query
-          name: type
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
+          description: 'The unique contact id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/phone'
         responses:
           '200':
             description: Phone Response
@@ -200,12 +155,12 @@
         parameters:
         - in: path
           name: contact_id
-          description: The contact id.
+          description: The unique contact id.
           type: string
           format: string
         - in: query
           name: phone_id
-          description: The phone id.
+          description: The unique phone id.
           type: string
           format: string
         responses:
@@ -224,22 +179,14 @@
         parameters:
         - in: path
           name: contact_id
-          description: 'Needs a description.'
+          description: 'The unique contact id.'
         - in: path
           name: phone_id
-          description: 'Needs a description.'
-        - in: query
-          name: number
-          description: 'Needs a description.'
-        - in: query
-          name: extension
-          description: 'Needs a description.'
-        - in: query
-          name: type
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
+          description: 'The unique phone id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/phone'
         responses:
           '200':
             description: Phone Response
@@ -256,10 +203,10 @@
         parameters:
         - in: path
           name: contact_id
-          description: 'Needs a description.'
+          description: 'The unique contact id.'
         - in: path
           name: phone_id
-          description: 'Needs a description.'
+          description: 'The unique phone id.'
         responses:
           '200':
             description: Phone Response
@@ -295,24 +242,10 @@
         description: Add Location
         operationId: Add Location
         parameters:
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
-        - in: query
-          name: transportation
-          description: 'Needs a description.'
-        - in: query
-          name: latitude
-          description: 'Needs a description.'
-        - in: query
-          name: longitude
-          description: 'Needs a description.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/location'
         responses:
           '200':
             description: Location Response
@@ -348,22 +281,11 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
-        - in: query
-          name: transportation
-          description: 'Needs a description.'
-        - in: query
-          name: latitude
-          description: 'Needs a description.'
-        - in: query
-          name: longitude
-          description: 'Needs a description.'
+          description: 'The unique location id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/location'
         responses:
           '200':
             description: Location Response
@@ -399,7 +321,7 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         responses:
           '200':
             description: Holiday Schedule Response
@@ -416,25 +338,11 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: closed
-          description: 'Needs a description.'
-        - in: query
-          name: opens_at
-          description: 'Needs a description.'
-        - in: query
-          name: closes_at
-          description: 'Needs a description.'
-        - in: query
-          name: start_date
-          description: 'Needs a description.'
-        - in: query
-          name: end_date
-          description: 'Needs a description.'
+          description: 'The unique location id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/holiday_schedule'
         responses:
           '200':
             description: Holiday Schedule Response
@@ -452,10 +360,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: holiday_schedule_id
-          description: 'Needs a description.'
+          description: 'The unique holiday schedule id.'
         responses:
           '200':
             description: Holiday Schedule Response
@@ -472,25 +380,14 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: holiday_schedule_id
-          description: 'Needs a description.'
-        - in: query
-          name: closed
-          description: 'Needs a description.'
-        - in: query
-          name: opens_at
-          description: 'Needs a description.'
-        - in: query
-          name: closes_at
-          description: 'Needs a description.'
-        - in: query
-          name: start_date
-          description: 'Needs a description.'
-        - in: query
-          name: end_date
-          description: 'Needs a description.'
+          description: 'The unique holiday schedule id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/holiday_schedule'
         responses:
           '200':
             description: Holiday Schedule Response
@@ -507,10 +404,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: ''The unique location id.'
         - in: path
           name: holiday_schedule_id
-          description: 'Needs a description.'
+          description: 'The unique holiday schdule id.'
         responses:
           '200':
             description: Holiday Schedule Response
@@ -528,7 +425,7 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         responses:
           '200':
             description: Language Response
@@ -545,13 +442,11 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: language
-          description: 'Needs a description.'
+          description: 'The unique location id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/language'
         responses:
           '200':
             description: Language Response
@@ -569,10 +464,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: language_id
-          description: 'Needs a description.'
+          description: 'The unique language id.'
         responses:
           '200':
             description: Language Response
@@ -589,13 +484,14 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: language_id
-          description: 'Needs a description.'
-        - in: query
-          name: language
-          description: 'Needs a description.'
+          description: 'The unique language id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/language'
         responses:
           '200':
             description: Language Response
@@ -612,10 +508,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: language_id
-          description: 'Needs a description.'
+          description: 'The unique language id.'
         responses:
           '200':
             description: Language Response
@@ -633,7 +529,7 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         responses:
           '200':
             description: Postal Address Response
@@ -650,37 +546,11 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: attention
-          description: 'Needs a description.'
-        - in: query
-          name: address_1
-          description: 'Needs a description.'
-        - in: query
-          name: address_2
-          description: 'Needs a description.'
-        - in: query
-          name: address_3
-          description: 'Needs a description.'
-        - in: query
-          name: address_4
-          description: 'Needs a description.'
-        - in: query
-          name: city
-          description: 'Needs a description.'
-        - in: query
-          name: state_province
-          description: 'Needs a description.'
-        - in: query
-          name: postal_code
-          description: 'Needs a description.'
-        - in: query
-          name: country
-          description: 'Needs a description.'
+          description: 'The unique location id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/postal_address'
         responses:
           '200':
             description: Postal Address Response
@@ -698,10 +568,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: postal_address_id
-          description: 'Needs a description.'
+          description: ''The unique postal address id.'
         responses:
           '200':
             description: Postal Address Response
@@ -718,37 +588,14 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: postal_address_id
-          description: 'Needs a description.'
-        - in: query
-          name: attention
-          description: 'Needs a description.'
-        - in: query
-          name: address_1
-          description: 'Needs a description.'
-        - in: query
-          name: address_2
-          description: 'Needs a description.'
-        - in: query
-          name: address_3
-          description: 'Needs a description.'
-        - in: query
-          name: address_4
-          description: 'Needs a description.'
-        - in: query
-          name: city
-          description: 'Needs a description.'
-        - in: query
-          name: state_province
-          description: 'Needs a description.'
-        - in: query
-          name: postal_code
-          description: 'Needs a description.'
-        - in: query
-          name: country
-          description: 'Needs a description.'
+          description: 'The unique postal address id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/postal_address'
         responses:
           '200':
             description: Postal Address Response
@@ -765,10 +612,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: postal_address_id
-          description: 'Needs a description.'
+          description: 'The unique postal address id.'
         responses:
           '200':
             description: Postal Address Response
@@ -786,7 +633,7 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         responses:
           '200':
             description: Postal Address Response
@@ -803,37 +650,11 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: attention
-          description: 'Needs a description.'
-        - in: query
-          name: address_1
-          description: 'Needs a description.'
-        - in: query
-          name: address_2
-          description: 'Needs a description.'
-        - in: query
-          name: address_3
-          description: 'Needs a description.'
-        - in: query
-          name: address_4
-          description: 'Needs a description.'
-        - in: query
-          name: city
-          description: 'Needs a description.'
-        - in: query
-          name: state_province
-          description: 'Needs a description.'
-        - in: query
-          name: postal_code
-          description: 'Needs a description.'
-        - in: query
-          name: country
-          description: 'Needs a description.'
+          description: 'The unique location id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/postal_address'
         responses:
           '200':
             description: Postal Address Response
@@ -851,10 +672,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: postal_address_id
-          description: 'Needs a description.'
+          description: 'The unique postal address id.'
         responses:
           '200':
             description: Postal Address Response
@@ -871,37 +692,14 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: postal_address_id
-          description: 'Needs a description.'
-        - in: query
-          name: attention
-          description: 'Needs a description.'
-        - in: query
-          name: address_1
-          description: 'Needs a description.'
-        - in: query
-          name: address_2
-          description: 'Needs a description.'
-        - in: query
-          name: address_3
-          description: 'Needs a description.'
-        - in: query
-          name: address_4
-          description: 'Needs a description.'
-        - in: query
-          name: city
-          description: 'Needs a description.'
-        - in: query
-          name: state_province
-          description: 'Needs a description.'
-        - in: query
-          name: postal_code
-          description: 'Needs a description.'
-        - in: query
-          name: country
-          description: 'Needs a description.'
+          description: 'The unique postal address id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/postal_address'
         responses:
           '200':
             description: Postal Address Response
@@ -918,10 +716,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: postal_address_id
-          description: 'Needs a description.'
+          description: 'The unique postal address id.'
         responses:
           '200':
             description: Postal Address Response
@@ -939,7 +737,7 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         responses:
           '200':
             description: Phone Response
@@ -956,22 +754,11 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: number
-          description: 'Needs a description.'
-        - in: query
-          name: extension
-          description: 'Needs a description.'
-        - in: query
-          name: type
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
+          description: 'The unique location id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/phone'
         responses:
           '200':
             description: Phone Response
@@ -989,10 +776,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: phone_id
-          description: 'Needs a description.'
+          description: 'The unique phone id.'
         responses:
           '200':
             description: Phone Response
@@ -1009,22 +796,14 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: phone_id
-          description: 'Needs a description.'
-        - in: query
-          name: number
-          description: 'Needs a description.'
-        - in: query
-          name: extension
-          description: 'Needs a description.'
-        - in: query
-          name: type
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
+          description: 'The unique phone id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/phone'
         responses:
           '200':
             description: Phone Response
@@ -1041,10 +820,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: phone_id
-          description: 'Needs a description.'
+          description: 'The unique phone id.'
         responses:
           '200':
             description: Phone Response
@@ -1062,7 +841,7 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         responses:
           '200':
             description: Regular Schedule Response
@@ -1079,19 +858,11 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: weekday
-          description: 'Needs a description.'
-        - in: query
-          name: opens_at
-          description: 'Needs a description.'
-        - in: query
-          name: closes_at
-          description: 'Needs a description.'
+          description: 'The unique location id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/regular_schedule'
         responses:
           '200':
             description: Regular Schedule Response
@@ -1109,10 +880,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: regular_schedule_id
-          description: 'Needs a description.'
+          description: 'The unique regular schedule id.'
         responses:
           '200':
             description: Regular Schedule Response
@@ -1129,19 +900,14 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: regular_schedule_id
-          description: 'Needs a description.'
-        - in: query
-          name: weekday
-          description: 'Needs a description.'
-        - in: query
-          name: opens_at
-          description: 'Needs a description.'
-        - in: query
-          name: closes_at
-          description: 'Needs a description.'
+          description: 'The unique regular schedule id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/regular_schedule'
         responses:
           '200':
             description: Regular Schedule Response
@@ -1158,10 +924,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: regular_schedule_id
-          description: 'Needs a description.'
+          description: 'The unique regular schedule id.'
         responses:
           '200':
             description: Regular Schedule Response
@@ -1193,31 +959,11 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
-        - in: query
-          name: url
-          description: 'Needs a description.'
-        - in: query
-          name: email
-          description: 'Needs a description.'
-        - in: query
-          name: status
-          description: 'Needs a description.'
-        - in: query
-          name: application_process
-          description: 'Needs a description.'
-        - in: query
-          name: wait_time
-          description: 'Needs a description.'
+          description: 'The unique location id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
         responses:
           '200':
             description: Service Response
@@ -1235,10 +981,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Service Response
@@ -1255,31 +1001,14 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
-        - in: query
-          name: url
-          description: 'Needs a description.'
-        - in: query
-          name: email
-          description: 'Needs a description.'
-        - in: query
-          name: status
-          description: 'Needs a description.'
-        - in: query
-          name: application_process
-          description: 'Needs a description.'
-        - in: query
-          name: wait_time
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
         responses:
           '200':
             description: Service Response
@@ -1296,10 +1025,10 @@
         parameters:
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Service Response
@@ -1334,13 +1063,11 @@
         parameters:
         - in: query
           name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: accessibility
-          description: 'Needs a description.'
+          description: 'The unique location id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/accessibility_for_disabilities'
         responses:
           '200':
             description: Accessibility For Disabilities Response
@@ -1358,7 +1085,7 @@
         parameters:
         - in: query
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         responses:
           '200':
             description: Accessibility For Disabilities Response
@@ -1375,13 +1102,11 @@
         parameters:
         - in: query
           name: accessibility_for_disabilities_id
-          description: 'Needs a description.'
-        - in: query
-          name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: accessibility
-          description: 'Needs a description.'
+          description: 'The unique accessibility for disabilities id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/accessibility_for_disabilities'
         responses:
           '200':
             description: Accessibility For Disabilities Response
@@ -1398,10 +1123,10 @@
         parameters:
         - in: query
           name: accessibility_for_disabilities_id
-          description: 'Needs a description.'
+          description: 'The unique accessibility for disabilities id.'
         - in: query
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         responses:
           '200':
             description: Accessibility For Disabilities Response
@@ -1433,28 +1158,11 @@
         parameters:
         - in: query
           name: resource_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: last_action_date
-          description: 'Needs a description.'
-        - in: query
-          name: last_action_type
-          description: 'Needs a description.'
-        - in: query
-          name: field_name
-          description: 'Needs a description.'
-        - in: query
-          name: previous_value
-          description: 'Needs a description.'
-        - in: query
-          name: replacement_value
-          description: 'Needs a description.'
-        - in: query
-          name: updated_by
-          description: 'Needs a description.'
+          description: 'The unique resource id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/metadata'
         responses:
           '200':
             description: Metadata Response
@@ -1529,36 +1237,10 @@
         description: Create a new organization
         operationId: create-a-new-organization
         parameters:
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
-        - in: query
-          name: description
-          description: 'Needs a description.'
-        - in: query
-          name: email
-          description: 'Needs a description.'
-        - in: query
-          name: url
-          description: 'Needs a description.'
-        - in: query
-          name: tax_status
-          description: 'Needs a description.'
-        - in: query
-          name: tax_id
-          description: 'Needs a description.'
-        - in: query
-          name: year_incorporated
-          description: 'Needs a description.'
-        - in: query
-          name: legal_status
-          description: 'Needs a description.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/organization'
         responses:
           '200':
             description: Organization Response
@@ -1594,35 +1276,12 @@
         operationId: update-existing-organization
         parameters:
         - in: path
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
-        - in: query
-          name: description
-          description: 'Needs a description.'
-        - in: query
-          name: email
-          description: 'Needs a description.'
-        - in: query
-          name: url
-          description: 'Needs a description.'
-        - in: query
-          name: tax_status
-          description: 'Needs a description.'
-        - in: query
-          name: tax_id
-          description: 'Needs a description.'
-        - in: query
-          name: year_incorporated
-          description: 'Needs a description.'
-        - in: query
-          name: legal_status
-          description: 'Needs a description.'
+          name: organization_id
+          description: 'The unique organization id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/organization'
         responses:
           '200':
             description: Organization Response
@@ -1726,22 +1385,11 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: title
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
-        - in: query
-          name: email
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact'
         responses:
           '200':
             description: Contact Response
@@ -1759,10 +1407,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: contact_id
-          description: 'Needs a description.'
+          description: 'The unique contact id.'
         responses:
           '200':
             description: Contact Response
@@ -1779,22 +1427,14 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: contact_id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: title
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
-        - in: query
-          name: email
-          description: 'Needs a description.'
+          description: 'The unique contact id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact'
         responses:
           '200':
             description: Contact Response
@@ -1811,10 +1451,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: contact_id
-          description: 'Needs a description.'
+          description: 'The unique contact id.'
         responses:
           '200':
             description: Contact Response
@@ -1832,7 +1472,7 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         responses:
           '200':
             description: Funding Response
@@ -1849,13 +1489,11 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: source
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/funding'
         responses:
           '200':
             description: Funding Response
@@ -1873,10 +1511,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: funding_id
-          description: 'Needs a description.'
+          description: 'The unique funding id.'
         responses:
           '200':
             description: Funding Response
@@ -1893,13 +1531,14 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: funding_id
-          description: 'Needs a description.'
-        - in: query
-          name: source
-          description: 'Needs a description.'
+          description: 'The unique funding id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/funding'
         responses:
           '200':
             description: Funding Response
@@ -1916,10 +1555,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: funding_id
-          description: 'Needs a description.'
+          description: 'The unique funding id.'
         responses:
           '200':
             description: Funding Response
@@ -1954,25 +1593,11 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
-        - in: query
-          name: transportation
-          description: 'Needs a description.'
-        - in: query
-          name: latitude
-          description: 'Needs a description.'
-        - in: query
-          name: longitude
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/location'
         responses:
           '200':
             description: Location Response
@@ -1990,10 +1615,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         responses:
           '200':
             description: Location Response
@@ -2010,25 +1635,14 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
-        - in: query
-          name: transportation
-          description: 'Needs a description.'
-        - in: query
-          name: latitude
-          description: 'Needs a description.'
-        - in: query
-          name: longitude
-          description: 'Needs a description.'
+          description: 'The unique location id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/location'
         responses:
           '200':
             description: Location Response
@@ -2045,10 +1659,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: location_id
-          description: 'Needs a description.'
+          description: 'The unique location id.'
         responses:
           '200':
             description: Location Response
@@ -2080,22 +1694,11 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: number
-          description: 'Needs a description.'
-        - in: query
-          name: extension
-          description: 'Needs a description.'
-        - in: query
-          name: type
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/phone'
         responses:
           '200':
             description: Phone Response
@@ -2113,10 +1716,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: phone_id
-          description: 'Needs a description.'
+          description: 'The unique phone id.'
         responses:
           '200':
             description: Phone Response
@@ -2133,22 +1736,14 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: phone_id
-          description: 'Needs a description.'
-        - in: query
-          name: number
-          description: 'Needs a description.'
-        - in: query
-          name: extension
-          description: 'Needs a description.'
-        - in: query
-          name: type
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
+          description: 'The unique phone id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/phone'
         responses:
           '200':
             description: Phone Response
@@ -2165,10 +1760,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: phone_id
-          description: 'Needs a description.'
+          description: 'The unique phone id.'
         responses:
           '200':
             description: Phone Response
@@ -2186,7 +1781,7 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         responses:
           '200':
             description: Program Response
@@ -2203,16 +1798,11 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/program'
         responses:
           '200':
             description: Program Response
@@ -2230,10 +1820,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: program_id
-          description: 'Needs a description.'
+          description: 'The unique program id.'
         responses:
           '200':
             description: Program Response
@@ -2250,16 +1840,14 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: program_id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
+          description: 'The unique program id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/program'
         responses:
           '200':
             description: Program Response
@@ -2276,10 +1864,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: program_id
-          description: 'Needs a description.'
+          description: 'The unique program id.'
         responses:
           '200':
             description: Program Response
@@ -2297,7 +1885,7 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         responses:
           '200':
             description: Service Response
@@ -2314,16 +1902,11 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
         responses:
           '200':
             description: Service Response
@@ -2341,10 +1924,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: program_id
-          description: 'Needs a description.'
+          description: 'The unique program id.'
         responses:
           '200':
             description: Service Response
@@ -2361,16 +1944,14 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: program_id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
+          description: 'The unique program id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
         responses:
           '200':
             description: Service Response
@@ -2387,10 +1968,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: program_id
-          description: 'Needs a description.'
+          description: 'The unique program id.'
         responses:
           '200':
             description: Service Response
@@ -2408,7 +1989,7 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         responses:
           '200':
             description: Service Response
@@ -2425,16 +2006,11 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
         responses:
           '200':
             description: Service Response
@@ -2452,10 +2028,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: program_id
-          description: 'Needs a description.'
+          description: 'The unique program id.'
         responses:
           '200':
             description: Service Response
@@ -2472,16 +2048,14 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: program_id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
+          description: 'The unique program id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
         responses:
           '200':
             description: Service Response
@@ -2498,10 +2072,10 @@
         parameters:
         - in: path
           name: organization_id
-          description: 'Needs a description.'
+          description: 'The unique organization id.'
         - in: path
           name: program_id
-          description: 'Needs a description.'
+          description: 'The unique program id.'
         responses:
           '200':
             description: Service Response
@@ -2566,46 +2140,17 @@
         description: Create New Service
         operationId: create-new-service
         parameters:
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: organization_id
-          description: 'Needs a description.'
-        - in: query
-          name: program_id
-          description: 'Needs a description.'
-        - in: query
-          name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
-        - in: query
-          name: url
-          description: 'Needs a description.'
-        - in: query
-          name: email
-          description: 'Needs a description.'
-        - in: query
-          name: status
-          description: 'Needs a description.'
-        - in: query
-          name: application_process
-          description: 'Needs a description.'
-        - in: query
-          name: wait_time
-          description: 'Needs a description.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
         responses:
           '200':
             description: Service Response
             schema:
               type: array
               items:
-                "$ref": "#/definitions/services"
+                "$ref": "#/definitions/service"
         tags:
         - Services
     "/services/{service_id}/":
@@ -2616,7 +2161,7 @@
         parameters:
         - in: query
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Organization Response
@@ -2631,39 +2176,13 @@
         description: Update Service
         operationId: update-service
         parameters:
-        - in: query
+        - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: organization_id
-          description: 'Needs a description.'
-        - in: query
-          name: program_id
-          description: 'Needs a description.'
-        - in: query
-          name: location_id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: alternate_name
-          description: 'Needs a description.'
-        - in: query
-          name: url
-          description: 'Needs a description.'
-        - in: query
-          name: email
-          description: 'Needs a description.'
-        - in: query
-          name: status
-          description: 'Needs a description.'
-        - in: query
-          name: application_process
-          description: 'Needs a description.'
-        - in: query
-          name: wait_time
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
         responses:
           '200':
             description: Service Response
@@ -2680,7 +2199,7 @@
         parameters:
         - in: query
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         tags:
         - Services
         responses:
@@ -2710,24 +2229,10 @@
         description: Add Contact
         operationId: add-contact
         parameters:
-        - in: query
-          name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: title
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
-        - in: query
-          name: email
-          description: 'Needs a description.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact'
         responses:
           '200':
             description: Contact Response
@@ -2745,10 +2250,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: contact_id
-          description: 'Needs a description.'
+          description: 'The unique contact id.'
         responses:
           '200':
             description: Contact Response
@@ -2765,22 +2270,14 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: contact_id
-          description: 'Needs a description.'
-        - in: query
-          name: name
-          description: 'Needs a description.'
-        - in: query
-          name: title
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
-        - in: query
-          name: email
-          description: 'Needs a description.'
+          description: 'The unique contact id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact'
         responses:
           '200':
             description: Contact Response
@@ -2797,10 +2294,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: contact_id
-          description: 'Needs a description.'
+          description: 'The unique contact id.'
         responses:
           '200':
             description: Contact Response
@@ -2818,7 +2315,7 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Eligibility Response
@@ -2835,13 +2332,11 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: eligibility
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/eligibility'
         responses:
           '200':
             description: Eligibility Response
@@ -2859,10 +2354,10 @@
         parameters:
         - in: path
           name: eligibility_id
-          description: 'Needs a description.'
+          description: 'The unique eligibility id.'
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Eligibility Response
@@ -2879,13 +2374,14 @@
         parameters:
         - in: path
           name: eligibility_id
-          description: 'Needs a description.'
+          description: 'The unique eligibility id.'
         - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: eligibility
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/eligibility'
         responses:
           '200':
             description: Eligibility Response
@@ -2902,10 +2398,10 @@
         parameters:
         - in: path
           name: eligibility_id
-          description: 'Needs a description.'
+          description: 'The unique eligibility id.'
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Eligibility Response
@@ -2923,7 +2419,7 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Fees Response
@@ -2940,13 +2436,11 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: fee
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/fee'
         responses:
           '200':
             description: Fees Response
@@ -2964,10 +2458,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: feed_id
-          description: 'Needs a description.'
+          description: 'The unique feed id.'
         responses:
           '200':
             description: Fees Response
@@ -2984,13 +2478,14 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: feed_id
-          description: 'Needs a description.'
-        - in: query
-          name: fee
-          description: 'Needs a description.'
+          description: 'The unique feed id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/fee'
         responses:
           '200':
             description: Fees Response
@@ -3007,10 +2502,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: feed_id
-          description: 'Needs a description.'
+          description: 'The unique feed id.'
         responses:
           '200':
             description: Fees Response
@@ -3028,7 +2523,7 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Funding Response
@@ -3045,13 +2540,11 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: source
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/funding'
         responses:
           '200':
             description: Funding Response
@@ -3069,10 +2562,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: funding_id
-          description: 'Needs a description.'
+          description: 'The unique funding id.'
         responses:
           '200':
             description: Funding Response
@@ -3089,13 +2582,14 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: funding_id
-          description: 'Needs a description.'
-        - in: query
-          name: source
-          description: 'Needs a description.'
+          description: 'The unique funding id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/funding'
         responses:
           '200':
             description: Funding Response
@@ -3112,10 +2606,10 @@
         parameters:
         - in: query
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: query
           name: funding_id
-          description: 'Needs a description.'
+          description: 'The unique funding id.'
         responses:
           '200':
             description: Funding Response
@@ -3133,7 +2627,7 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Holiday Schedule Response
@@ -3150,25 +2644,11 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: closed
-          description: 'Needs a description.'
-        - in: query
-          name: opens_at
-          description: 'Needs a description.'
-        - in: query
-          name: closes_at
-          description: 'Needs a description.'
-        - in: query
-          name: start_date
-          description: 'Needs a description.'
-        - in: query
-          name: end_date
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/holiday_schedule'
         responses:
           '200':
             description: Holiday Schedule Response
@@ -3186,10 +2666,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: holiday_schedule_id
-          description: 'Needs a description.'
+          description: 'The unique holiday schedule id.'
         responses:
           '200':
             description: Holiday Schedule Response
@@ -3206,25 +2686,14 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: holiday_schedule_id
-          description: 'Needs a description.'
-        - in: query
-          name: closed
-          description: 'Needs a description.'
-        - in: query
-          name: opens_at
-          description: 'Needs a description.'
-        - in: query
-          name: closes_at
-          description: 'Needs a description.'
-        - in: query
-          name: start_date
-          description: 'Needs a description.'
-        - in: query
-          name: end_date
-          description: 'Needs a description.'
+          description: 'The unique holiday schedule id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/holiday_schedule'
         responses:
           '200':
             description: Holiday Schedule Response
@@ -3241,10 +2710,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: holiday_schedule_id
-          description: 'Needs a description.'
+          description: 'The unique holiday schedule id.'
         responses:
           '200':
             description: Holiday Schedule Response
@@ -3262,7 +2731,7 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Interpretation Services Response
@@ -3279,13 +2748,11 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: language
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/intepretation_services'
         responses:
           '200':
             description: Interpretation Services Response
@@ -3303,10 +2770,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: intepretation_services_id
-          description: 'Needs a description.'
+          description: 'The unique interpretation services id.'
         responses:
           '200':
             description: Interpretation Services Response
@@ -3323,13 +2790,14 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: intepretation_services_id
-          description: 'Needs a description.'
-        - in: query
-          name: language
-          description: 'Needs a description.'
+          description: 'The unique interpretation services id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/intepretation_services'
         responses:
           '200':
             description: Interpretation Services Response
@@ -3346,10 +2814,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: intepretation_services_id
-          description: 'Needs a description.'
+          description: 'The unique interpretation services id.'
         responses:
           '200':
             description: Interpretation Services Response
@@ -3367,7 +2835,7 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Language Response
@@ -3384,13 +2852,11 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: language
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/language'
         responses:
           '200':
             description: Language Response
@@ -3408,10 +2874,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: language_id
-          description: 'Needs a description.'
+          description: 'The unique language id.'
         responses:
           '200':
             description: Language Response
@@ -3428,13 +2894,14 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: language_id
-          description: 'Needs a description.'
-        - in: query
-          name: language
-          description: 'Needs a description.'
+          description: 'The unique language id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/language'
         responses:
           '200':
             description: Language Response
@@ -3451,10 +2918,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: language_id
-          description: 'Needs a description.'
+          description: 'The unique language id.'
         responses:
           '200':
             description: Language Response
@@ -3484,15 +2951,13 @@
         description: Add Payment Accepted
         operationId: add-payment-accepted
         parameters:
-        - - in: path
+        - in: path
             name: service_id
-            description: 'Needs a description.'
-          - in: query
-            name: id
-            description: 'Needs a description.'
-          - in: query
-            name: payment
-            description: 'Needs a description.'
+            description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/payment_accepted'
         responses:
           '200':
             description: Payment Accepted Response
@@ -3510,10 +2975,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: payment_accepted_id
-          description: 'Needs a description.'
+          description: 'The unique payment accepted id.'
         responses:
           '200':
             description: Payment Accepted Response
@@ -3530,16 +2995,14 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: payment_accepted_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: payment
-          description: 'Needs a description.'
+          description: 'The unique payment accepted id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/payment_accepted'
         responses:
           '200':
             description: Payment Accepted Response
@@ -3556,10 +3019,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: payment_accepted_id
-          description: 'Needs a description.'
+          description: 'The unique payment accepted id.'
         responses:
           '200':
             description: Payment Accepted Response
@@ -3577,7 +3040,7 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Phone Response
@@ -3594,22 +3057,11 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: number
-          description: 'Needs a description.'
-        - in: query
-          name: extension
-          description: 'Needs a description.'
-        - in: query
-          name: type
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/phone'
         responses:
           '200':
             description: Phone Response
@@ -3627,10 +3079,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: phone_id
-          description: 'Needs a description.'
+          description: 'The unique phone id.'
         responses:
           '200':
             description: Phone Response
@@ -3647,22 +3099,14 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: phone_id
-          description: 'Needs a description.'
-        - in: query
-          name: number
-          description: 'Needs a description.'
-        - in: query
-          name: extension
-          description: 'Needs a description.'
-        - in: query
-          name: type
-          description: 'Needs a description.'
-        - in: query
-          name: department
-          description: 'Needs a description.'
+          description: 'The unique phone id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/phone'
         responses:
           '200':
             description: Phone Response
@@ -3679,10 +3123,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: phone_id
-          description: 'Needs a description.'
+          description: 'The unique phone id.'
         responses:
           '200':
             description: Phone Response
@@ -3700,7 +3144,7 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Regular Schedule Response
@@ -3717,19 +3161,11 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: weekday
-          description: 'Needs a description.'
-        - in: query
-          name: opens_at
-          description: 'Needs a description.'
-        - in: query
-          name: closes_at
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/regular_schedule'
         responses:
           '200':
             description: Regular Schedule Response
@@ -3747,10 +3183,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: regular_schedule_id
-          description: 'Needs a description.'
+          description: 'The unique regular schedule id.'
         responses:
           '200':
             description: Regular Schedule Response
@@ -3767,19 +3203,14 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: regular_schedule_id
-          description: 'Needs a description.'
-        - in: query
-          name: weekday
-          description: 'Needs a description.'
-        - in: query
-          name: opens_at
-          description: 'Needs a description.'
-        - in: query
-          name: closes_at
-          description: 'Needs a description.'
+          description: 'The unique regular schedule id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/regular_schedule'
         responses:
           '200':
             description: Regular Schedule Response
@@ -3796,10 +3227,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: regular_schedule_id
-          description: 'Needs a description.'
+          description: 'The unique regular schedule id.'
         responses:
           '200':
             description: Regular Schedule Response
@@ -3817,7 +3248,7 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Required Document Response
@@ -3834,13 +3265,11 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: document
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/required_document'
         responses:
           '200':
             description: Required Document Response
@@ -3858,10 +3287,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: required_document_id
-          description: 'Needs a description.'
+          description: 'The unique required document id.'
         responses:
           '200':
             description: Required Document Response
@@ -3878,13 +3307,14 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: required_document_id
-          description: 'Needs a description.'
-        - in: query
-          name: document
-          description: 'Needs a description.'
+          description: 'The unique required document id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/required_document'
         responses:
           '200':
             description: Required Document Response
@@ -3901,10 +3331,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: required_document_id
-          description: 'Needs a description.'
+          description: 'The unique required document id.'
         responses:
           '200':
             description: Required Document Response
@@ -3922,7 +3352,7 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         responses:
           '200':
             description: Required Document Response
@@ -3939,20 +3369,18 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
-        - in: query
-          name: id
-          description: 'Needs a description.'
-        - in: query
-          name: service_area
-          description: 'Needs a description.'
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service_area'
         responses:
           '200':
-            description: Required Document Response
+            description: Service Area Response
             schema:
               type: array
               items:
-                "$ref": "#/definitions/required_document"
+                "$ref": "#/definitions/service_area"
         tags:
         - Service - Areas
     "/services/{service_id}/service_area/{service_area_id}/":
@@ -3963,10 +3391,10 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: service_area_id
-          description: 'Needs a description.'
+          description: 'The unique service area id.'
         responses:
           '200':
             description: Service Area Response
@@ -3983,12 +3411,14 @@
         parameters:
         - in: path
           name: service_id
-          description: 'Needs a description.'
+          description: 'The unique service id.'
         - in: path
           name: service_area_id
-        - in: query
-          name: service_area
-          description: 'Needs a description.'
+          description: 'The unique service area id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service_area'
         responses:
           '200':
             description: Service Area Response
