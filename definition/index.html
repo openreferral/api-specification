@@ -169,7 +169,7 @@ slug: docs
                                                         {% if parameter.in == 'header' %}
                                                           <tr>
                                                             <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
-                                                            <td style="padding-left: 5px;">{{ parameter.name }}</td>
+                                                            <td style="padding-left: 5px;">{{ parameter.description }}</td>
                                                           </tr>
                                                         {% endif %}
                                                       {% endfor %}
@@ -205,7 +205,7 @@ slug: docs
                                                         {% if parameter.in == 'path' %}
                                                           <tr>
                                                             <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
-                                                            <td style="padding-left: 5px;">{{ parameter.name }}</td>
+                                                            <td style="padding-left: 5px;">{{ parameter.description }}</td>
                                                           </tr>
                                                         {% endif %}
                                                       {% endfor %}
@@ -241,7 +241,7 @@ slug: docs
                                                         {% if parameter.in == 'query' %}
                                                           <tr>
                                                             <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
-                                                            <td style="padding-left: 5px;">{{ parameter.name }}</td>
+                                                            <td style="padding-left: 5px;">{{ parameter.description }}</td>
                                                           </tr>
                                                         {% endif %}
                                                       {% endfor %}
@@ -272,10 +272,14 @@ slug: docs
                                                         {% assign this_def = parameter.schema['$ref'] %}
                                                         {% assign this_def = this_def | replace: '/definitions/','' %}
                                                         {% assign this_def = this_def | replace: '#','' %}
-                                                        <tr>
-                                                          <td style="width: 35%;" align="right"><strong>{{ this_def }}</strong></td>
-                                                          <td style="padding-left: 5px;">{{ schema[this_def]}}</td>
+                                                        {% for parameter in schema[this_def].properties %}
+                                                          {% assign parameter_name = parameter[0] %}
+                                                          {% assign parameter_description = parameter[1].description %}
+                                                          <tr>
+                                                            <td style="width: 35%;" align="right"><strong>{{ parameter_name }}</strong></td>
+                                                            <td style="padding-left: 5px;">{{ parameter_description }}</td>
                                                         </tr>
+                                                        {% endfor %}
                                                       {% endif %}
                                                     {% endfor %}
                                                   </table>
