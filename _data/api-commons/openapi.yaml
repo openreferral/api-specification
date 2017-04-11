@@ -22,21 +22,27 @@
       get:
         summary: Get Contacts
         description: Get Contacts
-        operationId: get-contacts
-        parameters: []
+        operationId: getContacts
+        parameters:
+        - in: query
+          name: page
+          description: The particular page of results.
+        - in: query
+          name: per_page
+          description: Amount of locations to return per page, up to 100.
         responses:
           '200':
             description: Contact Response
             schema:
               type: array
               items:
-                "$ref": "#/definitions/contacts"
+                "$ref": "#/definitions/contact"
         tags:
         - Contacts
       post:
-        summary: Create New Contact
-        description: Create New Contact
-        operationId: Create New Contact
+        summary: Create Contact
+        description: Create a new contact
+        operationId: createContact
         parameters:
         - in: body
           name: body
@@ -48,20 +54,19 @@
             schema:
               type: array
               items:
-                "$ref": "#/definitions/contacts"
+                "$ref": "#/definitions/contact"
         tags:
         - Contacts
     "/contacts/{contact_id}/":
       get:
         summary: Get Contact
         description: Get Contact
-        operationId: get-contact
+        operationId: getContact
         parameters:
         - in: path
           name: contact_id
-          description: The contact id.
+          description: 'The contact id.'
           type: string
-          format: string
         responses:
           '200':
             description: Contact Response
@@ -73,8 +78,8 @@
         - Contacts
       put:
         summary: Update Contact
-        description: Update Contact
-        operationId: update-contact
+        description: Update an existing contact.
+        operationId: updateContact
         parameters:
         - in: body
           name: body
@@ -92,13 +97,12 @@
       delete:
         summary: Delete Contact
         description: Delete Contact
-        operationId: delete-contact
+        operationId: deleteContact
         parameters:
         - in: path
           name: contact_id
-          description: The organization id.
+          description: 'The organization id.'
           type: string
-          format: string
         tags:
         - Contacts
         responses:
@@ -404,7 +408,7 @@
         parameters:
         - in: path
           name: location_id
-          description: ''The unique location id.'
+          description: 'The unique location id.'
         - in: path
           name: holiday_schedule_id
           description: 'The unique holiday schdule id.'
@@ -571,7 +575,7 @@
           description: 'The unique location id.'
         - in: path
           name: postal_address_id
-          description: ''The unique postal address id.'
+          description: 'The unique postal address id.'
         responses:
           '200':
             description: Postal Address Response
