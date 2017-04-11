@@ -128,11 +128,9 @@ slug: docs
                                       <td align="center" style="padding: 1px; width: 75px; background-color:#{{ back_color }}; font-weight: bold; font-size: 11px; color: #FFF;">
                                         {{ verb }}
                                       </td>
-                                      <td style="width: 25px;"></td>
-                                      <td><button type="button" class="btn btn-default" onclick="showme('{{ slug }}-row'); return false;">Try</button></tr>
                                     </tr>
-                                    <tr id="{{ slug }}-row" style="display: none;">
-                                      <td colspan="4" style="padding: 15px;">
+                                    <tr id="{{ slug }}-row">
+                                      <td colspan="3" style="padding: 15px;">
 
                                         <table width="90%" border="0" align="center">
 
@@ -161,7 +159,7 @@ slug: docs
                                                         {% if parameter.in == 'header' %}
                                                           <tr>
                                                             <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
-                                                            <td><input type="text" name="{{ parameter.name }}" value="" style="width: 100%;" /></td>
+                                                            <td>{{ parameter.name }}</td>
                                                           </tr>
                                                         {% endif %}
                                                       {% endfor %}
@@ -197,7 +195,7 @@ slug: docs
                                                         {% if parameter.in == 'path' %}
                                                           <tr>
                                                             <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
-                                                            <td><input type="text" name="{{ parameter.name }}" value="" style="width: 100%;" /></td>
+                                                            <td>{{ parameter.name }}</td>
                                                           </tr>
                                                         {% endif %}
                                                       {% endfor %}
@@ -233,7 +231,7 @@ slug: docs
                                                         {% if parameter.in == 'query' %}
                                                           <tr>
                                                             <td style="width: 35%;" align="right"><strong>{{ parameter.name }}:</strong></td>
-                                                            <td><input type="text" name="{{ parameter.name }}" value="" style="width: 100%;" /></td>
+                                                            <td>{{ parameter.name }}</td>
                                                           </tr>
                                                         {% endif %}
                                                       {% endfor %}
@@ -251,16 +249,6 @@ slug: docs
                                           <tr>
                                             <td style="font-size: 12px; padding: 10px;">
                                               <textarea id="{{ slug }}-response" style="overflow: auto; height: 5px; width: 100%; border: 0px solid #FFF;"></textarea>
-                                            </td>
-                                          </tr>
-                                          <tr id="{{ slug }}-loading" style="display: none;">
-                                            <td align="center">
-                                              <img src="http://miami.open.211.adopta.agency/images/loading.gif" />
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td align="center"s tyle="font-size: 12px; padding: 25px;">
-                                              <button type="button" class="btn btn-success" onclick="getRequest('{{ slug }}','{{ path[0] }}','{{ api_url }}');">Make API Request</button>
                                             </td>
                                           </tr>
                                         </table>
