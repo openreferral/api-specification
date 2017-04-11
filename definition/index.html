@@ -69,7 +69,7 @@ slug: docs
 
                     <tr id="methods-for-{{ pathname }}">
                       <td colspan="2">
-                        <table width="95%" border="1" style="margin-left: 15px; margin-right: 15px;">
+                        <table width="95%" border="1" cellspacing="3" cellpadding="2" style="margin-left: 15px; margin-right: 15px;">
                           {% assign taglist = '' %}
                           {% for spec in openapi_spec_json %}
                             {% for path in spec.paths %}
@@ -129,9 +129,9 @@ slug: docs
 
                                   {% if tag == grouptag %}
                                     <tr>
-                                      <td style="padding-left: 20px; font-size: 12px;">{{ summary }}</td>
+                                      <td width="20%" style="padding-left: 20px; font-size: 12px;">{{ summary }}</td>
                                       <td style="font-size: 12px;">{{ path[0] }}</td>
-                                      <td align="center" style="padding: 1px; width: 75px; background-color:#{{ back_color }}; font-weight: bold; font-size: 11px; color: #FFF;">
+                                      <td width="5%" align="center" style="padding: 1px; width: 75px; background-color:#{{ back_color }}; font-weight: bold; font-size: 11px; color: #FFF;">
                                         {{ verb }}
                                       </td>
                                     </tr>
