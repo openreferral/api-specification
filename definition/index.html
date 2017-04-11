@@ -252,6 +252,7 @@ slug: docs
                                           <!-- If there are a body -->
                                           {% assign any_body = 0 %}
                                           {% for parameter in parameters %}
+                                            in: {{ parameter.in }}<br />
                                             {% if parameter.in == 'body' %}
                                               {% assign any_body = 1 %}
                                             {% endif %}
