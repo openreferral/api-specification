@@ -261,17 +261,21 @@ slug: docs
                                             {% endif %}
                                           {% endfor %}
                                           {% if any_body > 0 %}
-                                            <tr style="background-color: #FFF;">
-                                              <td style="font-size: 12px; padding: 5px;"><strong>Body:</strong></td>
-                                            </tr>
-                                            <tr>
-                                              <td align="left" style="font-size: 12px; padding: 10px;">
-                                                  <table style="width: 75%;" cellspacing="3" cellpadding="2">
-                                                    {% for parameter in parameters %}
-                                                      {% if parameter.in == 'body' %}
-                                                        {% assign this_def = parameter.schema['$ref'] %}
-                                                        {% assign this_def = this_def | replace: '/definitions/','' %}
-                                                        {% assign this_def = this_def | replace: '#','' %}
+
+                                          {% for parameter in parameters %}
+                                            {% if parameter.in == 'body' %}
+
+                                              {% assign this_def = parameter.schema['$ref'] %}
+                                              {% assign this_def = this_def | replace: '/definitions/','' %}
+                                              {% assign this_def = this_def | replace: '#','' %}
+
+                                              <tr style="background-color: #FFF;">
+                                                <td style="font-size: 12px; padding: 5px;"><strong>Body:</strong></td>
+                                              </tr>
+                                              <tr>
+                                                <td align="left" style="font-size: 12px; padding: 10px;">
+                                                    <table style="width: 75%;" cellspacing="3" cellpadding="2">
+
                                                         {% for parameter in schema[this_def].properties %}
                                                           {% assign parameter_name = parameter[0] %}
                                                           {% assign parameter_description = parameter[1].description %}
@@ -280,11 +284,12 @@ slug: docs
                                                             <td style="padding-left: 5px;">{{ parameter_description }}</td>
                                                         </tr>
                                                         {% endfor %}
-                                                      {% endif %}
-                                                    {% endfor %}
-                                                  </table>
-                                              </td>
-                                            </tr>
+                                                      </table>
+                                                  </td>
+                                                </tr>
+                                                                                                     
+                                              {% endif %}
+                                            {% endfor %}
                                           {% endif %}
                                         <!-- End Body -->
                                         </form>
