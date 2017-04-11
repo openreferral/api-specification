@@ -270,7 +270,7 @@ slug: docs
                                                     {% for parameter in parameters %}
                                                       {% if parameter.in == 'body' %}
                                                         {% assign this_def = parameter.schema['$ref'] %}
-                                                        {% assign this_def = this_def | replace: '#/definitions/','' %}
+                                                        {% assign this_def = this_def | replace: '/definitions/','' %}
                                                         <tr>
                                                           <td style="width: 35%;" align="right"><strong>{{ this_def }}</strong></td>
                                                           <td style="padding-left: 5px;"></td>
