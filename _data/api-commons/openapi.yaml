@@ -101,7 +101,7 @@
         parameters:
         - in: path
           name: contact_id
-          description: 'The organization id.'
+          description: 'The contact id.'
           type: string
         tags:
         - Contacts
@@ -162,7 +162,7 @@
           description: The unique contact id.
           type: string
           format: string
-        - in: query
+        - in: path
           name: phone_id
           description: The unique phone id.
           type: string
@@ -946,7 +946,10 @@
         summary: Get Service
         description: Get Service
         operationId: get-service
-        parameters: []
+        parameters:
+        - in: path
+          name: location_id
+          description: 'The unique location id.'
         responses:
           '200':
             description: Service Response
@@ -1681,7 +1684,10 @@
         summary: Get Phones
         description: Get Phones
         operationId: get-phones
-        parameters: []
+        parameters:
+        - in: path
+          name: organization_id
+          description: 'The unique organization id.'
         responses:
           '200':
             description: Phone Response
@@ -2201,7 +2207,7 @@
         description: Delete Service
         operationId: delete-service
         parameters:
-        - in: query
+        - in: path
           name: service_id
           description: 'The unique service id.'
         tags:
@@ -2218,7 +2224,10 @@
         summary: Get Contacts
         description: Get Contacts
         operationId: get-contacts
-        parameters: []
+        parameters:
+        - in: path
+          name: service_id
+          description: 'The unique service id.'
         responses:
           '200':
             description: Contact Response
@@ -2233,6 +2242,9 @@
         description: Add Contact
         operationId: add-contact
         parameters:
+        - in: path
+          name: service_id
+          description: 'The unique service id.'
         - in: body
           name: body
           schema:
@@ -2940,7 +2952,10 @@
         summary: Get Payment Accepted
         description: Get Payment Accepted
         operationId: get-payment-accepted
-        parameters: []
+        parameters:
+        - in: path
+          name: service_id
+          description: 'The unique service id.'
         responses:
           '200':
             description: Payment Accepted Response
