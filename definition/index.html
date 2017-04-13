@@ -291,8 +291,6 @@ slug: docs
                                           {% assign response_code = response[0] %}
                                           {% assign this_response = response[1] %}
 
-                                          {{ response_code }}
-
                                           {% if response_code == '200' %}
 
                                           {% assign this_response = response.schema.items['$ref'] %}
