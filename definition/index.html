@@ -151,7 +151,7 @@ slug: docs
                                             <!-- If there are any headers -->
                                             {% if any_headers > 0 %}
                                               <tr style="background-color: #FFF;">
-                                                <td style="font-size: 12px; padding: 5px;"><strong>Headers:</strong></td>
+                                                <td style="font-size: 12px; padding: 5px;"><strong>Request Headers:</strong></td>
                                               </tr>
                                               <tr>
                                                 <td align="left" style="font-size: 12px; padding: 10px;">
@@ -187,7 +187,7 @@ slug: docs
                                             <!-- If there are any headers -->
                                             {% if any_path_parameters > 0 %}
                                               <tr style="background-color: #FFF;">
-                                                <td style="font-size: 12px; padding: 5px;"><strong>Path:</strong></td>
+                                                <td style="font-size: 12px; padding: 5px;"><strong>Path Parameters:</strong></td>
                                               </tr>
                                               <tr>
                                                 <td align="left" style="font-size: 12px; padding: 10px;">
@@ -220,10 +220,10 @@ slug: docs
                                               {% endif %}
                                             {% endfor %}
 
-                                            <!-- If there are any headers -->
+                                            <!-- If there are any parameters -->
                                             {% if any_parameters > 0 %}
                                               <tr style="background-color: #FFF;">
-                                                <td style="font-size: 12px; padding: 5px;"><strong>Parameters:</strong></td>
+                                                <td style="font-size: 12px; padding: 5px;"><strong>Request Parameters:</strong></td>
                                               </tr>
                                               <tr>
                                                 <td align="left" style="font-size: 12px; padding: 10px;">
@@ -261,7 +261,7 @@ slug: docs
                                               {% assign this_def = this_def | replace: '#','' %}
 
                                               <tr style="background-color: #FFF;">
-                                                <td style="font-size: 12px; padding: 5px;"><strong>Body: ({{ this_def }})</strong></td>
+                                                <td style="font-size: 12px; padding: 5px;"><strong>Request Body: ({{ this_def }})</strong></td>
                                               </tr>
                                               <tr>
                                                 <td align="left" style="font-size: 12px; padding: 10px;">
@@ -300,7 +300,7 @@ slug: docs
                                           {% assign this_response = this_def | replace: '#','' %}
 
                                             <tr style="background-color: #FFF;">
-                                              <td style="font-size: 12px; padding: 5px;"><strong>Reponse: ({{ this_response }})</strong></td>
+                                              <td style="font-size: 12px; padding: 5px;"><strong>Reponse Body: ({{ this_response }})</strong></td>
                                             </tr>
                                             <tr>
                                               <td align="left" style="font-size: 12px; padding: 10px;">
