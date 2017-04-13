@@ -24,12 +24,12 @@
         description: Get Contacts
         operationId: getContacts
         parameters:
-        - in: query
-          name: page
-          description: The particular page of results.
-        - in: query
-          name: per_page
-          description: Amount of locations to return per page, up to 100.
+          - in: query
+            name: page
+            description: The particular page of results.
+          - in: query
+            name: per_page
+            description: Amount of locations to return per page, up to 100.
         responses:
           '200':
             description: Contact Response
