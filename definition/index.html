@@ -53,24 +53,14 @@ slug: docs
                         {% endfor %}
                       {% endif %}
 
-                      {% if property.type == 'x-postman %}
-                        {% assign postman_url = property.url %}
-                      {% endif %}
-
-                      {% if property.type == 'x-api-blueprint' %}
-                        {% assign api_blueprint_url = property.url %}
-                      {% endif %}
-
-                      {% if property.type == 'x-api-actions' %}
-                        {% assign api_action_url = property.url %}
-                      {% endif %}
-
                     {% endfor %}
 
                     <tr id="methods-for-{{ pathname }}">
                       <td colspan="2">
                         <table width="95%" border="0" cellspacing="3" cellpadding="2" style="margin-left: 15px; margin-right: 15px;">
+
                           {% assign taglist = '' %}
+
                           {% for spec in openapi_spec_json %}
                             {% for path in spec.paths %}
                               {% assign method_json = path[1] %}
@@ -106,6 +96,7 @@ slug: docs
                                 {% for method in method_json %}
 
                                   {% assign parameters = method[1].parameters %}
+                                  {% assign responses = method[1].responses %}
 
                                   {% assign tagarray = method[1].tags %}
                                   {% assign tag = tagarray[0] %}
@@ -292,7 +283,43 @@ slug: docs
                                             {% endfor %}
                                           {% endif %}
                                         <!-- End Body -->
-                                        </form>
+
+                                        <!-- Begin Response -->
+
+                                        {% for response in responses %}
+
+                                          {% assign response_code = response[0] %}
+                                          {% assign this_response = response[1] %}
+
+                                          {{ response_code }}
+
+                                          {% if response_code == '200' %}
+
+                                          {% assign this_response = response.schema.items['$ref'] %}
+                                          {% assign this_response = this_def | replace: '/definitions/','' %}
+                                          {% assign this_response = this_def | replace: '#','' %}
+
+                                            <tr style="background-color: #FFF;">
+                                              <td style="font-size: 12px; padding: 5px;"><strong>Reponse: ({{ this_response }})</strong></td>
+                                            </tr>
+                                            <tr>
+                                              <td align="left" style="font-size: 12px; padding: 10px;">
+                                                  <table style="width: 75%;" cellspacing="3" cellpadding="2">
+
+                                                      {% for parameter in schema[this_response].properties %}
+                                                        {% assign parameter_name = parameter[0] %}
+                                                        {% assign parameter_description = parameter[1].description %}
+                                                        <tr>
+                                                          <td style="width: 25%;" align="right"><strong>{{ parameter_name }}</strong></td>
+                                                          <td style="padding-left: 5px;">{{ parameter_description }}</td>
+                                                      </tr>
+                                                      {% endfor %}
+                                                    </table>
+                                                </td>
+                                              </tr>
+                                            {% endif %}
+                                          {% endfor %}
+                                        <!-- End Response -->
 
                                         </table>
                                       </td>
