@@ -1,5 +1,5 @@
 title:        Open Referral API
-url:          http://adopta-agency.github.io/open-referral-api/
+url:          https://openreferral.github.io/api-specification/
 
 version:      1.1.1
 
@@ -24,8 +24,8 @@ patch_color: 9999ff;
 put_color: FF0080;
 delete_color: FF9900;
 
-github_org: adopta-agency
-github_repo: open-referral-spec
+github_org: openreferral
+github_repo: api-specification
 resource: human
 oauthio: qUDL4eZqKPFb41SwuWIYIwLR6jI
 
