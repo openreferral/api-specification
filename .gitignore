@@ -38,3 +38,7 @@ Thumbs.db
 
 # Laneworks
 config.php
+
+# Jekyll
+Gemfile.lock
+/_site/

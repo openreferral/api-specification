@@ -133,713 +133,714 @@
 
                         <table width="95%" border="0" style="margin-left: 15px; margin-right: 15px;">
                           
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>accessibility_for_disabilities</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>location_id</strong> (string) The identifier of the location for which the entry describes the accessibility provision.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>accessibility</strong> (string) Description of assistance or infrastructure that facilitate access to clients with disabilities.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>contact</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each contact must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>organization_id</strong> (string) The identifier of the organization for which this is a contact.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the service for which this is a contact.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>name</strong> (string) The name of the person.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>title</strong> (string) The job title of the person.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>department</strong> (string) The department that the person is part of.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>email</strong> (string) The email address of the person.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>eligibility</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the service for which this entry describes the eligibility criteria.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>eligibility</strong> (string) The rules or guidelines that determine who can receive the service.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>fee</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the service for which this entry describes the costs of service.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>fee</strong> (string) A listing of the costs of services, including free ones.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>funding</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>organization_id</strong> (string) The identifier of the organization for which this entry describes the source of funding.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the service for which this entry describes the source of funding.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>source</strong> (string) Source of funds for organization or service.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>holiday_schedule</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the service for which this is the holiday schedule.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>location_id</strong> (string) The identifier of the location for which this is the holiday schedule.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>closed</strong> (boolean) Indicates if a service or location is closed during a public holiday.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>opens_at</strong> (string) The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>closes_at</strong> (string) The time when a service or location closes. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>start_date</strong> (string) The first day that a service or location is closed during a public or private holiday.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>end_date</strong> (string) The last day that a service or location is closed during a public or private holiday.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>intepretation_services</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each service must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the services for which the entry describes the interpretation services available.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>language</strong> (string) Languages, other than English, for which interpretation is available. Languages are listed as ISO639-1 codes.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>language</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each language must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the service for which the entry describes the languages in which services are delivered.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>location_id</strong> (string) The identifier of the location for which the entry describes the languages in which services are delivered.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>language</strong> (string) Languages, other than English, in which the service is delivered. Languages are listed as ISO639-1 codes..</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>location</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each location must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>organization_id</strong> (string) Each location must belong to a single organization. The identifier of the organization should be given here.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>name</strong> (string) The name of the location.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>alternate_name</strong> (string) An alternative name for the location.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>description</strong> (string) A description of this location.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>transportation</strong> (string) A description of the access to public or private transportation to and from the location.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>latitude</strong> (string) Y coordinate of location expressed in decimal degrees in WGS84 datum.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>longitude</strong> (string) X coordinate of location expressed in decimal degrees in WGS84 datum.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>metadata</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>resource_id</strong> (string) Each service, program. location, address, or contact will have a unique identifier. Unique ids are UUIDs.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>last_action_date</strong> (string) The date when data was changed.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>last_action_type</strong> (string) The kind of change made to the data; eg create, update, delete.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>field_name</strong> (string) The name of field that has been modified.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>previous_value</strong> (string) The previous value of a field that has been updated.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>replacement_value</strong> (string) The new value of a field that has been updated.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>updated_by</strong> (string) The name of the person who updated a value.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>meta_table_description</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>name</strong> (string) The table name.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>language</strong> (string) The language for the table.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>character_set</strong> (string) The character set for the table</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>organization</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each organization must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>name</strong> (string) The official or public name of the organization.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>alternate_name</strong> (string) Alternative or commonly used name for the organization.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>description</strong> (string) A brief summary about the organization. It can contain markup such as HTML or Markdown.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>email</strong> (string) The contact e-mail address for the organization.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>url</strong> (string) The URL (website address) of the organization.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>tax_status</strong> (string) Government assigned tax designation for for tax-exempt organizations.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>tax_id</strong> (string) A government issued identifier used for the purpose of tax administration.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>year_incorporated</strong> (string) The year in which the organization was legally formed.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>legal_status</strong> (string) The legal status defines the conditions that an organization is operating under; e.g. non-profit, private corporation or a government organization.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>payment_accepted</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the services for which the entry describes the accepted payment methods.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>payment</strong> (string) The methods of payment accepted for the service.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>phone</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>location_id</strong> (string) The identifier of the location where this phone number is located.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the service for which this is the phone number.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>organization_id</strong> (string) The identifier of the organisation for which this is the phone number.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>contact_id</strong> (string) The identifier of the contact for which this is the phone number.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>number</strong> (string) The phone number.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>extension</strong> (number) The extension of the phone number.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>type</strong> (string) Whether the phone number relates to a fixed or cellular phone.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>department</strong> (string) The department for which this is the phone number.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>physical_address</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each physical address must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>location_id</strong> (string) The identifier of the location for which this is the address.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>attention</strong> (string) The person or entity whose attention should be sought at the location.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>address_1</strong> (string) The first line of the address.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>address_2</strong> (string) The second line of the address.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>address_3</strong> (string) The third line of the address.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>address_4</strong> (string) The fourth line of the address.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>city</strong> (string) The city in which the address is located.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>state_province</strong> (string) The state or province in which the address is located.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>postal_code</strong> (string) The postal code for the address.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>country</strong> (string) The country in which the address is located. This should be given as an ISO 3361-1 country code (two letter abbreviation).</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>postal_address</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each postal address must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>location_id</strong> (string) The identifier of the location for which this is the postal address.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>attention</strong> (string) The person or entity for whose attention mail should be marked.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>address_1</strong> (string) The first line of the address.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>address_2</strong> (string) The second line of the address.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>address_3</strong> (string) The third line of the address.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>address_4</strong> (string) The fourth line of the address.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>city</strong> (string) The city in which the address is located.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>state_province</strong> (string) The state or province in which the address is located.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>postal_code</strong> (string) The postal code for the address.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>country</strong> (string) The country in which the address is located.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>program</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each program must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>organization_id</strong> (string) Each program must belong to a single organization. The identifier of the organization should be given here.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>name</strong> (string) The name of the program.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>alternate_name</strong> (string) NeAn alternative name for the program.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>regular_schedule</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the service for which this is the regular schedule.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>location_id</strong> (string) The identifier of the location for which this is the regular schedule.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>weekday</strong> (integer) The day of the week that this entry relates to.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>opens_at</strong> (string) The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>closes_at</strong> (string) The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>required_document</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each document must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the service for which this entry describes the required document.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>document</strong> (string) The document required to apply for or receive the service. e.g. Government-issued ID, EU Passport.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>service</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each service must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>organization_id</strong> (string) The identifier of the organization that provides this service.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>program_id</strong> (string) The identifier of the program this service is delivered under.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>location_id</strong> (string) The identifier of the location where this service is delivered.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>name</strong> (string) The official or public name of the service.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>alternate_name</strong> (string) Alternative or commonly used name for a service.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>description</strong> (string) A description of the service.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>url</strong> (string) URL of the service.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>email</strong> (string) Email address for the service.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>status</strong> (string) The current status of the service.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>application_process</strong> (string) The steps needed to access the service.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>wait_time</strong> (string) Time a client may expect to wait before receiving a service.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>taxonomy_ids</strong> (string) A comma separated list of identifiers from the taxonomy table.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>service_at_location</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the service at a given location.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>location_id</strong> (string) The identifier of the location where this service operates.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>url</strong> (string) If the service at this location has a specific URL, that can be provided here.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>email</strong> (string) If the service at this location has a specific email address, that can be provided here.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>service_area</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each service area must have a unique identifier.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_id</strong> (string) The identifier of the service for which this entry describes the service area.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>service_area</strong> (string) The geographic area where a service is available. This is a free-text description, and so may be precise or indefinite as necessary.</li>
-                                  
-                                  </ul>
-                            
-                              
-                              
-                                  <p style="padding-top: 8px;"><strong>taxonomy</strong></p>
-                                  <ul>
-                                  
-                                      
-                                      
-                                      <li><strong>id</strong> (string) Each taxonomy entry must have a unique identifier. If combining multiple taxonomies with overlapping identifiers, use a prefix to distinguish them.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>name</strong> (string) The name of this taxonomy term or category.</li>
-                                  
-                                      
-                                      
-                                      <li><strong>parent_id</strong> (string) If this is a child category in a hierarchical taxonomy, give the identifier of the parent category. For top-level categories, this should be left blank.</li>
-                                  
-                                  </ul>
-                            
+
                           
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>accessibility_for_disabilities</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>location_id</strong> (string) The identifier of the location for which the entry describes the accessibility provision.</li>
+                                
+                                    
+                                    
+                                    <li><strong>accessibility</strong> (string) Description of assistance or infrastructure that facilitate access to clients with disabilities.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>contact</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each contact must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>organization_id</strong> (string) The identifier of the organization for which this is a contact.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the service for which this is a contact.</li>
+                                
+                                    
+                                    
+                                    <li><strong>name</strong> (string) The name of the person.</li>
+                                
+                                    
+                                    
+                                    <li><strong>title</strong> (string) The job title of the person.</li>
+                                
+                                    
+                                    
+                                    <li><strong>department</strong> (string) The department that the person is part of.</li>
+                                
+                                    
+                                    
+                                    <li><strong>email</strong> (string) The email address of the person.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>eligibility</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the service for which this entry describes the eligibility criteria.</li>
+                                
+                                    
+                                    
+                                    <li><strong>eligibility</strong> (string) The rules or guidelines that determine who can receive the service.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>fee</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the service for which this entry describes the costs of service.</li>
+                                
+                                    
+                                    
+                                    <li><strong>fee</strong> (string) A listing of the costs of services, including free ones.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>funding</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>organization_id</strong> (string) The identifier of the organization for which this entry describes the source of funding.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the service for which this entry describes the source of funding.</li>
+                                
+                                    
+                                    
+                                    <li><strong>source</strong> (string) Source of funds for organization or service.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>holiday_schedule</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the service for which this is the holiday schedule.</li>
+                                
+                                    
+                                    
+                                    <li><strong>location_id</strong> (string) The identifier of the location for which this is the holiday schedule.</li>
+                                
+                                    
+                                    
+                                    <li><strong>closed</strong> (boolean) Indicates if a service or location is closed during a public holiday.</li>
+                                
+                                    
+                                    
+                                    <li><strong>opens_at</strong> (string) The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.</li>
+                                
+                                    
+                                    
+                                    <li><strong>closes_at</strong> (string) The time when a service or location closes. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.</li>
+                                
+                                    
+                                    
+                                    <li><strong>start_date</strong> (string) The first day that a service or location is closed during a public or private holiday.</li>
+                                
+                                    
+                                    
+                                    <li><strong>end_date</strong> (string) The last day that a service or location is closed during a public or private holiday.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>intepretation_services</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each service must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the services for which the entry describes the interpretation services available.</li>
+                                
+                                    
+                                    
+                                    <li><strong>language</strong> (string) Languages, other than English, for which interpretation is available. Languages are listed as ISO639-1 codes.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>language</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each language must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the service for which the entry describes the languages in which services are delivered.</li>
+                                
+                                    
+                                    
+                                    <li><strong>location_id</strong> (string) The identifier of the location for which the entry describes the languages in which services are delivered.</li>
+                                
+                                    
+                                    
+                                    <li><strong>language</strong> (string) Languages, other than English, in which the service is delivered. Languages are listed as ISO639-1 codes..</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>location</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each location must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>organization_id</strong> (string) Each location must belong to a single organization. The identifier of the organization should be given here.</li>
+                                
+                                    
+                                    
+                                    <li><strong>name</strong> (string) The name of the location.</li>
+                                
+                                    
+                                    
+                                    <li><strong>alternate_name</strong> (string) An alternative name for the location.</li>
+                                
+                                    
+                                    
+                                    <li><strong>description</strong> (string) A description of this location.</li>
+                                
+                                    
+                                    
+                                    <li><strong>transportation</strong> (string) A description of the access to public or private transportation to and from the location.</li>
+                                
+                                    
+                                    
+                                    <li><strong>latitude</strong> (string) Y coordinate of location expressed in decimal degrees in WGS84 datum.</li>
+                                
+                                    
+                                    
+                                    <li><strong>longitude</strong> (string) X coordinate of location expressed in decimal degrees in WGS84 datum.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>metadata</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>resource_id</strong> (string) Each service, program. location, address, or contact will have a unique identifier. Unique ids are UUIDs.</li>
+                                
+                                    
+                                    
+                                    <li><strong>last_action_date</strong> (string) The date when data was changed.</li>
+                                
+                                    
+                                    
+                                    <li><strong>last_action_type</strong> (string) The kind of change made to the data; eg create, update, delete.</li>
+                                
+                                    
+                                    
+                                    <li><strong>field_name</strong> (string) The name of field that has been modified.</li>
+                                
+                                    
+                                    
+                                    <li><strong>previous_value</strong> (string) The previous value of a field that has been updated.</li>
+                                
+                                    
+                                    
+                                    <li><strong>replacement_value</strong> (string) The new value of a field that has been updated.</li>
+                                
+                                    
+                                    
+                                    <li><strong>updated_by</strong> (string) The name of the person who updated a value.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>meta_table_description</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>name</strong> (string) The table name.</li>
+                                
+                                    
+                                    
+                                    <li><strong>language</strong> (string) The language for the table.</li>
+                                
+                                    
+                                    
+                                    <li><strong>character_set</strong> (string) The character set for the table</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>organization</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each organization must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>name</strong> (string) The official or public name of the organization.</li>
+                                
+                                    
+                                    
+                                    <li><strong>alternate_name</strong> (string) Alternative or commonly used name for the organization.</li>
+                                
+                                    
+                                    
+                                    <li><strong>description</strong> (string) A brief summary about the organization. It can contain markup such as HTML or Markdown.</li>
+                                
+                                    
+                                    
+                                    <li><strong>email</strong> (string) The contact e-mail address for the organization.</li>
+                                
+                                    
+                                    
+                                    <li><strong>url</strong> (string) The URL (website address) of the organization.</li>
+                                
+                                    
+                                    
+                                    <li><strong>tax_status</strong> (string) Government assigned tax designation for for tax-exempt organizations.</li>
+                                
+                                    
+                                    
+                                    <li><strong>tax_id</strong> (string) A government issued identifier used for the purpose of tax administration.</li>
+                                
+                                    
+                                    
+                                    <li><strong>year_incorporated</strong> (string) The year in which the organization was legally formed.</li>
+                                
+                                    
+                                    
+                                    <li><strong>legal_status</strong> (string) The legal status defines the conditions that an organization is operating under; e.g. non-profit, private corporation or a government organization.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>payment_accepted</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the services for which the entry describes the accepted payment methods.</li>
+                                
+                                    
+                                    
+                                    <li><strong>payment</strong> (string) The methods of payment accepted for the service.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>phone</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>location_id</strong> (string) The identifier of the location where this phone number is located.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the service for which this is the phone number.</li>
+                                
+                                    
+                                    
+                                    <li><strong>organization_id</strong> (string) The identifier of the organisation for which this is the phone number.</li>
+                                
+                                    
+                                    
+                                    <li><strong>contact_id</strong> (string) The identifier of the contact for which this is the phone number.</li>
+                                
+                                    
+                                    
+                                    <li><strong>number</strong> (string) The phone number.</li>
+                                
+                                    
+                                    
+                                    <li><strong>extension</strong> (number) The extension of the phone number.</li>
+                                
+                                    
+                                    
+                                    <li><strong>type</strong> (string) Whether the phone number relates to a fixed or cellular phone.</li>
+                                
+                                    
+                                    
+                                    <li><strong>department</strong> (string) The department for which this is the phone number.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>physical_address</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each physical address must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>location_id</strong> (string) The identifier of the location for which this is the address.</li>
+                                
+                                    
+                                    
+                                    <li><strong>attention</strong> (string) The person or entity whose attention should be sought at the location.</li>
+                                
+                                    
+                                    
+                                    <li><strong>address_1</strong> (string) The first line of the address.</li>
+                                
+                                    
+                                    
+                                    <li><strong>address_2</strong> (string) The second line of the address.</li>
+                                
+                                    
+                                    
+                                    <li><strong>address_3</strong> (string) The third line of the address.</li>
+                                
+                                    
+                                    
+                                    <li><strong>address_4</strong> (string) The fourth line of the address.</li>
+                                
+                                    
+                                    
+                                    <li><strong>city</strong> (string) The city in which the address is located.</li>
+                                
+                                    
+                                    
+                                    <li><strong>state_province</strong> (string) The state or province in which the address is located.</li>
+                                
+                                    
+                                    
+                                    <li><strong>postal_code</strong> (string) The postal code for the address.</li>
+                                
+                                    
+                                    
+                                    <li><strong>country</strong> (string) The country in which the address is located. This should be given as an ISO 3361-1 country code (two letter abbreviation).</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>postal_address</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each postal address must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>location_id</strong> (string) The identifier of the location for which this is the postal address.</li>
+                                
+                                    
+                                    
+                                    <li><strong>attention</strong> (string) The person or entity for whose attention mail should be marked.</li>
+                                
+                                    
+                                    
+                                    <li><strong>address_1</strong> (string) The first line of the address.</li>
+                                
+                                    
+                                    
+                                    <li><strong>address_2</strong> (string) The second line of the address.</li>
+                                
+                                    
+                                    
+                                    <li><strong>address_3</strong> (string) The third line of the address.</li>
+                                
+                                    
+                                    
+                                    <li><strong>address_4</strong> (string) The fourth line of the address.</li>
+                                
+                                    
+                                    
+                                    <li><strong>city</strong> (string) The city in which the address is located.</li>
+                                
+                                    
+                                    
+                                    <li><strong>state_province</strong> (string) The state or province in which the address is located.</li>
+                                
+                                    
+                                    
+                                    <li><strong>postal_code</strong> (string) The postal code for the address.</li>
+                                
+                                    
+                                    
+                                    <li><strong>country</strong> (string) The country in which the address is located.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>program</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each program must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>organization_id</strong> (string) Each program must belong to a single organization. The identifier of the organization should be given here.</li>
+                                
+                                    
+                                    
+                                    <li><strong>name</strong> (string) The name of the program.</li>
+                                
+                                    
+                                    
+                                    <li><strong>alternate_name</strong> (string) NeAn alternative name for the program.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>regular_schedule</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the service for which this is the regular schedule.</li>
+                                
+                                    
+                                    
+                                    <li><strong>location_id</strong> (string) The identifier of the location for which this is the regular schedule.</li>
+                                
+                                    
+                                    
+                                    <li><strong>weekday</strong> (integer) The day of the week that this entry relates to.</li>
+                                
+                                    
+                                    
+                                    <li><strong>opens_at</strong> (string) The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.</li>
+                                
+                                    
+                                    
+                                    <li><strong>closes_at</strong> (string) The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>required_document</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each document must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the service for which this entry describes the required document.</li>
+                                
+                                    
+                                    
+                                    <li><strong>document</strong> (string) The document required to apply for or receive the service. e.g. Government-issued ID, EU Passport.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>service</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each service must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>organization_id</strong> (string) The identifier of the organization that provides this service.</li>
+                                
+                                    
+                                    
+                                    <li><strong>program_id</strong> (string) The identifier of the program this service is delivered under.</li>
+                                
+                                    
+                                    
+                                    <li><strong>location_id</strong> (string) The identifier of the location where this service is delivered.</li>
+                                
+                                    
+                                    
+                                    <li><strong>name</strong> (string) The official or public name of the service.</li>
+                                
+                                    
+                                    
+                                    <li><strong>alternate_name</strong> (string) Alternative or commonly used name for a service.</li>
+                                
+                                    
+                                    
+                                    <li><strong>description</strong> (string) A description of the service.</li>
+                                
+                                    
+                                    
+                                    <li><strong>url</strong> (string) URL of the service.</li>
+                                
+                                    
+                                    
+                                    <li><strong>email</strong> (string) Email address for the service.</li>
+                                
+                                    
+                                    
+                                    <li><strong>status</strong> (string) The current status of the service.</li>
+                                
+                                    
+                                    
+                                    <li><strong>application_process</strong> (string) The steps needed to access the service.</li>
+                                
+                                    
+                                    
+                                    <li><strong>wait_time</strong> (string) Time a client may expect to wait before receiving a service.</li>
+                                
+                                    
+                                    
+                                    <li><strong>taxonomy_ids</strong> (string) A comma separated list of identifiers from the taxonomy table.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>service_at_location</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each entry must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the service at a given location.</li>
+                                
+                                    
+                                    
+                                    <li><strong>location_id</strong> (string) The identifier of the location where this service operates.</li>
+                                
+                                    
+                                    
+                                    <li><strong>url</strong> (string) If the service at this location has a specific URL, that can be provided here.</li>
+                                
+                                    
+                                    
+                                    <li><strong>email</strong> (string) If the service at this location has a specific email address, that can be provided here.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>service_area</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each service area must have a unique identifier.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_id</strong> (string) The identifier of the service for which this entry describes the service area.</li>
+                                
+                                    
+                                    
+                                    <li><strong>service_area</strong> (string) The geographic area where a service is available. This is a free-text description, and so may be precise or indefinite as necessary.</li>
+                                
+                                </ul>
+                          
+                            
+                            
+                                <p style="padding-top: 8px;"><strong>taxonomy</strong></p>
+                                <ul>
+                                
+                                    
+                                    
+                                    <li><strong>id</strong> (string) Each taxonomy entry must have a unique identifier. If combining multiple taxonomies with overlapping identifiers, use a prefix to distinguish them.</li>
+                                
+                                    
+                                    
+                                    <li><strong>name</strong> (string) The name of this taxonomy term or category.</li>
+                                
+                                    
+                                    
+                                    <li><strong>parent_id</strong> (string) If this is a child category in a hierarchical taxonomy, give the identifier of the parent category. For top-level categories, this should be left blank.</li>
+                                
+                                </ul>
+                          
+
                         </table>
 
                       </td>
