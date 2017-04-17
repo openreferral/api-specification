@@ -4,8 +4,22 @@ title: 'Human Services Data Specification (HSDS) OpenAPI Spec - YAML'
 slug: yaml
 ---
 
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
 <p>This is the API definition for the HSDS format. It is available as an HTML list, JSON and YAML OpenAPI Specifications. If you are looking for the schema for HSDS, there is <a href="/schema/">a separate JSON schema available for the project</a>.</p>
 
 {% include nav-definition.html %}
 
-<script src="https://gist.github.com/kinlane/6717271a1aaa8e8dec607ff8e7564504.js"></script>
+
+{% assign openapi_spec = site.data.api-commons.openapi %}
+
+
+
+<pre class="prettyprint lang-json">
+<script>
+var json = {{ openapi_spec | jsonify }};
+document.write(JSON.stringify(json, null, 2))
+</script>
+</pre>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
