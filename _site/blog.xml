@@ -3,8 +3,8 @@
 	<channel>
 		<title></title>
 		<description></description>
-		<link>http://adopta-agency.github.io/open-referral-api/</link>
-		<atom:link href="http://adopta-agency.github.io/open-referral-api//feed.xml" rel="self" type="application/rss+xml" />
+		<link>https://openreferral.github.io/api-specification/</link>
+		<atom:link href="https://openreferral.github.io/api-specification//feed.xml" rel="self" type="application/rss+xml" />
 		
 	</channel>
 </rss>
