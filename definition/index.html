@@ -60,26 +60,24 @@ slug: docs
                         <table width="95%" border="0" cellspacing="3" cellpadding="2" style="margin-left: 15px; margin-right: 15px;">
 
                           {% assign taglist = '' %}
+                          {% assign spec = openapi_spec_json %}
 
-                          {% for spec in openapi_spec_json %}
-                            {% for path in spec.paths %}
-                              {% assign method_json = path[1] %}
-                              {% for method in method_json %}
-                                {% assign tagarray = method[1].tags %}
-                                {% assign tag = tagarray[0] %}
-                                {% if taglist contains tag %}
-                                {% else %}
-                                  {% assign taglist = taglist | append:',' %}
-                                  {% assign taglist = taglist | append:tag %}
-                                {% endif %}
-                              {% endfor %}
+                          {% for path in spec.paths %}
+                            {% assign method_json = path[1] %}
+                            {% for method in method_json %}
+                              {% assign tagarray = method[1].tags %}
+                              {% assign tag = tagarray[0] %}
+                              {% if taglist contains tag %}
+                              {% else %}
+                                {% assign taglist = taglist | append:',' %}
+                                {% assign taglist = taglist | append:tag %}
+                              {% endif %}
                             {% endfor %}
                           {% endfor %}
 
                           {% assign tagArray = taglist | split: "," %}
                           {% for grouptag in tagArray %}
 
-                            {% for spec in openapi_spec_json %}
 
                             {% if grouptag != '' %}
                               <tr>
@@ -87,9 +85,7 @@ slug: docs
                               </tr>
                             {% endif %}
 
-                            {% for spec in openapi_spec_json %}
-                              {% assign schema = spec.definitions %}
-                            {% endfor %}
+                            {% assign schema = spec.definitions %}
 
                               {% for path in spec.paths %}
                                 {% assign method_json = path[1] %}
@@ -326,7 +322,8 @@ slug: docs
 
                                 {% endfor %}
                               {% endfor %}
-                            {% endfor %}
+
+
 
                           {% endfor %}
                         </table>

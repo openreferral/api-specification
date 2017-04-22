@@ -1,4 +1,4 @@
-- swagger: '2.0'
+  swagger: '2.0'
   info:
     title: "Open Referral API"
     description: "This is a specification describing the Open Referral API, using the Human Services Specification. This has been extracted from the Ohana API deployment, but will be standardized to refer to the universal standard that will apply to any Open Referral compliant API."
