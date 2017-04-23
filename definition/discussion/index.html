@@ -311,7 +311,7 @@ function processAPIsJSON($apisURL)
           $fullcount = $fullcount + 1;
 
           $pull_url = 'https://raw.githubusercontent.com/{{ site.github_org }}/{{ site.github_repo }}/master/_data/' + $url;
-          console.log($pull_url);
+        
           // Load it from RAW YAML
           var request = $.ajax({
             url: $pull_url,
@@ -324,8 +324,7 @@ function processAPIsJSON($apisURL)
 
           request.done(function( $yaml ) {
 
-            $openapispecObj = jsyaml.load($yaml);
-            $openapispec = $openapispecObj[0];
+            $openapispec = jsyaml.load($yaml);
 
             $paths = $openapispec['paths'];
             $title = $openapispec['info']['title'];

@@ -11,7 +11,7 @@ layout: default
 	{% if page.previous %}
 	   	<a href="{{ site.production_url }}{{ page.previous.url }}" class="older">Older</a>
 	{% else %}
-		<a href="/" class="older">Older</a>
+		<a href="{{site.baseurl}}/" class="older">Older</a>
 	{% endif %}
 	  {% if page.next %}
 	    <a href="{{ site.production_url }}{{ page.next.url }}" class="newer">Newer</a>
