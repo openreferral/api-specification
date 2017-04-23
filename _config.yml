@@ -1,5 +1,6 @@
 title:        Open Referral API
 url:          https://openreferral.github.io/api-specification/
+baseurl:      /api-specification
 
 version:      1.1.1
 
