@@ -1,1166 +1,1007 @@
-  swagger: '2.0'
-  info:
-    title: "Open Referral API"
-    description: "This is a specification describing the Open Referral API, using the Human Services Specification. This has been extracted from the Ohana API deployment, but will be standardized to refer to the universal standard that will apply to any Open Referral compliant API."
-    termsOfService: "https://openreferral.org/documentation/"
-    contact:
-      name: Open Referral
-      url: https://openreferral.org/
-      email: info@openreferral.org
-    license:
-      name: Open Data Commons Public Domain
-      url: http://opendatacommons.org/licenses/pddl/
-    version: v1.0
-  host: api.example.com
-  basePath: "/"
-  schemes:
-  - https
-  produces:
-  - application/json
-  paths:
-    "/locations/":
-      get:
-        summary: Locations
-        description: Retrieve all of the locations available.
-        operationId: retrieveLocations
-        parameters:
-          - name: Accept
-            in: header
-            type: string
-            required: true
-            default: 'application/vnd.ohanapi+json; version=1'
-          - name: page
-            in: query
-            type: string
-            required: false
-          - name: per_page
-            in: query
-            type: string
-            required: false
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/location"
-        tags:
-        - Locations
-      post:
-        summary: Locations
-        description: Creates a new location in the system.
-        operationId: createLocations
-        parameters:
-          - name: body
-            in: body
+swagger: '2.0'
+info:
+  title: "Open Referral API"
+  description: "This is a specification describing the Open Referral API, using the Human Services Specification. This has been extracted from the Ohana API deployment, but will be standardized to refer to the universal standard that will apply to any Open Referral compliant API."
+  termsOfService: "https://openreferral.org/documentation/"
+  contact:
+    name: Open Referral
+    url: https://openreferral.org/
+    email: info@openreferral.org
+  license:
+    name: Open Data Commons Public Domain
+    url: http://opendatacommons.org/licenses/pddl/
+  version: v1.0
+host: api.example.com
+basePath: "/"
+schemes:
+- https
+produces:
+- application/json
+paths:
+  "/locations/":
+    get:
+      summary: Locations
+      description: Retrieve all of the locations available.
+      operationId: retrieveLocations
+      parameters:
+        - name: Accept
+          in: header
+          type: string
+          required: true
+          default: 'application/vnd.ohanapi+json; version=1'
+        - name: page
+          in: query
+          type: string
+          required: false
+        - name: per_page
+          in: query
+          type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/location"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/location"
-        tags:
-        - Locations
-    "/locations/{location_id}/":
-      get:
-        summary: Location
-        description: Retrieve all of the locations available in this database.
-        operationId: retrieveLocation
-        parameters:
-          - name: Accept
-            in: header
-            type: string
-            required: true
-            default: 'application/vnd.ohanapi+json; version=1'
-          - name: location_id
-            in: path
-            type: string
-            required: true
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/location"
-        tags:
-          - Locations
-      patch:
-        summary: Locations
-        description: Updates an existing location in the system.
-        operationId: updateLocation
-        parameters:
-          - name: location_id
-            in: path
-            type: string
-            required: true
-          - name: body
-            in: body
+            items:
+              "$ref": "#/definitions/location"
+      tags:
+      - Locations
+    post:
+      summary: Locations
+      description: Creates a new location in the system.
+      operationId: createLocations
+      parameters:
+        - name: body
+          in: body
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/location"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/location"
-        tags:
-        - Locations
-      delete:
-        summary: Delete Location
-        description: Deletes an existing location in the system.
-        operationId: deleteLocation
-        parameters:
-          - name: location_id
-            in: path
-            type: string
-            required: true
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/location"
-        tags:
-        - Locations
-    "/locations/{location_id}/nearby/":
-      get:
-        summary: Find Nearby Locations
-        description: This endpoint retrieves all locations that are near the specified location.
-        operationId: findNearbyLocations
-        parameters:
-          - name: Accept
-            in: header
-            type: string
-            required: true
-            default: 'application/vnd.ohanapi+json; version=1'
-          - name: location_id
-            in: path
-            type: string
-            required: true
-          - in: query
-            name: radius
-            description: Default in miles is 0.5, minimum is 0.1.
-            type: string
-          - in: query
-            name: page
-            description: The particular page of results. Default is 1.
-            type: string
-          - in: query
-            name: per_page
-            description: Amount of locations to return per page.
-            type: string
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/location"
-        tags:
-        - Locations
-    "/locations/{location_id}/address/":
-      post:
-        summary: Location Address
-        description: Creates a new address for a location
-        operationId: createLocationAddress
-        parameters:
-          - name: body
-            in: body
+            items:
+              "$ref": "#/definitions/location"
+      responses:
+        '200':
+          description: Successful response
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/address"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/address"
-        tags:
-        - Locations
-    "/locations/{location_id}/address/{address_id}/":
-      patch:
-        summary: Update Location Address
-        description: Updates an existing address for a location in the system.
-        operationId: updateLocationAddress
-        parameters:
-          - name: location_id
-            in: path
-            type: string
-            required: true
-          - name: address_id
-            in: path
-            type: string
-            required: true
-          - name: body
-            in: body
+            items:
+              "$ref": "#/definitions/location"
+      tags:
+      - Locations
+  "/locations/{location_id}/":
+    get:
+      summary: Location
+      description: Retrieve all of the locations available in this database.
+      operationId: retrieveLocation
+      parameters:
+        - name: Accept
+          in: header
+          type: string
+          required: true
+          default: 'application/vnd.ohanapi+json; version=1'
+        - name: location_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/location"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/address"
-        tags:
+            items:
+              "$ref": "#/definitions/location"
+      tags:
         - Locations
-      delete:
-        summary: Delete Location Address
-        description: Deletes an existing address for a location in the system.
-        operationId: deleteLocation
-        parameters:
-          - name: location_id
-            in: path
-            type: string
-            required: true
-          - name: address_id
-            in: path
-            type: string
-            required: true
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/address"
-        tags:
-        - Locations
-    "/locations/{location_id}/mail_address/":
-      post:
-        summary: Location Mailing Address
-        description: Creates a new mailing address for a location
-        operationId: createLocationMailingAddress
-        parameters:
-          - name: body
-            in: body
+    patch:
+      summary: Locations
+      description: Updates an existing location in the system.
+      operationId: updateLocation
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/mailingaddress"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/mailingaddress"
-        tags:
-        - Locations
-    "/locations/{location_id}/address/{mail_address_id}/":
-      patch:
-        summary: Update Location Mailing Address
-        description: Updates an existing mailing address for a location in the system.
-        operationId: updateLocationMailingAddress
-        parameters:
-          - name: location_id
-            in: path
-            type: string
-            required: true
-          - name: mail_address_id
-            in: path
-            type: string
-            required: true
-          - name: body
-            in: body
+            items:
+              "$ref": "#/definitions/location"
+      responses:
+        '200':
+          description: Successful response
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/mail_address"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/mail_address"
-        tags:
-        - Locations
-      delete:
-        summary: Delete Location Mailing Address
-        description: Deletes an existing mailing address for a location in the system.
-        operationId: deleteLocation
-        parameters:
-          - name: location_id
-            in: path
-            type: string
-            required: true
-          - name: mail_address_id
-            in: path
-            type: string
-            required: true
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/mail_address"
-        tags:
-        - Locations
-    "/locations/{location_id}/contacts/":
-      get:
-        summary: Get Location Contacts
-        description: Retrieve all of the contacts for a location
-        operationId: retrieveLocationContacts
-        parameters:
-          - name: page
-            in: query
-            type: string
-            required: false
-          - name: per_page
-            in: query
-            type: string
-            required: false
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/contact"
-        tags:
-        - Locations
-      post:
-        summary: Create Location Contacts
-        description: Creates a new contact for a location
-        operationId: createLocationContact
-        parameters:
-          - name: body
-            in: body
+            items:
+              "$ref": "#/definitions/location"
+      tags:
+      - Locations
+    delete:
+      summary: Delete Location
+      description: Deletes an existing location in the system.
+      operationId: deleteLocation
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/contact"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/contact"
-        tags:
-        - Locations
-    "/locations/{location_id}/contacts/{contact_id}/":
-      patch:
-        summary: Update Location Contact
-        description: Updates an existing contact for a location.
-        operationId: updateLocationContact
-        parameters:
-          - name: location_id
-            in: path
-            type: string
-            required: true
-          - name: contact_id
-            in: path
-            type: string
-            required: true
-          - name: body
-            in: body
+            items:
+              "$ref": "#/definitions/location"
+      tags:
+      - Locations
+  "/locations/{location_id}/nearby/":
+    get:
+      summary: Find Nearby Locations
+      description: This endpoint retrieves all locations that are near the specified location.
+      operationId: findNearbyLocations
+      parameters:
+        - name: Accept
+          in: header
+          type: string
+          required: true
+          default: 'application/vnd.ohanapi+json; version=1'
+        - name: location_id
+          in: path
+          type: string
+          required: true
+        - in: query
+          name: radius
+          description: Default in miles is 0.5, minimum is 0.1.
+          type: string
+        - in: query
+          name: page
+          description: The particular page of results. Default is 1.
+          type: string
+        - in: query
+          name: per_page
+          description: Amount of locations to return per page.
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/contact"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/contact"
-        tags:
-        - Locations
-      delete:
-        summary: Delete Location Contact
-        description: Deletes an existing contact for a location.
-        operationId: deleteLocationContact
-        parameters:
-          - name: location_id
-            in: path
-            type: string
-            required: true
-          - name: contact_id
-            in: path
-            type: string
-            required: true
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/contact"
-        tags:
-        - Locations
-    "/locations/{location_id}/phones/":
-      post:
-        summary: Create Location Phone
-        description: Creates a new phone for a location
-        operationId: createLocationPhone
-        parameters:
-          - name: body
-            in: body
+            items:
+              "$ref": "#/definitions/location"
+      tags:
+      - Locations
+  "/locations/{location_id}/address/":
+    post:
+      summary: Location Address
+      description: Creates a new address for a location
+      operationId: createLocationAddress
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true      
+        - name: body
+          in: body
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/phone"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/phone"
-        tags:
-        - Locations
-    "/locations/{location_id}/phones/{phone_id}/":
-      patch:
-        summary: Update Location Phone
-        description: Updates an existing phone for a location.
-        operationId: updateLocationPhone
-        parameters:
-          - name: location_id
-            in: path
-            type: string
-            required: true
-          - name: phone_id
-            in: path
-            type: string
-            required: true
-          - name: body
-            in: body
+            items:
+              "$ref": "#/definitions/address"
+      responses:
+        '200':
+          description: Successful response
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/phone"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/phone"
-        tags:
-        - Locations
-      delete:
-        summary: Delete Location Phone
-        description: Deletes an existing phone for a location.
-        operationId: deleteLocationPhone
-        parameters:
-          - name: location_id
-            in: path
-            type: string
-            required: true
-          - name: phone_id
-            in: path
-            type: string
-            required: true
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/phone"
-        tags:
-        - Locations
-    "/locations/{location_id}/services/":
-      get:
-        summary: Services
-        description: Retrieve all services for this location
-        operationId: retrieveLocationServices
-        parameters:
-          - name: Accept
-            in: header
-            type: string
-            required: true
-            default: 'application/vnd.ohanapi+json; version=1'
-          - name: location_id
-            in: path
-            type: string
-            required: true
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/service"
-        tags:
-        - Locations
-      post:
-        summary: Create Location Phone
-        description: Creates a new phone for a location
-        operationId: createLocationPhone
-        parameters:
-          - name: body
-            in: body
+            items:
+              "$ref": "#/definitions/address"
+      tags:
+      - Locations
+  "/locations/{location_id}/address/{address_id}/":
+    patch:
+      summary: Update Location Address
+      description: Updates an existing address for a location in the system.
+      operationId: updateLocationAddress
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/phone"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/phone"
-        tags:
-        - Locations
-    "/locations/{location_id}/services/{service_id}/":
-      patch:
-        summary: Update Location Service
-        description: Updates an existing service for a location.
-        operationId: updateLocationService
-        parameters:
-          - name: location_id
-            in: path
-            type: string
-            required: true
-          - name: service_id
-            in: path
-            type: string
-            required: true
-          - name: body
-            in: body
+            items:
+              "$ref": "#/definitions/location"
+      responses:
+        '200':
+          description: Successful response
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/service"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/service"
-        tags:
-        - Locations
-      delete:
-        summary: Delete Location Service
-        description: Deletes an existing service for a location.
-        operationId: deleteLocationService
-        parameters:
-          - name: location_id
-            in: path
-            type: string
-            required: true
-          - name: service_id
-            in: path
-            type: string
-            required: true
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/service"
-        tags:
-        - Locations
-    "/organizations/":
-      get:
-        summary: Organizations
-        description: Retrieve all of the organizations available in this database.
-        operationId: retrieveLOrganizations
-        parameters:
-          - name: Accept
-            in: header
-            type: string
-            required: true
-            default: 'application/vnd.ohanapi+json; version=1'
-          - name: page
-            in: query
-            type: string
-            required: false
-          - name: per_page
-            in: query
-            type: string
-            required: false
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/organization"
-        tags:
-        - Organizations
-      post:
-        summary: Organizations
-        description: Creates a new organization in the system.
-        operationId: createOrganizations
-        parameters:
-          - name: body
-            in: body
+            items:
+              "$ref": "#/definitions/address"
+      tags:
+      - Locations
+    delete:
+      summary: Delete Location Address
+      description: Deletes an existing address for a location in the system.
+      operationId: deleteLocationAddress
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/organization"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/organization"
-        tags:
-        - Organizations
-    "/organizations/{organization_id}/":
-      get:
-        summary: Organizations
-        description: Retrieve all of the organizations available in this database.
-        operationId: retrieveLOrganization
-        parameters:
-          - name: organization_id
-            in: path
-            type: string
-            required: true
-          - name: organization_id
-            in: path
-            type: string
-            required: true
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/organization"
-        tags:
-        - Organizations
-      patch:
-        summary: Organizations
-        description: Updates an existing organization in the system.
-        operationId: updateOrganization
-        parameters:
-          - name: organization_id
-            in: path
-            type: string
-            required: true
-          - name: body
-            in: body
+            items:
+              "$ref": "#/definitions/address"
+      tags:
+      - Locations
+  "/locations/{location_id}/mail_address/":
+    post:
+      summary: Location Mailing Address
+      description: Creates a new mailing address for a location
+      operationId: createLocationMailingAddress
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true      
+        - name: body
+          in: body
+          schema:
             type: array
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/organization"
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/organization"
-        tags:
-        - Organizations
-      delete:
-        summary: Organizations
-        description: Deletes an existing organization in the system.
-        operationId: deleteOrganization
-        parameters:
-          - name: organization_id
-            in: path
-            type: string
-            required: true
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/organization"
-        tags:
-        - Organizations
-    "/organizations/{organization_id}/locations/":
-      get:
-        summary: Organization Locations
-        description: This endpoint retrieves all locations that belong to a particular
-          organization.
-        operationId: retrieveLOrganizationLocations
-        parameters:
-          - name: Accept
-            in: header
-            type: string
-            required: true
-            default: 'application/vnd.ohanapi+json; version=1'
-          - name: organization_id
-            in: path
-            type: string
-            required: true
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/location"
-        tags:
-        - Organizations
-    "/search/":
-      get:
-        summary: Search
-        description: This endpoint retrieves all locations that match the criteria based on the parameters below. Multiple parameters can be used at the same time, separated by an ampersand (&).
-        operationId: searchLocations
-        parameters:
-          - name: Accept
-            in: header
-            type: string
-            required: true
-            default: 'application/vnd.ohanapi+json; version=1'
-          - in: query
-            name: category
-            type: string
-          - in: query
-            name: email
-            type: string
-          - in: query
-            name: keyword
-            type: string
-          - in: query
-            name: language
-            type: string
-          - in: query
-            name: lat_lng
-            type: string
-          - in: query
-            name: location
-            type: string
-          - in: query
-            name: org_name
-            type: string
-          - in: query
-            name: radius
-            type: string
-          - in: query
-            name: service_area
-            type: string
-          - in: query
-            name: status
-            type: string
-          - in: query
-            name: page
-            type: string
-          - in: query
-            name: per_page
-            type: string
-        responses:
-          '200':
-            description: Successful response
-            schema:
-              type: array
-              items:
-                "$ref": "#/definitions/location"
-        tags:
-        - Search
-  definitions:
-    location:
-      properties:
-        id:
-          description: 'Each location must have a unique identifier.'
-          type: string
-          required: 1
-        organization_id:
-          description: 'Each location must belong to a single organization. The identifier of the organization should be given here.'
-          type: string
-          required: 0
-        name:
-          description: 'The name of the location.'
-          type: string
-          required: 0
-        alternate_name:
-          description: 'An alternative name for the location.'
-          type: string
-          required: 0
-        description:
-          description: 'A description of this location.'
-          type: string
-          required: 0
-        transportation:
-          description: 'A description of the access to public or private transportation to and from the location.'
-          type: string
-          required: 0
-        latitude:
-          description: 'Y coordinate of location expressed in decimal degrees in WGS84 datum.'
-          type: string
-          required: 0
-        longitude:
-          description: 'X coordinate of location expressed in decimal degrees in WGS84 datum.'
-          type: string
-          required: 0
-    phone:
-      properties:
-        id:
-          description: 'Each entry must have a unique identifier.'
-          type: string
-          required: 1
-        location_id:
-          description: 'The identifier of the location where this phone number is located.'
-          type: string
-          required: 0
-        service_id:
-          description: 'The identifier of the service for which this is the phone number.'
-          type: string
-          required: 0
-        organization_id:
-          description: 'The identifier of the organisation for which this is the phone number.'
-          type: string
-          required: 0
-        contact_id:
-          description: 'The identifier of the contact for which this is the phone number.'
-          type: string
-          required: 0
-        number:
-          description: 'The phone number.'
-          type: string
-          required: 1
-        extension:
-          description: 'The extension of the phone number.'
-          type: number
-          required: 0
-        type:
-          description: 'Whether the phone number relates to a fixed or cellular phone.'
-          type: string
-          required: 0
-        department:
-          description: 'The department for which this is the phone number.'
-          type: string
-          required: 0
-    service:
-      properties:
-        id:
-          description: 'Each service must have a unique identifier.'
-          type: string
-          required: 1
-        organization_id:
-          description: 'The identifier of the organization that provides this service.'
-          type: string
-          required: 1
-        program_id:
-          description: 'The identifier of the program this service is delivered under.'
-          type: string
-          required: 0
-        location_id:
-          description: 'The identifier of the location where this service is delivered.'
-          type: string
-          required: 0
-        name:
-          description: 'The official or public name of the service.'
-          type: string
-          required: 1
-        alternate_name:
-          description: 'Alternative or commonly used name for a service.'
-          type: string
-          required: 0
-        description:
-          description: 'A description of the service.'
-          type: string
-          required: 0
-        url:
-          description: 'URL of the service.'
-          type: string
-          required: 0
-        email:
-          description: 'Email address for the service.'
-          type: string
-          required: 0
-        status:
-          description: 'The current status of the service.'
-          type: string
-          required: 1
-        application_process:
-          description: 'The steps needed to access the service.'
-          type: string
-          required: 0
-        wait_time:
-          description: 'Time a client may expect to wait before receiving a service.'
-          type: string
-          required: 0
-        taxonomy_ids:
-          description: 'A comma separated list of identifiers from the taxonomy table.'
-          type: string
-          required: 0
-    organization:
-      properties:
-        id:
-          description: 'Each organization must have a unique identifier.'
-          type: string
-          required: 1
-        name:
-          description: 'The official or public name of the organization.'
-          type: string
-          required: 0
-        alternate_name:
-          description: 'Alternative or commonly used name for the organization.'
-          type: string
-          required: 0
-        description:
-          description: 'A brief summary about the organization. It can contain markup such as HTML or Markdown.'
-          type: string
-          required: 1
-        email:
-          description: 'The contact e-mail address for the organization.'
-          type: string
-          required: 0
-        url:
-          description: 'The URL (website address) of the organization.'
-          type: string
-          required: 0
-        tax_status:
-          description: 'Government assigned tax designation for for tax-exempt organizations.'
-          type: string
-          required: 0
-        tax_id:
-          description: 'A government issued identifier used for the purpose of tax administration.'
-          type: string
-          required: 0
-        year_incorporated:
-          description: 'The year in which the organization was legally formed.'
-          type: string
-          required: 0
-        legal_status:
-          description: 'The legal status defines the conditions that an organization is operating under; e.g. non-profit, private corporation or a government organization.'
-          type: string
-          required: 0
-    address:
-      properties:
-        id:
-          description: 'Each physical address must have a unique identifier.'
-          type: string
-          required: 1
-        location_id:
-          description: 'The identifier of the location for which this is the address.'
-          type: string
-          required: 0
-        attention:
-          description: 'The person or entity whose attention should be sought at the location.'
-          type: string
-          required: 0
-        address_1:
-          description: 'The first line of the address.'
-          type: string
-          required: 1
-        address_2:
-          description: 'The second line of the address.'
-          type: string
-          required: 0
-        address_3:
-          description: 'The third line of the address.'
-          type: string
-          required: 0
-        address_4:
-          description: 'The fourth line of the address.'
-          type: string
-          required: 0
-        city:
-          description: 'The city in which the address is located.'
-          type: string
-          required: 1
-        state_province:
-          description: 'The state or province in which the address is located.'
-          type: string
-          required: 1
-        postal_code:
-          description: 'The postal code for the address.'
-          type: string
-          required: 1
-        country:
-          description: 'The country in which the address is located. This should be given as an ISO 3361-1 country code (two letter abbreviation).'
-          type: string
-          required: 1
-    mailing_address:
-      properties:
-        id:
-          description: 'Each postal address must have a unique identifier.'
-          type: string
-          required: 1
-        location_id:
-          description: 'The identifier of the location for which this is the postal address.'
-          type: string
-          required: 0
-        attention:
-          description: 'The person or entity for whose attention mail should be marked.'
-          type: string
-          required: 0
-        address_1:
-          description: 'The first line of the address.'
-          type: string
-          required: 0
-        address_2:
-          description: 'The second line of the address.'
-          type: string
-          required: 0
-        address_3:
-          description: 'The third line of the address.'
-          type: string
-          required: 0
-        address_4:
-          description: 'The fourth line of the address.'
-          type: string
-          required: 0
-        city:
-          description: 'The city in which the address is located.'
-          type: string
-          required: 0
-        state_province:
-          description: 'The state or province in which the address is located.'
-          type: string
-          required: 0
-        postal_code:
-          description: 'The postal code for the address.'
-          type: string
-          required: 0
-        country:
-          description: 'The country in which the address is located.'
-          type: string
-          required: 0
-    service:
-      properties:
-        id:
-          description: 'Each service must have a unique identifier.'
-          type: string
-          required: 1
-        organization_id:
-          description: 'The identifier of the organization that provides this service.'
-          type: string
-          required: 1
-        program_id:
-          description: 'The identifier of the program this service is delivered under.'
-          type: string
-          required: 0
-        location_id:
-          description: 'The identifier of the location where this service is delivered.'
-          type: string
-          required: 0
-        name:
-          description: 'The official or public name of the service.'
-          type: string
-          required: 1
-        alternate_name:
-          description: 'Alternative or commonly used name for a service.'
-          type: string
-          required: 0
-        description:
-          description: 'A description of the service.'
-          type: string
-          required: 0
-        url:
-          description: 'URL of the service.'
-          type: string
-          required: 0
-        email:
-          description: 'Email address for the service.'
-          type: string
-          required: 0
-        status:
-          description: 'The current status of the service.'
-          type: string
-          required: 1
-        application_process:
-          description: 'The steps needed to access the service.'
-          type: string
-          required: 0
-        wait_time:
-          description: 'Time a client may expect to wait before receiving a service.'
-          type: string
-          required: 0
-        taxonomy_ids:
-          description: 'A comma separated list of identifiers from the taxonomy table.'
-          type: string
-          required: 0
-    phone:
-      properties:
-        id:
-          description: 'Each entry must have a unique identifier.'
-          type: string
-          required: 1
-        location_id:
-          description: 'The identifier of the location where this phone number is located.'
-          type: string
-          required: 0
-        service_id:
-          description: 'The identifier of the service for which this is the phone number.'
-          type: string
-          required: 0
-        organization_id:
-          description: 'The identifier of the organisation for which this is the phone number.'
-          type: string
-          required: 0
-        contact_id:
-          description: 'The identifier of the contact for which this is the phone number.'
-          type: string
-          required: 0
-        number:
-          description: 'The phone number.'
-          type: string
-          required: 1
-        extension:
-          description: 'The extension of the phone number.'
-          type: number
-          required: 0
-        type:
-          description: 'Whether the phone number relates to a fixed or cellular phone.'
-          type: string
-          required: 0
-        department:
-          description: 'The department for which this is the phone number.'
-          type: string
-          required: 0
-    contact:
-      properties:
-        id:
-          description: 'Each contact must have a unique identifier.'
-          type: string
-          required: 1
-        organization_id:
-          description: 'The identifier of the organization for which this is a contact.'
-          type: string
-          required: 0
-        service_id:
-          description: 'The identifier of the service for which this is a contact.'
-          type: string
-          required: 0
-        name:
-          description: 'The name of the person.'
-          type: string
-          required: 0
-        title:
-          description: 'The job title of the person.'
-          type: string
-          required: 0
-        department:
-          description: 'The department that the person is part of.'
-          type: string
-          required: 0
-        email:
-          description: 'The email address of the person.'
-          type: string
-          required: 0
+            items:
+              "$ref": "#/definitions/mailing_address"
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/mailing_address"
+      tags:
+      - Locations
+  "/locations/{location_id}/mail_address/{mail_address_id}/":
+    patch:
+      summary: Update Location Mailing Address
+      description: Updates an existing mailing address for a location in the system.
+      operationId: updateLocationMailingAddress
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true
+        - name: mail_address_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/mailing_address"
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/mailing_address"
+      tags:
+      - Locations
+    delete:
+      summary: Delete Location Mailing Address
+      description: Deletes an existing mailing address for a location in the system.
+      operationId: deleteLocationMailingAddress
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true
+        - name: mail_address_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/mailing_address"
+      tags:
+      - Locations
+  "/locations/{location_id}/contacts/":
+    get:
+      summary: Get Location Contacts
+      description: Retrieve all of the contacts for a location
+      operationId: retrieveLocationContacts
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true      
+        - name: page
+          in: query
+          type: string
+          required: false
+        - name: per_page
+          in: query
+          type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/contact"
+      tags:
+      - Locations
+    post:
+      summary: Create Location Contacts
+      description: Creates a new contact for a location
+      operationId: createLocationContact
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/contact"
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/contact"
+      tags:
+      - Locations
+  "/locations/{location_id}/contacts/{contact_id}/":
+    patch:
+      summary: Update Location Contact
+      description: Updates an existing contact for a location.
+      operationId: updateLocationContact
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true
+        - name: contact_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/contact"
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/contact"
+      tags:
+      - Locations
+    delete:
+      summary: Delete Location Contact
+      description: Deletes an existing contact for a location.
+      operationId: deleteLocationContact
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true
+        - name: contact_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/contact"
+      tags:
+      - Locations
+  "/locations/{location_id}/phones/":
+    post:
+      summary: Create Location Phone
+      description: Creates a new phone for a location
+      operationId: createLocationPhone
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true      
+        - name: body
+          in: body
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/phone"
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/phone"
+      tags:
+      - Locations
+  "/locations/{location_id}/phones/{phone_id}/":
+    patch:
+      summary: Update Location Phone
+      description: Updates an existing phone for a location.
+      operationId: updateLocationPhone
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true
+        - name: phone_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/phone"
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/phone"
+      tags:
+      - Locations
+    delete:
+      summary: Delete Location Phone
+      description: Deletes an existing phone for a location.
+      operationId: deleteLocationPhone
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true
+        - name: phone_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/phone"
+      tags:
+      - Locations
+  "/locations/{location_id}/services/":
+    get:
+      summary: Services
+      description: Retrieve all services for this location
+      operationId: retrieveLocationServices
+      parameters:
+        - name: Accept
+          in: header
+          type: string
+          required: true
+          default: 'application/vnd.ohanapi+json; version=1'
+        - name: location_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/service"
+      tags:
+      - Locations
+    post:
+      summary: Create Location Service
+      description: Creates a new service for a location
+      operationId: createLocationService
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true      
+        - name: body
+          in: body
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/phone"
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/phone"
+      tags:
+      - Locations
+  "/locations/{location_id}/services/{service_id}/":
+    patch:
+      summary: Update Location Service
+      description: Updates an existing service for a location.
+      operationId: updateLocationService
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true
+        - name: service_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/service"
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/service"
+      tags:
+      - Locations
+    delete:
+      summary: Delete Location Service
+      description: Deletes an existing service for a location.
+      operationId: deleteLocationService
+      parameters:
+        - name: location_id
+          in: path
+          type: string
+          required: true
+        - name: service_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/service"
+      tags:
+      - Locations
+  "/organizations/":
+    get:
+      summary: Organizations
+      description: Retrieve all of the organizations available in this database.
+      operationId: retrieveLOrganizations
+      parameters:
+        - name: Accept
+          in: header
+          type: string
+          required: true
+          default: 'application/vnd.ohanapi+json; version=1'
+        - name: page
+          in: query
+          type: string
+          required: false
+        - name: per_page
+          in: query
+          type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/organization"
+      tags:
+      - Organizations
+    post:
+      summary: Organizations
+      description: Creates a new organization in the system.
+      operationId: createOrganizations
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/organization"
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/organization"
+      tags:
+      - Organizations
+  "/organizations/{organization_id}/":
+    get:
+      summary: Organizations
+      description: Retrieve all of the organizations available in this database.
+      operationId: retrieveLOrganization
+      parameters:
+        - name: organization_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/organization"
+      tags:
+      - Organizations
+    patch:
+      summary: Organizations
+      description: Updates an existing organization in the system.
+      operationId: updateOrganization
+      parameters:
+        - name: organization_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/organization"
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/organization"
+      tags:
+      - Organizations
+    delete:
+      summary: Organizations
+      description: Deletes an existing organization in the system.
+      operationId: deleteOrganization
+      parameters:
+        - name: organization_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/organization"
+      tags:
+      - Organizations
+  "/organizations/{organization_id}/locations/":
+    get:
+      summary: Organization Locations
+      description: This endpoint retrieves all locations that belong to a particular
+        organization.
+      operationId: retrieveLOrganizationLocations
+      parameters:
+        - name: Accept
+          in: header
+          type: string
+          required: true
+          default: 'application/vnd.ohanapi+json; version=1'
+        - name: organization_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/location"
+      tags:
+      - Organizations
+  "/search/":
+    get:
+      summary: Search
+      description: This endpoint retrieves all locations that match the criteria based on the parameters below. Multiple parameters can be used at the same time, separated by an ampersand (&).
+      operationId: searchLocations
+      parameters:
+        - name: Accept
+          in: header
+          type: string
+          required: true
+          default: 'application/vnd.ohanapi+json; version=1'
+        - in: query
+          name: category
+          type: string
+        - in: query
+          name: email
+          type: string
+        - in: query
+          name: keyword
+          type: string
+        - in: query
+          name: language
+          type: string
+        - in: query
+          name: lat_lng
+          type: string
+        - in: query
+          name: location
+          type: string
+        - in: query
+          name: org_name
+          type: string
+        - in: query
+          name: radius
+          type: string
+        - in: query
+          name: service_area
+          type: string
+        - in: query
+          name: status
+          type: string
+        - in: query
+          name: page
+          type: string
+        - in: query
+          name: per_page
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/location"
+      tags:
+      - Search
+definitions:
+  location:
+    properties:
+      id:
+        description: 'Each location must have a unique identifier.'
+        type: string
+      organization_id:
+        description: 'Each location must belong to a single organization. The identifier of the organization should be given here.'
+        type: string
+      name:
+        description: 'The name of the location.'
+        type: string
+      alternate_name:
+        description: 'An alternative name for the location.'
+        type: string
+      description:
+        description: 'A description of this location.'
+        type: string
+      transportation:
+        description: 'A description of the access to public or private transportation to and from the location.'
+        type: string
+      latitude:
+        description: 'Y coordinate of location expressed in decimal degrees in WGS84 datum.'
+        type: string
+      longitude:
+        description: 'X coordinate of location expressed in decimal degrees in WGS84 datum.'
+        type: string
+  organization:
+    properties:
+      id:
+        description: 'Each organization must have a unique identifier.'
+        type: string
+      name:
+        description: 'The official or public name of the organization.'
+        type: string
+      alternate_name:
+        description: 'Alternative or commonly used name for the organization.'
+        type: string
+      description:
+        description: 'A brief summary about the organization. It can contain markup such as HTML or Markdown.'
+        type: string
+      email:
+        description: 'The contact e-mail address for the organization.'
+        type: string
+      url:
+        description: 'The URL (website address) of the organization.'
+        type: string
+      tax_status:
+        description: 'Government assigned tax designation for for tax-exempt organizations.'
+        type: string
+      tax_id:
+        description: 'A government issued identifier used for the purpose of tax administration.'
+        type: string
+      year_incorporated:
+        description: 'The year in which the organization was legally formed.'
+        type: string
+      legal_status:
+        description: 'The legal status defines the conditions that an organization is operating under; e.g. non-profit, private corporation or a government organization.'
+        type: string
+  address:
+    properties:
+      id:
+        description: 'Each physical address must have a unique identifier.'
+        type: string
+      location_id:
+        description: 'The identifier of the location for which this is the address.'
+        type: string
+      attention:
+        description: 'The person or entity whose attention should be sought at the location.'
+        type: string
+      address_1:
+        description: 'The first line of the address.'
+        type: string
+      address_2:
+        description: 'The second line of the address.'
+        type: string
+      address_3:
+        description: 'The third line of the address.'
+        type: string
+      address_4:
+        description: 'The fourth line of the address.'
+        type: string
+      city:
+        description: 'The city in which the address is located.'
+        type: string
+      state_province:
+        description: 'The state or province in which the address is located.'
+        type: string
+      postal_code:
+        description: 'The postal code for the address.'
+        type: string
+      country:
+        description: 'The country in which the address is located. This should be given as an ISO 3361-1 country code (two letter abbreviation).'
+        type: string
+  mailing_address:
+    properties:
+      id:
+        description: 'Each postal address must have a unique identifier.'
+        type: string
+      location_id:
+        description: 'The identifier of the location for which this is the postal address.'
+        type: string
+      attention:
+        description: 'The person or entity for whose attention mail should be marked.'
+        type: string
+      address_1:
+        description: 'The first line of the address.'
+        type: string
+      address_2:
+        description: 'The second line of the address.'
+        type: string
+      address_3:
+        description: 'The third line of the address.'
+        type: string
+      address_4:
+        description: 'The fourth line of the address.'
+        type: string
+      city:
+        description: 'The city in which the address is located.'
+        type: string
+      state_province:
+        description: 'The state or province in which the address is located.'
+        type: string
+      postal_code:
+        description: 'The postal code for the address.'
+        type: string
+      country:
+        description: 'The country in which the address is located.'
+        type: string
+  service:
+    properties:
+      id:
+        description: 'Each service must have a unique identifier.'
+        type: string
+      organization_id:
+        description: 'The identifier of the organization that provides this service.'
+        type: string
+      program_id:
+        description: 'The identifier of the program this service is delivered under.'
+        type: string
+      location_id:
+        description: 'The identifier of the location where this service is delivered.'
+        type: string
+      name:
+        description: 'The official or public name of the service.'
+        type: string
+      alternate_name:
+        description: 'Alternative or commonly used name for a service.'
+        type: string
+      description:
+        description: 'A description of the service.'
+        type: string
+      url:
+        description: 'URL of the service.'
+        type: string
+      email:
+        description: 'Email address for the service.'
+        type: string
+      status:
+        description: 'The current status of the service.'
+        type: string
+      application_process:
+        description: 'The steps needed to access the service.'
+        type: string
+      wait_time:
+        description: 'Time a client may expect to wait before receiving a service.'
+        type: string
+      taxonomy_ids:
+        description: 'A comma separated list of identifiers from the taxonomy table.'
+        type: string
+  phone:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      location_id:
+        description: 'The identifier of the location where this phone number is located.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which this is the phone number.'
+        type: string
+      organization_id:
+        description: 'The identifier of the organisation for which this is the phone number.'
+        type: string
+      contact_id:
+        description: 'The identifier of the contact for which this is the phone number.'
+        type: string
+      number:
+        description: 'The phone number.'
+        type: string
+      extension:
+        description: 'The extension of the phone number.'
+        type: number
+      type:
+        description: 'Whether the phone number relates to a fixed or cellular phone.'
+        type: string
+      department:
+        description: 'The department for which this is the phone number.'
+        type: string
+  contact:
+    properties:
+      id:
+        description: 'Each contact must have a unique identifier.'
+        type: string
+      organization_id:
+        description: 'The identifier of the organization for which this is a contact.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which this is a contact.'
+        type: string
+      name:
+        description: 'The name of the person.'
+        type: string
+      title:
+        description: 'The job title of the person.'
+        type: string
+      department:
+        description: 'The department that the person is part of.'
+        type: string
+      email:
+        description: 'The email address of the person.'
+        type: string
