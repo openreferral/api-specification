@@ -18,16 +18,18 @@ schemes:
 produces:
 - application/json
 paths:
-  "/contacts/":
+  "/contacts":
     get:
       summary: Get Contacts
       description: Get Contacts
-      operationId: getContacts
+      operationId: list-contacts
       parameters:
         - in: query
+          type: number
           name: page
           description: The particular page of results.
         - in: query
+          type: number
           name: per_page
           description: Amount of locations to return per page, up to 100.
       responses:
@@ -40,9 +42,9 @@ paths:
       tags:
       - Contacts
     post:
-      summary: Create Contact
-      description: Create a new contact
-      operationId: createContact
+      summary: Add Contact
+      description: Add contact
+      operationId: add-contact
       parameters:
       - in: body
         name: body
@@ -57,16 +59,17 @@ paths:
               "$ref": "#/definitions/contact"
       tags:
       - Contacts
-  "/contacts/{contact_id}/":
+  "/contacts/{contact_id}":
     get:
       summary: Get Contact
       description: Get Contact
-      operationId: getContact
+      operationId: get-contact
       parameters:
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: 'The contact id.'
-        type: string
       responses:
         '200':
           description: Contact Response
@@ -79,8 +82,13 @@ paths:
     put:
       summary: Update Contact
       description: Update an existing contact.
-      operationId: updateContact
+      operationId: update-contact
       parameters:
+      - in: path
+        required: true
+        type: string
+        name: contact_id
+        description: 'The contact id.'
       - in: body
         name: body
         schema:
@@ -97,12 +105,13 @@ paths:
     delete:
       summary: Delete Contact
       description: Delete Contact
-      operationId: deleteContact
+      operationId: delete-contact
       parameters:
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: 'The contact id.'
-        type: string
       tags:
       - Contacts
       responses:
@@ -112,13 +121,15 @@ paths:
             type: array
             items:
               "$ref": "#/definitions/contact"
-  "/contacts/{contact_id}/phones/":
+  "/contacts/{contact_id}/phones":
     get:
       summary: Get Phones
       description: Get Phones
-      operationId: get-phones
+      operationId: list-contact-phones
       parameters:
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: 'The unique contact id.'
       responses:
@@ -133,9 +144,11 @@ paths:
     post:
       summary: Add Phone
       description: Add Phone
-      operationId: add-phone
+      operationId: add-contact-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: 'The unique contact id.'
       - in: body
@@ -151,22 +164,22 @@ paths:
               "$ref": "#/definitions/phone"
       tags:
       - Contact - Phones
-  "/contacts/{contact_id}/phones/{phone_id}/":
+  "/contacts/{contact_id}/phones/{phone_id}":
     get:
       summary: Get Phone
       description: get Phone
-      operationId: get-phone
+      operationId: get-contact-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: The unique contact id.
-        type: string
-        format: string
       - in: path
+        required: true
+        type: string
         name: phone_id
         description: The unique phone id.
-        type: string
-        format: string
       responses:
         '200':
           description: Contact Response
@@ -179,12 +192,16 @@ paths:
     put:
       summary: Update Phone
       description: Update Phone
-      operationId: update-phone
+      operationId: update-contact-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: 'The unique contact id.'
       - in: path
+        required: true
+        type: string
         name: phone_id
         description: 'The unique phone id.'
       - in: body
@@ -203,12 +220,16 @@ paths:
     delete:
       summary: Delete Phone
       description: Delete Phone
-      operationId: delete-phone
+      operationId: delete-contact-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: 'The unique contact id.'
       - in: path
+        required: true
+        type: string
         name: phone_id
         description: 'The unique phone id.'
       responses:
@@ -220,16 +241,18 @@ paths:
               "$ref": "#/definitions/phone"
       tags:
       - Contact - Phones
-  "/locations/":
+  "/locations":
     get:
       summary: Get Locations
       description: Get Locations
-      operationId: get-locations
+      operationId: list-locations
       parameters:
       - in: query
+        type: number
         name: page
         description: The particular page of results.
       - in: query
+        type: number
         name: per_page
         description: Amount of locations to return per page, up to 100.
       responses:
@@ -244,7 +267,7 @@ paths:
     post:
       summary: Add Location
       description: Add Location
-      operationId: Add Location
+      operationId: add-location
       parameters:
       - in: body
         name: body
@@ -259,16 +282,17 @@ paths:
               "$ref": "#/definitions/location"
       tags:
       - Locations
-  "/locations/{location_id}/":
+  "/locations/{location_id}":
     get:
       summary: Get Location
       description: Get Location
       operationId: get-location
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: The location id.
-        type: string
       responses:
         '200':
           description: Location Response
@@ -278,12 +302,14 @@ paths:
               "$ref": "#/definitions/location"
       tags:
       - Locations
-    update:
+    put:
       summary: Update Location
       description: Update Location
       operationId: update-location
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: body
@@ -305,9 +331,10 @@ paths:
       operationId: delete-location
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: The location id.
-        type: string
       responses:
         '200':
           description: Location Response
@@ -317,13 +344,15 @@ paths:
               "$ref": "#/definitions/location"
       tags:
       - Locations
-  "/locations/{location_id}/holiday_schedule/":
+  "/locations/{location_id}/holiday_schedule":
     get:
       summary: Get Holiday Schedule
       description: Get Holiday Schedule
-      operationId: get-holiday-schedule
+      operationId: list-location-holiday-schedules
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       responses:
@@ -338,9 +367,11 @@ paths:
     post:
       summary: Add Holiday Schedule
       description: Add Holiday Schedule
-      operationId: add-holiday-schedule
+      operationId: add-location-holiday-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: body
@@ -356,16 +387,20 @@ paths:
               "$ref": "#/definitions/holiday_schedule"
       tags:
       - Location - Holiday Schedule
-  "/locations/{location_id}/holiday_schedule/{holiday_schedule_id}/":
+  "/locations/{location_id}/holiday_schedule/{holiday_schedule_id}":
     get:
       summary: Get Holiday Schedule
       description: Get Holiday Schedule
-      operationId: get-holiday-schedule
+      operationId: get-location-holiday-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: holiday_schedule_id
         description: 'The unique holiday schedule id.'
       responses:
@@ -380,12 +415,16 @@ paths:
     put:
       summary: Update Holiday Schedule
       description: Update Holiday Schedule
-      operationId: update-holiday-schedule
+      operationId: update-location-holiday-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: holiday_schedule_id
         description: 'The unique holiday schedule id.'
       - in: body
@@ -404,12 +443,16 @@ paths:
     delete:
       summary: Delete Holiday Schedule
       description: Delete Holiday Schedule
-      operationId: delete-holiday-schedule
+      operationId: delete-location-holiday-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: holiday_schedule_id
         description: 'The unique holiday schdule id.'
       responses:
@@ -421,13 +464,15 @@ paths:
               "$ref": "#/definitions/holiday_schedule"
       tags:
       - Location - Holiday Schedule
-  "/locations/{location_id}/languages/":
+  "/locations/{location_id}/languages":
     get:
       summary: Get Languages
       description: Get Languages
-      operationId: get-languages
+      operationId: list-location-languages
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       responses:
@@ -442,9 +487,11 @@ paths:
     post:
       summary: Add Languages
       description: Add Languages
-      operationId: add-languages
+      operationId: add-location-languages
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: body
@@ -460,16 +507,20 @@ paths:
               "$ref": "#/definitions/language"
       tags:
       - Location - Language
-  "/locations/{location_id}/languages/{language_id}/":
+  "/locations/{location_id}/languages/{language_id}":
     get:
       summary: Get Languages
       description: Get Languages
-      operationId: get-languages
+      operationId: get-location-languages
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: language_id
         description: 'The unique language id.'
       responses:
@@ -484,12 +535,16 @@ paths:
     put:
       summary: Update Languages
       description: Update Languages
-      operationId: update-languages
+      operationId: update-location-languages
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: language_id
         description: 'The unique language id.'
       - in: body
@@ -508,12 +563,16 @@ paths:
     delete:
       summary: Delete Languages
       description: Delete Languages
-      operationId: delete-languages
+      operationId: delete-location-languages
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: language_id
         description: 'The unique language id.'
       responses:
@@ -525,13 +584,15 @@ paths:
               "$ref": "#/definitions/language"
       tags:
       - Location - Language
-  "/locations/{location_id}/postal_address/":
+  "/locations/{location_id}/postal_address":
     get:
-      summary: Get Postal Address
-      description: Get Postal Address
-      operationId: get-postal-address
+      summary: Get Postal Addresses
+      description: Get Postal Addresses
+      operationId: list-location-postal-addresses
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       responses:
@@ -544,11 +605,13 @@ paths:
       tags:
       - Location - Postal Address
     post:
-      summary: Add New Postal Adress
-      description: Add New Postal Adress
-      operationId: add-new-postal-address
+      summary: Add Postal Adress
+      description: Add Postal Adress
+      operationId: add-location-postal-address
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: body
@@ -564,16 +627,20 @@ paths:
               "$ref": "#/definitions/postal_address"
       tags:
       - Location - Postal Address
-  "/locations/{location_id}/postal_address/{postal_address_id}/":
+  "/locations/{location_id}/postal_address/{postal_address_id}":
     get:
       summary: Get Postal Address
       description: Get Postal Address
-      operationId: get-postal-address
+      operationId: get-location-postal-address
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: postal_address_id
         description: 'The unique postal address id.'
       responses:
@@ -588,12 +655,16 @@ paths:
     put:
       summary: Update Postal Address
       description: Postal Mailing Address
-      operationId: update-postal-address
+      operationId: update-location-postal-address
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: postal_address_id
         description: 'The unique postal address id.'
       - in: body
@@ -612,12 +683,16 @@ paths:
     delete:
       summary: Delete Postal Address
       description: Delete Postal Address
-      operationId: delete-postal-address
+      operationId: delete-location-postal-address
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: postal_address_id
         description: 'The unique postal address id.'
       responses:
@@ -629,13 +704,15 @@ paths:
               "$ref": "#/definitions/postal_address"
       tags:
       - Location - Postal Address
-  "/locations/{location_id}/physical_address/":
+  "/locations/{location_id}/physical_address":
     get:
       summary: Get Physical Address
       description: Get Physical Address
-      operationId: get-physical-address
+      operationId: list-location-physical-addresses
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       responses:
@@ -648,11 +725,13 @@ paths:
       tags:
       - Location - Physical Address
     post:
-      summary: Add New Physical Adress
-      description: Add New Physical Adress
-      operationId: add-new-physical-address
+      summary: Add Physical Adress
+      description: Add Physical Adress
+      operationId: add-location-physical-address
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: body
@@ -668,16 +747,20 @@ paths:
               "$ref": "#/definitions/postal_address"
       tags:
       - Location - Physical Address
-  "/locations/{location_id}/physical_address/{postal_address_id}/":
+  "/locations/{location_id}/physical_address/{postal_address_id}":
     get:
       summary: Get Physical Address
       description: Get Physical Address
-      operationId: get-physical-address
+      operationId: get-location-physical-address
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: postal_address_id
         description: 'The unique postal address id.'
       responses:
@@ -692,12 +775,16 @@ paths:
     put:
       summary: Update Physical Address
       description: Postal Physical Address
-      operationId: update-physical-address
+      operationId: update-location-physical-address
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: postal_address_id
         description: 'The unique postal address id.'
       - in: body
@@ -716,12 +803,16 @@ paths:
     delete:
       summary: Delete Physical Address
       description: Delete Physical Address
-      operationId: delete-physical-address
+      operationId: delete-location-physical-address
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: postal_address_id
         description: 'The unique postal address id.'
       responses:
@@ -733,13 +824,15 @@ paths:
               "$ref": "#/definitions/postal_address"
       tags:
       - Location - Physical Address
-  "/locations/{location_id}/phones/":
+  "/locations/{location_id}/phones":
     get:
       summary: Get Phones
       description: Get Phones
-      operationId: get-phones
+      operationId: list-location-phones
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       responses:
@@ -754,9 +847,11 @@ paths:
     post:
       summary: Add Phone
       description: Add Phone
-      operationId: add-phone
+      operationId: add-location-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: body
@@ -772,16 +867,20 @@ paths:
               "$ref": "#/definitions/phone"
       tags:
       - Location - Phones
-  "/locations/{location_id}/phones/{phone_id}/":
+  "/locations/{location_id}/phones/{phone_id}":
     get:
       summary: Get Phone
       description: get Phone
-      operationId: get-phone
+      operationId: get-location-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: phone_id
         description: 'The unique phone id.'
       responses:
@@ -796,12 +895,16 @@ paths:
     put:
       summary: Update Phone
       description: Update Phone
-      operationId: update-phone
+      operationId: update-location-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: phone_id
         description: 'The unique phone id.'
       - in: body
@@ -820,12 +923,16 @@ paths:
     delete:
       summary: Delete Phone
       description: Delete Phone
-      operationId: delete-phone
+      operationId: delete-location-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: phone_id
         description: 'The unique phone id.'
       responses:
@@ -837,13 +944,15 @@ paths:
               "$ref": "#/definitions/phone"
       tags:
       - Location - Phones
-  "/locations/{location_id}/regular_schedule/":
+  "/locations/{location_id}/regular_schedule":
     get:
-      summary: Get Regular Schedule
-      description: Get Regular Schedule
-      operationId: get-regular-schedule
+      summary: Get Regular Schedules
+      description: Get Regular Schedules
+      operationId: list-location-regular-schedules
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       responses:
@@ -858,9 +967,11 @@ paths:
     post:
       summary: Add Regular Schedule
       description: Add Regular Schedule
-      operationId: add-regular-schedule
+      operationId: add-location-regular-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: body
@@ -876,16 +987,20 @@ paths:
               "$ref": "#/definitions/regular_schedule"
       tags:
       - Location - Regular Schedule
-  "/locations/{location_id}/regular_schedule/{regular_schedule_id}/":
+  "/locations/{location_id}/regular_schedule/{regular_schedule_id}":
     get:
       summary: Get Regular Schedule
       description: Get Regular Schedule
-      operationId: get-regular-schedule
+      operationId: get-location-regular-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: regular_schedule_id
         description: 'The unique regular schedule id.'
       responses:
@@ -900,12 +1015,16 @@ paths:
     put:
       summary: Update Regular Schedule
       description: Update Regular Schedule
-      operationId: update-regular-schedule
+      operationId: update-location-regular-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: regular_schedule_id
         description: 'The unique regular schedule id.'
       - in: body
@@ -924,12 +1043,16 @@ paths:
     delete:
       summary: Delete Regular Schedule
       description: Delete Regular Schedule
-      operationId: delete-regular-schedule
+      operationId: delete-location-regular-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: regular_schedule_id
         description: 'The unique regular schedule id.'
       responses:
@@ -941,13 +1064,15 @@ paths:
               "$ref": "#/definitions/regular_schedule"
       tags:
       - Location - Regular Schedule
-  "/locations/{location_id}/services/":
+  "/locations/{location_id}/services":
     get:
-      summary: Get Service
-      description: Get Service
-      operationId: get-service
+      summary: Get Services
+      description: Get Services
+      operationId: list-location-services
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       responses:
@@ -962,9 +1087,11 @@ paths:
     post:
       summary: Add Service
       description: Add Service
-      operationId: add-service
+      operationId: add-location-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: body
@@ -980,16 +1107,20 @@ paths:
               "$ref": "#/definitions/service"
       tags:
       - Location - Services
-  "/locations/{location_id}/services/{service_id}/":
+  "/locations/{location_id}/services/{service_id}":
     get:
       summary: Get Service
       description: Get Service
-      operationId: get-service
+      operationId: get-location-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -1004,12 +1135,16 @@ paths:
     put:
       summary: Update Service
       description: Update Service
-      operationId: update-service
+      operationId: update-location-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -1028,12 +1163,16 @@ paths:
     delete:
       summary: Delete Service
       description: Delete Service
-      operationId: delete-service
+      operationId: delete-location-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -1045,15 +1184,17 @@ paths:
               "$ref": "#/definitions/service"
       tags:
       - Location - Services
-  "/locations/{location_id}/accessibility_for_disabilities/":
+  "/locations/{location_id}/accessibility_for_disabilities":
     get:
       summary: Get Accessibility For Disabilities
       description: Get Accessibility For Disabilities
-      operationId: get-accessibility-for-disabilities
+      operationId: list-location-accessibility-for-disabilities
       parameters:
-      - in: query
-        name: country_prefix
-        description: The country prefix code, such as +1 for the USA.
+      - in: path
+        required: true
+        type: string
+        name: location_id
+        description: 'The unique location id.'
       responses:
         '200':
           description: Accessibility For Disabilities Response
@@ -1066,9 +1207,11 @@ paths:
     post:
       summary: Add Accessibility For Disabilities
       description: Add Accessibility For Disabilities
-      operationId: add-accessibility-for-disabilities
+      operationId: add-location-accessibility-for-disabilities
       parameters:
-      - in: query
+      - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: body
@@ -1084,15 +1227,22 @@ paths:
               "$ref": "#/definitions/accessibility_for_disabilities"
       tags:
       - Location - Accessibility For Disabilities
-  "/locations/{location_id}/accessibility_for_disabilities/{accessibility_for_disabilities_id}/":
+  "/locations/{location_id}/accessibility_for_disabilities/{accessibility_for_disabilities_id}":
     get:
       summary: Get Accessibility For Disabilities
       description: Get Accessibility For Disabilities
-      operationId: get-service-location
+      operationId: get-location-accessibility-for-disabilities
       parameters:
-      - in: query
+      - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
+      - in: path
+        required: true
+        type: string
+        name: accessibility_for_disabilities_id
+        description: 'The unique accessibility for disabilities id.'
       responses:
         '200':
           description: Accessibility For Disabilities Response
@@ -1105,9 +1255,16 @@ paths:
     put:
       summary: Update Accessibility For Disabilities
       description: Update Accessibility For Disabilities
-      operationId: update-accessibility-for-disabilities
+      operationId: update-location-accessibility-for-disabilities
       parameters:
-      - in: query
+      - in: path
+        required: true
+        type: string
+        name: location_id
+        description: 'The unique location id.'
+      - in: path
+        required: true
+        type: string
         name: accessibility_for_disabilities_id
         description: 'The unique accessibility for disabilities id.'
       - in: body
@@ -1126,12 +1283,14 @@ paths:
     delete:
       summary: Delete Accessibility For Disabilities
       description: Delete Accessibility For Disabilities
-      operationId: delete-accessibility-for-disabilities
+      operationId: delete-location-accessibility-for-disabilities
       parameters:
       - in: query
+        type: string
         name: accessibility_for_disabilities_id
         description: 'The unique accessibility for disabilities id.'
       - in: query
+        type: string
         name: location_id
         description: 'The unique location id.'
       responses:
@@ -1143,11 +1302,11 @@ paths:
               "$ref": "#/definitions/accessibility_for_disabilities"
       tags:
       - Location - Accessibility For Disabilities
-  "/metadata/":
+  "/metadata":
     get:
       summary: Get Metadata
       description: Get Metadata
-      operationId: get-meta-data
+      operationId: list-meta-data
       parameters: []
       responses:
         '200':
@@ -1159,11 +1318,12 @@ paths:
       tags:
       - Metadata
     post:
-      summary: Add New Metadata
-      description: Add New Metadata
-      operationId: add-new-metadata
+      summary: Add Metadata
+      description: Add Metadata
+      operationId: add-metadata
       parameters:
       - in: query
+        type: string
         name: resource_id
         description: 'The unique resource id.'
       - in: body
@@ -1179,17 +1339,17 @@ paths:
               "$ref": "#/definitions/metadata"
       tags:
       - Metadata
-  "/metadata/{metadata_id}/":
+  "/metadata/{metadata_id}":
     get:
       summary: Get Service
       description: Get Service
-      operationId: get-service
+      operationId: get-metadata
       parameters:
       - in: path
+        required: true
+        type: string
         name: metadata_id
         description: The metadata id.
-        type: string
-        format: string
       responses:
         '200':
           description: Metadata Response
@@ -1205,10 +1365,10 @@ paths:
       operationId: delete-metadata
       parameters:
       - in: path
+        required: true
+        type: string
         name: metadata_id
         description: The metadata id.
-        type: string
-        format: string
       tags:
       - Metadata
       responses:
@@ -1218,16 +1378,18 @@ paths:
             type: array
             items:
               "$ref": "#/definitions/metadata"
-  "/organizations/":
+  "/organizations":
     get:
-      summary: Get Locations
-      description: Get Locations
-      operationId: get-locations
+      summary: Get Organizations
+      description: Get Organizations
+      operationId: list-organizations
       parameters:
       - in: query
+        type: number
         name: page
         description: The particular page of results.
       - in: query
+        type: number
         name: per_page
         description: Amount of locations to return per page, up to 100.
       responses:
@@ -1240,9 +1402,9 @@ paths:
       tags:
       - Organizations
     post:
-      summary: Create a new organization
-      description: Create a new organization
-      operationId: create-a-new-organization
+      summary: Add organization
+      description: Addorganization
+      operationId: add-organization
       parameters:
       - in: body
         name: body
@@ -1257,17 +1419,17 @@ paths:
               "$ref": "#/definitions/organization"
       tags:
       - Organizations
-  "/organizations/{organization_id}/":
+  "/organizations/{organization_id}":
     get:
       summary: Get Organization
       description: Get Organization
       operationId: get-organization
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: The organization id.
-        type: string
-        format: string
       responses:
         '200':
           description: Organization Response
@@ -1278,11 +1440,13 @@ paths:
       tags:
       - Organizations
     put:
-      summary: Update Existing Organization
-      description: Update Existing Organization
-      operationId: update-existing-organization
+      summary: Update Organization
+      description: Update Organization
+      operationId: update-organization
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: body
@@ -1304,10 +1468,10 @@ paths:
       operationId: delete-organization
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: The organization id.
-        type: string
-        format: string
       tags:
       - Organizations
       responses:
@@ -1317,63 +1481,77 @@ paths:
             type: array
             items:
               "$ref": "#/definitions/organization"
-  "/organizations/{organization_id}/contacts/":
+  "/organizations/{organization_id}/contacts":
     get:
       summary: Get Contacts
       description: Get Contacts
-      operationId: get-contacts
+      operationId: list-organization-contacts
       parameters:
       - in: query
+        type: string
         name: accessibility
         description: Accessibility options available at the location. Accepted values
           are cd, deaf_interpreter, disabled_parking, elevator, ramp, restroom, tape_braille,
           tty, wheelchair, and wheelchair_van.
       - in: query
+        type: string
         name: address_attributes
         description: required unless the location is marked as virtual
       - in: query
+        type: string
         name: admin_emails
         description: Email address for a person allowed to administer the location
           (via the Ohana API Admin interface for example).
       - in: query
+        type: string
         name: alternate_name
         description: Another name this location might be known by.
       - in: query
+        type: string
         name: description
         description: Description of services provided at the location
       - in: query
+        type: string
         name: email
         description: General Email address for location. Emails that belong to contacts
           should go in the Contact object.
       - in: query
+        type: string
         name: languages
         description: Languages spoken at the location
       - in: query
+        type: string
         name: latitude
         description: Latitude portion of the location’s coordinates. Note that the
           app automatically geocodes addresses if the data doesn’t include coordinates
       - in: query
+        type: string
         name: longitude
         description: Longitude portion of the location’s coordinates. Note that the
           app automatically geocodes addresses if the data doesn’t include coordinates
       - in: query
+        type: string
         name: name
         description: Name of the location
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: The organization id.
-        type: string
-        format: string
       - in: query
+        type: string
         name: short_desc
         description: Succinct description of services provided at the location.
       - in: query
+        type: string
         name: transportation
         description: Public transportation options near the location
       - in: query
+        type: string
         name: virtual
         description: required if the location does not have a physical address
       - in: query
+        type: string
         name: website
         description: The location’s website. Must include “http://” or “https://”
       responses:
@@ -1388,9 +1566,11 @@ paths:
     post:
       summary: Add Contact
       description: Add Contact
-      operationId: add-contact
+      operationId: add-organization-contact
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: body
@@ -1406,16 +1586,20 @@ paths:
               "$ref": "#/definitions/contact"
       tags:
       - Organization - Contacts
-  "/organizations/{organization_id}/contacts/{contact_id}/":
+  "/organizations/{organization_id}/contacts/{contact_id}":
     get:
       summary: Get Contact
       description: Get Contact
-      operationId: get-contact
+      operationId: get-organization-contact
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: 'The unique contact id.'
       responses:
@@ -1430,12 +1614,16 @@ paths:
     put:
       summary: Update Contact
       description: Update Contact
-      operationId: update-contact
+      operationId: update-organization-contact
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: 'The unique contact id.'
       - in: body
@@ -1454,12 +1642,16 @@ paths:
     delete:
       summary: Delete Contact
       description: Delete Contact
-      operationId: delete-contact
+      operationId: delete-organization-contact
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: 'The unique contact id.'
       responses:
@@ -1471,13 +1663,15 @@ paths:
               "$ref": "#/definitions/contact"
       tags:
       - Organization - Contacts
-  "/organizations/{organization_id}/funding/":
+  "/organizations/{organization_id}/funding":
     get:
-      summary: Get Funding
-      description: Get Funding
-      operationId: get-funding
+      summary: Get Fundings
+      description: Get Fundings
+      operationId: list-organization-fundings
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       responses:
@@ -1492,9 +1686,11 @@ paths:
     post:
       summary: Add Funding
       description: Add Funding
-      operationId: add-funding
+      operationId: add-organization-funding
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: body
@@ -1510,16 +1706,20 @@ paths:
               "$ref": "#/definitions/funding"
       tags:
       - Organization - Funding
-  "/organizations/{organization_id}/funding/{funding_id}/":
+  "/organizations/{organization_id}/funding/{funding_id}":
     get:
       summary: Get Funding
       description: Get Funding
-      operationId: get-funding
+      operationId: get-organization-funding
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: funding_id
         description: 'The unique funding id.'
       responses:
@@ -1534,12 +1734,16 @@ paths:
     put:
       summary: Update Funding
       description: Update Funding
-      operationId: update-funding
+      operationId: update-organization-funding
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: funding_id
         description: 'The unique funding id.'
       - in: body
@@ -1558,12 +1762,16 @@ paths:
     delete:
       summary: Delete Funding
       description: Delete Funding
-      operationId: delete-funding
+      operationId: delete-organization-funding
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: funding_id
         description: 'The unique funding id.'
       responses:
@@ -1575,13 +1783,15 @@ paths:
               "$ref": "#/definitions/funding"
       tags:
       - Organization - Funding
-  "/organizations/{organization_id}/locations/":
+  "/organizations/{organization_id}/locations":
     get:
       summary: Get Location
       description: Get Location
-      operationId: get-location
+      operationId: list-organization-locations
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: The id for the organization.
       responses:
@@ -1594,11 +1804,13 @@ paths:
       tags:
       - Organization - Locations
     post:
-      summary: Create a new location
-      description: Create a new location
-      operationId: create-a-new-location
+      summary: Add location
+      description: Add location
+      operationId: add-organization-location
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: body
@@ -1614,16 +1826,20 @@ paths:
               "$ref": "#/definitions/location"
       tags:
       - Organization - Locations
-  "/organizations/{organization_id}/locations/{location_id}/":
+  "/organizations/{organization_id}/locations/{location_id}":
     get:
-      summary: Update Existing Location
-      description: Update Existing Location
-      operationId: update-existing-location
+      summary: Get Location
+      description: Get Location
+      operationId: get-organization-location
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       responses:
@@ -1636,14 +1852,18 @@ paths:
       tags:
       - Organization - Locations
     put:
-      summary: Create a new location
-      description: Create a new location
-      operationId: create-a-new-location
+      summary: Update location
+      description: Update location
+      operationId: update-organization-location
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       - in: body
@@ -1662,12 +1882,16 @@ paths:
     delete:
       summary: Delete Location
       description: Delete Location
-      operationId: delete-location
+      operationId: delete-organization-location
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: location_id
         description: 'The unique location id.'
       responses:
@@ -1679,13 +1903,15 @@ paths:
               "$ref": "#/definitions/location"
       tags:
       - Organization - Locations
-  "/organizations/{organization_id}/phones/":
+  "/organizations/{organization_id}/phones":
     get:
       summary: Get Phones
       description: Get Phones
-      operationId: get-phones
+      operationId: list-organization-phones
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       responses:
@@ -1700,9 +1926,11 @@ paths:
     post:
       summary: Add Phone
       description: Add Phone
-      operationId: add-phone
+      operationId: add-organization-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: body
@@ -1718,16 +1946,20 @@ paths:
               "$ref": "#/definitions/phone"
       tags:
       - Organization - Phones
-  "/organizations/{organization_id}/phones/{phone_id}/":
+  "/organizations/{organization_id}/phones/{phone_id}":
     get:
       summary: Get Phone
       description: get Phone
-      operationId: get-phone
+      operationId: get-organization-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: phone_id
         description: 'The unique phone id.'
       responses:
@@ -1742,12 +1974,16 @@ paths:
     put:
       summary: Update Phone
       description: Update Phone
-      operationId: update-phone
+      operationId: update-organization-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: phone_id
         description: 'The unique phone id.'
       - in: body
@@ -1766,12 +2002,16 @@ paths:
     delete:
       summary: Delete Phone
       description: Delete Phone
-      operationId: delete-phone
+      operationId: delete-organization-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: phone_id
         description: 'The unique phone id.'
       responses:
@@ -1783,13 +2023,15 @@ paths:
               "$ref": "#/definitions/phone"
       tags:
       - Organization - Phones
-  "/organizations/{organization_id}/programs/":
+  "/organizations/{organization_id}/programs":
     get:
       summary: Get Programs
       description: Get Programs
-      operationId: get-programs
+      operationId: list-organization-programs
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       responses:
@@ -1804,9 +2046,11 @@ paths:
     post:
       summary: Add Program
       description: Add Program
-      operationId: add-program
+      operationId: add-organization-program
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: body
@@ -1822,16 +2066,20 @@ paths:
               "$ref": "#/definitions/program"
       tags:
       - Organization - Programs
-  "/organizations/{organization_id}/programs/{program_id}/":
+  "/organizations/{organization_id}/programs/{program_id}":
     get:
       summary: Get Program
       description: Get Program
-      operationId: get-program
+      operationId: get-organization-program
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: program_id
         description: 'The unique program id.'
       responses:
@@ -1846,12 +2094,16 @@ paths:
     put:
       summary: Update Program
       description: Update Program
-      operationId: update-program
+      operationId: update-organization-program
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: program_id
         description: 'The unique program id.'
       - in: body
@@ -1870,12 +2122,16 @@ paths:
     delete:
       summary: Delete Program
       description: Delete Program
-      operationId: delete-program
+      operationId: delete-organization-program
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: program_id
         description: 'The unique program id.'
       responses:
@@ -1887,15 +2143,22 @@ paths:
               "$ref": "#/definitions/program"
       tags:
       - Organization - Programs
-  "/organizations/{organization_id}/programs/{program_id}/services/":
+  "/organizations/{organization_id}/programs/{program_id}/services":
     get:
       summary: Get Service
       description: Get Service
-      operationId: get-Service
+      operationId: list-program-services
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
+      - in: path
+        required: true
+        type: string
+        name: program_id
+        description: 'The unique program id.'
       responses:
         '200':
           description: Service Response
@@ -1908,11 +2171,18 @@ paths:
     post:
       summary: Add Service
       description: Add Service
-      operationId: add-service
+      operationId: add-program-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
+      - in: path
+        required: true
+        type: string
+        name: program_id
+        description: 'The unique program id.'
       - in: body
         name: body
         schema:
@@ -1926,18 +2196,27 @@ paths:
               "$ref": "#/definitions/service"
       tags:
       - Organization - Program Services
-  "/organizations/{organization_id}/programs/{program_id}/services/{service_id}/":
+  "/organizations/{organization_id}/programs/{program_id}/services/{service_id}":
     get:
       summary: Get Service
       description: Get Service
-      operationId: get-service
+      operationId: get-program-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: program_id
         description: 'The unique program id.'
+      - in: path
+        required: true
+        type: string
+        name: service_id
+        description: 'The unique service id.'
       responses:
         '200':
           description: Service Response
@@ -1950,14 +2229,23 @@ paths:
     put:
       summary: Update Service
       description: Update Service
-      operationId: update-service
+      operationId: update-program-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: program_id
         description: 'The unique program id.'
+      - in: path
+        required: true
+        type: string
+        name: service_id
+        description: 'The unique service id.'
       - in: body
         name: body
         schema:
@@ -1974,14 +2262,23 @@ paths:
     delete:
       summary: Delete Service
       description: Delete Service
-      operationId: delete-service
+      operationId: delete-program-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
+        required: true
+        type: string
         name: program_id
         description: 'The unique program id.'
+      - in: path
+        required: true
+        type: string
+        name: service_id
+        description: 'The unique service id.'
       responses:
         '200':
           description: Service Response
@@ -1991,13 +2288,15 @@ paths:
               "$ref": "#/definitions/service"
       tags:
       - Organization - Program Services
-  "/organizations/{organization_id}/services/":
+  "/organizations/{organization_id}/services":
     get:
       summary: Get Services
       description: Get Services
-      operationId: get-services
+      operationId: list-organization-services
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       responses:
@@ -2012,9 +2311,11 @@ paths:
     post:
       summary: Add Service
       description: Add Service
-      operationId: add-service
+      operationId: add-organization-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: body
@@ -2030,18 +2331,22 @@ paths:
               "$ref": "#/definitions/service"
       tags:
       - Organization - Services
-  "/organizations/{organization_id}/services/{service_id}/":
+  "/organizations/{organization_id}/services/{service_id}":
     get:
       summary: Get Service
       description: Get Service
-      operationId: get-service
+      operationId: get-organization-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
-        name: program_id
-        description: 'The unique program id.'
+        required: true
+        type: string
+        name: service_id
+        description: 'The unique service id.'
       responses:
         '200':
           description: Service Response
@@ -2054,14 +2359,18 @@ paths:
     put:
       summary: Update Service
       description: Update Service
-      operationId: update-service
+      operationId: update-organization-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
-        name: program_id
-        description: 'The unique program id.'
+        required: true
+        type: string
+        name: service_id
+        description: 'The unique service id.'
       - in: body
         name: body
         schema:
@@ -2078,14 +2387,18 @@ paths:
     delete:
       summary: Delete Service
       description: Delete Service
-      operationId: delete-service
+      operationId: delete-organization-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: organization_id
         description: 'The unique organization id.'
       - in: path
-        name: program_id
-        description: 'The unique program id.'
+        required: true
+        type: string
+        name: service_id
+        description: 'The unique service id.'
       responses:
         '200':
           description: Service Response
@@ -2095,46 +2408,58 @@ paths:
               "$ref": "#/definitions/service"
       tags:
       - Organization - Services
-  "/search/":
+  "/search":
     get:
-      summary: Get locations that match certain criteria.
-      description: Get locations that match certain criteria.
-      operationId: get-locations-that-match-certain-criteria
+      summary: Search
+      description: Search
+      operationId: search
       parameters:
       - in: query
+        type: string
         name: category
       - in: query
+        type: string
         name: email
       - in: query
+        type: string
         name: keyword
       - in: query
+        type: string
         name: language
       - in: query
+        type: string
         name: lat_lng
       - in: query
+        type: string
         name: location
       - in: query
+        type: string
         name: org_name
       - in: query
+        type: string
         name: page
       - in: query
+        type: string
         name: per_page
       - in: query
+        type: string
         name: radius
       - in: query
+        type: string
         name: service_area
       - in: query
+        type: string
         name: status
       responses:
         '200':
           description: OK
       tags:
       - Search
-  "/services/":
+  "/services":
     get:
       summary: Get Services
       description: Get Services
-      operationId: get-services
+      operationId: list-services
       parameters: []
       responses:
         '200':
@@ -2146,9 +2471,9 @@ paths:
       tags:
       - Services
     post:
-      summary: Create New Service
-      description: Create New Service
-      operationId: create-new-service
+      summary: Add Service
+      description: Add Service
+      operationId: add-service
       parameters:
       - in: body
         name: body
@@ -2163,13 +2488,14 @@ paths:
               "$ref": "#/definitions/service"
       tags:
       - Services
-  "/services/{service_id}/":
+  "/services/{service_id}":
     get:
       summary: Get Service
       description: Get Service
       operationId: get-service
       parameters:
       - in: query
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -2187,6 +2513,8 @@ paths:
       operationId: update-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -2208,6 +2536,8 @@ paths:
       operationId: delete-service
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       tags:
@@ -2219,13 +2549,15 @@ paths:
             type: array
             items:
               "$ref": "#/definitions/service"
-  "/services/{service_id}/contacts/":
+  "/services/{service_id}/contacts":
     get:
       summary: Get Contacts
       description: Get Contacts
-      operationId: get-contacts
+      operationId: list-service-contacts
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -2240,9 +2572,11 @@ paths:
     post:
       summary: Add Contact
       description: Add Contact
-      operationId: add-contact
+      operationId: add-service-contact
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -2258,16 +2592,20 @@ paths:
               "$ref": "#/definitions/contact"
       tags:
       - Service - Contacts
-  "/services/{service_id}/contacts/{contact_id}/":
+  "/services/{service_id}/contacts/{contact_id}":
     get:
       summary: Get Contact
       description: Get Contact
-      operationId: get-contact
+      operationId: get-service-contact
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: 'The unique contact id.'
       responses:
@@ -2282,12 +2620,16 @@ paths:
     put:
       summary: Update Contact
       description: Update Contact
-      operationId: update-contact
+      operationId: update-service-contact
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: 'The unique contact id.'
       - in: body
@@ -2306,12 +2648,16 @@ paths:
     delete:
       summary: Delete Contact
       description: Delete Contact
-      operationId: delete-contact
+      operationId: delete-service-contact
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: contact_id
         description: 'The unique contact id.'
       responses:
@@ -2323,13 +2669,15 @@ paths:
               "$ref": "#/definitions/contact"
       tags:
       - Service - Contacts
-  "/services/{service_id}/eligibility/":
+  "/services/{service_id}/eligibility":
     get:
-      summary: Get Eligibility
-      description: Get Eligibility
-      operationId: get-eligibility
+      summary: Get Eligibilities
+      description: Get Eligibilities
+      operationId: list-service-eligibilities
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -2344,9 +2692,11 @@ paths:
     post:
       summary: Add Eligibility
       description: Add Eligibility
-      operationId: add-eligibility
+      operationId: add-service-eligibility
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -2362,16 +2712,20 @@ paths:
               "$ref": "#/definitions/eligibility"
       tags:
       - Service - Eligibility
-  "/services/{service_id}/eligibility/{eligibility_id}/":
+  "/services/{service_id}/eligibility/{eligibility_id}":
     get:
       summary: Get Eligibility
       description: Get Eligibility
-      operationId: get-eligibility
+      operationId: get-service-eligibility
       parameters:
       - in: path
+        required: true
+        type: string
         name: eligibility_id
         description: 'The unique eligibility id.'
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -2386,12 +2740,16 @@ paths:
     put:
       summary: Update Eligibility
       description: Update Eligibility
-      operationId: update-eligibility
+      operationId: update-service-eligibility
       parameters:
       - in: path
+        required: true
+        type: string
         name: eligibility_id
         description: 'The unique eligibility id.'
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -2410,12 +2768,16 @@ paths:
     delete:
       summary: Eligibility Contact
       description: Delete Eligibility
-      operationId: delete-eligibility
+      operationId: delete-service-eligibility
       parameters:
       - in: path
+        required: true
+        type: string
         name: eligibility_id
         description: 'The unique eligibility id.'
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -2427,13 +2789,15 @@ paths:
               "$ref": "#/definitions/eligibility"
       tags:
       - Service - Eligibility
-  "/services/{service_id}/fees/":
+  "/services/{service_id}/fees":
     get:
       summary: Get Fees
       description: Get Fees
-      operationId: get-fees
+      operationId: list-service-fees
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -2446,11 +2810,13 @@ paths:
       tags:
       - Service - Fees
     post:
-      summary: Add Fees
-      description: Add Fees
-      operationId: add-fees
+      summary: Add Fee
+      description: Add Fee
+      operationId: add-service-fee
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -2466,16 +2832,20 @@ paths:
               "$ref": "#/definitions/fee"
       tags:
       - Service - Fees
-  "/services/{service_id}/fees/{feed_id}/":
+  "/services/{service_id}/fees/{feed_id}":
     get:
-      summary: Get Fees
-      description: Get Fees
-      operationId: get-fees
+      summary: Get Fee
+      description: Get Fee
+      operationId: get-service-fee
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: feed_id
         description: 'The unique feed id.'
       responses:
@@ -2488,14 +2858,18 @@ paths:
       tags:
       - Service - Fees
     put:
-      summary: Update Fees
-      description: Update Fees
-      operationId: update-fees
+      summary: Update Fee
+      description: Update Fee
+      operationId: update-service-fee
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: feed_id
         description: 'The unique feed id.'
       - in: body
@@ -2512,14 +2886,18 @@ paths:
       tags:
       - Service - Fees
     delete:
-      summary: Eligibility Fees
-      description: Delete Fees
-      operationId: delete-fees
+      summary: Delete Fee
+      description: Delete Fee
+      operationId: delete-service-fee
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: feed_id
         description: 'The unique feed id.'
       responses:
@@ -2531,13 +2909,15 @@ paths:
               "$ref": "#/definitions/fee"
       tags:
       - Service - Fees
-  "/services/{service_id}/funding/":
+  "/services/{service_id}/funding":
     get:
       summary: Get Funding
       description: Get Funding
-      operationId: get-funding
+      operationId: list-service-fundings
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -2552,9 +2932,11 @@ paths:
     post:
       summary: Add Funding
       description: Add Funding
-      operationId: add-funding
+      operationId: add-service-funding
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -2570,16 +2952,20 @@ paths:
               "$ref": "#/definitions/funding"
       tags:
       - Service - Funding
-  "/services/{service_id}/funding/{funding_id}/":
+  "/services/{service_id}/funding/{funding_id}":
     get:
       summary: Get Funding
       description: Get Funding
-      operationId: get-funding
+      operationId: get-service-funding
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: funding_id
         description: 'The unique funding id.'
       responses:
@@ -2594,12 +2980,16 @@ paths:
     put:
       summary: Update Funding
       description: Update Funding
-      operationId: update-funding
+      operationId: update-service-funding
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: funding_id
         description: 'The unique funding id.'
       - in: body
@@ -2618,12 +3008,14 @@ paths:
     delete:
       summary: Delete Funding
       description: Delete Funding
-      operationId: delete-funding
+      operationId: delete-service-funding
       parameters:
       - in: query
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: query
+        type: string
         name: funding_id
         description: 'The unique funding id.'
       responses:
@@ -2635,13 +3027,15 @@ paths:
               "$ref": "#/definitions/funding"
       tags:
       - Service - Funding
-  "/services/{service_id}/holiday_schedule/":
+  "/services/{service_id}/holiday_schedule":
     get:
       summary: Get Holiday Schedule
       description: Get Holiday Schedule
-      operationId: get-holiday-schedule
+      operationId: list-service-holiday-schedules
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -2656,9 +3050,11 @@ paths:
     post:
       summary: Add Holiday Schedule
       description: Add Holiday Schedule
-      operationId: add-holiday-schedule
+      operationId: add-service-holiday-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -2674,16 +3070,20 @@ paths:
               "$ref": "#/definitions/holiday_schedule"
       tags:
       - Service - Holiday Schedule
-  "/services/{service_id}/holiday_schedule/{holiday_schedule_id}/":
+  "/services/{service_id}/holiday_schedule/{holiday_schedule_id}":
     get:
       summary: Get Holiday Schedule
       description: Get Holiday Schedule
-      operationId: get-holiday-schedule
+      operationId: get-service-holiday-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: holiday_schedule_id
         description: 'The unique holiday schedule id.'
       responses:
@@ -2698,12 +3098,16 @@ paths:
     put:
       summary: Update Holiday Schedule
       description: Update Holiday Schedule
-      operationId: update-holiday-schedule
+      operationId: update-service-holiday-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: holiday_schedule_id
         description: 'The unique holiday schedule id.'
       - in: body
@@ -2722,12 +3126,16 @@ paths:
     delete:
       summary: Delete Holiday Schedule
       description: Delete Holiday Schedule
-      operationId: delete-holiday-schedule
+      operationId: delete-service-holiday-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: holiday_schedule_id
         description: 'The unique holiday schedule id.'
       responses:
@@ -2739,13 +3147,15 @@ paths:
               "$ref": "#/definitions/holiday_schedule"
       tags:
       - Service - Holiday Schedule
-  "/services/{service_id}/intepretation_services/":
+  "/services/{service_id}/intepretation_services":
     get:
       summary: Get Interpretation Services
       description: Get Interpretation Services
-      operationId: get-interpretation-services
+      operationId: list-service-interpretation-services
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -2760,9 +3170,11 @@ paths:
     post:
       summary: Add Interpretation Services
       description: Add Interpretation Services
-      operationId: add-interpretation-services
+      operationId: add-service-interpretation-services
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -2778,16 +3190,20 @@ paths:
               "$ref": "#/definitions/intepretation_services"
       tags:
       - Service - Interpretation Services
-  "/services/{service_id}/intepretation_services/{intepretation_services_id}/":
+  "/services/{service_id}/intepretation_services/{intepretation_services_id}":
     get:
       summary: Get Interpretation Services
       description: Get Interpretation Services
-      operationId: get-interpretation-services
+      operationId: get-service-interpretation-services
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: intepretation_services_id
         description: 'The unique interpretation services id.'
       responses:
@@ -2802,12 +3218,16 @@ paths:
     put:
       summary: Update Interpretation Services
       description: Update Interpretation Services
-      operationId: update-interpretation-services
+      operationId: update-service-interpretation-services
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: intepretation_services_id
         description: 'The unique interpretation services id.'
       - in: body
@@ -2826,12 +3246,16 @@ paths:
     delete:
       summary: Delete Interpretation Services
       description: Delete Interpretation Services
-      operationId: delete-interpretation-services
+      operationId: delete-service-interpretation-services
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: intepretation_services_id
         description: 'The unique interpretation services id.'
       responses:
@@ -2843,13 +3267,15 @@ paths:
               "$ref": "#/definitions/intepretation_services"
       tags:
       - Service - Interpretation Services
-  "/services/{service_id}/languages/":
+  "/services/{service_id}/languages":
     get:
       summary: Get Languages
       description: Get Languages
-      operationId: get-languages
+      operationId: list-service-languages
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -2864,9 +3290,11 @@ paths:
     post:
       summary: Add Languages
       description: Add Languages
-      operationId: add-languages
+      operationId: add-service-language
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -2882,16 +3310,20 @@ paths:
               "$ref": "#/definitions/language"
       tags:
       - Service - Languages
-  "/services/{service_id}/languages/{language_id}/":
+  "/services/{service_id}/languages/{language_id}":
     get:
       summary: Get Languages
       description: Get Languages
-      operationId: get-languages
+      operationId: get-service-language
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: language_id
         description: 'The unique language id.'
       responses:
@@ -2906,12 +3338,16 @@ paths:
     put:
       summary: Update Languages
       description: Update Languages
-      operationId: update-languages
+      operationId: update-service-language
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: language_id
         description: 'The unique language id.'
       - in: body
@@ -2930,12 +3366,16 @@ paths:
     delete:
       summary: Delete Languages
       description: Delete Languages
-      operationId: delete-languages
+      operationId: delete-service-language
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: language_id
         description: 'The unique language id.'
       responses:
@@ -2947,13 +3387,15 @@ paths:
               "$ref": "#/definitions/language"
       tags:
       - Service - Languages
-  "/services/{service_id}/payment_accepted/":
+  "/services/{service_id}/payment_accepted":
     get:
       summary: Get Payment Accepted
       description: Get Payment Accepted
-      operationId: get-payment-accepted
+      operationId: list-service-payments-accepted
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -2968,9 +3410,11 @@ paths:
     post:
       summary: Add Payment Accepted
       description: Add Payment Accepted
-      operationId: add-payment-accepted
+      operationId: add-service-payment-accepted
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -2986,16 +3430,20 @@ paths:
               "$ref": "#/definitions/payment_accepted"
       tags:
       - Service - Payment Accepted
-  "/services/{service_id}/payment_accepted/{payment_accepted_id}/":
+  "/services/{service_id}/payment_accepted/{payment_accepted_id}":
     get:
       summary: Get Payment Accepted
       description: Get Payment Accepted
-      operationId: get-payment-accepted
+      operationId: get-service-payment-accepted
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: payment_accepted_id
         description: 'The unique payment accepted id.'
       responses:
@@ -3010,12 +3458,16 @@ paths:
     put:
       summary: Update Payment Accepted
       description: Update Payment Accepted
-      operationId: update-payment-accepted
+      operationId: update-service-payment-accepted
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: payment_accepted_id
         description: 'The unique payment accepted id.'
       - in: body
@@ -3034,12 +3486,16 @@ paths:
     delete:
       summary: Delete Payment Accepted
       description: Delete Payment Accepted
-      operationId: delete-payment-accepted
+      operationId: delete-service-payment-accepted
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: payment_accepted_id
         description: 'The unique payment accepted id.'
       responses:
@@ -3051,13 +3507,15 @@ paths:
               "$ref": "#/definitions/payment_accepted"
       tags:
       - Service - Payment Accepted
-  "/services/{service_id}/phones/":
+  "/services/{service_id}/phones":
     get:
       summary: Get Phones
       description: Get Phones
-      operationId: get-phones
+      operationId: list-service-phones
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -3072,9 +3530,11 @@ paths:
     post:
       summary: Add Phone
       description: Add Phone
-      operationId: add-phone
+      operationId: add-service-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -3090,16 +3550,20 @@ paths:
               "$ref": "#/definitions/phone"
       tags:
       - Service - Phones
-  "/services/{service_id}/phones/{phone_id}/":
+  "/services/{service_id}/phones/{phone_id}":
     get:
       summary: Get Phone
       description: get Phone
-      operationId: get-phone
+      operationId: get-service-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: phone_id
         description: 'The unique phone id.'
       responses:
@@ -3114,12 +3578,16 @@ paths:
     put:
       summary: Update Phone
       description: Update Phone
-      operationId: update-phone
+      operationId: update-service-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: phone_id
         description: 'The unique phone id.'
       - in: body
@@ -3138,12 +3606,16 @@ paths:
     delete:
       summary: Delete Phone
       description: Delete Phone
-      operationId: delete-phone
+      operationId: delete-service-phone
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: phone_id
         description: 'The unique phone id.'
       responses:
@@ -3155,13 +3627,15 @@ paths:
               "$ref": "#/definitions/phone"
       tags:
       - Service - Phones
-  "/services/{service_id}/regular_schedule/":
+  "/services/{service_id}/regular_schedule":
     get:
       summary: Get Regular Schedule
       description: Get Regular Schedule
-      operationId: get-regular-schedule
+      operationId: list-service-regular-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -3176,9 +3650,11 @@ paths:
     post:
       summary: Add Regular Schedule
       description: Add Regular Schedule
-      operationId: add-regular-schedule
+      operationId: add-service-regular-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -3194,18 +3670,22 @@ paths:
               "$ref": "#/definitions/regular_schedule"
       tags:
       - Service - Regular Schedule
-  "/services/{service_id}/regular_schedule/{required_document_id}/":
+  "/services/{service_id}/regular_schedule/{required_document_id}":
     get:
       summary: Get Regular Schedule
       description: Get Regular Schedule
-      operationId: get-regular-schedule
+      operationId: get-service-regular-schedules
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
-        name: regular_schedule_id
-        description: 'The unique regular schedule id.'
+        required: true
+        type: string
+        name: required_document_id
+        description: 'The unique required document id.'
       responses:
         '200':
           description: Regular Schedule Response
@@ -3218,14 +3698,18 @@ paths:
     put:
       summary: Update Regular Schedule
       description: Update Regular Schedule
-      operationId: update-regular-schedule
+      operationId: update-service-regular-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
-        name: regular_schedule_id
-        description: 'The unique regular schedule id.'
+        required: true
+        type: string
+        name: required_document_id
+        description: 'The unique required document id.'
       - in: body
         name: body
         schema:
@@ -3242,14 +3726,18 @@ paths:
     delete:
       summary: Delete Regular Schedule
       description: Delete Regular Schedule
-      operationId: delete-regular-schedule
+      operationId: delete-service-regular-schedule
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
-        name: regular_schedule_id
-        description: 'The unique regular schedule id.'
+        required: true
+        type: string
+        name: required_document_id
+        description: 'The unique required document id.'
       responses:
         '200':
           description: Regular Schedule Response
@@ -3259,13 +3747,15 @@ paths:
               "$ref": "#/definitions/regular_schedule"
       tags:
       - Service - Regular Schedule
-  "/services/{service_id}/required_document/":
+  "/services/{service_id}/required_document":
     get:
       summary: Get Required Document
       description: Get Required Document
-      operationId: get-required-document
+      operationId: list-service-required-document
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -3280,9 +3770,11 @@ paths:
     post:
       summary: Add Required Document
       description: Add Required Document
-      operationId: add-required-document
+      operationId: add-service-required-document
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -3298,16 +3790,20 @@ paths:
               "$ref": "#/definitions/required_document"
       tags:
       - Service - Required Document
-  "/services/{service_id}/required_document/{required_document_id}/":
+  "/services/{service_id}/required_document/{required_document_id}":
     get:
       summary: Get Required Document
       description: Get Required Document
-      operationId: get-required-document
+      operationId: get-service-required-documents
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: required_document_id
         description: 'The unique required document id.'
       responses:
@@ -3322,12 +3818,16 @@ paths:
     put:
       summary: Update Required Document
       description: Update Required Document
-      operationId: update-required-document
+      operationId: update-service-required-document
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: required_document_id
         description: 'The unique required document id.'
       - in: body
@@ -3346,12 +3846,16 @@ paths:
     delete:
       summary: Delete Required Document
       description: Delete Required Document
-      operationId: delete-required-document
+      operationId: delete-service-required-document
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: required_document_id
         description: 'The unique required document id.'
       responses:
@@ -3363,13 +3867,15 @@ paths:
               "$ref": "#/definitions/required_document"
       tags:
       - Service - Required Document
-  "/services/{service_id}/service_area/":
+  "/services/{service_id}/service_area":
     get:
-      summary: Get Service Area
-      description: Get Service Area
-      operationId: get-service-area
+      summary: Get Service Areas
+      description: Get Service Areas
+      operationId: list-service-service-areas
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       responses:
@@ -3378,15 +3884,17 @@ paths:
           schema:
             type: array
             items:
-              "$ref": "#/definitions/required_document"
+              "$ref": "#/definitions/service_area"
       tags:
       - Service - Areas
     post:
       summary: Add Service Area
       description: Add Service Area
-      operationId: add-service-area
+      operationId: add-service-service-areas
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: body
@@ -3402,16 +3910,20 @@ paths:
               "$ref": "#/definitions/service_area"
       tags:
       - Service - Areas
-  "/services/{service_id}/service_area/{service_area_id}/":
+  "/services/{service_id}/service_area/{service_area_id}":
     get:
       summary: Get Service Area
       description: Get Service Area
-      operationId: get-service-area
+      operationId: get-service-service-area
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: service_area_id
         description: 'The unique service area id.'
       responses:
@@ -3426,12 +3938,16 @@ paths:
     put:
       summary: Update Service Area
       description: Update Service Area
-      operationId: update-service-area
+      operationId: update-service-service-area
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: service_area_id
         description: 'The unique service area id.'
       - in: body
@@ -3450,12 +3966,16 @@ paths:
     delete:
       summary: Delete Service Area
       description: Delete Service Area
-      operationId: delete-service-area
+      operationId: delete-service-service-area
       parameters:
       - in: path
+        required: true
+        type: string
         name: service_id
         description: 'The unique service id.'
       - in: path
+        required: true
+        type: string
         name: service_area_id
         description: 'The unique service area id.'
       responses:
@@ -3473,588 +3993,524 @@ definitions:
       id:
         description: 'Each entry must have a unique identifier.'
         type: string
-        required: 1
       location_id:
         description: 'The identifier of the location for which the entry describes the accessibility provision.'
         type: string
-        required: 0
       accessibility:
-        description: 'Description of assistance or infrastructure that facilitate access to clients with disabilities.'
+        description: 'Description of assistance or infrastructure that facilitate access to clients with 
+disabilities.'
         type: string
-        required: 0
+    required:
+      - id
   contact:
     properties:
       id:
         description: 'Each contact must have a unique identifier.'
         type: string
-        required: 1
       organization_id:
         description: 'The identifier of the organization for which this is a contact.'
         type: string
-        required: 0
       service_id:
         description: 'The identifier of the service for which this is a contact.'
         type: string
-        required: 0
       name:
         description: 'The name of the person.'
         type: string
-        required: 0
       title:
         description: 'The job title of the person.'
         type: string
-        required: 0
       department:
         description: 'The department that the person is part of.'
         type: string
-        required: 0
       email:
         description: 'The email address of the person.'
         type: string
-        required: 0
+    required:
+      - id
   eligibility:
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
         type: string
-        required: 1
       service_id:
         description: 'The identifier of the service for which this entry describes the eligibility criteria.'
         type: string
-        required: 0
       eligibility:
         description: 'The rules or guidelines that determine who can receive the service.'
         type: string
-        required: 0
+    required:
+      - id
   fee:
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
         type: string
-        required: 1
       service_id:
         description: 'The identifier of the service for which this entry describes the costs of service.'
         type: string
-        required: 0
       fee:
         description: 'A listing of the costs of services, including free ones.'
         type: string
-        required: 0
+    required:
+      - id
   funding:
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
         type: string
-        required: 1
       organization_id:
         description: 'The identifier of the organization for which this entry describes the source of funding.'
         type: string
-        required: 0
       service_id:
         description: 'The identifier of the service for which this entry describes the source of funding.'
         type: string
-        required: 0
       source:
         description: 'Source of funds for organization or service.'
         type: string
-        required: 0
+    required:
+      - id
   holiday_schedule:
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
         type: string
-        required: 1
       service_id:
         description: 'The identifier of the service for which this is the holiday schedule.'
         type: string
-        required: 0
       location_id:
         description: 'The identifier of the location for which this is the holiday schedule.'
         type: string
-        required: 0
       closed:
         description: 'Indicates if a service or location is closed during a public holiday.'
         type: boolean
-        required: 1
       opens_at:
         description: 'The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.'
         type: string
-        required: 0
       closes_at:
         description: 'The time when a service or location closes. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.'
         type: string
-        required: 0
       start_date:
         description: 'The first day that a service or location is closed during a public or private holiday.'
         type: string
-        required: 1
       end_date:
         description: 'The last day that a service or location is closed during a public or private holiday.'
         type: string
-        required: 1
+    required:
+      - id
+      - closed
+      - start_date
+      - end_date
   intepretation_services:
     properties:
       id:
         description: 'Each service must have a unique identifier.'
         type: string
-        rquired: 1
       service_id:
         description: 'The identifier of the services for which the entry describes the interpretation services available.'
         type: string
-        rquired: 0
       language:
         description: 'Languages, other than English, for which interpretation is available. Languages are listed as ISO639-1 codes.'
         type: string
-        rquired: 0
+    required:
+      - id
   language:
     properties:
       id:
         description: 'Each language must have a unique identifier.'
         type: string
-        required: 1
       service_id:
         description: 'The identifier of the service for which the entry describes the languages in which services are delivered.'
         type: string
-        required: 0
       location_id:
         description: 'The identifier of the location for which the entry describes the languages in which services are delivered.'
         type: string
-        required: 0
       language:
         description: 'Languages, other than English, in which the service is delivered. Languages are listed as ISO639-1 codes..'
         type: string
-        required: 0
+    required:
+      - id
   location:
     properties:
       id:
         description: 'Each location must have a unique identifier.'
         type: string
-        required: 1
       organization_id:
         description: 'Each location must belong to a single organization. The identifier of the organization should be given here.'
         type: string
-        required: 0
       name:
         description: 'The name of the location.'
         type: string
-        required: 0
       alternate_name:
         description: 'An alternative name for the location.'
         type: string
-        required: 0
       description:
         description: 'A description of this location.'
         type: string
-        required: 0
       transportation:
         description: 'A description of the access to public or private transportation to and from the location.'
         type: string
-        required: 0
       latitude:
         description: 'Y coordinate of location expressed in decimal degrees in WGS84 datum.'
         type: string
-        required: 0
       longitude:
         description: 'X coordinate of location expressed in decimal degrees in WGS84 datum.'
         type: string
-        required: 0
+    required:
+      - id
   metadata:
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
         type: string
-        required: 1
       resource_id:
         description: 'Each service, program. location, address, or contact will have a unique identifier. Unique ids are UUIDs.'
         type: string
-        required: 1
       last_action_date:
         description: 'The date when data was changed.'
         type: string
-        required: 1
       last_action_type:
         description: 'The kind of change made to the data; eg create, update, delete.'
         type: string
-        required: 1
       field_name:
         description: 'The name of field that has been modified.'
         type: string
-        required: 1
       previous_value:
         description: 'The previous value of a field that has been updated.'
         type: string
-        required: 1
       replacement_value:
         description: 'The new value of a field that has been updated.'
         type: string
-        required: 1
       updated_by:
         description: 'The name of the person who updated a value.'
         type: string
-        required: 1
+    required:
+      - id
+      - resource_id
+      - last_action_date
+      - last_action_type
+      - field_name
+      - previous_value
+      - replacement_value
+      - updated_by
   meta_table_description:
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
         type: string
-        required: 1
       name:
         description: 'The table name.'
         type: string
-        required: 0
       language:
         description: 'The language for the table.'
         type: string
-        required: 0
       character_set:
         description: 'The character set for the table'
         type: string
-        required: 0
+    required:
+      - id
   organization:
     properties:
       id:
         description: 'Each organization must have a unique identifier.'
         type: string
-        required: 1
       name:
         description: 'The official or public name of the organization.'
         type: string
-        required: 0
       alternate_name:
         description: 'Alternative or commonly used name for the organization.'
         type: string
-        required: 0
       description:
         description: 'A brief summary about the organization. It can contain markup such as HTML or Markdown.'
         type: string
-        required: 1
       email:
         description: 'The contact e-mail address for the organization.'
         type: string
-        required: 0
       url:
         description: 'The URL (website address) of the organization.'
         type: string
-        required: 0
       tax_status:
         description: 'Government assigned tax designation for for tax-exempt organizations.'
         type: string
-        required: 0
       tax_id:
         description: 'A government issued identifier used for the purpose of tax administration.'
         type: string
-        required: 0
       year_incorporated:
         description: 'The year in which the organization was legally formed.'
         type: string
-        required: 0
       legal_status:
         description: 'The legal status defines the conditions that an organization is operating under; e.g. non-profit, private corporation or a government organization.'
         type: string
-        required: 0
+    required:
+      - id
+      - description
   payment_accepted:
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
         type: string
-        required: 1
       service_id:
         description: 'The identifier of the services for which the entry describes the accepted payment methods.'
         type: string
-        required: 0
       payment:
         description: 'The methods of payment accepted for the service.'
         type: string
-        required: 0
+    required:
+      - id
   phone:
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
         type: string
-        required: 1
       location_id:
         description: 'The identifier of the location where this phone number is located.'
         type: string
-        required: 0
       service_id:
         description: 'The identifier of the service for which this is the phone number.'
         type: string
-        required: 0
       organization_id:
         description: 'The identifier of the organisation for which this is the phone number.'
         type: string
-        required: 0
       contact_id:
         description: 'The identifier of the contact for which this is the phone number.'
         type: string
-        required: 0
       number:
         description: 'The phone number.'
         type: string
-        required: 1
       extension:
         description: 'The extension of the phone number.'
         type: number
-        required: 0
       type:
         description: 'Whether the phone number relates to a fixed or cellular phone.'
         type: string
-        required: 0
       department:
         description: 'The department for which this is the phone number.'
         type: string
-        required: 0
+    required:
+      - id
+      - number
   physical_address:
     properties:
       id:
         description: 'Each physical address must have a unique identifier.'
         type: string
-        required: 1
       location_id:
         description: 'The identifier of the location for which this is the address.'
         type: string
-        required: 0
       attention:
         description: 'The person or entity whose attention should be sought at the location.'
         type: string
-        required: 0
       address_1:
         description: 'The first line of the address.'
         type: string
-        required: 1
       address_2:
         description: 'The second line of the address.'
         type: string
-        required: 0
       address_3:
         description: 'The third line of the address.'
         type: string
-        required: 0
       address_4:
         description: 'The fourth line of the address.'
         type: string
-        required: 0
       city:
         description: 'The city in which the address is located.'
         type: string
-        required: 1
       state_province:
         description: 'The state or province in which the address is located.'
         type: string
-        required: 1
       postal_code:
         description: 'The postal code for the address.'
         type: string
-        required: 1
       country:
         description: 'The country in which the address is located. This should be given as an ISO 3361-1 country code (two letter abbreviation).'
         type: string
-        required: 1
+    required:
+      - id
+      - address_1
+      - city      
+      - state_province
+      - postal_code
+      - country      
   postal_address:
     properties:
       id:
         description: 'Each postal address must have a unique identifier.'
         type: string
-        required: 1
       location_id:
         description: 'The identifier of the location for which this is the postal address.'
         type: string
-        required: 0
       attention:
         description: 'The person or entity for whose attention mail should be marked.'
         type: string
-        required: 0
       address_1:
         description: 'The first line of the address.'
         type: string
-        required: 0
       address_2:
         description: 'The second line of the address.'
         type: string
-        required: 0
       address_3:
         description: 'The third line of the address.'
         type: string
-        required: 0
       address_4:
         description: 'The fourth line of the address.'
         type: string
-        required: 0
       city:
         description: 'The city in which the address is located.'
         type: string
-        required: 0
       state_province:
         description: 'The state or province in which the address is located.'
         type: string
-        required: 0
       postal_code:
         description: 'The postal code for the address.'
         type: string
-        required: 0
       country:
         description: 'The country in which the address is located.'
         type: string
-        required: 0
+    required:
+      - id
   program:
     properties:
       id:
         description: 'Each program must have a unique identifier.'
         type: string
-        required: 1
       organization_id:
         description: 'Each program must belong to a single organization. The identifier of the organization should be given here.'
         type: string
-        required: 1
       name:
         description: 'The name of the program.'
         type: string
-        required: 1
       alternate_name:
         description: 'NeAn alternative name for the program.'
         type: string
-        required: 0
+    required:
+      - id
+      - organization_id
+      - name
   regular_schedule:
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
         type: string
-        required: 1
       service_id:
         description: 'The identifier of the service for which this is the regular schedule.'
         type: string
-        required: 0
       location_id:
         description: 'The identifier of the location for which this is the regular schedule.'
         type: string
-        required: 0
       weekday:
         description: 'The day of the week that this entry relates to.'
         type: integer
-        required: 1
       opens_at:
         description: 'The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.'
         type: string
-        required: 0
       closes_at:
         description: 'The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.'
         type: string
-        required: 0
+    required:
+      - id
+      - weekday
   required_document:
     properties:
       id:
         description: 'Each document must have a unique identifier.'
         type: string
-        required: 1
       service_id:
         description: 'The identifier of the service for which this entry describes the required document.'
         type: string
-        required: 0
       document:
         description: 'The document required to apply for or receive the service. e.g. Government-issued ID, EU Passport.'
         type: string
-        required: 0
+    required:
+      - id
   service:
     properties:
       id:
         description: 'Each service must have a unique identifier.'
         type: string
-        required: 1
       organization_id:
         description: 'The identifier of the organization that provides this service.'
         type: string
-        required: 1
       program_id:
         description: 'The identifier of the program this service is delivered under.'
         type: string
-        required: 0
       location_id:
         description: 'The identifier of the location where this service is delivered.'
         type: string
-        required: 0
       name:
         description: 'The official or public name of the service.'
         type: string
-        required: 1
       alternate_name:
         description: 'Alternative or commonly used name for a service.'
         type: string
-        required: 0
       description:
         description: 'A description of the service.'
         type: string
-        required: 0
       url:
         description: 'URL of the service.'
         type: string
-        required: 0
       email:
         description: 'Email address for the service.'
         type: string
-        required: 0
       status:
         description: 'The current status of the service.'
         type: string
-        required: 1
       application_process:
         description: 'The steps needed to access the service.'
         type: string
-        required: 0
       wait_time:
         description: 'Time a client may expect to wait before receiving a service.'
         type: string
-        required: 0
       taxonomy_ids:
         description: 'A comma separated list of identifiers from the taxonomy table.'
         type: string
-        required: 0
+    required:
+      - id
+      - organization_id
+      - name
+      - status
   service_at_location:
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
         type: string
-        required: 1
       service_id:
         description: 'The identifier of the service at a given location.'
         type: string
-        required: 1
       location_id:
         description: 'The identifier of the location where this service operates.'
         type: string
-        required: 1
       url:
         description: 'If the service at this location has a specific URL, that can be provided here.'
         type: string
-        required: 0
       email:
         description: 'If the service at this location has a specific email address, that can be provided here.'
         type: string
-        required: 0
+    required:
+      - id
+      - service_id
+      - location_id
   service_area:
     properties:
       id:
         description: 'Each service area must have a unique identifier.'
         type: string
-        required: 1
       service_id:
         description: 'The identifier of the service for which this entry describes the service area.'
         type: string
-        required: 0
       service_area:
         description: 'The geographic area where a service is available. This is a free-text description, and so may be precise or indefinite as necessary.'
         type: string
-        required: 0
+    required:
+      - id
   taxonomy:
     properties:
       id:
         description: 'Each taxonomy entry must have a unique identifier. If combining multiple taxonomies with overlapping identifiers, use a prefix to distinguish them.'
         type: string
-        required: 1
       name:
         description: 'The name of this taxonomy term or category.'
         type: string
-        required: 0
       parent_id:
         description: 'If this is a child category in a hierarchical taxonomy, give the identifier of the parent category. For top-level categories, this should be left blank.'
         type: string
-        required: 0
+    required:
+      - id
