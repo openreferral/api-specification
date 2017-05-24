@@ -58,6 +58,7 @@ I am evaluating a handful of vendors and their schema and APIs as part of moving
 ## Other
 
 * [Taxonomy](https://github.com/openreferral/api-specification/issues/19) - Earlier conversations around taxonomy. I am considering the wider picture when it comes to taxonomy, and what is available via the API.
+* [Metadata](https://github.com/openreferral/api-specification/issues/28) - Putting off metadata paths until there is more discussion about how this will work with API deployment and management infrastructure.
 
 ## Future Considerations
 
