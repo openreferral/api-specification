@@ -2,7 +2,7 @@
 
 This is a working project for the Open Referral Human Services Data API Specification.
 
-You can view the public side of this project: http://spec.open.referral.adopta.agency/
+You can view the public side of this project: https://openreferral.github.io/api-specification/
 
 Here is a summary of what we are consider currently as part of the specification, as we take in feedback from the community of provides, vendors, and other human services stake holders.
 
