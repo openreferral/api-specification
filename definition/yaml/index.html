@@ -10,15 +10,12 @@ slug: yaml
 
 {% include nav-definition.html %}
 
-
 {% assign openapi_spec = site.data.api-commons.openapi %}
-
-
 
 <pre class="prettyprint lang-json">
 <script>
-var json = {{ openapi_spec | jsonify }};
-document.write(JSON.stringify(json, null, 2))
+var yaml = {{ openapi_spec }};
+document.write(JSON.stringify(yaml, null, 2))
 </script>
 </pre>
 
