@@ -4533,16 +4533,3 @@ disabilities.'
         type: string
     required:
       - id
-  taxonomy:
-    properties:
-      id:
-        description: 'Each taxonomy entry must have a unique identifier. If combining multiple taxonomies with overlapping identifiers, use a prefix to distinguish them.'
-        type: string
-      name:
-        description: 'The name of this taxonomy term or category.'
-        type: string
-      parent_id:
-        description: 'If this is a child category in a hierarchical taxonomy, give the identifier of the parent category. For top-level categories, this should be left blank.'
-        type: string
-    required:
-      - id
