@@ -38,10 +38,6 @@ We are currently moving the API definition from v1.0 to v1.1, with a focus on en
 * Public - All the GET paths are publicly available, with no metering on them beyond just server logs.
 * Github - All the POST, PUT, and DELETE require an x-appid and x-appkey, which are a Github username and valid Github token for user who is contributor on the Github repository for the API implementation.
 
-## API Logging
-
-* No logging guidance yet.
-
 ## API Portal
 
 * [Demo Portal and API](http://developer.open.referral.adopta.agency/) - The demo portal setup for the project running PHP Slim on AWS linux instance for the API, and the developer portal running on Github Pages.
@@ -54,9 +50,9 @@ We are currently moving the API definition from v1.0 to v1.1, with a focus on en
 
 I am evaluating a handful of vendors and their schema and APIs as part of moving forward the specification. Here are the vendors I'm looking at currently:
 
-* iCarol
-* Vision Link
-* Health Leads
+* [iCarol](http://www.icarol.com)
+* [Vision Link](http://visionlink.org/)
+* [Health Leads](https://healthleadsusa.org/)
 * [AIRS](https://github.com/openreferral/api-specification/issues/17) - Comoparing their schema and API work to the HSDS/A spec. 
 
 ## Other
