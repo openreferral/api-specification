@@ -3380,6 +3380,126 @@ paths:
               $ref: "#/definitions/language"
       tags:
       - Services
+  /services/{service_id}/locations/:
+    get:
+      summary: Get Service Locations
+      description: Get Service Locations
+      operationId: get-service-locations
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: 'The unique service id.'
+      responses:
+        '200':
+          description: Location Response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/location"
+      tags:
+      - Organization - Locations
+    post:
+      summary: Create a new location
+      description: Create a new location
+      operationId: create-a-new-location
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: 'The unique service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/location'
+      responses:
+        '200':
+          description: Location Response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/location"
+      tags:
+      - Service - Locations
+  /services/{service_id}/locations/{location_id}/:
+    get:
+      summary: Update Existing Service Location
+      description: Update Existing Service Location
+      operationId: update-existing-service-location
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: 'The unique service id.'
+        - in: path
+          required: true
+          type: string
+          name: location_id
+          description: 'The unique location id.'
+      responses:
+        '200':
+          description: Location Response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/location"
+      tags:
+      - Organization - Locations
+    put:
+      summary: Create a new service location
+      description: Create a new service location
+      operationId: create-a-new-service-location
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: 'The unique service id.'
+        - in: path
+          required: true
+          type: string
+          name: location_id
+          description: 'The unique location id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/location'
+      responses:
+        '200':
+          description: Location Response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/location"
+      tags:
+      - Service - Locations
+    delete:
+      summary: Delete Service Location
+      description: Delete Service Location
+      operationId: delete-service-location
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: 'The unique service id.'
+        - in: path
+          required: true
+          type: string
+          name: location_id
+          description: 'The unique location id.'
+      responses:
+        '200':
+          description: Location Response
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/location"
+      tags:
+      - Service - Locations
   /services/{service_id}/payment-accepted/:
     get:
       summary: Get Payment Accepted
