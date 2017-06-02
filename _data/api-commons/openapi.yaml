@@ -17,6 +17,9 @@ schemes:
 - http
 produces:
 - application/json
+- application/xml
+- text/csv
+- text/html
 paths:
   /contacts/:
     get:
