@@ -29,11 +29,7 @@
       "properties": [
         {
           "type": "x-openapi-spec",
-          "url": "api-commons/openapi-spec.json"
-        },
-        {
-          "type": "x-json-schema",
-          "url": "api-commons/schema.json"
+          "url": "https://raw.githubusercontent.com/openreferral/api-specification/master/_data/api-commons/openapi.yaml"
         }
       ]
     }
