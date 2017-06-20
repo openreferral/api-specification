@@ -2494,7 +2494,11 @@ paths:
           name: status
       responses:
         '200':
-          description: OK
+          description: Successful SSearch
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/search"
       tags:
       - Search
   /services/:
@@ -4656,3 +4660,20 @@ disabilities.'
         type: string
     required:
       - id
+  search:
+    properties:
+      organizations:
+        description: 'List of organizations returned as part of search.'
+        type: array
+        items:
+          $ref: '#/definitions/organization'
+      locations:
+        description: 'List of locations returned as part of search.'
+        type: array
+        items:
+          $ref: '#/definitions/location'
+      services:
+        description: 'List of services returned as part of search.'
+        type: array
+        items:
+          $ref: '#/definitions/service'
