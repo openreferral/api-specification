@@ -4579,9 +4579,6 @@ disabilities.'
       program_id:
         description: 'The identifier of the program this service is delivered under.'
         type: string
-      location_id:
-        description: 'The identifier of the location where this service is delivered.'
-        type: string
       name:
         description: 'The official or public name of the service.'
         type: string
