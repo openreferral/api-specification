@@ -59,6 +59,9 @@ I am evaluating a handful of vendors and their schema and APIs as part of moving
 
 * [Taxonomy](https://github.com/openreferral/api-specification/issues/19) - Earlier conversations around taxonomy. I am considering the wider picture when it comes to taxonomy, and what is available via the API.
 * [Metadata](https://github.com/openreferral/api-specification/issues/28) - Putting off metadata paths until there is more discussion about how this will work with API deployment and management infrastructure.
+* [Approval & Feedback](https://github.com/openreferral/api-specification/issues/34) - Discussion around how we are going to allow for the approval, notificiation, and feedback system around any change to a record in the system.
+* [Universal Unique IDs](https://github.com/openreferral/api-specification/issues/35) - How will we allow for a universal uniqud ID system for all organizations, locations, and services, providing some provenance on the origin of the record.
+* [Webhooks](https://github.com/openreferral/api-specification/issues/35) - How will we allow for a universal uniqud ID system for all organizations, locations, and services, providing some provenance on the origin of the record.
 
 ## Future Considerations
 
