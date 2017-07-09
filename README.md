@@ -34,19 +34,18 @@ We are currently moving the API definition from v1.0 to v1.1, with a focus on en
 * [Hypermedia](https://github.com/openreferral/api-specification/issues/7) - Conversations around future hypermedia usage.
 * [Content Negotiation](https://github.com/openreferral/api-specification/issues/39) - Augmenting other conversations, begin introducing content negotiation concepts to the discussion.
 
-## API Management
+## Other
 
-* Public - All the GET paths are publicly available, with no metering on them beyond just server logs.
-* Github - All the POST, PUT, and DELETE require an x-appid and x-appkey, which are a Github username and valid Github token for user who is contributor on the Github repository for the API implementation.
-* Logging - I want to start coming up with guidance for logging, either as part of API structure, or offloaded to API management solutions.
+* [Taxonomy](https://github.com/openreferral/api-specification/issues/19) - Earlier conversations around taxonomy. I am considering the wider picture when it comes to taxonomy, and what is available via the API.
+* [Metadata](https://github.com/openreferral/api-specification/issues/28) - Putting off metadata paths until there is more discussion about how this will work with API deployment and management infrastructure.
+* [Approval & Feedback](https://github.com/openreferral/api-specification/issues/34) - Discussion around how we are going to allow for the approval, notificiation, and feedback system around any change to a record in the system.
+* [Universal Unique IDs](https://github.com/openreferral/api-specification/issues/35) - How will we allow for a universal uniqud ID system for all organizations, locations, and services, providing some provenance on the origin of the record.
+* [Messaging](https://github.com/openreferral/api-specification/issues/37) - Suggesting that we isolate the messaging guidance for APIs, setting a standard for how you communicate within a single implementation as well across implementations.
+* [Webhooks](https://github.com/openreferral/api-specification/issues/35) - How will we allow for a universal uniqud ID system for all organizations, locations, and services, providing some provenance on the origin of the record.
 
 ## API Portal
 
 * [Demo Portal and API](http://developer.open.referral.adopta.agency/) - The demo portal setup for the project running PHP Slim on AWS linux instance for the API, and the developer portal running on Github Pages.
-
-## Privacy
-
-* [Data Privacy Conversation](https://github.com/openreferral/api-specification/issues/20#issuecomment-303550584) - The open issue discussing privacy concerns.
 
 ## Vendors
 
@@ -57,14 +56,15 @@ I am evaluating a handful of vendors and their schema and APIs as part of moving
 * [Health Leads](https://healthleadsusa.org/)
 * [AIRS](https://github.com/openreferral/api-specification/issues/17) - Comoparing their schema and API work to the HSDS/A spec. 
 
-## Other
+## Privacy
 
-* [Taxonomy](https://github.com/openreferral/api-specification/issues/19) - Earlier conversations around taxonomy. I am considering the wider picture when it comes to taxonomy, and what is available via the API.
-* [Metadata](https://github.com/openreferral/api-specification/issues/28) - Putting off metadata paths until there is more discussion about how this will work with API deployment and management infrastructure.
-* [Approval & Feedback](https://github.com/openreferral/api-specification/issues/34) - Discussion around how we are going to allow for the approval, notificiation, and feedback system around any change to a record in the system.
-* [Universal Unique IDs](https://github.com/openreferral/api-specification/issues/35) - How will we allow for a universal uniqud ID system for all organizations, locations, and services, providing some provenance on the origin of the record.
-* [Messaging](https://github.com/openreferral/api-specification/issues/37) - Suggesting that we isolate the messaging guidance for APIs, setting a standard for how you communicate within a single implementation as well across implementations.
-* [Webhooks](https://github.com/openreferral/api-specification/issues/35) - How will we allow for a universal uniqud ID system for all organizations, locations, and services, providing some provenance on the origin of the record.
+* [Data Privacy Conversation](https://github.com/openreferral/api-specification/issues/20#issuecomment-303550584) - The open issue discussing privacy concerns.
+
+## API Management
+
+* Public - All the GET paths are publicly available, with no metering on them beyond just server logs.
+* Github - All the POST, PUT, and DELETE require an x-appid and x-appkey, which are a Github username and valid Github token for user who is contributor on the Github repository for the API implementation.
+* Logging - I want to start coming up with guidance for logging, either as part of API structure, or offloaded to API management solutions.
 
 ## Future Considerations
 
