@@ -26,6 +26,7 @@ We are currently moving the API definition from v1.0 to v1.1, with a focus on en
 * [Body Usage](https://github.com/openreferral/api-specification/issues/25) - How we are using the body of each request.
 * [Data Filtering](https://github.com/openreferral/api-specification/issues/22) - Discussions around how to filter data, allowing API consumers to search across the contents of any implementation.
 * [Schema Filtering](https://github.com/openreferral/api-specification/issues/21) - Considering the design of simple, standard, or full schema responses that can fe specificed using a prefer header.
+* [Path Filtering](https://github.com/openreferral/api-specification/issues/38) - This won't be in the API design per se, but in the documentation (APIs.json), allowing for grouping and filtering of available paths similar to schema and data above
 * [Sorting](https://github.com/openreferral/api-specification/issues/12) - How we are going to handle sorting.
 * [Operation ID](https://github.com/openreferral/api-specification/issues/4) - Decision around the operationID for each unique path.
 * [Response Structure](https://github.com/openreferral/api-specification/issues/6) - More conversation about how to structure responses.
