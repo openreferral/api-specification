@@ -32,7 +32,7 @@ We are currently moving the API definition from v1.0 to v1.1, with a focus on en
 * [Response Structure](https://github.com/openreferral/api-specification/issues/6) - More conversation about how to structure responses.
 * [Status Codes](https://github.com/openreferral/api-specification/issues/3) - Discussion around the status codes to return.
 * [Hypermedia](https://github.com/openreferral/api-specification/issues/7) - Conversations around future hypermedia usage.
-* [GraphQL](https://github.com/openreferral/api-specification/issues/9) - Discussion around using GraphQL to allow for more advanced usage and querying.
+* [Content Negotiation](https://github.com/openreferral/api-specification/issues/39) - Augmenting other conversations, begin introducing content negotiation concepts to the discussion.
 
 ## API Management
 
@@ -69,3 +69,7 @@ I am evaluating a handful of vendors and their schema and APIs as part of moving
 ## Future Considerations
 
 * [Scheduling and Calendaring](https://github.com/openreferral/api-specification/issues/23) - Suggestions around evolving the regular and holiday scheduling to think about calendaring.
+
+## Archived
+
+* [GraphQL](https://github.com/openreferral/api-specification/issues/9) - Discussion around using GraphQL to allow for more advanced usage and querying.
