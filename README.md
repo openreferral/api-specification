@@ -38,6 +38,7 @@ We are currently moving the API definition from v1.0 to v1.1, with a focus on en
 
 * Public - All the GET paths are publicly available, with no metering on them beyond just server logs.
 * Github - All the POST, PUT, and DELETE require an x-appid and x-appkey, which are a Github username and valid Github token for user who is contributor on the Github repository for the API implementation.
+* Logging - I want to start coming up with guidance for logging, either as part of API structure, or offloaded to API management solutions.
 
 ## API Portal
 
