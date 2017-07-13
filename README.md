@@ -15,7 +15,7 @@ We are currently moving the API definition from v1.0 to v1.1, with a focus on en
 
 ## API Design
 
-* [Domain Guidance](https://github.com/openreferral/api-specification/issues/4) - Thoughts about whether or not we should be offering domain guidance in the future. Not worried about for v1.1, but maybe later.
+* [Domain Guidance](https://github.com/openreferral/api-specification/issues/41) - Thoughts about whether or not we should be offering domain guidance in the future. Not worried about for v1.1, but maybe later.
 * [Versioning](https://github.com/openreferral/api-specification/issues/8) - Guidance for versioning each API and communicating about what is supported.
 * [Paths](https://github.com/openreferral/api-specification/issues/27) - The discussion around creating paths.
 * [Verbs](https://github.com/openreferral/api-specification/issues/26) - here is the thread for further discussions around verbs.
