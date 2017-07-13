@@ -274,6 +274,10 @@ paths:
       parameters:
         - in: query
           type: number
+          name: query
+          description: A query to filter result by.
+        - in: query
+          type: number
           name: page
           description: The particular page of results.
         - in: query
@@ -1418,6 +1422,10 @@ paths:
       parameters:
         - in: query
           type: number
+          name: query
+          description: A query to filter result by.
+        - in: query
+          type: number
           name: page
           description: The particular page of results.
         - in: query
@@ -2507,6 +2515,10 @@ paths:
       description: Get Services
       operationId: listServices
       parameters:
+        - in: query
+          type: number
+          name: query
+          description: A query to filter result by.
         - in: query
           type: number
           name: page
