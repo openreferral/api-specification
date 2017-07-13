@@ -13,7 +13,27 @@ We are currently moving the API definition from v1.0 to v1.1, with a focus on en
 * Here is OpenAPI for version 1.0 of the HSDA - https://openreferral.github.io/api-specification/definition/v10/
 * Here is OpenAPI for version 1.1 of the HSDA - https://openreferral.github.io/api-specification/definition/
 
-## API Design
+## Road Map 
+
+### [v1.1](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av1.1)
+
+- [Validation](https://github.com/openreferral/api-specification/issues/43) - Produce JSON schema for HSDS and HSDS, and publish API definition, and working HSDS/a API for validating.
+- Finalize - Take any feedback from Slack, Github, Google Group, and Spreadsheet and finalize the release of HSDA v1.1
+- [Use Cases](https://github.com/openreferral/api-specification/issues/44) - We need use cases for any possible scenario in which HSDS/A will be put to work.
+
+### [v1.2](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av1.2)
+
+- [/everything](https://github.com/openreferral/api-specification/issues/45) - add an /everything to each core resource, allowing access to all sub resouces.
+- [/search](https://github.com/openreferral/api-specification/issues/46) - give search a different response that spans all objects.
+- [Use Cases](https://github.com/openreferral/api-specification/issues/44) - We need use cases for any possible scenario in which HSDS/A will be put to work.
+
+### [v1.3](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av1.3)
+
+- [Error Codes](https://github.com/openreferral/api-specification/issues/47) - Establish a set of object definitions for returning errors as part of responses.
+- [Status Code](https://github.com/openreferral/api-specification/issues/48) - Establish a set of status codes across all paths, and associate as reponses.
+- [Use Cases](https://github.com/openreferral/api-specification/issues/44) - We need use cases for any possible scenario in which HSDS/A will be put to work.
+
+## API Design Conversation - Ongoing
 
 * [Domain Guidance](https://github.com/openreferral/api-specification/issues/41) - Thoughts about whether or not we should be offering domain guidance in the future. Not worried about for v1.1, but maybe later.
 * [Versioning](https://github.com/openreferral/api-specification/issues/8) - Guidance for versioning each API and communicating about what is supported.
