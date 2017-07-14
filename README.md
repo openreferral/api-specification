@@ -26,6 +26,7 @@ We are currently moving the API definition from v1.0 to v1.1, with a focus on en
 - [/everything](https://github.com/openreferral/api-specification/issues/45) - add an /everything to each core resource, allowing access to all sub resouces.
 - [/search](https://github.com/openreferral/api-specification/issues/46) - give search a different response that spans all objects.
 - [Use Cases](https://github.com/openreferral/api-specification/issues/44) - We need use cases for any possible scenario in which HSDS/A will be put to work.
+- [fields= parameter]() - Add a parameter for filtering which fields and sub-resources get returned as part of response. 
 
 ### [v1.3](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av1.3)
 
