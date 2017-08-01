@@ -28,9 +28,13 @@ paths:
       operationId: listContacts
       parameters:
         - in: query
-          type: number
           name: query
-          description: A query to filter list by.
+          required: false
+          type: array
+          description: A query to filter results by (e.g. <field>==<value>). Multiple entries are allowed.
+          collectionFormat: multi
+          items:
+            type: string
         - in: query
           type: number
           name: page
@@ -273,9 +277,13 @@ paths:
       operationId: listLocations
       parameters:
         - in: query
-          type: number
           name: query
-          description: A query to filter result by.
+          required: false
+          type: array
+          description: A query to filter results by (e.g. <field>==<value>). Multiple entries are allowed.
+          collectionFormat: multi
+          items:
+            type: string
         - in: query
           type: number
           name: page
@@ -1421,9 +1429,13 @@ paths:
       operationId: listOrganizations
       parameters:
         - in: query
-          type: number
           name: query
-          description: A query to filter result by.
+          required: false
+          type: array
+          description: A query to filter results by (e.g. <field>==<value>). Multiple entries are allowed.
+          collectionFormat: multi
+          items:
+            type: string
         - in: query
           type: number
           name: page
@@ -2516,9 +2528,13 @@ paths:
       operationId: listServices
       parameters:
         - in: query
-          type: number
           name: query
-          description: A query to filter result by.
+          required: false
+          type: array
+          description: A query to filter results by (e.g. <field>==<value>). Multiple entries are allowed.
+          collectionFormat: multi
+          items:
+            type: string
         - in: query
           type: number
           name: page
