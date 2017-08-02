@@ -4343,10 +4343,10 @@ disabilities.'
         type: string
       latitude:
         description: 'Y coordinate of location expressed in decimal degrees in WGS84 datum.'
-        type: string
+        type: number
       longitude:
         description: 'X coordinate of location expressed in decimal degrees in WGS84 datum.'
-        type: string
+        type: number
     required:
       - id
   organization:
@@ -4422,7 +4422,7 @@ disabilities.'
         type: string
       extension:
         description: 'The extension of the phone number.'
-        type: number
+        type: ['number', 'null']
       type:
         description: 'Whether the phone number relates to a fixed or cellular phone.'
         type: string
