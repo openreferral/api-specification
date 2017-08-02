@@ -4343,10 +4343,10 @@ disabilities.'
         type: string
       latitude:
         description: 'Y coordinate of location expressed in decimal degrees in WGS84 datum.'
-        type: number
+        type: ['number', 'null']
       longitude:
         description: 'X coordinate of location expressed in decimal degrees in WGS84 datum.'
-        type: number
+        type: ['number', 'null']
     required:
       - id
   organization:
