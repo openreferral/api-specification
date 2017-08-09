@@ -1,5 +1,7 @@
 ## Open Referral Human Services Data API Specification
 
+<p align="center" style="font-size: 18px;"><strong>OpenAPI Stored In /_data/api-commons/openapi.yaml</strong></p>
+
 This is a working project for the Open Referral Human Services Data API Specification.
 
 You can view the public side of this project: https://openreferral.github.io/api-specification/
