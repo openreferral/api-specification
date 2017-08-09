@@ -26,3 +26,5 @@ Here is the current road map:
 - [Use Cases](https://github.com/openreferral/api-specification/issues/44) - We need use cases for any possible scenario in which HSDS/A will be put to work.
 
 All other conversations can be found under the Github issues for this repository. Feel free to submit an issue if you have any questions.
+
+This project runs using Jekyll hosted on Github, with _data as the data source for the entire project, and other continuous integration workflows.
