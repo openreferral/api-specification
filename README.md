@@ -4,7 +4,7 @@ This project is driven by an OpenAPI definition located in [_data/api-commons/op
 
 The website for this repo can be found at: https://openreferral.github.io/api-specification/definition/
 
-Here is the current road map:
+Here is the current road map for HSDA:
 
 ### [v1.1](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av1.1)
 
@@ -24,6 +24,19 @@ Here is the current road map:
 - [Error Codes](https://github.com/openreferral/api-specification/issues/47) - Establish a set of object definitions for returning errors as part of responses.
 - [Status Code](https://github.com/openreferral/api-specification/issues/48) - Establish a set of status codes across all paths, and associate as reponses.
 
-All other conversations can be found under the Github issues for this repository. Feel free to submit an issue if you have any questions.
+Use the Github issues for any questions and support.
 
-This project runs using Jekyll hosted on Github, with _data as the data source for the entire project, and other continuous integration workflows.
+The focus is primarily on the Human Services Data API (HSDA), but this work has been broken up into separate projects, to allow for separate of concerns, and versioning. You can find each project labeled:
+
+- [hsda](https://github.com/openreferral/api-specification/labels/hsda) - The primary human services specification.
+- [hsda search](https://github.com/openreferral/api-specification/labels/hsda-search) - Just for searching.
+- [hsda bulk](https://github.com/openreferral/api-specification/labels/hsda-bulk) - Just for bulk management.
+- [hsda meta](https://github.com/openreferral/api-specification/labels/hsda-meta) - Just for meta, system.
+- [hsda taxonomy](https://github.com/openreferral/api-specification/labels/hsda-taxonomy) - Just for taxonomy.
+- [hsda management](https://github.com/openreferral/api-specification/labels/hsda-management) - Just for management
+- [hsda orchestration](https://github.com/openreferral/api-specification/labels/hsda-orchestration) - Just for orchestration (webhooks, events, jobs)
+- [hsda utility](https://github.com/openreferral/api-specification/labels/hsda-utility) - All utility features.
+- [hsda aggregation](https://github.com/openreferral/api-specification/labels/hsda-aggregation) - Upcoming aggregation work, acros multiple instances.
+- [hsda custom](https://github.com/openreferral/api-specification/labels/hsda-custom) - Allowing for custom fields.
+
+These are separate projects to allow for them to be moved forward separately. They are also meant to act as separate microservices, that can be deployed, scaled, and managed indepedent of each other while still working in concert. 
