@@ -1,0 +1,517 @@
+swagger: '2.0'
+info:
+  title: "Human Services Data Management API"
+  description: "This is a complimentary API to the HSDA API focusing just on management."
+  termsOfService: "https://openreferral.org/documentation/"
+  contact:
+    name: Open Referral
+    url: https://openreferral.org/
+    email: info@openreferral.org
+  license:
+    name: Open Data Commons Public Domain
+    url: http://opendatacommons.org/licenses/pddl/
+  version: v1.0
+host: hsda.management.api.adopta.agency
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+paths:
+  /users/:
+    get:
+      summary: Get Users
+      description: Get Users
+      operationId: listUsers
+      parameters:
+        - in: query
+          type: string
+          name: query
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
+        - in: query
+          type: number
+          name: page
+          default: 0
+          description: The particular page of results.
+        - in: query
+          type: number
+          name: per_page
+          default: 25
+          description: Number of records to return per page, up to 100.
+        - in: query
+          type: string
+          name: sortby
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Item Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/user"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Users
+    post:
+      summary: Add User
+      description: Add User
+      operationId: addUser
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/user'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: User Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/user"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Users
+  /users/auth/:
+    get:
+      summary: Auth Users
+      description: Auth Users
+      operationId: authUser
+      parameters:
+        - in: query
+          type: string
+          name: login
+          description: A users login
+        - in: query
+          type: string
+          name: code
+          description: A uses code
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Auth Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Users
+  /users/{user_id}/:
+    get:
+      summary: Get User
+      description: Get User
+      operationId: getUser
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: user_id
+          description: 'The user id.'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: User Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/user"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Users
+    put:
+      summary: Update User
+      description: Update an existing user.
+      operationId: updateUser
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: user_id
+          description: 'The user id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/user'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: User Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/user"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Users
+    delete:
+      summary: Delete User
+      description: Delete User
+      operationId: deleteUser
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: user_id
+          description: 'The user id.'
+      tags:
+      - Users
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: User Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/user"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+  /services/:
+    get:
+      summary: Get Services
+      description: Get Services
+      operationId: listServices
+      parameters:
+        - in: query
+          type: string
+          name: query
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
+        - in: query
+          type: number
+          name: page
+          default: 0
+          description: The particular page of results.
+        - in: query
+          type: number
+          name: per_page
+          default: 25
+          description: Number of records to return per page, up to 100.
+        - in: query
+          type: string
+          name: sortby
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Item Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+    post:
+      summary: Add Service
+      description: Add Service
+      operationId: addService
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Service Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+  /services/{service_id}/:
+    get:
+      summary: Get Service
+      description: Get Service
+      operationId: getService
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: 'The service id.'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Service Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+    put:
+      summary: Update Service
+      description: Update an existing service.
+      operationId: updateService
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: 'The service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Service Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+    delete:
+      summary: Delete Service
+      description: Delete Service
+      operationId: deleteService
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: 'The service id.'
+      tags:
+      - Services
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Service Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+securityDefinitions:
+  appid:
+    type: apiKey
+    in: header
+    name: x-appid
+  appkey:
+    type: apiKey
+    in: header
+    name: x-appkey
+definitions:
+  user:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      login :
+        description: 'The login for a user.'
+        type: string
+      name:
+        description: 'The name for a user.'
+        type: string
+      email:
+        description: 'The email for a user.'
+        type: string
+      code:
+        description: 'The unique code for user (Github Token)'
+        type: string
+    required:
+      - id
+      - login
+      - name
+      - email
+      - code
+  service:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      user_id :
+        description: 'The id for the user.'
+        type: string
+      name:
+        description: 'The name of the service the user has access to.'
+        type: string
+      path:
+        description: 'The path user has access to.'
+        type: string
+      verb:
+        description: 'The verb user has access to.'
+        type: string
+    required:
+      - id
+      - user_id
+      - path
+      - verb
+  error_response:
+    properties:
+      code:
+        description: 'Repeat the HTTP status code'
+        type: integer
+      message:
+        description: 'A plain language message explaining the error'
+        type: integer

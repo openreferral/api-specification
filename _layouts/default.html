@@ -12,6 +12,19 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/{{ site.github_repo}}/">Home</a></li>
         <li class="active"><a href="/{{ site.github_repo}}/definition/">HSDS API Definition</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="/api-specification/hsda/">HSDA
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/api-specification/hsda-search/">HSDA Search</a></li>
+            <li><a href="/api-specification/hsda-bulk/">HSDA Bulk</a></li>
+            <li><a href="/api-specification/hsda-taxonomy/">HSDA Taxonomy</a></li>
+            <li><a href="/api-specification/hsda-orchestration/">HSDA Orchestration</a></li>
+            <li><a href="/api-specification/hsda-meta/">HSDA Meta</a></li>
+            <li><a href="/api-specification/hsda-management/">HSDA Management</a></li>
+            <li><a href="/api-specification/hsda-utility/">HSDA Utility</a></li>
+          </ul>
+        </li>        
         <li class="active"><a href="https://raw.githubusercontent.com/openreferral/api-specification/master/_data/api-commons/openapi.yaml" target="_blank">OpenAPI</a></li>
         <li class="active"><a href="https://github.com/{{ site.github_org}}/{{ site.github_repo}}/issues" target="_blank">Issues</a></li>
         <li class="active"><a href="/{{ site.github_repo}}/contact/">Contact</a></li>
@@ -22,9 +35,7 @@
 <div class="container">
     <div style="padding: 50px;">
         <div class="page">
-
-            {{ content }}
-
+          {{ content }}
         </div>
     </div>
 </div>

@@ -1,0 +1,556 @@
+swagger: '2.0'
+info:
+  title: "Human Services Data Orchestration API"
+  description: "This is a complimentary API to the HSDA API focusing just on orchestration."
+  termsOfService: "https://openreferral.org/documentation/"
+  contact:
+    name: Open Referral
+    url: https://openreferral.org/
+    email: info@openreferral.org
+  license:
+    name: Open Data Commons Public Domain
+    url: http://opendatacommons.org/licenses/pddl/
+  version: v1.0
+host: hsda.orchestation.api.adopta.agency
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+paths:
+  /services/:
+    get:
+      summary: Services
+      description: The services being used across ochestration.
+      operationId: getServices
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Service Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+    post:
+      summary: Add Service
+      description: Add Service
+      operationId: addService
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Service Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+  /services/{service_id}/:
+    get:
+      summary: Get Service
+      description: Get Service
+      operationId: getService
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: 'The service id.'
+      responses:
+        '200':
+          description: Service Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+    put:
+      summary: Update Service
+      description: Update an existing service.
+      operationId: updateService
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: 'The service id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Service Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+    delete:
+      summary: Delete Service
+      description: Delete Service
+      operationId: deleteServiceComplete
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: 'The service id.'
+      tags:
+      - Services
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Service Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+  /events/:
+    get:
+      summary: Events
+      description: The are the events that can occur.
+      operationId: getEvents
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Event Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/event"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Events
+    post:
+      summary: Add Event
+      description: Add Event
+      operationId: addEvent
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/event'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Event Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/event"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Events
+  /events/{event_id}/:
+    get:
+      summary: Get Event
+      description: Get Event
+      operationId: getEvent
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: event_id
+          description: 'The event id.'
+      responses:
+        '200':
+          description: Event Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/event"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Events
+    put:
+      summary: Update Event
+      description: Update an existing event.
+      operationId: updateEvent
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: event_id
+          description: 'The event id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/event'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Event Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/event"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Events
+    delete:
+      summary: Delete Event
+      description: Delete Event
+      operationId: deleteEventComplete
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: event_id
+          description: 'The event id.'
+      tags:
+      - Events
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Event Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/event"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+  /webhooks/:
+    get:
+      summary: Webhooks
+      description: The webhooks currently in operation.
+      operationId: getWebhooks
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Webhook Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/webhook"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Webhooks
+    post:
+      summary: Add Webhook
+      description: Add Webhook
+      operationId: addWebhook
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/webhook'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Webhook Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/webhook"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Webhooks
+  /webhooks/{webhook_id}/:
+    get:
+      summary: Get Webhook
+      description: Get Webhook
+      operationId: getWebhook
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: webhook_id
+          description: The webhook id.
+      responses:
+        '200':
+          description: Webhook Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/webhook"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Webhooks
+    put:
+      summary: Update Webhook
+      description: Update Webhook
+      operationId: updateWebhook
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: webhook_id
+          description: The webhook id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/webhook'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Webhook Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/webhook"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Webhooks
+    delete:
+      summary: Delete Webhook
+      description: Delete Webhook
+      operationId: deleteWebhook
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: webhook_id
+          description: 'The webhook id.'
+      tags:
+      - Webhooks
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Webhook Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/webhook"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+securityDefinitions:
+  appid:
+    type: apiKey
+    in: header
+    name: x-appid
+  appkey:
+    type: apiKey
+    in: header
+    name: x-appkey
+definitions:
+  service:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      user_id :
+        description: 'The id for the user.'
+        type: string
+      service:
+        description: 'The service name.'
+        type: string
+      path:
+        description: 'The path name.'
+        type: string
+      verb:
+        description: 'The verb.'
+        type: string
+    required:
+      - id
+      - user_id
+      - path
+      - verb
+  event:
+    properties:
+      id:
+        description: 'Each event has unique identifier.'
+        type: string
+      service:
+        description: 'The name of the service the event will run against.'
+        type: string
+      path:
+        description: 'The path the event will run against.'
+        type: string
+      verb:
+        description: 'The verb the event will run against.'
+        type: string
+      description:
+        description: 'The description of the event.'
+        type: string
+    required:
+      - id
+      - service
+      - path
+      - verb
+      - description
+  webhook:
+    properties:
+      id:
+        description: 'Each webhook has a unique identifier.'
+        type: string
+      event_id:
+        description: 'The event id for this webhook.'
+        type: string
+    required:
+      - id
+      - event_id
+  error_response:
+    properties:
+      code:
+        description: 'Repeat the HTTP status code'
+        type: integer
+      message:
+        description: 'A plain language message explaining the error'
+        type: integer

@@ -1,0 +1,796 @@
+swagger: '2.0'
+info:
+  title: "Human Services Data Bulk API"
+  description: "This is a specification describing the Human Services Data API, using the Human Services Data Specification (HSDS). This is a service for handling bulk loading of data into any HSDA service, allowing each POST and PUT to be queued up as a job, and be run on schedule, or based upon other events."
+  termsOfService: "https://openreferral.org/documentation/"
+  contact:
+    name: Open Referral
+    url: https://openreferral.org/
+    email: info@openreferral.org
+  license:
+    name: Open Data Commons Public Domain
+    url: http://opendatacommons.org/licenses/pddl/
+  version: v1.0
+host: hsda.buapi.adopta.agency
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+paths:
+  /contacts/:
+    post:
+      summary: Submit Bulk Contact
+      description: Submit Bulk Contact
+      operationId: submitBulkContacts
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Contact Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact"
+      tags:
+      - Contacts
+  /locations/:
+    post:
+      summary: Submit Bulk Location
+      description: Submit Bulk Location
+      operationId: SubmitBulkLocations
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/location'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Location Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/location"
+      tags:
+      - Locations
+  /organizations/:
+    post:
+      summary: Submit Bulk Organizations
+      description: Submit Bulk Organizations
+      operationId: submitBulkOrganizations
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/organization'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Organization Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/organization"
+      tags:
+      - Organizations
+  /services/:
+    post:
+      summary: Submit Bulk Service
+      description: Submit Bulk Service
+      operationId: submitBulkServices
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Service Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+      tags:
+      - Services
+  /jobs/:
+    get:
+      summary: Get Jobs
+      description: Get Jobs
+      operationId: listJobs
+      parameters:
+        - in: query
+          type: string
+          name: query
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
+        - in: query
+          type: number
+          name: page
+          default: 0
+          description: The particular page of results.
+        - in: query
+          type: number
+          name: per_page
+          default: 25
+          description: Number of records to return per page, up to 100.
+        - in: query
+          type: string
+          name: sort_by
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
+      responses:
+        '200':
+          description: Job Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/job"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Jobs
+  /jobs/{job_id}/run/:
+    get:
+      summary: Run Job
+      description: Run a specific job
+      operationId: runJob
+      parameters:
+        - in: path
+          type: string
+          name: job_id
+          required: true
+          description: The unique id of the job to run.
+      responses:
+        '200':
+          description: Job Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/job"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Jobs
+securityDefinitions:
+  appid:
+    type: apiKey
+    in: header
+    name: x-appid
+  appkey:
+    type: apiKey
+    in: header
+    name: x-appkey
+definitions:
+  accessibility_for_disabilities:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      location_id:
+        description: 'The identifier of the location for which the entry describes the accessibility provision.'
+        type: string
+      accessibility:
+        description: 'Description of assistance or infrastructure that facilitate access to clients with
+disabilities.'
+        type: string
+      details:
+        description: 'Any further details relating to the relevant accessibility arrangements at this location. E.g. whether advance notice is required to use an accessibility facility.'
+        type: string
+    required:
+      - id
+  contact:
+    properties:
+      id:
+        description: 'Each contact must have a unique identifier.'
+        type: string
+      organization_id:
+        description: 'The identifier of the organization for which this is a contact.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which this is a contact.'
+        type: string
+      service_at_location_id:
+        description: 'The identifier of the ‘service at location’ table entry, when this contact is specific to a service in a particular location.'
+        type: string
+      name:
+        description: 'The name of the person.'
+        type: string
+      title:
+        description: 'The job title of the person.'
+        type: string
+      department:
+        description: 'The department that the person is part of.'
+        type: string
+      email:
+        description: 'The email address of the person.'
+        type: string
+      phones:
+        type: "array"
+        items:
+          $ref: "#/definitions/phone"
+    required:
+      - id
+  eligibility:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which this entry describes the eligibility criteria.'
+        type: string
+      eligibility:
+        description: 'The rules or guidelines that determine who can receive the service.'
+        type: string
+    required:
+      - id
+  fee:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which this entry describes the costs of service.'
+        type: string
+      fee:
+        description: 'A listing of the costs of services, including free ones.'
+        type: string
+    required:
+      - id
+  funding:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      organization_id:
+        description: 'The identifier of the organization for which this entry describes the source of funding.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which this entry describes the source of funding.'
+        type: string
+      source:
+        description: 'Source of funds for organization or service.'
+        type: string
+    required:
+      - id
+  holiday_schedule:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which this is the holiday schedule.'
+        type: string
+      location_id:
+        description: 'The identifier of the location for which this is the holiday schedule.'
+        type: string
+      service_at_location_id:
+        description: 'The identifier of the ‘service at location’ table entry, when this schedule is specific to a service in a particular location.'
+        type: string
+      closed:
+        description: 'Indicates if a service or location is closed during a public holiday.'
+        type: boolean
+      opens_at:
+        description: 'The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.'
+        type: string
+      closes_at:
+        description: 'The time when a service or location closes. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.'
+        type: string
+      start_date:
+        description: 'The first day that a service or location is closed during a public or private holiday.'
+        type: string
+      end_date:
+        description: 'The last day that a service or location is closed during a public or private holiday.'
+        type: string
+    required:
+      - id
+      - closed
+      - start_date
+      - end_date
+  intepretation_services:
+    properties:
+      id:
+        description: 'Each service must have a unique identifier.'
+        type: string
+      service_id:
+        description: 'The identifier of the services for which the entry describes the interpretation services available.'
+        type: string
+      language:
+        description: 'Languages, other than English, for which interpretation is available. Languages are listed as ISO639-1 codes.'
+        type: string
+    required:
+      - id
+  language:
+    properties:
+      id:
+        description: 'Each language must have a unique identifier.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which the entry describes the languages in which services are delivered.'
+        type: string
+      location_id:
+        description: 'The identifier of the location for which the entry describes the languages in which services are delivered.'
+        type: string
+      language:
+        description: 'Languages, other than English, in which the service is delivered. Languages are listed as ISO639-1 codes..'
+        type: string
+    required:
+      - id
+  location:
+    properties:
+      id:
+        description: 'Each location must have a unique identifier.'
+        type: string
+      organization_id:
+        description: 'Each location must belong to a single organization. The identifier of the organization should be given here.'
+        type: string
+      name:
+        description: 'The name of the location.'
+        type: string
+      alternate_name:
+        description: 'An alternative name for the location.'
+        type: string
+      description:
+        description: 'A description of this location.'
+        type: string
+      transportation:
+        description: 'A description of the access to public or private transportation to and from the location.'
+        type: string
+      latitude:
+        description: 'Y coordinate of location expressed in decimal degrees in WGS84 datum.'
+        type: string
+      longitude:
+        description: 'X coordinate of location expressed in decimal degrees in WGS84 datum.'
+        type: string
+      regular_schedule:
+        type: "array"
+        items:
+          $ref: "#/definitions/regular_schedule"
+      holiday_schedule:
+        type: "array"
+        items:
+          $ref: "#/definitions/holiday_schedule"
+      languages:
+        type: "array"
+        items:
+          $ref: "#/definitions/language"
+      postal_address:
+        type: "array"
+        items:
+          $ref: "#/definitions/postal_address"
+      physical_address:
+        type: "array"
+        items:
+          $ref: "#/definitions/physical_address"
+      phones:
+        type: "array"
+        items:
+          $ref: "#/definitions/phone"
+      service:
+        type: "array"
+        items:
+          $ref: "#/definitions/service"
+      accessibility_for_disabilities:
+        type: "array"
+        items:
+          $ref: "#/definitions/accessibility_for_disabilities"
+    required:
+      - id
+  organization:
+    properties:
+      id:
+        description: 'Each organization must have a unique identifier.'
+        type: string
+      name:
+        description: 'The official or public name of the organization.'
+        type: string
+      alternate_name:
+        description: 'Alternative or commonly used name for the organization.'
+        type: string
+      description:
+        description: 'A brief summary about the organization. It can contain markup such as HTML or Markdow.'
+        type: string
+      email:
+        description: 'The contact e-mail address for the organization.'
+        type: string
+      url:
+        description: 'The URL (website address) of the organization.'
+        type: string
+      tax_status:
+        description: 'Government assigned tax designation for for tax-exempt organizations.'
+        type: string
+      tax_id:
+        description: 'A government issued identifier used for the purpose of tax administration.'
+        type: string
+      year_incorporated:
+        description: 'The year in which the organization was legally formed.'
+        type: string
+      legal_status:
+        description: 'The legal status defines the conditions that an organization is operating under; e.g. non-profit, private corporation or a government organization.'
+        type: string
+      contacts:
+        type: "array"
+        items:
+          $ref: "#/definitions/contact"
+      funding:
+        type: "array"
+        items:
+          $ref: "#/definitions/funding"
+      locations:
+        type: "array"
+        items:
+          $ref: "#/definitions/location"
+      programs:
+        type: "array"
+        items:
+          $ref: "#/definitions/program"
+      services:
+        type: "array"
+        items:
+          $ref: "#/definitions/service"
+    required:
+      - id
+      - description
+  payment_accepted:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      service_id:
+        description: 'The identifier of the services for which the entry describes the accepted payment methods.'
+        type: string
+      payment:
+        description: 'The methods of payment accepted for the service.'
+        type: string
+    required:
+      - id
+  phone:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      location_id:
+        description: 'The identifier of the location where this phone number is located.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which this is the phone number.'
+        type: string
+      organization_id:
+        description: 'The identifier of the organisation for which this is the phone number.'
+        type: string
+      contact_id:
+        description: 'The identifier of the contact for which this is the phone number.'
+        type: string
+      service_at_location_id:
+        description: 'The identifier of the ‘service at location’ table entry, when this phone number is specific to a service in a particular location.'
+        type: string
+      number:
+        description: 'The phone number.'
+        type: string
+      extension:
+        description: 'The extension of the phone number.'
+        type: string
+      type:
+        description: 'Whether the phone number relates to a fixed or cellular phone.'
+        type: string
+      department:
+        description: 'The department for which this is the phone number.'
+        type: string
+      language:
+        description: 'A comma separated list of ISO 639-1, or ISO 639-2 [language codes](available at http://www.loc.gov/standards/iso639-2/php/code_list.php) to represent the languages available from this phone service. The three-letter codes from ISO 639-2 provide greater accuracy when describing variants of languages, which may be relevant to particular communities.'
+        type: string
+      description:
+        description: 'A description providing extra information about the phone service (e.g. any special arrangements for accessing, or details of availability at particular times.'
+        type: string
+    required:
+      - id
+      - number
+  physical_address:
+    properties:
+      id:
+        description: 'Each physical address must have a unique identifier.'
+        type: string
+      location_id:
+        description: 'The identifier of the location for which this is the address.'
+        type: string
+      attention:
+        description: 'The person or entity whose attention should be sought at the location.'
+        type: string
+      address_1:
+        description: 'The first line of the address.'
+        type: string
+      address_2:
+        description: 'The second line of the address.'
+        type: string
+      address_3:
+        description: 'The third line of the address.'
+        type: string
+      address_4:
+        description: 'The fourth line of the address.'
+        type: string
+      city:
+        description: 'The city in which the address is located.'
+        type: string
+      region:
+        description: 'The region in which the address is located (optional).'
+        type: string
+      state_province:
+        description: 'The state or province in which the address is located.'
+        type: string
+      postal_code:
+        description: 'The postal code for the address.'
+        type: string
+      country:
+        description: 'The country in which the address is located. This should be given as an ISO 3361-1 country code (two letter abbreviation).'
+        type: string
+    required:
+      - id
+      - address_1
+      - city
+      - state_province
+      - postal_code
+      - country
+  postal_address:
+    properties:
+      id:
+        description: 'Each postal address must have a unique identifier.'
+        type: string
+      location_id:
+        description: 'The identifier of the location for which this is the postal address.'
+        type: string
+      attention:
+        description: 'The person or entity for whose attention mail should be marked.'
+        type: string
+      address_1:
+        description: 'The first line of the address.'
+        type: string
+      address_2:
+        description: 'The second line of the address.'
+        type: string
+      address_3:
+        description: 'The third line of the address.'
+        type: string
+      address_4:
+        description: 'The fourth line of the address.'
+        type: string
+      city:
+        description: 'The city in which the address is located.'
+        type: string
+      region:
+        description: 'The region in which the address is located (optional).'
+        type: string
+      state_province:
+        description: 'The state or province in which the address is located.'
+        type: string
+      postal_code:
+        description: 'The postal code for the address.'
+        type: string
+      country:
+        description: 'The country in which the address is located.'
+        type: string
+    required:
+      - id
+  program:
+    properties:
+      id:
+        description: 'Each program must have a unique identifier.'
+        type: string
+      organization_id:
+        description: 'Each program must belong to a single organization. The identifier of the organization should be given here.'
+        type: string
+      name:
+        description: 'The name of the program.'
+        type: string
+      alternate_name:
+        description: 'NeAn alternative name for the program.'
+        type: string
+    required:
+      - id
+      - organization_id
+      - name
+  regular_schedule:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which this is the regular schedule.'
+        type: string
+      location_id:
+        description: 'The identifier of the location for which this is the regular schedule.'
+        type: string
+      service_at_location_id:
+        description: 'The identifier of the ‘service at location’ table entry, when this schedule is specific to a service in a particular location.'
+        type: string
+      weekday:
+        description: 'The day of the week that this entry relates to.'
+        type: string
+      opens_at:
+        description: 'The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.'
+        type: string
+      closes_at:
+        description: 'The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.'
+        type: string
+    required:
+      - id
+      - weekday
+  required_document:
+    properties:
+      id:
+        description: 'Each document must have a unique identifier.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which this entry describes the required document.'
+        type: string
+      document:
+        description: 'The document required to apply for or receive the service. e.g. Government-issued ID, EU Passport.'
+        type: string
+    required:
+      - id
+  service:
+    properties:
+      id:
+        description: 'Each service must have a unique identifier.'
+        type: string
+      organization_id:
+        description: 'The identifier of the organization that provides this service.'
+        type: string
+      program_id:
+        description: 'The identifier of the program this service is delivered under.'
+        type: string
+      location_id:
+        description: 'The identifier of the location where this service is delivered.'
+        type: string
+      name:
+        description: 'The official or public name of the service.'
+        type: string
+      alternate_name:
+        description: 'Alternative or commonly used name for a service.'
+        type: string
+      description:
+        description: 'A description of the service.'
+        type: string
+      url:
+        description: 'URL of the service.'
+        type: string
+      email:
+        description: 'Email address for the service.'
+        type: string
+      status:
+        description: 'The current status of the service.'
+        type: string
+      interpretation_services:
+        description: 'A description of any interpretation services available for accessing this service.'
+        type: string
+      application_process:
+        description: 'The steps needed to access the service.'
+        type: string
+      wait_time:
+        description: 'Time a client may expect to wait before receiving a service.'
+        type: string
+      accreditations:
+        description: 'Details of any accreditations. Accreditation is the formal evaluation of an organization or program against best practice standards set by an accrediting organization.'
+        type: string
+      licenses:
+        description: 'An organization may have a license issued by a government entity to operate legally. A list of any such licenses can be provided here.'
+        type: string
+      contacts:
+        type: "array"
+        items:
+          $ref: "#/definitions/contact"
+      eligibility:
+        type: "array"
+        items:
+          $ref: "#/definitions/eligibility"
+      fees:
+        type: "array"
+        items:
+          $ref: "#/definitions/fee"
+      funding:
+        type: "array"
+        items:
+          $ref: "#/definitions/funding"
+      regular_schedule:
+        type: "array"
+        items:
+          $ref: "#/definitions/regular_schedule"
+      holiday_schedule:
+        type: "array"
+        items:
+          $ref: "#/definitions/holiday_schedule"
+      languages:
+        type: "array"
+        items:
+          $ref: "#/definitions/language"
+      payment_accepted:
+        type: "array"
+        items:
+          $ref: "#/definitions/payment_accepted"
+      phones:
+        type: "array"
+        items:
+          $ref: "#/definitions/phone"
+      required_documents:
+        type: "array"
+        items:
+          $ref: "#/definitions/required_document"
+      service_area:
+        type: "array"
+        items:
+          $ref: "#/definitions/service_area"
+    required:
+      - id
+      - organization_id
+      - name
+      - status
+  service_area:
+    properties:
+      id:
+        description: 'Each service area must have a unique identifier.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which this entry describes the service area.'
+        type: string
+      service_area:
+        description: 'The geographic area where a service is available. This is a free-text description, and so may be precise or indefinite as necessary.'
+        type: string
+      description:
+        description: 'A more detailed description of this service area. Used to provide any additional information that cannot be communicated using the structured area and geometry fields.'
+        type: string
+    required:
+      - id
+  job:
+    properties:
+      id:
+        description: 'The unique id of the job'
+        type: string
+      path:
+        description: 'The path the job is being run against.'
+        type: string
+      verb:
+        description: 'The verb the job is being run against.'
+        type: string
+      status:
+        description: 'The status of the job.'
+        type: string
+      complete:
+        description: 'The date the job was completed.'
+        type: string
+        format: date
+  error_response:
+    properties:
+      code:
+        description: 'Repeat the HTTP status code'
+        type: integer
+      message:
+        description: 'A plain language message explaining the error'
+        type: integer

@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
-  title: "Open Referral API"
-  description: "This is a specification describing the Open Referral API, using the Human Services Specification. This has been extracted from the Ohana API deployment, but will be standardized to refer to the universal standard that will apply to any Open Referral compliant API."
+  title: "Human Services Data API"
+  description: "This is a specification describing the Human Services Data API, using the Human Services Data Specification (HSDS). This has been extracted from the Ohana API deployment, but will be standardized to refer to the universal standard that will apply to any HSDS/A compliant API."
   termsOfService: "https://openreferral.org/documentation/"
   contact:
     name: Open Referral
@@ -10,8 +10,8 @@ info:
   license:
     name: Open Data Commons Public Domain
     url: http://opendatacommons.org/licenses/pddl/
-  version: v1.1
-host: api.open.referral.adopta.agency
+  version: v1.2
+host: hsda.api.adopta.agency
 basePath: /
 schemes:
 - http
@@ -19,7 +19,6 @@ produces:
 - application/json
 - application/xml
 - text/csv
-- text/html
 paths:
   /contacts/:
     get:
@@ -28,17 +27,33 @@ paths:
       operationId: listContacts
       parameters:
         - in: query
-          type: number
+          type: string
           name: query
-          description: A query to filter list by.
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
         - in: query
           type: number
           name: page
+          default: 0
           description: The particular page of results.
         - in: query
           type: number
           name: per_page
-          description: Amount of locations to return per page, up to 100.
+          default: 25
+          description: Number of records to return per page, up to 100.
+        - in: query
+          type: string
+          name: sort_by
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
       responses:
         '200':
           description: Contact Response
@@ -46,6 +61,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Contacts
     post:
@@ -67,8 +88,200 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Contacts
+  /contacts/complete/:
+    get:
+      summary: Get Contacts (Complete)
+      description: Get Contacts (Complete)
+      operationId: listContactsComplete
+      parameters:
+        - in: query
+          type: string
+          name: query
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
+        - in: query
+          type: number
+          name: page
+          default: 0
+          description: The particular page of results.
+        - in: query
+          type: number
+          name: per_page
+          default: 25
+          description: Number of records to return per page, up to 100.
+        - in: query
+          type: string
+          name: sort_by
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
+      responses:
+        '200':
+          description: Contact Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact_complete"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+    post:
+      summary: Add Contact (Complete)
+      description: Add Contact (Complete)
+      operationId: addContactsComplete
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact_complete'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Contact Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact_complete"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+  /contacts/complete/{contact_id}/:
+    get:
+      summary: Get Contacts (Complete)
+      description: Get Contacts (Complete)
+      operationId: getContactComplete
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: The contact id.
+      responses:
+        '200':
+          description: Contact Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact_complete"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+    put:
+      summary: Update Contact (Complete)
+      description: Update Contact (Complete)
+      operationId: updateContactsComplete
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: The contact id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact_complete'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Contact Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact_complete"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+    delete:
+      summary: Delete Contact
+      description: Delete Contact
+      operationId: deleteContact
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: 'The contact id.'
+      tags:
+      - Contacts
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Contact Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
   /contacts/{contact_id}/:
     get:
       summary: Get Contact
@@ -87,6 +300,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Contacts
     put:
@@ -113,12 +332,24 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Contacts
     delete:
       summary: Delete Contact
       description: Delete Contact
-      operationId: deleteContact
+      operationId: deleteContactComplete
       parameters:
         - in: path
           required: true
@@ -137,6 +368,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
   /contacts/{contact_id}/phones/:
     get:
       summary: Get Phones
@@ -155,6 +398,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Contacts
     post:
@@ -181,6 +430,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Contacts
   /contacts/{contact_id}/phones/{phone_id}/:
@@ -201,11 +462,17 @@ paths:
           description: The unique phone id.
       responses:
         '200':
-          description: Phone Response
+          description: Contact Response
           schema:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Contacts
     put:
@@ -237,6 +504,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Contacts
     delete:
@@ -264,6 +543,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Contacts
   /locations/:
@@ -273,17 +564,33 @@ paths:
       operationId: listLocations
       parameters:
         - in: query
-          type: number
+          type: string
           name: query
-          description: A query to filter result by.
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
         - in: query
           type: number
           name: page
+          default: 0
           description: The particular page of results.
         - in: query
           type: number
           name: per_page
+          default: 25
           description: Amount of locations to return per page, up to 100.
+        - in: query
+          type: string
+          name: sort_by
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
       responses:
         '200':
           description: Location Response
@@ -291,6 +598,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/location"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     post:
@@ -312,6 +625,164 @@ paths:
             type: array
             items:
               $ref: "#/definitions/location"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Locations
+  /locations/complete/:
+    get:
+      summary: Get Locations (Complete)
+      description: Get Locations (Complete)
+      operationId: listLocationsComplete
+      parameters:
+        - in: query
+          type: string
+          name: query
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
+        - in: query
+          type: number
+          name: page
+          default: 0
+          description: The particular page of results.
+        - in: query
+          type: number
+          name: per_page
+          default: 25
+          description: Number of records to return per page, up to 100.
+        - in: query
+          type: string
+          name: sort_by
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
+      responses:
+        '200':
+          description: Location Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/location_complete"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Locations
+    post:
+      summary: Add Location (Complete)
+      description: Add Location (Complete)
+      operationId: addLocationsComplete
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/location_complete'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Location Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/location_complete"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Locations
+  /locations/complete/{location_id}/:
+    get:
+      summary: Get Locations (Complete)
+      description: Get Locations (Complete)
+      operationId: getLocationComplete
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: location_id
+          description: The location id.
+      responses:
+        '200':
+          description: Location Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/location_complete"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Locations
+    put:
+      summary: Update Location (Complete)
+      description: Update Location (Complete)
+      operationId: updateLocationsComplete
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: location_id
+          description: The location id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/location_complete'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Location Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/location_complete"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/:
@@ -332,6 +803,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/location"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     put:
@@ -358,12 +835,24 @@ paths:
             type: array
             items:
               $ref: "#/definitions/location"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     delete:
       summary: Delete Location
       description: Delete Location
-      operationId: deleteLocation
+      operationId: deleteLocationComplete
       parameters:
         - in: path
           required: true
@@ -380,6 +869,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/location"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/holiday-schedule/:
@@ -400,6 +901,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/holiday_schedule"
+        '404':
+          description: Not Found Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     post:
@@ -426,6 +939,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/holiday_schedule"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/holiday-schedule/{holiday_schedule_id}/:
@@ -451,6 +976,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/holiday_schedule"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     put:
@@ -482,6 +1013,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/holiday_schedule"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     delete:
@@ -509,6 +1052,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/holiday_schedule"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/languages/:
@@ -529,6 +1084,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/language"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     post:
@@ -555,6 +1116,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/language"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/languages/{language_id}/:
@@ -580,6 +1153,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/language"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     put:
@@ -611,6 +1190,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/language"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     delete:
@@ -638,6 +1229,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/language"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/postal-address/:
@@ -658,6 +1261,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/postal_address"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     post:
@@ -684,6 +1293,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/postal_address"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/postal-address/{postal_address_id}/:
@@ -709,6 +1330,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/postal_address"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     put:
@@ -740,6 +1367,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/postal_address"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     delete:
@@ -767,6 +1406,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/postal_address"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/physical-address/:
@@ -787,6 +1438,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/postal_address"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     post:
@@ -813,6 +1470,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/postal_address"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/physical-address/{postal_address_id}/:
@@ -838,6 +1507,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/postal_address"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     put:
@@ -869,6 +1544,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/postal_address"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     delete:
@@ -896,6 +1583,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/postal_address"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/phones/:
@@ -916,6 +1615,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     post:
@@ -942,6 +1647,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/phones/{phone_id}/:
@@ -967,6 +1684,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     put:
@@ -998,6 +1721,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     delete:
@@ -1025,6 +1760,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/regular-schedule/:
@@ -1045,6 +1792,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/regular_schedule"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     post:
@@ -1071,6 +1824,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/regular_schedule"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/regular-schedule/{regular_schedule_id}/:
@@ -1096,6 +1861,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/regular_schedule"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     put:
@@ -1127,6 +1898,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/regular_schedule"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     delete:
@@ -1174,6 +1957,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     post:
@@ -1200,6 +1989,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/services/{service_id}/:
@@ -1225,6 +2026,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     put:
@@ -1256,6 +2063,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     delete:
@@ -1283,6 +2102,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/accessibility/:
@@ -1303,6 +2134,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/accessibility_for_disabilities"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     post:
@@ -1329,6 +2166,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/accessibility_for_disabilities"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /locations/{location_id}/accessibility/{accessibility_id}/:
@@ -1354,6 +2203,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/accessibility_for_disabilities"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     put:
@@ -1385,6 +2240,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/accessibility_for_disabilities"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
     delete:
@@ -1412,6 +2279,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/accessibility_for_disabilities"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Locations
   /organizations/:
@@ -1421,17 +2300,33 @@ paths:
       operationId: listOrganizations
       parameters:
         - in: query
-          type: number
+          type: string
           name: query
-          description: A query to filter result by.
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
         - in: query
           type: number
           name: page
+          default: 0
           description: The particular page of results.
         - in: query
           type: number
           name: per_page
-          description: Amount of locations to return per page, up to 100.
+          default: 25
+          description: Number of records to return per page, up to 100.
+        - in: query
+          type: string
+          name: sort_by
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
       responses:
         '200':
           description: Organization Response
@@ -1439,6 +2334,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/organization"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     post:
@@ -1460,6 +2361,164 @@ paths:
             type: array
             items:
               $ref: "#/definitions/organization"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Organizations
+  /organizations/complete/:
+    get:
+      summary: Get Organizations (Complete)
+      description: Get Organizations (Complete)
+      operationId: listOrganizationsComplete
+      parameters:
+        - in: query
+          type: string
+          name: query
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
+        - in: query
+          type: number
+          name: page
+          default: 0
+          description: The particular page of results.
+        - in: query
+          type: number
+          name: per_page
+          default: 25
+          description: Number of records to return per page, up to 100.
+        - in: query
+          type: string
+          name: sort_by
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
+      responses:
+        '200':
+          description: Organization Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/organization_complete"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Organizations
+    post:
+      summary: Add Organization (Complete)
+      description: Add Organization (Complete)
+      operationId: addOrganizationsComplete
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/organization_complete'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Organization Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/organization_complete"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Organizations
+  /organizations/complete/{organization_id}/:
+    get:
+      summary: Get Organizations (Complete)
+      description: Get Organizations (Complete)
+      operationId: getOrganizationComplete
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: organization_id
+          description: The organization id.
+      responses:
+        '200':
+          description: Organization Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/organization_complete"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Organizations
+    put:
+      summary: Update Organization (Complete)
+      description: Update Organization (Complete)
+      operationId: updateOrganizationsComplete
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: organization_id
+          description: The organization id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/organization_complete'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Organization Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/organization_complete"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/:
@@ -1480,6 +2539,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/organization"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     put:
@@ -1506,12 +2571,24 @@ paths:
             type: array
             items:
               $ref: "#/definitions/organization"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     delete:
       summary: Delete Organization
       description: Delete Organization
-      operationId: deleteOrganization
+      operationId: deleteOrganizationComplete
       parameters:
         - in: path
           required: true
@@ -1530,6 +2607,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/organization"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
   /organizations/{organization_id}/contacts/:
     get:
       summary: Get Contacts
@@ -1548,6 +2637,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     post:
@@ -1574,6 +2669,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/contacts/{contact_id}/:
@@ -1599,6 +2706,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     put:
@@ -1630,6 +2743,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     delete:
@@ -1657,6 +2782,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/funding/:
@@ -1677,6 +2814,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/funding"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     post:
@@ -1703,6 +2846,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/funding"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/funding/{funding_id}/:
@@ -1728,6 +2883,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/funding"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     put:
@@ -1759,6 +2920,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/funding"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     delete:
@@ -1786,6 +2959,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/funding"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/locations/:
@@ -1806,6 +2991,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/location"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     post:
@@ -1832,6 +3023,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/location"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/locations/{location_id}/:
@@ -1857,6 +3060,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/location"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     put:
@@ -1888,6 +3097,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/location"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     delete:
@@ -1915,6 +3136,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/location"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/phones/:
@@ -1935,6 +3168,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     post:
@@ -1961,6 +3200,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/phones/{phone_id}/:
@@ -1986,6 +3237,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     put:
@@ -2017,6 +3274,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     delete:
@@ -2044,6 +3313,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/programs/:
@@ -2064,6 +3345,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/program"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     post:
@@ -2090,6 +3377,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/program"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/programs/{program_id}/:
@@ -2115,6 +3414,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/program"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     put:
@@ -2146,6 +3451,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/program"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     delete:
@@ -2173,6 +3490,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/program"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/programs/{program_id}/services/:
@@ -2198,6 +3527,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     post:
@@ -2229,6 +3564,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/programs/{program_id}/services/{service_id}/:
@@ -2259,6 +3606,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     put:
@@ -2295,6 +3648,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     delete:
@@ -2327,6 +3692,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/services/:
@@ -2347,6 +3724,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     post:
@@ -2373,6 +3756,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
   /organizations/{organization_id}/services/{service_id}/:
@@ -2398,6 +3793,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     put:
@@ -2429,6 +3830,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Organizations
     delete:
@@ -2456,59 +3869,20 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
-      tags:
-      - Organizations
-  /search/:
-    get:
-      summary: Search
-      description: Search
-      operationId: search
-      parameters:
-        - in: query
-          type: string
-          name: category
-        - in: query
-          type: string
-          name: email
-        - in: query
-          type: string
-          name: keyword
-        - in: query
-          type: string
-          name: language
-        - in: query
-          type: string
-          name: lat_lng
-        - in: query
-          type: string
-          name: location
-        - in: query
-          type: string
-          name: org_name
-        - in: query
-          type: string
-          name: page
-        - in: query
-          type: string
-          name: per_page
-        - in: query
-          type: string
-          name: radius
-        - in: query
-          type: string
-          name: service_area
-        - in: query
-          type: string
-          name: status
-      responses:
-        '200':
-          description: Successful SSearch
+        '403':
+          description: No Access Response
           schema:
             type: array
             items:
-              $ref: "#/definitions/location"
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
-      - Search
+      - Organizations
   /services/:
     get:
       summary: Get Services
@@ -2516,17 +3890,33 @@ paths:
       operationId: listServices
       parameters:
         - in: query
-          type: number
+          type: string
           name: query
-          description: A query to filter result by.
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
         - in: query
           type: number
           name: page
+          default: 0
           description: The particular page of results.
         - in: query
           type: number
           name: per_page
-          description: Amount of locations to return per page, up to 100.
+          default: 25
+          description: Number of records return per page, up to 100.
+        - in: query
+          type: string
+          name: sort_by
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
       responses:
         '200':
           description: Service Response
@@ -2534,6 +3924,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     post:
@@ -2555,6 +3951,164 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+  /services/complete/:
+    get:
+      summary: Get Services (Complete)
+      description: Get Services (Complete)
+      operationId: listServicesComplete
+      parameters:
+        - in: query
+          type: string
+          name: query
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
+        - in: query
+          type: number
+          name: page
+          default: 0
+          description: The particular page of results.
+        - in: query
+          type: number
+          name: per_page
+          default: 25
+          description: Number of records to return per page, up to 100.
+        - in: query
+          type: string
+          name: sort_by
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
+      responses:
+        '200':
+          description: Service Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service_complete"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+    post:
+      summary: Add Service (Complete)
+      description: Add Service (Complete)
+      operationId: addServicesComplete
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service_complete'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Service Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service_complete"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+  /services/complete/{service_id}/:
+    get:
+      summary: Get Services (Complete)
+      description: Get Services (Complete)
+      operationId: getServiceComplete
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: The service id.
+      responses:
+        '200':
+          description: Service Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service_complete"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+    put:
+      summary: Update Service (Complete)
+      description: Update Service (Complete)
+      operationId: updateServicesComplete
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: service_id
+          description: The service id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/service_complete'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Service Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service_complete"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/:
@@ -2575,6 +4129,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/organization"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     put:
@@ -2601,12 +4161,24 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     delete:
       summary: Delete Service
       description: Delete Service
-      operationId: deleteService
+      operationId: deleteServiceComplete
       parameters:
         - in: path
           required: true
@@ -2625,6 +4197,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
   /services/{service_id}/contacts/:
     get:
       summary: Get Contacts
@@ -2643,6 +4227,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     post:
@@ -2669,6 +4259,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/contacts/{contact_id}/:
@@ -2694,6 +4296,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     put:
@@ -2725,6 +4333,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     delete:
@@ -2752,6 +4372,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/eligibility/:
@@ -2772,6 +4404,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/eligibility"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     post:
@@ -2798,6 +4436,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/eligibility"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/eligibility/{eligibility_id}/:
@@ -2823,6 +4473,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/eligibility"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     put:
@@ -2854,6 +4510,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/eligibility"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     delete:
@@ -2901,6 +4569,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/fee"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     post:
@@ -2927,9 +4601,21 @@ paths:
             type: array
             items:
               $ref: "#/definitions/fee"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
-  /services/{service_id}/fees/{fee_id}/:
+  /services/{service_id}/fees/{feed_id}/:
     get:
       summary: Get Fee
       description: Get Fee
@@ -2943,7 +4629,7 @@ paths:
         - in: path
           required: true
           type: string
-          name: fee_id
+          name: feed_id
           description: 'The unique feed id.'
       responses:
         '200':
@@ -2952,6 +4638,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/fee"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     put:
@@ -2967,7 +4659,7 @@ paths:
         - in: path
           required: true
           type: string
-          name: fee_id
+          name: feed_id
           description: 'The unique feed id.'
         - in: body
           name: body
@@ -2983,6 +4675,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/fee"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     delete:
@@ -2998,7 +4702,7 @@ paths:
         - in: path
           required: true
           type: string
-          name: fee_id
+          name: feed_id
           description: 'The unique feed id.'
       security:
         - appid: []
@@ -3010,6 +4714,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/fee"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/funding/:
@@ -3030,6 +4746,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/funding"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     post:
@@ -3056,6 +4778,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/funding"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/funding/{funding_id}/:
@@ -3081,6 +4815,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/funding"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     put:
@@ -3112,6 +4852,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/funding"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     delete:
@@ -3139,6 +4891,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/funding"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/holiday-schedule/:
@@ -3159,6 +4923,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/holiday_schedule"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     post:
@@ -3185,6 +4955,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/holiday_schedule"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/holiday-schedule/{holiday_schedule_id}/:
@@ -3210,6 +4992,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/holiday_schedule"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     put:
@@ -3241,6 +5029,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/holiday_schedule"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     delete:
@@ -3268,6 +5068,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/holiday_schedule"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/languages/:
@@ -3288,6 +5100,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/language"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     post:
@@ -3304,6 +5122,9 @@ paths:
           name: body
           schema:
             $ref: '#/definitions/language'
+      security:
+        - appid: []
+        - appkey: []
       responses:
         '200':
           description: Language Response
@@ -3311,6 +5132,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/language"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/languages/{language_id}/:
@@ -3336,6 +5169,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/language"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     put:
@@ -3367,6 +5206,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/language"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     delete:
@@ -3394,128 +5245,20 @@ paths:
             type: array
             items:
               $ref: "#/definitions/language"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
-  /services/{service_id}/locations/:
-    get:
-      summary: Get Service Locations
-      description: Get Service Locations
-      operationId: get-service-locations
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: service_id
-          description: 'The unique service id.'
-      responses:
-        '200':
-          description: Location Response
-          schema:
-            type: array
-            items:
-              "$ref": "#/definitions/location"
-      tags:
-      - Organization - Locations
-    post:
-      summary: Create a new location
-      description: Create a new location
-      operationId: create-a-new-location
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: service_id
-          description: 'The unique service id.'
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/location'
-      responses:
-        '200':
-          description: Location Response
-          schema:
-            type: array
-            items:
-              "$ref": "#/definitions/location"
-      tags:
-      - Service - Locations
-  /services/{service_id}/locations/{location_id}/:
-    get:
-      summary: Update Existing Service Location
-      description: Update Existing Service Location
-      operationId: update-existing-service-location
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: service_id
-          description: 'The unique service id.'
-        - in: path
-          required: true
-          type: string
-          name: location_id
-          description: 'The unique location id.'
-      responses:
-        '200':
-          description: Location Response
-          schema:
-            type: array
-            items:
-              "$ref": "#/definitions/location"
-      tags:
-      - Organization - Locations
-    put:
-      summary: Create a new service location
-      description: Create a new service location
-      operationId: create-a-new-service-location
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: service_id
-          description: 'The unique service id.'
-        - in: path
-          required: true
-          type: string
-          name: location_id
-          description: 'The unique location id.'
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/location'
-      responses:
-        '200':
-          description: Location Response
-          schema:
-            type: array
-            items:
-              "$ref": "#/definitions/location"
-      tags:
-      - Service - Locations
-    delete:
-      summary: Delete Service Location
-      description: Delete Service Location
-      operationId: delete-service-location
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: service_id
-          description: 'The unique service id.'
-        - in: path
-          required: true
-          type: string
-          name: location_id
-          description: 'The unique location id.'
-      responses:
-        '200':
-          description: Location Response
-          schema:
-            type: array
-            items:
-              "$ref": "#/definitions/location"
-      tags:
-      - Service - Locations
   /services/{service_id}/payment-accepted/:
     get:
       summary: Get Payment Accepted
@@ -3534,6 +5277,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/payment_accepted"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     post:
@@ -3560,6 +5309,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/payment_accepted"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/payment-accepted/{payment_accepted_id}/:
@@ -3585,6 +5346,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/payment_accepted"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     put:
@@ -3616,6 +5383,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/payment_accepted"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     delete:
@@ -3643,6 +5422,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/payment_accepted"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/phones/:
@@ -3663,6 +5454,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     post:
@@ -3689,6 +5486,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/phones/{phone_id}/:
@@ -3714,6 +5523,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     put:
@@ -3745,6 +5560,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     delete:
@@ -3772,6 +5599,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/regular-schedule/:
@@ -3792,6 +5631,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/regular_schedule"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     post:
@@ -3818,6 +5663,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/regular_schedule"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/regular-schedule/{regular_schedule_id}/:
@@ -3843,6 +5700,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/regular_schedule"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     put:
@@ -3874,6 +5737,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/regular_schedule"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     delete:
@@ -3901,6 +5776,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/regular_schedule"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/required-document/:
@@ -3921,6 +5808,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/required_document"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     post:
@@ -3947,6 +5840,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/required_document"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/required-document/{required_document_id}/:
@@ -3972,6 +5877,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/required_document"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     put:
@@ -4003,6 +5914,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/required_document"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     delete:
@@ -4030,6 +5953,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/required_document"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/service-area/:
@@ -4050,6 +5985,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service_area"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     post:
@@ -4076,6 +6017,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service_area"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
   /services/{service_id}/service-area/{service_area_id}/:
@@ -4101,6 +6054,12 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service_area"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     put:
@@ -4132,6 +6091,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service_area"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
     delete:
@@ -4159,6 +6130,18 @@ paths:
             type: array
             items:
               $ref: "#/definitions/service_area"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
       tags:
       - Services
 securityDefinitions:
@@ -4214,6 +6197,38 @@ disabilities.'
       email:
         description: 'The email address of the person.'
         type: string
+    required:
+      - id
+  contact_complete:
+    properties:
+      id:
+        description: 'Each contact must have a unique identifier.'
+        type: string
+      organization_id:
+        description: 'The identifier of the organization for which this is a contact.'
+        type: string
+      service_id:
+        description: 'The identifier of the service for which this is a contact.'
+        type: string
+      service_at_location_id:
+        description: 'The identifier of the ‘service at location’ table entry, when this contact is specific to a service in a particular location.'
+        type: string
+      name:
+        description: 'The name of the person.'
+        type: string
+      title:
+        description: 'The job title of the person.'
+        type: string
+      department:
+        description: 'The department that the person is part of.'
+        type: string
+      email:
+        description: 'The email address of the person.'
+        type: string
+      phones:
+        type: "array"
+        items:
+          $ref: "#/definitions/phone"
     required:
       - id
   eligibility:
@@ -4322,6 +6337,7 @@ disabilities.'
     required:
       - id
   location:
+    type: object
     properties:
       id:
         description: 'Each location must have a unique identifier.'
@@ -4343,10 +6359,71 @@ disabilities.'
         type: string
       latitude:
         description: 'Y coordinate of location expressed in decimal degrees in WGS84 datum.'
-        type: ['number', 'null']
+        type: string
       longitude:
         description: 'X coordinate of location expressed in decimal degrees in WGS84 datum.'
-        type: ['number', 'null']
+        type: string
+    required:
+      - id
+      - name
+  location_complete:
+    properties:
+      id:
+        description: 'Each location must have a unique identifier.'
+        type: string
+      organization_id:
+        description: 'Each location must belong to a single organization. The identifier of the organization should be given here.'
+        type: string
+      name:
+        description: 'The name of the location.'
+        type: string
+      alternate_name:
+        description: 'An alternative name for the location.'
+        type: string
+      description:
+        description: 'A description of this location.'
+        type: string
+      transportation:
+        description: 'A description of the access to public or private transportation to and from the location.'
+        type: string
+      latitude:
+        description: 'Y coordinate of location expressed in decimal degrees in WGS84 datum.'
+        type: string
+      longitude:
+        description: 'X coordinate of location expressed in decimal degrees in WGS84 datum.'
+        type: string
+      regular_schedule:
+        type: "array"
+        items:
+          $ref: "#/definitions/regular_schedule"
+      holiday_schedule:
+        type: "array"
+        items:
+          $ref: "#/definitions/holiday_schedule"
+      languages:
+        type: "array"
+        items:
+          $ref: "#/definitions/language"
+      postal_address:
+        type: "array"
+        items:
+          $ref: "#/definitions/postal_address"
+      physical_address:
+        type: "array"
+        items:
+          $ref: "#/definitions/physical_address"
+      phones:
+        type: "array"
+        items:
+          $ref: "#/definitions/phone"
+      service:
+        type: "array"
+        items:
+          $ref: "#/definitions/service"
+      accessibility_for_disabilities:
+        type: "array"
+        items:
+          $ref: "#/definitions/accessibility_for_disabilities"
     required:
       - id
   organization:
@@ -4381,6 +6458,61 @@ disabilities.'
       legal_status:
         description: 'The legal status defines the conditions that an organization is operating under; e.g. non-profit, private corporation or a government organization.'
         type: string
+    required:
+      - id
+      - description
+  organization_complete:
+    properties:
+      id:
+        description: 'Each organization must have a unique identifier.'
+        type: string
+      name:
+        description: 'The official or public name of the organization.'
+        type: string
+      alternate_name:
+        description: 'Alternative or commonly used name for the organization.'
+        type: string
+      description:
+        description: 'A brief summary about the organization. It can contain markup such as HTML or Markdow.'
+        type: string
+      email:
+        description: 'The contact e-mail address for the organization.'
+        type: string
+      url:
+        description: 'The URL (website address) of the organization.'
+        type: string
+      tax_status:
+        description: 'Government assigned tax designation for for tax-exempt organizations.'
+        type: string
+      tax_id:
+        description: 'A government issued identifier used for the purpose of tax administration.'
+        type: string
+      year_incorporated:
+        description: 'The year in which the organization was legally formed.'
+        type: string
+      legal_status:
+        description: 'The legal status defines the conditions that an organization is operating under; e.g. non-profit, private corporation or a government organization.'
+        type: string
+      contacts:
+        type: "array"
+        items:
+          $ref: "#/definitions/contact"
+      funding:
+        type: "array"
+        items:
+          $ref: "#/definitions/funding"
+      locations:
+        type: "array"
+        items:
+          $ref: "#/definitions/location"
+      programs:
+        type: "array"
+        items:
+          $ref: "#/definitions/program"
+      services:
+        type: "array"
+        items:
+          $ref: "#/definitions/service"
     required:
       - id
       - description
@@ -4422,7 +6554,7 @@ disabilities.'
         type: string
       extension:
         description: 'The extension of the phone number.'
-        type: ['number', 'null']
+        type: string
       type:
         description: 'Whether the phone number relates to a fixed or cellular phone.'
         type: string
@@ -4557,7 +6689,7 @@ disabilities.'
         type: string
       weekday:
         description: 'The day of the week that this entry relates to.'
-        type: integer
+        type: string
       opens_at:
         description: 'The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ‘Z’ when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am East Coast Time.'
         type: string
@@ -4590,6 +6722,9 @@ disabilities.'
         type: string
       program_id:
         description: 'The identifier of the program this service is delivered under.'
+        type: string
+      location_id:
+        description: 'The identifier of the location where this service is delivered.'
         type: string
       name:
         description: 'The official or public name of the service.'
@@ -4627,32 +6762,102 @@ disabilities.'
       licenses:
         description: 'An organization may have a license issued by a government entity to operate legally. A list of any such licenses can be provided here.'
         type: string
+  service_complete:
+    properties:
+      id:
+        description: 'Each service must have a unique identifier.'
+        type: string
+      organization_id:
+        description: 'The identifier of the organization that provides this service.'
+        type: string
+      program_id:
+        description: 'The identifier of the program this service is delivered under.'
+        type: string
+      location_id:
+        description: 'The identifier of the location where this service is delivered.'
+        type: string
+      name:
+        description: 'The official or public name of the service.'
+        type: string
+      alternate_name:
+        description: 'Alternative or commonly used name for a service.'
+        type: string
+      description:
+        description: 'A description of the service.'
+        type: string
+      url:
+        description: 'URL of the service.'
+        type: string
+      email:
+        description: 'Email address for the service.'
+        type: string
+      status:
+        description: 'The current status of the service.'
+        type: string
+      interpretation_services:
+        description: 'A description of any interpretation services available for accessing this service.'
+        type: string
+      application_process:
+        description: 'The steps needed to access the service.'
+        type: string
+      wait_time:
+        description: 'Time a client may expect to wait before receiving a service.'
+        type: string
+      accreditations:
+        description: 'Details of any accreditations. Accreditation is the formal evaluation of an organization or program against best practice standards set by an accrediting organization.'
+        type: string
+      licenses:
+        description: 'An organization may have a license issued by a government entity to operate legally. A list of any such licenses can be provided here.'
+        type: string
+      contacts:
+        type: "array"
+        items:
+          $ref: "#/definitions/contact"
+      eligibility:
+        type: "array"
+        items:
+          $ref: "#/definitions/eligibility"
+      fees:
+        type: "array"
+        items:
+          $ref: "#/definitions/fee"
+      funding:
+        type: "array"
+        items:
+          $ref: "#/definitions/funding"
+      regular_schedule:
+        type: "array"
+        items:
+          $ref: "#/definitions/regular_schedule"
+      holiday_schedule:
+        type: "array"
+        items:
+          $ref: "#/definitions/holiday_schedule"
+      languages:
+        type: "array"
+        items:
+          $ref: "#/definitions/language"
+      payment_accepted:
+        type: "array"
+        items:
+          $ref: "#/definitions/payment_accepted"
+      phones:
+        type: "array"
+        items:
+          $ref: "#/definitions/phone"
+      required_documents:
+        type: "array"
+        items:
+          $ref: "#/definitions/required_document"
+      service_area:
+        type: "array"
+        items:
+          $ref: "#/definitions/service_area"
     required:
       - id
       - organization_id
       - name
       - status
-  service_at_location:
-    properties:
-      id:
-        description: 'Each entry must have a unique identifier.'
-        type: string
-      service_id:
-        description: 'The identifier of the service at a given location.'
-        type: string
-      location_id:
-        description: 'The identifier of the location where this service operates.'
-        type: string
-      url:
-        description: 'If the service at this location has a specific URL, that can be provided here.'
-        type: string
-      email:
-        description: 'If the service at this location has a specific email address, that can be provided here.'
-        type: string
-    required:
-      - id
-      - service_id
-      - location_id
   service_area:
     properties:
       id:
@@ -4669,3 +6874,11 @@ disabilities.'
         type: string
     required:
       - id
+  error_response:
+    properties:
+      code:
+        description: 'Repeat the HTTP status code'
+        type: integer
+      message:
+        description: 'A plain language message explaining the error'
+        type: integer
