@@ -296,17 +296,13 @@
                                                   {% assign next_schema = next_schema | replace: '/definitions/','' %}
                                                   {% assign next_schema = next_schema | replace: '#','' %}   
                                                                                                 
-                                                  <p><strong>{{ sub_parameter_name }}</strong> ({{ sub_parameter_type }}){% if sub_parameter_description != '' %} - {{ sub_parameter_description }}{% endif %}</p>
-                                                    <p style="padding-left: 10px;">
-                                                    {% for next_parameter in schema[next_schema].properties %}
-                                                    
+                                                  <strong>{{ sub_parameter_name }}</strong> ({{ sub_parameter_type }}){% if sub_parameter_description != '' %} - {{ sub_parameter_description }}{% endif %}<br />
+                                                    {% for next_parameter in schema[next_schema].properties %}                                                    
                                                       {% assign next_parameter_name = next_parameter[0] %}
                                                       {% assign next_parameter_description = next_parameter[1].description %}
                                                       {% assign next_parameter_type = next_parameter[1].type %}                                                     
-                                                      <strong>{{ next_parameter_name }}</strong> ({{ next_parameter_type }}) - {{ next_parameter_description }}<br />
-                                                      
+                                                      <div style="padding-left: 10px;">><strong>{{ next_parameter_name }}</strong> ({{ next_parameter_type }}) - {{ next_parameter_description }}</div><br />                                                      
                                                     {% endfor %}     
-                                                  </p>
                                                 {% else %}
                                                   <strong>{{ sub_parameter_name }}</strong> ({{ sub_parameter_type }}) - {{ sub_parameter_description }}<br />
                                                 {% endif %}
