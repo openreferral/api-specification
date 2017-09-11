@@ -261,7 +261,7 @@
                           {% assign this_response = this_response | replace: '#','' %}
 
                             <tr style="background-color: #FFF;">
-                              <td style="font-size: 12px; padding: 5px;"><strong>Reponse Body: ({{ this_response }})</strong></td>
+                              <td style="font-size: 12px; padding: 5px;"><strong>Reponse Body:</strong></td>
                             </tr>
                             <tr>
                               <td align="left" style="font-size: 12px; padding: 10px;">
@@ -285,10 +285,31 @@
                                             <td style="width: 5%;" align="right"></td>
                                             <td style="padding-left: 5px;">
                                               {% for sub_parameter in schema[this_schema].properties %}
+                                              
                                                 {% assign sub_parameter_name = sub_parameter[0] %}
                                                 {% assign sub_parameter_description = sub_parameter[1].description %}
                                                 {% assign sub_parameter_type = sub_parameter[1].type %}                                            
-                                                <strong>{{ sub_parameter_name }}</strong> ({{ sub_parameter_type }}) - {{ sub_parameter_description }}<br />
+                                                
+                                                {% if parameter_type == 'array' %}
+                                                
+                                                  {% assign next_schema = sub_parameter[1].items['$ref'] %}
+                                                  {% assign next_schema = next_schema | replace: '/definitions/','' %}
+                                                  {% assign next_schema = next_schema | replace: '#','' %}   
+                                                                                                
+                                                  <strong>{{ sub_parameter_name }}</strong> ({{ sub_parameter_type }}) - {{ sub_parameter_description }}<br />
+                                                  <blockquote>
+                                                    {% for next_parameter in schema[next_schema].properties %}
+                                                    
+                                                      {% assign next_parameter_name = next_parameter[0] %}
+                                                      {% assign next_parameter_description = next_parameter[1].description %}
+                                                      {% assign next_parameter_type = next_parameter[1].type %}                                                     
+                                                      <strong>{{ next_parameter_name }}</strong> ({{ next_parameter_type }}) - {{ next_parameter_description }}<br />
+                                                      
+                                                    {% endfor %}     
+                                                  </blockquote>
+                                                {% else %}
+                                                  <strong>{{ sub_parameter_name }}</strong> ({{ sub_parameter_type }}) - {{ sub_parameter_description }}<br />
+                                                {% endif %}
                                               {% endfor %}                                            
                                             </td>
                                           </tr>                                                                                
