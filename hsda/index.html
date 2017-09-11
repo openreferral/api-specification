@@ -286,14 +286,12 @@ slug: docs
                                           <tr>
                                             <td style="width: 5%;" align="right"></td>
                                             <td style="padding-left: 5px;">
-                                              <ul>
                                               {% for sub_parameter in schema[this_schema].properties %}
                                                 {% assign sub_parameter_name = sub_parameter[0] %}
                                                 {% assign sub_parameter_description = sub_parameter[1].description %}
                                                 {% assign sub_parameter_type = sub_parameter[1].type %}                                            
-                                                <li><strong>{{ sub_parameter_name }}</strong> ({{ parameter_type }}) - {{ sub_parameter_description }}</li>
-                                              {% endfor %}
-                                              </ul>
+                                                <strong>{{ sub_parameter_name }}</strong> ({{ parameter_type }}) - {{ sub_parameter_description }}<br />
+                                              {% endfor %}                                            
                                             </td>
                                           </tr>                                                                                
                                         {% else %}
