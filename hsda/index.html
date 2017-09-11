@@ -260,8 +260,8 @@ slug: docs
                         {% if response_code == '200' %}
 
                         {% assign this_response = response.schema.items['$ref'] %}
-                        {% assign this_response = this_def | replace: '/definitions/','' %}
-                        {% assign this_response = this_def | replace: '#','' %}
+                        {% assign this_response = this_response | replace: '/definitions/','' %}
+                        {% assign this_response = this_response | replace: '#','' %}
 
                           <tr style="background-color: #FFF;">
                             <td style="font-size: 12px; padding: 5px;"><strong>Reponse Body: ({{ this_response }})</strong></td>
@@ -270,13 +270,23 @@ slug: docs
                             <td align="left" style="font-size: 12px; padding: 10px;">
                                 <table style="width: 75%;" cellspacing="3" cellpadding="2">
                                     {% for parameter in schema[this_response].properties %}
+                                    
                                       {% assign parameter_name = parameter[0] %}
                                       {% assign parameter_description = parameter[1].description %}
                                       {% assign parameter_type = parameter[1].type %}
-                                      <tr>
-                                        <td style="width: 25%;" align="right"><strong>{{ parameter_name }} ({{ parameter_type }})</strong></td>
-                                        <td style="padding-left: 5px;">{{ parameter_description }}</td>
-                                      </tr>
+                                      
+                                      {% if parameter_type == 'array' %}
+                                        {% assign this_schema = parameter[1].items['$ref'] %}
+                                        <tr>
+                                          <td style="width: 25%;" align="right"><strong>{{ parameter_name }} ({{ this_schema }})</strong></td>
+                                          <td style="padding-left: 5px;">{{ parameter_description }}</td>
+                                        </tr>
+                                      {% else %}
+                                        <tr>
+                                          <td style="width: 25%;" align="right"><strong>{{ parameter_name }} ({{ parameter_type }})</strong></td>
+                                          <td style="padding-left: 5px;">{{ parameter_description }}</td>
+                                        </tr>                                      
+                                      {% endif %}
                                     {% endfor %}
                                   </table>
                               </td>
