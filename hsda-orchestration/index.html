@@ -1,0 +1,28 @@
+---
+layout: page
+title: 'Human Services Data API (HSDA) - Orchestration v1.0'
+slug: docs
+---
+
+<p>This is the OpenAPI definiton for the Human Services Data API (HSDA) v1.2. This is a set of API paths, organized as a separate service, for managing orchestration involving any HSDA inmplementation. It is available as this HTML list or YAML OpenAPI definition, with an accompanying demo site, and link to current Github Issues for support.</p>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Where To Engage:</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li{% if page.slug == 'docs' %} class="active"{% endif %}><a href="/{{ site.github_repo}}/hsda-orchestration/">HTML View</a></li>
+        <li{% if page.slug == 'yaml' %} class="active"{% endif %}><a href="https://github.com/{{ site.github_org}}/{{ site.github_repo}}/tree/master/_data/api-commons/openapi-hsda-orchestration.yaml" target="_blank">YAML</a></li>
+        <li{% if page.slug == 'demo' %} class="active"{% endif %}><a href="http://developer.open.referral.adopta.agency/#HSDA Orchestration" target="_blank">Demo</a></li>
+        <li{% if page.slug == 'issues' %} class="active"{% endif %}><a href="https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Ahsda-orchestration" target="_blank">Github Issues</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% assign openapi_spec_json = site.data.api-commons.openapi-hsda %}
+
+{% include html-docs.html %}
+
