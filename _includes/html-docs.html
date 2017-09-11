@@ -196,26 +196,50 @@
                         {% for parameter in parameters %}
                           {% if parameter.in == 'body' %}
 
-                            {% assign this_def = parameter.schema['$ref'] %}
-                            {% assign this_def = this_def | replace: '/definitions/','' %}
-                            {% assign this_def = this_def | replace: '#','' %}
+                            {% assign this_response = parameter.schema['$ref'] %}
+                            {% assign this_response = this_response | replace: '/definitions/','' %}
+                            {% assign this_response = this_response | replace: '#','' %}
 
                             <tr style="background-color: #FFF;">
                               <td style="font-size: 12px; padding: 5px;"><strong>Request Body:</strong></td>
                             </tr>
                             <tr>
                               <td align="left" style="font-size: 12px; padding: 10px;">
-                                  <table style="width: 75%;" cellspacing="3" cellpadding="2">
-                                      {% for parameter in schema[this_def].properties %}
-                                        {% assign parameter_name = parameter[0] %}
-                                        {% assign parameter_description = parameter[1].description %}
-                                        {% assign parameter_type = parameter[1].type %}
+                                <table style="width: 75%;" cellspacing="3" cellpadding="2">
+                                    {% for parameter in schema[this_response].properties %}
+                                    
+                                      {% assign parameter_name = parameter[0] %}
+                                      {% assign parameter_description = parameter[1].description %}
+                                      {% assign parameter_type = parameter[1].type %}
+                                      
+                                      {% if parameter_type == 'array' %}
+                                      
+                                        {% assign this_schema = parameter[1].items['$ref'] %}
+                                        {% assign this_schema = this_schema | replace: '/definitions/','' %}
+                                        {% assign this_schema = this_schema | replace: '#','' %}                                        
+                                        <tr>
+                                          <td style="width: 25%;" align="right"><strong>{{ parameter_name }} ({{ this_schema }})</strong></td>
+                                          <td style="padding-left: 5px;">{{ parameter_description }}</td>
+                                        </tr>                                        
+                                        <tr>
+                                          <td style="width: 5%;" align="right"></td>
+                                          <td style="padding-left: 5px;">
+                                            {% for sub_parameter in schema[this_schema].properties %}
+                                              {% assign sub_parameter_name = sub_parameter[0] %}
+                                              {% assign sub_parameter_description = sub_parameter[1].description %}
+                                              {% assign sub_parameter_type = sub_parameter[1].type %}                                            
+                                              <strong>{{ sub_parameter_name }}</strong> ({{ parameter_type }}) - {{ sub_parameter_description }}<br />
+                                            {% endfor %}                                            
+                                          </td>
+                                        </tr>                                                                                
+                                      {% else %}
                                         <tr>
                                           <td style="width: 25%;" align="right"><strong>{{ parameter_name }} ({{ parameter_type }})</strong></td>
                                           <td style="padding-left: 5px;">{{ parameter_description }}</td>
-                                      </tr>
-                                      {% endfor %}
-                                    </table>
+                                        </tr>                                      
+                                      {% endif %}
+                                    {% endfor %}
+                                  </table>
                                 </td>
                               </tr>
 
