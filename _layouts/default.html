@@ -32,7 +32,9 @@
 <div class="container">
     <div style="padding: 50px;">
         <div class="page">
-          <div class="alert alert-danger" role="alert" style="text-align: center;">This is a draft - use <a href="https://github.com/openreferral/api-specification/issues">Github issues</a> to join the conversation!</div>
+          {% if page.title != 'Human Services Data API (HSDA)' and page.title != 'Human Services Data API (HSDA) v1.1' %}
+            <div class="alert alert-danger" role="alert" style="text-align: center;">This is a draft - use <a href="https://github.com/openreferral/api-specification/issues">Github issues</a> to join the conversation!</div>
+          {% endif %}
           {{ content }}
         </div>
     </div>
