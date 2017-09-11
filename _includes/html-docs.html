@@ -296,7 +296,7 @@
                                                   {% assign next_schema = next_schema | replace: '/definitions/','' %}
                                                   {% assign next_schema = next_schema | replace: '#','' %}   
                                                                                                 
-                                                  <strong>{{ sub_parameter_name }}</strong> ({{ sub_parameter_type }})<br />
+                                                  <p><strong>{{ sub_parameter_name }}</strong> ({{ sub_parameter_type }}){% if sub_parameter_description != '' %} - {{ sub_parameter_description }}{% endif %}</p>
                                                     <p style="padding-left: 10px;">
                                                     {% for next_parameter in schema[next_schema].properties %}
                                                     
