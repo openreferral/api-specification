@@ -260,7 +260,7 @@ slug: docs
 
                         {% if response_code == '200' %}
 
-                          {% assign this_response = response.schema.items['$ref'] %}
+                          {% assign this_response = this_response.schema.items['$ref'] %}
                           1: {{ this_response }}<br />
                           {% assign this_response = this_response | replace: '/definitions/','' %}
                           2: {{ this_response }}<br />
