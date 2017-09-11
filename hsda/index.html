@@ -15,6 +15,7 @@ slug: docs
       <ul class="nav navbar-nav">
         <li{% if page.slug == 'docs' %} class="active"{% endif %}><a href="/{{ site.github_repo}}/hsda/">HTML View</a></li>
         <li{% if page.slug == 'yaml' %} class="active"{% endif %}><a href="https://github.com/{{ site.github_org}}/{{ site.github_repo}}/tree/master/_data/api-commons/openapi-hsda.yaml">YAML</a></li>
+        <li{% if page.slug == 'demo' %} class="active"{% endif %}><a href="http://developer.open.referral.adopta.agency/#HSDA">Demo</a></li>
         <li{% if page.slug == 'issues' %} class="active"{% endif %}><a href="https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Ahsda">Github Issues</a></li>
       </ul>
     </div>
@@ -268,14 +269,14 @@ slug: docs
                           <tr>
                             <td align="left" style="font-size: 12px; padding: 10px;">
                                 <table style="width: 75%;" cellspacing="3" cellpadding="2">
-
                                     {% for parameter in schema[this_response].properties %}
                                       {% assign parameter_name = parameter[0] %}
                                       {% assign parameter_description = parameter[1].description %}
+                                      {% assign parameter_type = parameter[1].type %}
                                       <tr>
-                                        <td style="width: 25%;" align="right"><strong>{{ parameter_name }}</strong></td>
+                                        <td style="width: 25%;" align="right"><strong>{{ parameter_name }} ({{ parameter_type }})</strong></td>
                                         <td style="padding-left: 5px;">{{ parameter_description }}</td>
-                                    </tr>
+                                      </tr>
                                     {% endfor %}
                                   </table>
                               </td>
