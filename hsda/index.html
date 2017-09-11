@@ -227,12 +227,11 @@ slug: docs
                             {% assign this_def = this_def | replace: '#','' %}
 
                             <tr style="background-color: #FFF;">
-                              <td style="font-size: 12px; padding: 5px;"><strong>Request Body: ({{ this_def }})</strong></td>
+                              <td style="font-size: 12px; padding: 5px;"><strong>Request Body:</strong></td>
                             </tr>
                             <tr>
                               <td align="left" style="font-size: 12px; padding: 10px;">
                                   <table style="width: 75%;" cellspacing="3" cellpadding="2">
-
                                       {% for parameter in schema[this_def].properties %}
                                         {% assign parameter_name = parameter[0] %}
                                         {% assign parameter_description = parameter[1].description %}
@@ -269,7 +268,6 @@ slug: docs
                             <tr>
                               <td align="left" style="font-size: 12px; padding: 10px;">
                                   <table style="width: 75%;" cellspacing="3" cellpadding="2">
-                                      this_response: {{ this_response }} 
                                       {% for parameter in schema[this_response].properties %}
                                       
                                         {% assign parameter_name = parameter[0] %}
@@ -293,7 +291,7 @@ slug: docs
                                                 {% assign sub_parameter_name = sub_parameter[0] %}
                                                 {% assign sub_parameter_description = sub_parameter[1].description %}
                                                 {% assign sub_parameter_type = sub_parameter[1].type %}                                            
-                                                <li><strong>{{ sub_parameter_name }}</strong> - {{ sub_parameter_description }}</li>
+                                                <li><strong>{{ sub_parameter_name }}</strong> ({{ parameter_type }}) - {{ sub_parameter_description }}</li>
                                               {% endfor %}
                                               </ul>
                                             </td>
