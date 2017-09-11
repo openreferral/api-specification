@@ -277,10 +277,25 @@ slug: docs
                                       
                                       {% if parameter_type == 'array' %}
                                         {% assign this_schema = parameter[1].items['$ref'] %}
+                                        {% assign this_schema = this_schema | replace: '/definitions/','' %}
+                                        {% assign this_schema = this_schema | replace: '#','' %}                                        
                                         <tr>
                                           <td style="width: 25%;" align="right"><strong>{{ parameter_name }} ({{ this_schema }})</strong></td>
                                           <td style="padding-left: 5px;">{{ parameter_description }}</td>
-                                        </tr>
+                                        </tr>                                        
+                                        <tr>
+                                          <td style="width: 25%;" align="right"></td>
+                                          <td style="padding-left: 5px;">
+                                            <ul>
+                                            {% for sub_parameter in schema[this_schema].properties %}
+                                              {% assign sub_parameter_name = sub_parameter[0] %}
+                                              {% assign sub_parameter_description = sub_parameter[1].description %}
+                                              {% assign sub_parameter_type = sub_parameter[1].type %}                                            
+                                              <li>{{ sub_parameter_name }} - {{ sub_parameter_description }}</li>
+                                            {% endfor %}
+                                            </ul>
+                                          </td>
+                                        </tr>                                                                                
                                       {% else %}
                                         <tr>
                                           <td style="width: 25%;" align="right"><strong>{{ parameter_name }} ({{ parameter_type }})</strong></td>
