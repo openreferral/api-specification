@@ -270,6 +270,7 @@ slug: docs
                           <tr>
                             <td align="left" style="font-size: 12px; padding: 10px;">
                                 <table style="width: 75%;" cellspacing="3" cellpadding="2">
+                                    this_response: {{ this_response }} 
                                     {% for parameter in schema[this_response].properties %}
                                     
                                       {% assign parameter_name = parameter[0] %}
