@@ -257,15 +257,11 @@ slug: docs
 
                         {% assign response_code = response[0] %}
                         {% assign this_response = response[1] %}
-                        0: {{ this_response }} <br />
                         {% if response_code == '200' %}
 
                           {% assign this_response = this_response.schema.items['$ref'] %}
-                          1: {{ this_response }}<br />
                           {% assign this_response = this_response | replace: '/definitions/','' %}
-                          2: {{ this_response }}<br />
                           {% assign this_response = this_response | replace: '#','' %}
-                          3: {{ this_response }}<br />
 
                             <tr style="background-color: #FFF;">
                               <td style="font-size: 12px; padding: 5px;"><strong>Reponse Body: ({{ this_response }})</strong></td>
@@ -290,7 +286,7 @@ slug: docs
                                             <td style="padding-left: 5px;">{{ parameter_description }}</td>
                                           </tr>                                        
                                           <tr>
-                                            <td style="width: 25%;" align="right"></td>
+                                            <td style="width: 5%;" align="right"></td>
                                             <td style="padding-left: 5px;">
                                               <ul>
                                               {% for sub_parameter in schema[this_schema].properties %}
