@@ -22,8 +22,8 @@ produces:
 paths:
   /contacts/:
     get:
-      summary: Get Contacts
-      description: Get Contacts
+      summary: Get all contacts
+      description: Returns a list of all registered contacts with filtering support
       operationId: listContacts
       parameters:
         - in: query
@@ -70,8 +70,8 @@ paths:
       tags:
       - Contacts
     post:
-      summary: Add Contact
-      description: Add contact
+      summary: Add contact
+      description: Creates a new named contact entry for services or organizations
       operationId: addContact
       parameters:
         - in: body
@@ -104,8 +104,8 @@ paths:
       - Contacts
   /contacts/complete/:
     get:
-      summary: Get Contacts (Complete)
-      description: Get Contacts (Complete)
+      summary: Get all contacts with full details
+      description: Returns a list of contacts with full details and filtering support
       operationId: listContactsComplete
       parameters:
         - in: query
@@ -152,8 +152,8 @@ paths:
       tags:
       - Contacts
     post:
-      summary: Add Contact (Complete)
-      description: Add Contact (Complete)
+      summary: Add contact with full details
+      description: Creates a new contact entry with full details
       operationId: addContactsComplete
       parameters:
         - in: body
@@ -186,8 +186,8 @@ paths:
       - Contacts
   /contacts/complete/{contact_id}/:
     get:
-      summary: Get Contacts (Complete)
-      description: Get Contacts (Complete)
+      summary: Get contact with full details
+      description: Returns a contact entry with full details
       operationId: getContactComplete
       parameters:
         - in: path
@@ -211,8 +211,8 @@ paths:
       tags:
       - Contacts
     put:
-      summary: Update Contact (Complete)
-      description: Update Contact (Complete)
+      summary: Update contact with full details
+      description: Updates a contact entry with full details
       operationId: updateContactsComplete
       parameters:
         - in: path
@@ -249,8 +249,8 @@ paths:
       tags:
       - Contacts
     delete:
-      summary: Delete Contact
-      description: Delete Contact
+      summary: Delete contact with full details
+      description: Deletes a contact entry with full details
       operationId: deleteContact
       parameters:
         - in: path
@@ -284,8 +284,8 @@ paths:
               $ref: "#/definitions/error_response"
   /contacts/{contact_id}/:
     get:
-      summary: Get Contact
-      description: Get Contact
+      summary: Get contact
+      description: Returns a contact entry by its Id
       operationId: getContact
       parameters:
         - in: path
@@ -309,8 +309,8 @@ paths:
       tags:
       - Contacts
     put:
-      summary: Update Contact
-      description: Update an existing contact.
+      summary: Update a contact
+      description: Updates an existing contact by Id
       operationId: updateContact
       parameters:
         - in: path
@@ -347,8 +347,8 @@ paths:
       tags:
       - Contacts
     delete:
-      summary: Delete Contact
-      description: Delete Contact
+      summary: Delete contact
+      description: Deletes a contact by Id
       operationId: deleteContactComplete
       parameters:
         - in: path
@@ -382,8 +382,8 @@ paths:
               $ref: "#/definitions/error_response"
   /contacts/{contact_id}/phones/:
     get:
-      summary: Get Phones
-      description: Get Phones
+      summary: Get all phones for contact
+      description: Returns a list of phones associated with a specific contact
       operationId: listContactPhones
       parameters:
         - in: path
@@ -407,8 +407,8 @@ paths:
       tags:
       - Contacts
     post:
-      summary: Add Phone
-      description: Add Phone
+      summary: Add phone for contact
+      description: Adds a new phone that is associated with a specific contact Id
       operationId: addContactPhone
       parameters:
         - in: path
@@ -446,8 +446,8 @@ paths:
       - Contacts
   /contacts/{contact_id}/phones/{phone_id}/:
     get:
-      summary: Get Phone
-      description: get Phone
+      summary: Get phone for contact
+      description: Returns the specific phone entity associated with a specific contact
       operationId: getContactPhone
       parameters:
         - in: path
@@ -476,8 +476,8 @@ paths:
       tags:
       - Contacts
     put:
-      summary: Update Phone
-      description: Update Phone
+      summary: Update phone for contact
+      description: Updates an existing contact's phone entry
       operationId: updateContactPhone
       parameters:
         - in: path
@@ -519,8 +519,8 @@ paths:
       tags:
       - Contacts
     delete:
-      summary: Delete Phone
-      description: Delete Phone
+      summary: Delete phone for contact
+      description: Deletes a specific phone instance associated with a specific contact Id
       operationId: deleteContactPhone
       parameters:
         - in: path
@@ -559,8 +559,8 @@ paths:
       - Contacts
   /locations/:
     get:
-      summary: Get Locations
-      description: Get Locations
+      summary: Get all locations
+      description: Returns a list of locations with filtering support
       operationId: listLocations
       parameters:
         - in: query
@@ -607,8 +607,8 @@ paths:
       tags:
       - Locations
     post:
-      summary: Add Location
-      description: Add Location
+      summary: Add location
+      description: Creates a new location entry
       operationId: addLocation
       parameters:
         - in: body
@@ -641,8 +641,8 @@ paths:
       - Locations
   /locations/complete/:
     get:
-      summary: Get Locations (Complete)
-      description: Get Locations (Complete)
+      summary: Get all locations with full details
+      description: Returns a list of locations with full details and filtering support
       operationId: listLocationsComplete
       parameters:
         - in: query
@@ -689,8 +689,8 @@ paths:
       tags:
       - Locations
     post:
-      summary: Add Location (Complete)
-      description: Add Location (Complete)
+      summary: Add location with full details
+      description: Creates a new location entry with full details
       operationId: addLocationsComplete
       parameters:
         - in: body
@@ -723,8 +723,8 @@ paths:
       - Locations
   /locations/complete/{location_id}/:
     get:
-      summary: Get Locations (Complete)
-      description: Get Locations (Complete)
+      summary: Get location with full details
+      description: Returns a location entry with full details
       operationId: getLocationComplete
       parameters:
         - in: path
@@ -748,8 +748,8 @@ paths:
       tags:
       - Locations
     put:
-      summary: Update Location (Complete)
-      description: Update Location (Complete)
+      summary: Update location with full details
+      description: Updates a location entry with full details
       operationId: updateLocationsComplete
       parameters:
         - in: path
@@ -787,8 +787,8 @@ paths:
       - Locations
   /locations/{location_id}/:
     get:
-      summary: Get Location
-      description: Get Location
+      summary: Get location
+      description: Returns a location entry by Id
       operationId: getLocation
       parameters:
         - in: path
@@ -812,8 +812,8 @@ paths:
       tags:
       - Locations
     put:
-      summary: Update Location
-      description: Update Location
+      summary: Update location
+      description: Updates a location entry
       operationId: updateLocation
       parameters:
         - in: path
@@ -850,8 +850,8 @@ paths:
       tags:
       - Locations
     delete:
-      summary: Delete Location
-      description: Delete Location
+      summary: Delete location
+      description: Deletes a location entry
       operationId: deleteLocationComplete
       parameters:
         - in: path
@@ -885,8 +885,8 @@ paths:
       - Locations
   /locations/{location_id}/holiday-schedule/:
     get:
-      summary: Get Holiday Schedule
-      description: Get Holiday Schedule
+      summary: Get all holiday schedules for a location
+      description: Returns the list of holiday schedules for a specific location
       operationId: listLocationHolidaySchedules
       parameters:
         - in: path
@@ -916,8 +916,8 @@ paths:
       tags:
       - Locations
     post:
-      summary: Add Holiday Schedule
-      description: Add Holiday Schedule
+      summary: Add holiday schedule for location
+      description: Creates a new holiday schedule entry for a location
       operationId: addLocationHolidaySchedule
       parameters:
         - in: path
@@ -955,8 +955,8 @@ paths:
       - Locations
   /locations/{location_id}/holiday-schedule/{holiday_schedule_id}/:
     get:
-      summary: Get Holiday Schedule
-      description: Get Holiday Schedule
+      summary: Get holiday schedule for location
+      description: Returns a specific holiday schedule for a location by Id
       operationId: getLocationHolidaySchedule
       parameters:
         - in: path
@@ -985,8 +985,8 @@ paths:
       tags:
       - Locations
     put:
-      summary: Update Holiday Schedule
-      description: Update Holiday Schedule
+      summary: Update holiday schedule for location
+      description: Updates a holiday schedule entry for a location
       operationId: updateLocationHolidaySchedule
       parameters:
         - in: path
@@ -1028,8 +1028,8 @@ paths:
       tags:
       - Locations
     delete:
-      summary: Delete Holiday Schedule
-      description: Delete Holiday Schedule
+      summary: Delete holiday schedule for location
+      description: Deletes a holiday schedule entry for a location
       operationId: deleteLocationHolidaySchedule
       parameters:
         - in: path
@@ -1068,8 +1068,8 @@ paths:
       - Locations
   /locations/{location_id}/languages/:
     get:
-      summary: Get Languages
-      description: Get Languages
+      summary: Get all languages for a location
+      description: Returns a list of all languages supported by a location
       operationId: listLocationLanguages
       parameters:
         - in: path
@@ -1093,8 +1093,8 @@ paths:
       tags:
       - Locations
     post:
-      summary: Add Languages
-      description: Add Languages
+      summary: Add language for location
+      description: Adds a new language entry for a location
       operationId: addLocationLanguages
       parameters:
         - in: path
@@ -1132,8 +1132,8 @@ paths:
       - Locations
   /locations/{location_id}/languages/{language_id}/:
     get:
-      summary: Get Languages
-      description: Get Languages
+      summary: Get language for location
+      description: Returns a specific language entry for a specific location by Id
       operationId: getLocationLanguages
       parameters:
         - in: path
@@ -1162,8 +1162,8 @@ paths:
       tags:
       - Locations
     put:
-      summary: Update Languages
-      description: Update Languages
+      summary: Update a language for a location
+      description: Updates a language entry for a specific location
       operationId: updateLocationLanguages
       parameters:
         - in: path
@@ -1205,8 +1205,8 @@ paths:
       tags:
       - Locations
     delete:
-      summary: Delete Languages
-      description: Delete Languages
+      summary: Delete language for location
+      description: Deletes a language entry for a specific location
       operationId: deleteLocationLanguages
       parameters:
         - in: path
@@ -1245,8 +1245,8 @@ paths:
       - Locations
   /locations/{location_id}/postal-address/:
     get:
-      summary: Get Postal Addresses
-      description: Get Postal Addresses
+      summary: Get all postal addresses of a location
+      description: Returns a list of postal addresses for a location
       operationId: listLocationPostalAddresses
       parameters:
         - in: path
@@ -1270,8 +1270,8 @@ paths:
       tags:
       - Locations
     post:
-      summary: Add Postal Adress
-      description: Add Postal Adress
+      summary: Add postal address for location
+      description: Creates a new postal address for a specific location
       operationId: addLocationPostalAddress
       parameters:
         - in: path
@@ -1309,8 +1309,8 @@ paths:
       - Locations
   /locations/{location_id}/postal-address/{postal_address_id}/:
     get:
-      summary: Get Postal Address
-      description: Get Postal Address
+      summary: Get postal address for location
+      description: Returns a postal address entry for a specific location
       operationId: getLocationPostalAddress
       parameters:
         - in: path
@@ -1339,8 +1339,8 @@ paths:
       tags:
       - Locations
     put:
-      summary: Update Postal Address
-      description: Postal Mailing Address
+      summary: Update postal address for location
+      description: Updates a postal address entry for a specific location
       operationId: updateLocationPostalAddress
       parameters:
         - in: path
@@ -1382,8 +1382,8 @@ paths:
       tags:
       - Locations
     delete:
-      summary: Delete Postal Address
-      description: Delete Postal Address
+      summary: Delete postal address for location
+      description: Deletes a postal adress entry for a specific location
       operationId: deleteLocationPostalAddress
       parameters:
         - in: path
@@ -1422,8 +1422,8 @@ paths:
       - Locations
   /locations/{location_id}/physical-address/:
     get:
-      summary: Get Physical Address
-      description: Get Physical Address
+      summary: Get physical addresses for location
+      description: Returns a list of physical addresses for a specific location
       operationId: listLocationPhysicalAddresses
       parameters:
         - in: path
@@ -1447,8 +1447,8 @@ paths:
       tags:
       - Locations
     post:
-      summary: Add Physical Adress
-      description: Add Physical Adress
+      summary: Add physical address for location
+      description: Creates a new phsycial address entry for a specific location
       operationId: addLocationPhysicalAddress
       parameters:
         - in: path
@@ -1486,8 +1486,8 @@ paths:
       - Locations
   /locations/{location_id}/physical-address/{postal_address_id}/:
     get:
-      summary: Get Physical Address
-      description: Get Physical Address
+      summary: Get physical address for location
+      description: Returns a physical address entry for a specific location
       operationId: getLocationPhysicalAddress
       parameters:
         - in: path
@@ -1516,8 +1516,8 @@ paths:
       tags:
       - Locations
     put:
-      summary: Update Physical Address
-      description: Postal Physical Address
+      summary: Update physical address for location
+      description: Updates a physical address entry for a specific location
       operationId: updateLocationPhysicalAddress
       parameters:
         - in: path
@@ -1559,8 +1559,8 @@ paths:
       tags:
       - Locations
     delete:
-      summary: Delete Physical Address
-      description: Delete Physical Address
+      summary: Delete a physical address for a location
+      description: Deletes a phsysical address entry for a specific location
       operationId: deleteLocationPhysicalAddress
       parameters:
         - in: path
@@ -1599,8 +1599,8 @@ paths:
       - Locations
   /locations/{location_id}/phones/:
     get:
-      summary: Get Phones
-      description: Get Phones
+      summary: Get all phones for a location
+      description: Returns a list of all phones for a location
       operationId: listLocationPhones
       parameters:
         - in: path
@@ -1624,8 +1624,8 @@ paths:
       tags:
       - Locations
     post:
-      summary: Add Phone
-      description: Add Phone
+      summary: Add phone for location
+      description: Creates a new phone entry for a specific location
       operationId: addLocationPhone
       parameters:
         - in: path
@@ -1663,8 +1663,8 @@ paths:
       - Locations
   /locations/{location_id}/phones/{phone_id}/:
     get:
-      summary: Get Phone
-      description: get Phone
+      summary: Get phone for location
+      description: Returns a phone entry for a specific location
       operationId: getLocationPhone
       parameters:
         - in: path
@@ -1693,8 +1693,8 @@ paths:
       tags:
       - Locations
     put:
-      summary: Update Phone
-      description: Update Phone
+      summary: Update phone for location
+      description: Updates a phone entry for a location
       operationId: updateLocationPhone
       parameters:
         - in: path
@@ -1736,8 +1736,8 @@ paths:
       tags:
       - Locations
     delete:
-      summary: Delete Phone
-      description: Delete Phone
+      summary: Delete phone for location
+      description: Deletes a phone entry for a location
       operationId: deleteLocationPhone
       parameters:
         - in: path
@@ -1776,8 +1776,8 @@ paths:
       - Locations
   /locations/{location_id}/regular-schedule/:
     get:
-      summary: Get Regular Schedules
-      description: Get Regular Schedules
+      summary: Get all regular schedules for a location
+      description: Returns a list of regular schedules for a specific location
       operationId: listLocationRegularSchedules
       parameters:
         - in: path
@@ -1801,8 +1801,8 @@ paths:
       tags:
       - Locations
     post:
-      summary: Add Regular Schedule
-      description: Add Regular Schedule
+      summary: Add regular schedule for location
+      description: Creates a regular schedule entry for a specific location
       operationId: addLocationRegularSchedule
       parameters:
         - in: path
@@ -1840,8 +1840,8 @@ paths:
       - Locations
   /locations/{location_id}/regular-schedule/{regular_schedule_id}/:
     get:
-      summary: Get Regular Schedule
-      description: Get Regular Schedule
+      summary: Get regular schedule for location
+      description: Returns a regular schedule entry for a specific location
       operationId: getLocationRegularSchedule
       parameters:
         - in: path
@@ -1870,8 +1870,8 @@ paths:
       tags:
       - Locations
     put:
-      summary: Update Regular Schedule
-      description: Update Regular Schedule
+      summary: Update regular schedule for location
+      description: Updates a regular schedule entry for a location
       operationId: updateLocationRegularSchedule
       parameters:
         - in: path
@@ -1913,8 +1913,8 @@ paths:
       tags:
       - Locations
     delete:
-      summary: Delete Regular Schedule
-      description: Delete Regular Schedule
+      summary: Delete regular schedule for location
+      description: Deletes a regular schedule entry for a location
       operationId: deleteLocationRegularSchedule
       parameters:
         - in: path
@@ -1941,8 +1941,8 @@ paths:
       - Locations
   /locations/{location_id}/services/:
     get:
-      summary: Get Services
-      description: Get Services
+      summary: Get all services for location
+      description: Returns a list of all services for a location
       operationId: listLocationServices
       parameters:
         - in: path
@@ -1966,8 +1966,8 @@ paths:
       tags:
       - Locations
     post:
-      summary: Add Service
-      description: Add Service
+      summary: Add service for location
+      description: Creates a new service entry for a specific location
       operationId: addLocationService
       parameters:
         - in: path
@@ -2005,8 +2005,8 @@ paths:
       - Locations
   /locations/{location_id}/services/{service_id}/:
     get:
-      summary: Get Service
-      description: Get Service
+      summary: Get service for location
+      description: Returns a service entry for a specific location
       operationId: getLocationService
       parameters:
         - in: path
@@ -2035,8 +2035,8 @@ paths:
       tags:
       - Locations
     put:
-      summary: Update Service
-      description: Update Service
+      summary: Update service for location
+      description: Updates a service entry for a specific location
       operationId: updateLocationService
       parameters:
         - in: path
@@ -2078,8 +2078,8 @@ paths:
       tags:
       - Locations
     delete:
-      summary: Delete Service
-      description: Delete Service
+      summary: Delete service for location
+      description: Deletes a service entry for a specific location
       operationId: deleteLocationService
       parameters:
         - in: path
@@ -2118,8 +2118,8 @@ paths:
       - Locations
   /locations/{location_id}/accessibility/:
     get:
-      summary: Get Accessibility For Disabilities
-      description: Get Accessibility For Disabilities
+      summary: Get list of accessibility for disabilities for location
+      description: Returns a list of all accessibility for disabilities for a specific location
       operationId: listLocationAccessibilityForDisabilities
       parameters:
         - in: path
@@ -2143,8 +2143,8 @@ paths:
       tags:
       - Locations
     post:
-      summary: Add Accessibility For Disabilities
-      description: Add Accessibility For Disabilities
+      summary: Add accessibility for disabilities for location
+      description: Creates a new accessibility for disabilities entry for a specific location
       operationId: addLocationAccessibilityForDisabilities
       parameters:
         - in: path
@@ -2182,8 +2182,8 @@ paths:
       - Locations
   /locations/{location_id}/accessibility/{accessibility_id}/:
     get:
-      summary: Get Accessibility For Disabilities
-      description: Get Accessibility For Disabilities
+      summary: Get accessibility for disabilities for location
+      description: Returns an accessibility for disabilities entry for a specific location
       operationId: getLocationAccessibilityForDisabilities
       parameters:
         - in: path
@@ -2212,8 +2212,8 @@ paths:
       tags:
       - Locations
     put:
-      summary: Update Accessibility For Disabilities
-      description: Update Accessibility For Disabilities
+      summary: Update accessibility for disabilities for location
+      description: Updates an existing accessibility for disabilities for a specific location
       operationId: updateLocationAccessibilityForDisabilities
       parameters:
         - in: path
@@ -2255,8 +2255,8 @@ paths:
       tags:
       - Locations
     delete:
-      summary: Delete Accessibility For Disabilities
-      description: Delete Accessibility For Disabilities
+      summary: Delete accessibility for disabilities for location
+      description: Deletes an accessibility for disabilities entry for a specific location
       operationId: deleteLocationAccessibilityForDisabilities
       parameters:
         - in: path
@@ -2295,8 +2295,8 @@ paths:
       - Locations
   /organizations/:
     get:
-      summary: Get Organizations
-      description: Get Organizations
+      summary: Get list of organizations
+      description: Returns a list of all organizations with filtering support
       operationId: listOrganizations
       parameters:
         - in: query
@@ -2344,7 +2344,7 @@ paths:
       - Organizations
     post:
       summary: Add organization
-      description: Addorganization
+      description: Creates a new organization entry
       operationId: addOrganization
       parameters:
         - in: body
@@ -2377,8 +2377,8 @@ paths:
       - Organizations
   /organizations/complete/:
     get:
-      summary: Get Organizations (Complete)
-      description: Get Organizations (Complete)
+      summary: Get list of organizations with full details
+      description: Returns a list of organizations with full schema and filtering support
       operationId: listOrganizationsComplete
       parameters:
         - in: query
@@ -2425,8 +2425,8 @@ paths:
       tags:
       - Organizations
     post:
-      summary: Add Organization (Complete)
-      description: Add Organization (Complete)
+      summary: Add organization with full details
+      description: Creates a new organization entry with full details
       operationId: addOrganizationsComplete
       parameters:
         - in: body
@@ -2459,8 +2459,8 @@ paths:
       - Organizations
   /organizations/complete/{organization_id}/:
     get:
-      summary: Get Organizations (Complete)
-      description: Get Organizations (Complete)
+      summary: Get organization with full details
+      description: Returns an organization entry with full details by Id
       operationId: getOrganizationComplete
       parameters:
         - in: path
@@ -2484,8 +2484,8 @@ paths:
       tags:
       - Organizations
     put:
-      summary: Update Organization (Complete)
-      description: Update Organization (Complete)
+      summary: Update organization with full details
+      description: Updates an organization entry with full details
       operationId: updateOrganizationsComplete
       parameters:
         - in: path
@@ -2523,8 +2523,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/:
     get:
-      summary: Get Organization
-      description: Get Organization
+      summary: Get organization
+      description: Returns a specific organization entry by Id
       operationId: getOrganization
       parameters:
         - in: path
@@ -2548,8 +2548,8 @@ paths:
       tags:
       - Organizations
     put:
-      summary: Update Organization
-      description: Update Organization
+      summary: Update organization
+      description: Updates an organization entry
       operationId: updateOrganization
       parameters:
         - in: path
@@ -2586,8 +2586,8 @@ paths:
       tags:
       - Organizations
     delete:
-      summary: Delete Organization
-      description: Delete Organization
+      summary: Delete organization
+      description: Deletes an organization entry
       operationId: deleteOrganizationComplete
       parameters:
         - in: path
@@ -2621,8 +2621,8 @@ paths:
               $ref: "#/definitions/error_response"
   /organizations/{organization_id}/contacts/:
     get:
-      summary: Get Contacts
-      description: Get Contacts
+      summary: Get all contacts for organization
+      description: Returns a full list of contacts for a specific organization
       operationId: listOrganizationContacts
       parameters:
         - in: path
@@ -2646,8 +2646,8 @@ paths:
       tags:
       - Organizations
     post:
-      summary: Add Contact
-      description: Add Contact
+      summary: Add contact for organization
+      description: Creates a new contact entry to a specific organization
       operationId: addOrganizationContact
       parameters:
         - in: path
@@ -2685,8 +2685,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/contacts/{contact_id}/:
     get:
-      summary: Get Contact
-      description: Get Contact
+      summary: Get contact for organization
+      description: Returns a contact entry for a specific organization
       operationId: getOrganizationContact
       parameters:
         - in: path
@@ -2715,8 +2715,8 @@ paths:
       tags:
       - Organizations
     put:
-      summary: Update Contact
-      description: Update Contact
+      summary: Update contact for organization
+      description: Updates a contact entry for an organization
       operationId: updateOrganizationContact
       parameters:
         - in: path
@@ -2758,8 +2758,8 @@ paths:
       tags:
       - Organizations
     delete:
-      summary: Delete Contact
-      description: Delete Contact
+      summary: Delete contact for organization
+      description: Deletes a contact entry for a specific organization
       operationId: deleteOrganizationContact
       parameters:
         - in: path
@@ -2798,8 +2798,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/funding/:
     get:
-      summary: Get Fundings
-      description: Get Fundings
+      summary: Get funding for organization
+      description: Returns a full list of funding entries for a specific organization
       operationId: listOrganizationFundings
       parameters:
         - in: path
@@ -2823,8 +2823,8 @@ paths:
       tags:
       - Organizations
     post:
-      summary: Add Funding
-      description: Add Funding
+      summary: Add funding for organization
+      description: Creates a new funding entry for a specific organization
       operationId: addOrganizationFunding
       parameters:
         - in: path
@@ -2862,8 +2862,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/funding/{funding_id}/:
     get:
-      summary: Get Funding
-      description: Get Funding
+      summary: Get funding for organization
+      description: Returns a funding entry for a specific organization
       operationId: getOrganizationFunding
       parameters:
         - in: path
@@ -2892,8 +2892,8 @@ paths:
       tags:
       - Organizations
     put:
-      summary: Update Funding
-      description: Update Funding
+      summary: Update funding for organization
+      description: Updates a funding entry for a specific organization
       operationId: updateOrganizationFunding
       parameters:
         - in: path
@@ -2935,8 +2935,8 @@ paths:
       tags:
       - Organizations
     delete:
-      summary: Delete Funding
-      description: Delete Funding
+      summary: Delete funding for organization
+      description: Deletes a funding entry for a specific organization
       operationId: deleteOrganizationFunding
       parameters:
         - in: path
@@ -2975,8 +2975,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/locations/:
     get:
-      summary: Get Location
-      description: Get Location
+      summary: Get all locations for organization
+      description: Returns a full list of locations for a specific organization
       operationId: listOrganizationLocations
       parameters:
         - in: path
@@ -3000,8 +3000,8 @@ paths:
       tags:
       - Organizations
     post:
-      summary: Add location
-      description: Add location
+      summary: Add location for organization
+      description: Creates a new location entry for a specific organization
       operationId: addOrganizationLocation
       parameters:
         - in: path
@@ -3039,8 +3039,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/locations/{location_id}/:
     get:
-      summary: Get Location
-      description: Get Location
+      summary: Get location for organization
+      description: Returns a location entry for a specific organization
       operationId: getOrganizationLocation
       parameters:
         - in: path
@@ -3069,8 +3069,8 @@ paths:
       tags:
       - Organizations
     put:
-      summary: Update location
-      description: Update location
+      summary: Update location for organization
+      description: Updates a location entry for a specific organization
       operationId: updateOrganizationLocation
       parameters:
         - in: path
@@ -3112,8 +3112,8 @@ paths:
       tags:
       - Organizations
     delete:
-      summary: Delete Location
-      description: Delete Location
+      summary: Delete location for organization
+      description: Deletes a location entry for a specific location
       operationId: deleteOrganizationLocation
       parameters:
         - in: path
@@ -3152,8 +3152,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/phones/:
     get:
-      summary: Get Phones
-      description: Get Phones
+      summary: Get all phones for organization
+      description: Returns a full list of phones for a specific organization
       operationId: listOrganizationPhones
       parameters:
         - in: path
@@ -3177,8 +3177,8 @@ paths:
       tags:
       - Organizations
     post:
-      summary: Add Phone
-      description: Add Phone
+      summary: Add phone for an organization
+      description: Creates a new phone entry for a specific organization
       operationId: addOrganizationPhone
       parameters:
         - in: path
@@ -3216,8 +3216,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/phones/{phone_id}/:
     get:
-      summary: Get Phone
-      description: get Phone
+      summary: Get phone for organization
+      description: Returns a phone entry for a specific organization
       operationId: getOrganizationPhone
       parameters:
         - in: path
@@ -3246,8 +3246,8 @@ paths:
       tags:
       - Organizations
     put:
-      summary: Update Phone
-      description: Update Phone
+      summary: Update phone for organization
+      description: Updates a phone entry for a specific organization
       operationId: updateOrganizationPhone
       parameters:
         - in: path
@@ -3289,8 +3289,8 @@ paths:
       tags:
       - Organizations
     delete:
-      summary: Delete Phone
-      description: Delete Phone
+      summary: Delete phone for organization
+      description: Deletes a phone entry for an organization
       operationId: deleteOrganizationPhone
       parameters:
         - in: path
@@ -3329,8 +3329,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/programs/:
     get:
-      summary: Get Programs
-      description: Get Programs
+      summary: Get all programs for organization
+      description: Returns a full list of programs for a specific organization
       operationId: listOrganizationPrograms
       parameters:
         - in: path
@@ -3354,8 +3354,8 @@ paths:
       tags:
       - Organizations
     post:
-      summary: Add Program
-      description: Add Program
+      summary: Add program for organization
+      description: Creates a new program entry for a specific organization
       operationId: addOrganizationProgram
       parameters:
         - in: path
@@ -3393,8 +3393,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/programs/{program_id}/:
     get:
-      summary: Get Program
-      description: Get Program
+      summary: Get program for organization
+      description: Returns a program entry for a specific organization
       operationId: getOrganizationProgram
       parameters:
         - in: path
@@ -3423,8 +3423,8 @@ paths:
       tags:
       - Organizations
     put:
-      summary: Update Program
-      description: Update Program
+      summary: Update program for organization
+      description: Updates a program entry for a specific organization
       operationId: updateOrganizationProgram
       parameters:
         - in: path
@@ -3466,8 +3466,8 @@ paths:
       tags:
       - Organizations
     delete:
-      summary: Delete Program
-      description: Delete Program
+      summary: Delete program for organization
+      description: Deletes a program entry for a specific organization
       operationId: deleteOrganizationProgram
       parameters:
         - in: path
@@ -3506,8 +3506,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/programs/{program_id}/services/:
     get:
-      summary: Get Service
-      description: Get Service
+      summary: Get all services for a specific program within an organization
+      description: Returns a full list of services for a specific program in a specific organization
       operationId: listProgramServices
       parameters:
         - in: path
@@ -3536,8 +3536,8 @@ paths:
       tags:
       - Organizations
     post:
-      summary: Add Service
-      description: Add Service
+      summary: Add service for a program within an organization
+      description: Creates a new service entry for a specific program within an organization
       operationId: addProgramService
       parameters:
         - in: path
@@ -3580,8 +3580,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/programs/{program_id}/services/{service_id}/:
     get:
-      summary: Get Service
-      description: Get Service
+      summary: Get service from a specific program within an organization
+      description: Returns a service entry from a specific program within an organization
       operationId: getProgramService
       parameters:
         - in: path
@@ -3615,8 +3615,8 @@ paths:
       tags:
       - Organizations
     put:
-      summary: Update Service
-      description: Update Service
+      summary: Update service for a specific program within an organization
+      description: Updates a service from a specific program within an organization
       operationId: updateProgramService
       parameters:
         - in: path
@@ -3663,8 +3663,8 @@ paths:
       tags:
       - Organizations
     delete:
-      summary: Delete Service
-      description: Delete Service
+      summary: Delete service for a specific program within an organization
+      description: Deletes a service from a specific program within an organization
       operationId: deleteProgramService
       parameters:
         - in: path
@@ -3708,8 +3708,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/services/:
     get:
-      summary: Get Services
-      description: Get Services
+      summary: Get all services for organization
+      description: Returns a full list of services for a specific organization
       operationId: listOrganizationServices
       parameters:
         - in: path
@@ -3733,8 +3733,8 @@ paths:
       tags:
       - Organizations
     post:
-      summary: Add Service
-      description: Add Service
+      summary: Add service for organization
+      description: Creates a new service entry for an organization
       operationId: addOrganizationService
       parameters:
         - in: path
@@ -3772,8 +3772,8 @@ paths:
       - Organizations
   /organizations/{organization_id}/services/{service_id}/:
     get:
-      summary: Get Service
-      description: Get Service
+      summary: Get service for organization
+      description: Returns a service entry for a specific organization
       operationId: getOrganizationService
       parameters:
         - in: path
@@ -3802,8 +3802,8 @@ paths:
       tags:
       - Organizations
     put:
-      summary: Update Service
-      description: Update Service
+      summary: Update service for organization
+      description: Updates a service entry for a specific organization
       operationId: updateOrganizationService
       parameters:
         - in: path
@@ -3845,8 +3845,8 @@ paths:
       tags:
       - Organizations
     delete:
-      summary: Delete Service
-      description: Delete Service
+      summary: Delete service for organization
+      description: Deletes a service entry for a specific organization
       operationId: deleteOrganizationService
       parameters:
         - in: path
@@ -3885,8 +3885,8 @@ paths:
       - Organizations
   /services/:
     get:
-      summary: Get Services
-      description: Get Services
+      summary: Get all services
+      description: Returns a full list of services with filtering support
       operationId: listServices
       parameters:
         - in: query
@@ -3933,8 +3933,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Service
-      description: Add Service
+      summary: Add service
+      description: Creates a new service entry
       operationId: addService
       parameters:
         - in: body
@@ -3967,8 +3967,8 @@ paths:
       - Services
   /services/complete/:
     get:
-      summary: Get Services (Complete)
-      description: Get Services (Complete)
+      summary: Get all services with full details
+      description: Returns a list of services with full details and filtering support
       operationId: listServicesComplete
       parameters:
         - in: query
@@ -4015,8 +4015,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Service (Complete)
-      description: Add Service (Complete)
+      summary: Add service with full details
+      description: Creates a new service entry with full details
       operationId: addServicesComplete
       parameters:
         - in: body
@@ -4049,8 +4049,8 @@ paths:
       - Services
   /services/complete/{service_id}/:
     get:
-      summary: Get Services (Complete)
-      description: Get Services (Complete)
+      summary: Get service with full details
+      description: Returns a service entry with full details
       operationId: getServiceComplete
       parameters:
         - in: path
@@ -4074,8 +4074,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Service (Complete)
-      description: Update Service (Complete)
+      summary: Update service with full details
+      description: Updates a service entry with full details
       operationId: updateServicesComplete
       parameters:
         - in: path
@@ -4113,8 +4113,8 @@ paths:
       - Services
   /services/{service_id}/:
     get:
-      summary: Get Service
-      description: Get Service
+      summary: Get service
+      description: Returns a specific service entry by Id
       operationId: getService
       parameters:
         - in: path
@@ -4138,8 +4138,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Service
-      description: Update Service
+      summary: Update service
+      description: Updates a service entry
       operationId: updateService
       parameters:
         - in: path
@@ -4176,8 +4176,8 @@ paths:
       tags:
       - Services
     delete:
-      summary: Delete Service
-      description: Delete Service
+      summary: Delete service
+      description: Deletes a service entry
       operationId: deleteServiceComplete
       parameters:
         - in: path
@@ -4211,8 +4211,8 @@ paths:
               $ref: "#/definitions/error_response"
   /services/{service_id}/contacts/:
     get:
-      summary: Get Contacts
-      description: Get Contacts
+      summary: Get all contacts for service
+      description: Returns a full list of contacts for a specific service
       operationId: listServiceContacts
       parameters:
         - in: path
@@ -4236,8 +4236,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Contact
-      description: Add Contact
+      summary: Add contact for service
+      description: Creates a new contact entry for a specific service
       operationId: addServiceContact
       parameters:
         - in: path
@@ -4275,8 +4275,8 @@ paths:
       - Services
   /services/{service_id}/contacts/{contact_id}/:
     get:
-      summary: Get Contact
-      description: Get Contact
+      summary: Get contact for service
+      description: Returns a contact entry for a specific service by Id
       operationId: getServiceContact
       parameters:
         - in: path
@@ -4305,8 +4305,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Contact
-      description: Update Contact
+      summary: Update contact for service
+      description: Updates a contact entry for a specific service
       operationId: updateServiceContact
       parameters:
         - in: path
@@ -4348,8 +4348,8 @@ paths:
       tags:
       - Services
     delete:
-      summary: Delete Contact
-      description: Delete Contact
+      summary: Delete contact for service
+      description: Deletes a contact entry for a specific service
       operationId: deleteServiceContact
       parameters:
         - in: path
@@ -4388,8 +4388,8 @@ paths:
       - Services
   /services/{service_id}/eligibility/:
     get:
-      summary: Get Eligibilities
-      description: Get Eligibilities
+      summary: Get all eligibilities for service
+      description: Returns a full list of eligibilities for a specific service
       operationId: listServiceEligibilities
       parameters:
         - in: path
@@ -4413,8 +4413,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Eligibility
-      description: Add Eligibility
+      summary: Add eligibility for service
+      description: Creates a new eligibility entry for a service
       operationId: addServiceEligibility
       parameters:
         - in: path
@@ -4452,8 +4452,8 @@ paths:
       - Services
   /services/{service_id}/eligibility/{eligibility_id}/:
     get:
-      summary: Get Eligibility
-      description: Get Eligibility
+      summary: Get eligibility for service
+      description: Returns an eligibility entry for a specific service
       operationId: getServiceEligibility
       parameters:
         - in: path
@@ -4482,8 +4482,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Eligibility
-      description: Update Eligibility
+      summary: Update eligibility for service
+      description: Updates an eligibility entry for a specific service
       operationId: updateServiceEligibility
       parameters:
         - in: path
@@ -4525,8 +4525,8 @@ paths:
       tags:
       - Services
     delete:
-      summary: Eligibility Contact
-      description: Delete Eligibility
+      summary: Delete eligibility for service
+      description: Deletes an eligibility entry for a specific service
       operationId: deleteServiceEligibility
       parameters:
         - in: path
@@ -4553,8 +4553,8 @@ paths:
       - Services
   /services/{service_id}/fees/:
     get:
-      summary: Get Fees
-      description: Get Fees
+      summary: Get all fees for service
+      description: Returns a full list of fees for a specific service
       operationId: listServiceFees
       parameters:
         - in: path
@@ -4578,8 +4578,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Fee
-      description: Add Fee
+      summary: Add fee for service
+      description: Creates a fee entry for a specific service
       operationId: addServiceFee
       parameters:
         - in: path
@@ -4617,8 +4617,8 @@ paths:
       - Services
   /services/{service_id}/fees/{feed_id}/:
     get:
-      summary: Get Fee
-      description: Get Fee
+      summary: Get fee for service
+      description: Returns a fee entry for a specific service
       operationId: getServiceFee
       parameters:
         - in: path
@@ -4647,8 +4647,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Fee
-      description: Update Fee
+      summary: Update fee for service
+      description: Updates a fee entry for a service
       operationId: updateServiceFee
       parameters:
         - in: path
@@ -4690,8 +4690,8 @@ paths:
       tags:
       - Services
     delete:
-      summary: Delete Fee
-      description: Delete Fee
+      summary: Delete fee for service
+      description: Deletes a fee entry for a service
       operationId: deleteServiceFee
       parameters:
         - in: path
@@ -4730,8 +4730,8 @@ paths:
       - Services
   /services/{service_id}/funding/:
     get:
-      summary: Get Funding
-      description: Get Funding
+      summary: Get all funding for service
+      description: Returns a full list of funding entries for a specific service
       operationId: listServiceFundings
       parameters:
         - in: path
@@ -4755,8 +4755,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Funding
-      description: Add Funding
+      summary: Add funding for service
+      description: Creates a funding entry for a specific service
       operationId: addServiceFunding
       parameters:
         - in: path
@@ -4794,8 +4794,8 @@ paths:
       - Services
   /services/{service_id}/funding/{funding_id}/:
     get:
-      summary: Get Funding
-      description: Get Funding
+      summary: Get funding for service
+      description: Returns a funding entry for a specific service
       operationId: getServiceFunding
       parameters:
         - in: path
@@ -4824,8 +4824,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Funding
-      description: Update Funding
+      summary: Update funding for service
+      description: Updates a funding entry for a specific service
       operationId: updateServiceFunding
       parameters:
         - in: path
@@ -4867,8 +4867,8 @@ paths:
       tags:
       - Services
     delete:
-      summary: Delete Funding
-      description: Delete Funding
+      summary: Delete funding for service
+      description: Deletes a funding entry for a specific service
       operationId: deleteServiceFunding
       parameters:
         - in: path
@@ -4907,8 +4907,8 @@ paths:
       - Services
   /services/{service_id}/holiday-schedule/:
     get:
-      summary: Get Holiday Schedule
-      description: Get Holiday Schedule
+      summary: Get all holiday schedules for service
+      description: Returns a list of holiday schedule entries for a specific service
       operationId: listServiceHolidaySchedules
       parameters:
         - in: path
@@ -4932,8 +4932,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Holiday Schedule
-      description: Add Holiday Schedule
+      summary: Add holiday schedule for service
+      description: Creates a new holiday schedule entry for a specific service
       operationId: addServiceHolidaySchedule
       parameters:
         - in: path
@@ -4971,8 +4971,8 @@ paths:
       - Services
   /services/{service_id}/holiday-schedule/{holiday_schedule_id}/:
     get:
-      summary: Get Holiday Schedule
-      description: Get Holiday Schedule
+      summary: Get holiday schedule for service
+      description: Returns a holiday schedule entry for a specific service
       operationId: getServiceHolidaySchedule
       parameters:
         - in: path
@@ -5001,8 +5001,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Holiday Schedule
-      description: Update Holiday Schedule
+      summary: Update holiday schedule
+      description: Updates a holiday schedule entry for a specific service
       operationId: updateServiceHolidaySchedule
       parameters:
         - in: path
@@ -5044,8 +5044,8 @@ paths:
       tags:
       - Services
     delete:
-      summary: Delete Holiday Schedule
-      description: Delete Holiday Schedule
+      summary: Delete holiday schedule for service
+      description: Deletes a holiday schedule entry for a specific service
       operationId: deleteServiceHolidaySchedule
       parameters:
         - in: path
@@ -5084,8 +5084,8 @@ paths:
       - Services
   /services/{service_id}/languages/:
     get:
-      summary: Get Languages
-      description: Get Languages
+      summary: Get languages for service
+      description: Returns a list of languages supported by a specific service
       operationId: listServiceLanguages
       parameters:
         - in: path
@@ -5109,8 +5109,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Languages
-      description: Add Languages
+      summary: Add languages for service
+      description: Creates new language entries for a specific service
       operationId: addServiceLanguage
       parameters:
         - in: path
@@ -5148,8 +5148,8 @@ paths:
       - Services
   /services/{service_id}/languages/{language_id}/:
     get:
-      summary: Get Languages
-      description: Get Languages
+      summary: Get language for service
+      description: Returns a language entry for a specific service
       operationId: getServiceLanguage
       parameters:
         - in: path
@@ -5178,8 +5178,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Languages
-      description: Update Languages
+      summary: Update language for service
+      description: Updates a language entry for a specific service
       operationId: updateServiceLanguage
       parameters:
         - in: path
@@ -5221,8 +5221,8 @@ paths:
       tags:
       - Services
     delete:
-      summary: Delete Languages
-      description: Delete Languages
+      summary: Delete language for service
+      description: Deletes a language entry for a specific service
       operationId: deleteServiceLanguage
       parameters:
         - in: path
@@ -5261,8 +5261,8 @@ paths:
       - Services
   /services/{service_id}/payment-accepted/:
     get:
-      summary: Get Payment Accepted
-      description: Get Payment Accepted
+      summary: Get all accepted paymement methods for service
+      description: Returns a list of all accepted payment methods for a specific service
       operationId: listServicePaymentsAccepted
       parameters:
         - in: path
@@ -5286,8 +5286,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Payment Accepted
-      description: Add Payment Accepted
+      summary: Add accepted payment method for service
+      description: Creates a new accepted payment method entry for a specific service
       operationId: addServicePaymentAccepted
       parameters:
         - in: path
@@ -5325,8 +5325,8 @@ paths:
       - Services
   /services/{service_id}/payment-accepted/{payment_accepted_id}/:
     get:
-      summary: Get Payment Accepted
-      description: Get Payment Accepted
+      summary: Get accepted payment method
+      description: Returns an accepted payment method for a specific service
       operationId: getServicePaymentAccepted
       parameters:
         - in: path
@@ -5355,8 +5355,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Payment Accepted
-      description: Update Payment Accepted
+      summary: Updates accepted payment method for service
+      description: Updates an accepted payment method entry for a specific service
       operationId: updateServicePaymentAccepted
       parameters:
         - in: path
@@ -5398,8 +5398,8 @@ paths:
       tags:
       - Services
     delete:
-      summary: Delete Payment Accepted
-      description: Delete Payment Accepted
+      summary: Delete accepted payment method for service
+      description: Deletes an accepted payment method for a specific service
       operationId: deleteServicePaymentAccepted
       parameters:
         - in: path
@@ -5438,8 +5438,8 @@ paths:
       - Services
   /services/{service_id}/phones/:
     get:
-      summary: Get Phones
-      description: Get Phones
+      summary: Get all phones for service
+      description: Returns a list of phones for a specific service
       operationId: listServicePhones
       parameters:
         - in: path
@@ -5463,8 +5463,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Phone
-      description: Add Phone
+      summary: Add phone for service
+      description: Creates a new phone entry for a specific service
       operationId: addServicePhone
       parameters:
         - in: path
@@ -5502,8 +5502,8 @@ paths:
       - Services
   /services/{service_id}/phones/{phone_id}/:
     get:
-      summary: Get Phone
-      description: get Phone
+      summary: Get phone for service
+      description: Returns a phone entry for a specific service
       operationId: getServicePhone
       parameters:
         - in: path
@@ -5532,8 +5532,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Phone
-      description: Update Phone
+      summary: Update phone for service
+      description: Updates a phone entry for a specific service
       operationId: updateServicePhone
       parameters:
         - in: path
@@ -5575,8 +5575,8 @@ paths:
       tags:
       - Services
     delete:
-      summary: Delete Phone
-      description: Delete Phone
+      summary: Delete phone for service
+      description: Deletes a phone entry for a specific service
       operationId: deleteServicePhone
       parameters:
         - in: path
@@ -5615,8 +5615,8 @@ paths:
       - Services
   /services/{service_id}/regular-schedule/:
     get:
-      summary: Get Regular Schedule
-      description: Get Regular Schedule
+      summary: Get all regular schedules for service
+      description: Returns a list of regular schedules for a specific service
       operationId: listServiceRegularSchedule
       parameters:
         - in: path
@@ -5640,8 +5640,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Regular Schedule
-      description: Add Regular Schedule
+      summary: Add regular schedule for service
+      description: Creates a new regular schedule entry for a specific service
       operationId: addServiceRegularSchedule
       parameters:
         - in: path
@@ -5679,8 +5679,8 @@ paths:
       - Services
   /services/{service_id}/regular-schedule/{regular_schedule_id}/:
     get:
-      summary: Get Regular Schedule
-      description: Get Regular Schedule
+      summary: Get regular schedule for service
+      description: Returns a regular schedule entry for a specific service
       operationId: getServiceRegularSchedules
       parameters:
         - in: path
@@ -5709,8 +5709,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Regular Schedule
-      description: Update Regular Schedule
+      summary: Update regular schedule for service
+      description: Updates a regular schedule entry for a specific service
       operationId: updateServiceRegularSchedule
       parameters:
         - in: path
@@ -5752,8 +5752,8 @@ paths:
       tags:
       - Services
     delete:
-      summary: Delete Regular Schedule
-      description: Delete Regular Schedule
+      summary: Delete regular schedule for service
+      description: Deletes a regular schedule entry for a service
       operationId: deleteServiceRegularSchedule
       parameters:
         - in: path
@@ -5792,8 +5792,8 @@ paths:
       - Services
   /services/{service_id}/required-document/:
     get:
-      summary: Get Required Document
-      description: Get Required Document
+      summary: Get all required documents for service
+      description: Returns a list of required documents for a specific service
       operationId: listServiceRequiredDocument
       parameters:
         - in: path
@@ -5817,8 +5817,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Required Document
-      description: Add Required Document
+      summary: Add required document for service
+      description: Creates a new required document entry for a specific service
       operationId: addServiceRequiredDocument
       parameters:
         - in: path
@@ -5856,8 +5856,8 @@ paths:
       - Services
   /services/{service_id}/required-document/{required_document_id}/:
     get:
-      summary: Get Required Document
-      description: Get Required Document
+      summary: Get required document for service
+      description: Returns a required document entry for a specific service
       operationId: getServiceRequiredDocuments
       parameters:
         - in: path
@@ -5886,8 +5886,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Required Document
-      description: Update Required Document
+      summary: Update required document for service
+      description: Updates a required document entry for a specific service
       operationId: updateServiceRequiredDocument
       parameters:
         - in: path
@@ -5929,8 +5929,8 @@ paths:
       tags:
       - Services
     delete:
-      summary: Delete Required Document
-      description: Delete Required Document
+      summary: Delete required document for service
+      description: Deletes a required document entry for a specific service
       operationId: deleteServiceRequiredDocument
       parameters:
         - in: path
@@ -5969,8 +5969,8 @@ paths:
       - Services
   /services/{service_id}/service-area/:
     get:
-      summary: Get Service Areas
-      description: Get Service Areas
+      summary: Get all service areas
+      description: Returns a list of all service areas
       operationId: listServiceServiceAreas
       parameters:
         - in: path
@@ -5994,8 +5994,8 @@ paths:
       tags:
       - Services
     post:
-      summary: Add Service Area
-      description: Add Service Area
+      summary: Add service area
+      description: Creates a new service area entry
       operationId: addServiceServiceAreas
       parameters:
         - in: path
@@ -6033,8 +6033,8 @@ paths:
       - Services
   /services/{service_id}/service-area/{service_area_id}/:
     get:
-      summary: Get Service Area
-      description: Get Service Area
+      summary: Get service area
+      description: Returns a service area entry
       operationId: getServiceServiceArea
       parameters:
         - in: path
@@ -6063,8 +6063,8 @@ paths:
       tags:
       - Services
     put:
-      summary: Update Service Area
-      description: Update Service Area
+      summary: Update service area
+      description: Updates a service area entry
       operationId: updateServiceServiceArea
       parameters:
         - in: path
@@ -6106,8 +6106,8 @@ paths:
       tags:
       - Services
     delete:
-      summary: Delete Service Area
-      description: Delete Service Area
+      summary: Delete service area
+      description: Deletes a service area entry
       operationId: deleteServiceServiceArea
       parameters:
         - in: path
@@ -6155,6 +6155,7 @@ securityDefinitions:
     name: x-appkey
 definitions:
   accessibility_for_disabilities:
+    description: 'Details of the arrangements for access to locations for people who have disabilities'
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
@@ -6163,8 +6164,7 @@ definitions:
         description: 'The identifier of the location for which the entry describes the accessibility provision.'
         type: string
       accessibility:
-        description: 'Description of assistance or infrastructure that facilitate access to clients with
-disabilities.'
+        description: 'Description of assistance or infrastructure that facilitate access to clients with disabilities.'
         type: string
       details:
         description: 'Any further details relating to the relevant accessibility arrangements at this location. E.g. whether advance notice is required to use an accessibility facility.'
@@ -6172,6 +6172,7 @@ disabilities.'
     required:
       - id
   contact:
+    description: 'Details of the named contacts for services and organizations.'
     properties:
       id:
         description: 'Each contact must have a unique identifier.'
@@ -6200,6 +6201,7 @@ disabilities.'
     required:
       - id
   contact_complete:
+    description: Full details about a contact.
     properties:
       id:
         description: 'Each contact must have a unique identifier.'
@@ -6232,6 +6234,7 @@ disabilities.'
     required:
       - id
   eligibility:
+    description: 'Details of eligibility criteria for particular services'
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
@@ -6245,6 +6248,7 @@ disabilities.'
     required:
       - id
   fee:
+    description: 'Details of charges imposed by services'
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
@@ -6258,6 +6262,7 @@ disabilities.'
     required:
       - id
   funding:
+    description: 'Describes a source of funding for a service or organisation'
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
@@ -6274,6 +6279,7 @@ disabilities.'
     required:
       - id
   holiday_schedule:
+    description: 'Details of when a service or location is open during holidays. Each entry in the table describes a period of one or more days, and the operating times on those days.'
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
@@ -6308,6 +6314,7 @@ disabilities.'
       - start_date
       - end_date
   intepretation_services:
+    description: 'Describes interpretation services offered in different languages'
     properties:
       id:
         description: 'Each service must have a unique identifier.'
@@ -6321,6 +6328,7 @@ disabilities.'
     required:
       - id
   language:
+    description: 'Details of the languages that are spoken at locations or services. This does not include languages which can only be used with intepretation.'
     properties:
       id:
         description: 'Each language must have a unique identifier.'
@@ -6337,6 +6345,7 @@ disabilities.'
     required:
       - id
   location:
+    description: 'Details of the locations where organizations operate. Locations may be virtual, and one organization may have many locations.'
     type: object
     properties:
       id:
@@ -6367,6 +6376,7 @@ disabilities.'
       - id
       - name
   location_complete:
+    description: 'Full location details of an organization.'
     properties:
       id:
         description: 'Each location must have a unique identifier.'
@@ -6427,6 +6437,7 @@ disabilities.'
     required:
       - id
   organization:
+    description: 'Provides basic description and details about each organization delivering services. Each service should be linked to the organization responsible for its delivery. One organization may deliver many services.'
     properties:
       id:
         description: 'Each organization must have a unique identifier.'
@@ -6462,6 +6473,7 @@ disabilities.'
       - id
       - description
   organization_complete:
+    description: 'Provides a full description of an organization entity'
     properties:
       id:
         description: 'Each organization must have a unique identifier.'
@@ -6494,10 +6506,12 @@ disabilities.'
         description: 'The legal status defines the conditions that an organization is operating under; e.g. non-profit, private corporation or a government organization.'
         type: string
       contacts:
+        description: 'The contacts sub-subresource.'
         type: "array"
         items:
           $ref: "#/definitions/contact"
       funding:
+        description: 'The funding sub-subresource.'
         type: "array"
         items:
           $ref: "#/definitions/funding"
@@ -6517,6 +6531,7 @@ disabilities.'
       - id
       - description
   payment_accepted:
+    description: 'Details of the methods of payment that can be used in order to pay for services'
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
@@ -6530,6 +6545,7 @@ disabilities.'
     required:
       - id
   phone:
+    description: 'Details of the telephone numbers used to contact organizations, services, and locations.'
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
@@ -6571,6 +6587,7 @@ disabilities.'
       - id
       - number
   physical_address:
+    description: 'Describes a physical address of a location'
     properties:
       id:
         description: 'Each physical address must have a unique identifier.'
@@ -6616,6 +6633,7 @@ disabilities.'
       - postal_code
       - country
   postal_address:
+    description: 'Contains the postal addresses for mail to a certain location. This may differ from the physical location.'
     properties:
       id:
         description: 'Each postal address must have a unique identifier.'
@@ -6656,6 +6674,7 @@ disabilities.'
     required:
       - id
   program:
+    description: 'Some organizations organise their services into programs. A program brings together a number of related services.'
     properties:
       id:
         description: 'Each program must have a unique identifier.'
@@ -6674,6 +6693,7 @@ disabilities.'
       - organization_id
       - name
   regular_schedule:
+    description: 'Details of when a service or location is open under normal circumstances. Each entry in the table can relate to one and only one day of the week.'
     properties:
       id:
         description: 'Each entry must have a unique identifier.'
@@ -6700,6 +6720,7 @@ disabilities.'
       - id
       - weekday
   required_document:
+    description: 'Details of any documents that are required in order to access or use services.'
     properties:
       id:
         description: 'Each document must have a unique identifier.'
@@ -6713,6 +6734,7 @@ disabilities.'
     required:
       - id
   service:
+    description: 'Services are provided by organizations to a range of different groups. Details on where each service is delivered are contained in the services_at_location table.'
     properties:
       id:
         description: 'Each service must have a unique identifier.'
@@ -6763,6 +6785,7 @@ disabilities.'
         description: 'An organization may have a license issued by a government entity to operate legally. A list of any such licenses can be provided here.'
         type: string
   service_complete:
+    description: Full details about a service.
     properties:
       id:
         description: 'Each service must have a unique identifier.'
@@ -6859,6 +6882,7 @@ disabilities.'
       - name
       - status
   service_area:
+    description: 'Details of the geographic area for which a service is available.'
     properties:
       id:
         description: 'Each service area must have a unique identifier.'
@@ -6875,6 +6899,7 @@ disabilities.'
     required:
       - id
   error_response:
+    description: 'Describes an HTTP error returned by the service'
     properties:
       code:
         description: 'Repeat the HTTP status code'
