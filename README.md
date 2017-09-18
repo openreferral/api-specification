@@ -1,6 +1,6 @@
 ## Open Referral Human Services Data API Specification
 
-This project is driven by an OpenAPI definition located in [_data/api-commons/openapi.yaml](https://github.com/openreferral/api-specification/blob/master/_data/api-commons/openapi.yaml)
+This project is driven by an OpenAPI definition located in [_data/api-commons/openapi-hsda.yaml](https://github.com/openreferral/api-specification/blob/master/_data/api-commons/openapi-hsda.yaml)
 
 The website for this repo can be found at: https://openreferral.github.io/api-specification/definition/
 
@@ -39,4 +39,4 @@ The focus is primarily on the Human Services Data API (HSDA), but this work has 
 - [hsda aggregation](https://github.com/openreferral/api-specification/labels/hsda-aggregation) - Upcoming aggregation work, acros multiple instances.
 - [hsda custom](https://github.com/openreferral/api-specification/labels/hsda-custom) - Allowing for custom fields.
 
-These are separate projects to allow for them to be moved forward separately. They are also meant to act as separate microservices, that can be deployed, scaled, and managed indepedent of each other while still working in concert. 
+These are separate projects to allow for them to be moved forward separately. They are also meant to act as separate microservices, that can be deployed, scaled, and managed indepedent of each other while still working in concert.
