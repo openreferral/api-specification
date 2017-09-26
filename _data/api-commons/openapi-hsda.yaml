@@ -11,7 +11,7 @@ info:
     name: Open Data Commons Public Domain
     url: http://opendatacommons.org/licenses/pddl/
   version: v1.2
-host: hsda.api.adopta.agency
+host: example.com
 basePath: /
 schemes:
 - http
