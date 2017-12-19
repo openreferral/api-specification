@@ -9,7 +9,7 @@ info:
     email: info@openreferral.org
   license:
     name: Open Data Commons Public Domain
-    url: http://opendatacommons.org/licenses/pddl/
+    url: https://creativecommons.org/licenses/by-sa/4.0/
   version: v1.0
 host: hsda.utility.api.adopta.agency
 basePath: /

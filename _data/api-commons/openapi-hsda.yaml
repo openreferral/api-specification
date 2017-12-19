@@ -8,8 +8,8 @@ info:
     url: https://openreferral.org/
     email: info@openreferral.org
   license:
-    name: Open Data Commons Public Domain
-    url: http://opendatacommons.org/licenses/pddl/
+    name: Creative Commons Attribution Share-Alike 4.0
+    url: https://creativecommons.org/licenses/by-sa/4.0/
   version: v1.2
 host: example.com
 basePath: /
