@@ -6,19 +6,6 @@ The website for this repo can be found at: https://openreferral.readthedocs.io/e
 
 Here is the current road map for HSDA:
 
-### [v1.1](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av1.1)
-
-- [Validation](https://github.com/openreferral/api-specification/issues/43) - Produce JSON schema for HSDS and HSDS, and publish API definition, and working HSDS/a API for validating.
-- Finalize - Take any feedback from Slack, Github, Google Group, and Spreadsheet and finalize the release of HSDA v1.1
-
-### [v1.2](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av1.2)
-
-- [/complete](https://github.com/openreferral/api-specification/issues/45) - add an /everything to each core resource, allowing access to all sub resouces.
-- [query](query) - Shifting query parameter to be array, allowing for multiple fields to be queried.
-- [content negotiation](https://github.com/openreferral/api-specification/issues/39) - Allow for JSON, XML, and responses.
-- [sorting](https://github.com/openreferral/api-specification/issues/12) - Adding sorting.
-- [pagination](https://github.com/openreferral/api-specification/issues/10) - Adding pagination.
-
 ### [v1.3](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av1.3)
 
 - [Error Codes](https://github.com/openreferral/api-specification/issues/47) - Establish a set of object definitions for returning errors as part of responses.
@@ -40,3 +27,18 @@ The focus is primarily on the Human Services Data API (HSDA), but this work has 
 - [hsda custom](https://github.com/openreferral/api-specification/labels/hsda-custom) - Allowing for custom fields.
 
 These are separate projects to allow for them to be moved forward separately. They are also meant to act as separate microservices, that can be deployed, scaled, and managed indepedent of each other while still working in concert.
+
+Change Log:
+
+### [v1.2](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av1.2)
+
+- [/complete](https://github.com/openreferral/api-specification/issues/45) - add an /everything to each core resource, allowing access to all sub resouces.
+- [query](query) - Shifting query parameter to be array, allowing for multiple fields to be queried.
+- [content negotiation](https://github.com/openreferral/api-specification/issues/39) - Allow for JSON, XML, and responses.
+- [sorting](https://github.com/openreferral/api-specification/issues/12) - Adding sorting.
+- [pagination](https://github.com/openreferral/api-specification/issues/10) - Adding pagination.
+
+### [v1.1](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av1.1)
+
+- [Validation](https://github.com/openreferral/api-specification/issues/43) - Produce JSON schema for HSDS and HSDS, and publish API definition, and working HSDS/a API for validating.
+- Finalize - Take any feedback from Slack, Github, Google Group, and Spreadsheet and finalize the release of HSDA v1.1
