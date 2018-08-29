@@ -2,7 +2,7 @@
 
 This project is driven by an OpenAPI definition located in [_data/api-commons/openapi-hsda.yaml](https://github.com/openreferral/api-specification/blob/master/_data/api-commons/openapi-hsda.yaml)
 
-The website for this repo can be found at: https://openreferral.github.io/api-specification/definition/
+The website for this repo can be found at: https://openreferral.readthedocs.io/en/latest/hsda/
 
 Here is the current road map for HSDA:
 
