@@ -216,7 +216,7 @@ disabilities.'
       - closed
       - start_date
       - end_date
-  intepretation_services:
+  interpretation_services:
     properties:
       id:
         description: 'Each service must have a unique identifier.'

@@ -6313,7 +6313,7 @@ definitions:
       - closed
       - start_date
       - end_date
-  intepretation_services:
+  interpretation_services:
     description: 'Describes interpretation services offered in different languages'
     properties:
       id:
