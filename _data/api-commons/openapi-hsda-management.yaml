@@ -514,4 +514,4 @@ definitions:
         type: integer
       message:
         description: 'A plain language message explaining the error'
-        type: integer
+        type: String
