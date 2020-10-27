@@ -42,3 +42,8 @@ Change Log:
 
 - [Validation](https://github.com/openreferral/api-specification/issues/43) - Produce JSON schema for HSDS and HSDS, and publish API definition, and working HSDS/a API for validating.
 - Finalize - Take any feedback from Slack, Github, Google Group, and Spreadsheet and finalize the release of HSDA v1.1
+
+### [v2.0](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av2.0)
+
+- Opening up discussion for HSDA v2.0, now that HSDS v2.0 is ready.
+- Will be migrating v1.3 discussion there, and opening beyond.
