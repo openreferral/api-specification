@@ -25,4 +25,3 @@ Here is the current road map for HSDA:
 
 - [Validation](https://github.com/openreferral/api-specification/issues/43) - Produce JSON schema for HSDS and HSDS, and publish API definition, and working HSDS/a API for validating.
 - Finalize - Take any feedback from Slack, Github, Google Group, and Spreadsheet and finalize the release of HSDA v1.1
-

@@ -1,0 +1,261 @@
+swagger: '2.0'
+info:
+  title: "Human Services Data Utility API"
+  description: "This is a complimentary API to the HSDA API focusing just on utility features."
+  termsOfService: "https://openreferral.org/documentation/"
+  contact:
+    name: Open Referral
+    url: https://openreferral.org/
+    email: info@openreferral.org
+  license:
+    name: Open Data Commons Public Domain
+    url: https://creativecommons.org/licenses/by-sa/4.0/
+  version: v1.0
+host: hsda.utility.api.adopta.agency
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+paths:
+  /services/:
+    get:
+      summary: Services
+      description: The services being used across ochestration.
+      operationId: getServices
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Service Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+  /schema/build/:
+    get:
+      summary: Schema Build
+      description: This will generate static files for all definitions in OpenAPIs
+      operationId: schemaBuild
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Schema Build Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/schema_build"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Services
+  /validate/hsda/definition/:
+    post:
+      summary: Validate HSDA Response
+      description: Validate HSDA Response
+      operationId: valiateHSDAResponse
+      parameters:
+        - in: query
+          name: name
+          description: The name of the service which is being validated.
+          required: true
+          type: string
+        - in: query
+          name: path
+          description: The path which is being validated.
+          required: true
+          type: string
+        - in: query
+          name: verb
+          description: The verb which is being validated.
+          required: true
+          type: string
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/hsda_definition'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Validate HSDA Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/validate_definition"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Validate
+  /validate/hsda/openapi/:
+    post:
+      summary: Validate HSDA OpenAPI
+      description: Validate HSDA OpenAPI
+      operationId: valiateHSDAOpenAPI
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/hsda_openapi'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Validate HSDA OpenAPI Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/validate_openapi"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Validate
+securityDefinitions:
+  appid:
+    type: apiKey
+    in: header
+    name: x-appid
+  appkey:
+    type: apiKey
+    in: header
+    name: x-appkey
+definitions:
+  service:
+    properties:
+      id:
+        description: 'Each entry must have a unique identifier.'
+        type: string
+      name:
+        description: 'The service name.'
+        type: string
+      path:
+        description: 'The path name.'
+        type: string
+      verb:
+        description: 'The verb.'
+        type: string
+    required:
+      - id
+      - name
+      - path
+      - verb
+  validate_definition:
+    properties:
+      id:
+        description: 'Each validation has a unique id.'
+        type: string
+      service:
+        description: 'The service that is being validated.'
+        type: string
+      path:
+        description: 'The path that is being validated.'
+        type: string
+      verb:
+        description: 'The verb that is being validated.'
+        type: string
+      valid:
+        description: 'Whether or not the schema was valid.'
+        type: boolean
+      message:
+        description: 'A message describing the validation.'
+        type: string
+    required:
+      - id
+      - service
+      - path
+      - verb
+  validate_openapi:
+    properties:
+      id:
+        description: 'Each validation has a unique id.'
+        type: string
+      service:
+        description: 'The service that is being validated.'
+        type: string
+      valid:
+        description: 'Whether or not the schema was valid.'
+        type: boolean
+      message:
+        description: 'A message describing the validation.'
+        type: string
+    required:
+      - id
+      - service
+  error_response:
+    properties:
+      code:
+        description: 'Repeat the HTTP status code'
+        type: integer
+      message:
+        description: 'A plain language message explaining the error'
+        type: integer
+  hsda_definition:
+    properties:
+      body:
+        description: 'The HSDA definition to validate.'
+        type: array
+  hsda_openapi:
+    properties:
+      body:
+        description: 'The HSDA OpenAPI to validate.'
+        type: array
+  schema_build:
+    properties:
+      service:
+        description: 'The service of the schema'
+        type: string
+      definition:
+        description: 'The definition of the schema.'
+        type: string
+      file:
+        description: 'The file name being created.'
+        type: string
