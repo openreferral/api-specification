@@ -6,29 +6,12 @@ The website for this repo can be found at: https://openreferral.readthedocs.io/e
 
 Here is the current road map for HSDA:
 
-### [v1.3](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av1.3)
+### [v2.0](https://www.postman.com/api-evangelist/workspace/open-referral-human-services-data-api-hsda/api/1a7abc09-be01-45fa-932c-7ed3d11e43ea?version=2c338c6f-4da0-452c-bb5d-ef834c1ce7cc&tab=define)
 
-- [Error Codes](https://github.com/openreferral/api-specification/issues/47) - Establish a set of object definitions for returning errors as part of responses.
-- [Status Code](https://github.com/openreferral/api-specification/issues/48) - Establish a set of status codes across all paths, and associate as reponses.
-
-Use the Github issues for any questions and support.
-
-The focus is primarily on the Human Services Data API (HSDA), but this work has been broken up into separate projects, to allow for separate of concerns, and versioning. You can find each project labeled:
-
-- [hsda](https://github.com/openreferral/api-specification/labels/hsda) - The primary human services specification.
-- [hsda search](https://github.com/openreferral/api-specification/labels/hsda-search) - Just for searching.
-- [hsda bulk](https://github.com/openreferral/api-specification/labels/hsda-bulk) - Just for bulk management.
-- [hsda meta](https://github.com/openreferral/api-specification/labels/hsda-meta) - Just for meta, system.
-- [hsda taxonomy](https://github.com/openreferral/api-specification/labels/hsda-taxonomy) - Just for taxonomy.
-- [hsda management](https://github.com/openreferral/api-specification/labels/hsda-management) - Just for management
-- [hsda orchestration](https://github.com/openreferral/api-specification/labels/hsda-orchestration) - Just for orchestration (webhooks, events, jobs)
-- [hsda utility](https://github.com/openreferral/api-specification/labels/hsda-utility) - All utility features.
-- [hsda aggregation](https://github.com/openreferral/api-specification/labels/hsda-aggregation) - Upcoming aggregation work, acros multiple instances.
-- [hsda custom](https://github.com/openreferral/api-specification/labels/hsda-custom) - Allowing for custom fields.
-
-These are separate projects to allow for them to be moved forward separately. They are also meant to act as separate microservices, that can be deployed, scaled, and managed indepedent of each other while still working in concert.
-
-Change Log:
+- Opening up discussion for HSDA v2.0, now that HSDS v2.0 is ready.
+- [You can follow v2.0 planning using the Github Issue](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av2.0)
+- [You can watch and comment on the OpenAPI for HSDA v2.0 in the public workspace](https://www.postman.com/api-evangelist/workspace/open-referral-human-services-data-api-hsda/api/1a7abc09-be01-45fa-932c-7ed3d11e43ea?version=2c338c6f-4da0-452c-bb5d-ef834c1ce7cc&tab=define)
+- [You can view documentation and collection in the public workspace](https://www.postman.com/api-evangelist/workspace/open-referral-human-services-data-api-hsda/documentation/35240-b0c2834a-60ac-4076-87a9-aac143874f20)
 
 ### [v1.2](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av1.2)
 
@@ -43,7 +26,3 @@ Change Log:
 - [Validation](https://github.com/openreferral/api-specification/issues/43) - Produce JSON schema for HSDS and HSDS, and publish API definition, and working HSDS/a API for validating.
 - Finalize - Take any feedback from Slack, Github, Google Group, and Spreadsheet and finalize the release of HSDA v1.1
 
-### [v2.0](https://github.com/openreferral/api-specification/issues?q=is%3Aissue+is%3Aopen+label%3Av2.0)
-
-- Opening up discussion for HSDA v2.0, now that HSDS v2.0 is ready.
-- Will be migrating v1.3 discussion there, and opening beyond.
