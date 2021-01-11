@@ -1,0 +1,713 @@
+openapi: 3.0.3
+info:
+  title: Human Services Data Meta API
+  description: |-
+    This is a specification describing the Human Services Data API, using the
+    Human Services Data Specification (HSDS). This has been extracted from the
+    Ohana API deployment, but will be standardized to refer to the universal
+    standard that will apply to any HSDS/A compliant API.
+  termsOfService: https://openreferral.org/documentation/
+  contact:
+    name: Open Referral
+    url: https://openreferral.org/
+    email: info@openreferral.org
+  license:
+    name: Creative Commons Attribution Share-Alike 4.0
+    url: https://creativecommons.org/licenses/by-sa/4.0/
+  version: v2.0
+paths:
+  "/metadata/":
+    get:
+      summary: Get Metadata
+      description: Returns a list of all metadata.
+      operationId: listMetaata
+      parameters:
+      - in: query
+        name: query
+        description: |-
+          A query to filter list by (up to provider to determine what to
+          search)
+        schema:
+          type: string
+      - in: query
+        name: fields
+        description: A list of fields to be returned with the response, if not included,
+          all are returned.
+        schema:
+          type: string
+      - in: query
+        name: page
+        description: The particular page of results.
+        schema:
+          type: number
+      - in: query
+        name: per_page
+        description: Number of records to return per page, up to 100.
+        schema:
+          type: number
+      - in: query
+        name: sort_by
+        description: Which field to sort by.
+        schema:
+          type: string
+      - in: query
+        name: order
+        description: Which order to sort by (asc,desc).
+        schema:
+          type: string
+      - in: query
+        name: format
+        description: |-
+          The data format of the response (csv, json, xml).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Metadata Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadatas"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadatas"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadatas"
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+      tags:
+      - Metadata
+    post:
+      summary: Add Metadata
+      description: Creates a new metadata entry.
+      operationId: addMetadata
+      requestBody:
+        "$ref": "#/components/requestBodies/metadata"
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Metadata Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadata"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadata"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadata"
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+      tags:
+      - Metadatas
+  "/metadata/{metadata_id}/":
+    get:
+      summary: Get Metadata
+      description: Returns a single metadata entry
+      operationId: getMetadata
+      parameters:
+      - in: path
+        required: true
+        name: metadata_id
+        description: The metadata id.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Metadata Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadata"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadata"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadata"
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+      tags:
+      - Metadatas
+    put:
+      summary: Update Metadata
+      description: Updates an existing metadata entry using its id.
+      operationId: updateMetadata
+      parameters:
+      - in: path
+        required: true
+        name: metadata_id
+        description: The metadata id.
+        schema:
+          type: string
+      requestBody:
+        "$ref": "#/components/requestBodies/metadata"
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Metadata Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadata"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadata"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadata"
+        '403':
+          description: No Access Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+      tags:
+      - Metadatas
+    delete:
+      summary: Delete metadata
+      description: Deletes a metadata by Id
+      operationId: deleteMetadataComplete
+      parameters:
+      - in: path
+        required: true
+        name: metadata_id
+        description: The metadata id.
+        schema:
+          type: string
+      tags:
+      - Metadatas
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Metadata Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadata"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadata"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metadata"
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+  "/metatable/":
+    get:
+      summary: Get Metatable
+      description: Returns a list of all metatable.
+      operationId: listMetaata
+      parameters:
+      - in: query
+        name: query
+        description: |-
+          A query to filter list by (up to provider to determine what to
+          search)
+        schema:
+          type: string
+      - in: query
+        name: fields
+        description: A list of fields to be returned with the response, if not included,
+          all are returned.
+        schema:
+          type: string
+      - in: query
+        name: page
+        description: The particular page of results.
+        schema:
+          type: number
+      - in: query
+        name: per_page
+        description: Number of records to return per page, up to 100.
+        schema:
+          type: number
+      - in: query
+        name: sort_by
+        description: Which field to sort by.
+        schema:
+          type: string
+      - in: query
+        name: order
+        description: Which order to sort by (asc,desc).
+        schema:
+          type: string
+      - in: query
+        name: format
+        description: |-
+          The data format of the response (csv, json, xml).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Metatable Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatables"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatables"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatables"
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+      tags:
+      - Metatable
+    post:
+      summary: Add Metatable
+      description: Creates a new metatable entry.
+      operationId: addMetatable
+      requestBody:
+        "$ref": "#/components/requestBodies/metatable"
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Metatable Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatable"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatable"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatable"
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+      tags:
+      - Metatables
+  "/metatable/{metatable_id}/":
+    get:
+      summary: Get Metatable
+      description: Returns a single metatable entry
+      operationId: getMetatable
+      parameters:
+      - in: path
+        required: true
+        name: metatable_id
+        description: The metatable id.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Metatable Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatable"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatable"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatable"
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+      tags:
+      - Metatables
+    put:
+      summary: Update Metatable
+      description: Updates an existing metatable entry using its id.
+      operationId: updateMetatable
+      parameters:
+      - in: path
+        required: true
+        name: metatable_id
+        description: The metatable id.
+        schema:
+          type: string
+      requestBody:
+        "$ref": "#/components/requestBodies/metatable"
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Metatable Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatable"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatable"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatable"
+        '403':
+          description: No Access Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+      tags:
+      - Metatables
+    delete:
+      summary: Delete metatable
+      description: Deletes a metatable by Id
+      operationId: deleteMetatableComplete
+      parameters:
+      - in: path
+        required: true
+        name: metatable_id
+        description: The metatable id.
+        schema:
+          type: string
+      tags:
+      - Metatables
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Metatable Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatable"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatable"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/metatable"
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+            text/csv:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/problems"
+servers:
+- url: "{{hsda_base_url}}"
+components:
+  securitySchemes:
+    appid:
+      type: apiKey
+      in: header
+      name: x-appid
+    appkey:
+      type: apiKey
+      in: header
+      name: x-appkey
+  schemas:
+    metadata:
+      description: |-
+        The metadata table contains a record of the changes that have been
+        made to the data in order to maintain provenance information.
+      properties:
+        id:
+          type: string
+          description: Each entry must have a unique identifier
+        resource_id:
+          type: string
+          description: |-
+            Each service, program. location, address, or metadata will have
+            a unique identifier.
+        resource_type:
+          type: string
+          description: The type of entity being referenced
+        last_action_date:
+          type: string
+          format: datetime
+          description: The date when data was changed.
+        last_action_type:
+          type: string
+          description: The kind of change made to the data; eg create, update, delete
+        field_name:
+          type: string
+          description: The name of field that has been modified
+        previous_value:
+          type: string
+          description: The previous value of a field that has been updated
+        replacement_value:
+          type: string
+          description: The new value of a field that has been updated
+        updated_by:
+          type: string
+          description: The name of the person who updated a value
+      required:
+      - id
+      - resource_id
+      - resource_type
+      - last_action_date
+      - last_action_type
+      - field_name
+      - previous_value
+      - replacement_value
+      - updated_by
+    meta_table_description:
+      description: |-
+        The meta_table_description table contains metadata about individual
+        tables.
+      properties:
+        id:
+          type: string
+          description: Each entry must have a unique identifier
+        name:
+          type: string
+          description: ''
+        language:
+          type: string
+          description: ''
+        character_set:
+          type: string
+          description: ''
+      required:
+      - id

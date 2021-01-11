@@ -1,0 +1,1263 @@
+openapi: 3.0.3
+info:
+  title: Human Services Data Taxonomy API
+  description: This is a complimentary API to the HSDA API focusing just on taxonomy.
+  termsOfService: 'https://openreferral.org/documentation/'
+  contact:
+    name: Open Referral
+    url: 'https://openreferral.org/'
+    email: info@openreferral.org
+  license:
+    name: Open Data Commons Public Domain
+    url: 'https://creativecommons.org/licenses/by-sa/4.0/'
+  version: v2.0
+paths:
+  /taxonomies/:
+    get:
+      summary: Get Taxonomy
+      description: Get Taxonomy
+      operationId: listTaxonomy
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Item Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxonomies'
+      tags:
+        - Taxonomy
+    post:
+      summary: Add taxonomy
+      description: Addtaxonomy
+      operationId: addTaxonomy
+      requestBody:
+        $ref: '#/components/requestBodies/taxonomy'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Taxonomy Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxonomy'
+        '403':
+          description: No Access Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Taxonomy
+  '/taxonomies/{taxonomy_id}/':
+    get:
+      summary: Get Taxonomy
+      description: Get Taxonomy
+      operationId: getTaxonomy
+      parameters:
+        - in: path
+          required: true
+          name: taxonomy_id
+          description: The taxonomy id.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Taxonomy Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxonomy'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Taxonomy
+    put:
+      summary: Update Taxonomy
+      description: Update Taxonomy
+      operationId: updateTaxonomy
+      parameters:
+        - in: path
+          required: true
+          name: taxonomy_id
+          description: The unique taxonomy id.
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/taxonomy'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Taxonomy Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxonomy'
+        '403':
+          description: No Access Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Taxonomy
+    delete:
+      summary: Delete Taxonomy
+      description: Delete Taxonomy
+      operationId: deleteTaxonomy
+      parameters:
+        - in: path
+          required: true
+          name: taxonomy_id
+          description: The taxonomy id.
+          schema:
+            type: string
+      tags:
+        - Taxonomy
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Taxonomy Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxonomy'
+        '403':
+          description: No Access Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+  '/{taxonomy_name}/services/':
+    get:
+      summary: Get Services by Taxonomy
+      description: Get all the services for a taxonmy term.
+      operationId: listTaxonomyServices
+      parameters:
+        - in: path
+          required: true
+          name: taxonomy_name
+          description: The taxonomy name.
+          schema:
+            type: string
+        - in: query
+          name: page
+          description: The particular page of results.
+          schema:
+            type: number
+            default: 0
+        - in: query
+          name: per_page
+          description: 'Number of records return per page, up to 100.'
+          schema:
+            type: number
+            default: 25
+        - in: query
+          name: sort_by
+          description: Which field to sort by.
+          schema:
+            type: string
+            default: name
+        - in: query
+          name: order
+          description: 'Which order to sort by (asc,desc).'
+          schema:
+            type: string
+            default: asc
+      responses:
+        '200':
+          description: Service Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/services'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Services
+  '/services/{service_id}/attributes/':
+    get:
+      summary: Get Service Attributes
+      description: Gets all of the attributes for a service.
+      operationId: listServiceAttributes
+      parameters:
+        - in: path
+          required: true
+          name: service_id
+          description: The id of the service.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Service Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxonomies'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Services
+  '/services/{service_id}/attributes/{taxonomy_name}/':
+    post:
+      summary: Add Taxonomy Keyword to Service
+      description: Associates a specific taxonomy keyword to a service.
+      operationId: addTaxonomyKeywordToService
+      parameters:
+        - in: path
+          required: true
+          name: service_id
+          description: The id of the service.
+          schema:
+            type: string
+        - in: path
+          required: true
+          name: taxonomy_name
+          description: The taxonomy name.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Service Response
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Services
+        - Taxonomy
+    delete:
+      summary: Delete Taxonomy Keyword to Service
+      description: Remove a specific taxonomy keyword from a service.
+      operationId: deleteTaxonomyKeywordFromService
+      parameters:
+        - in: path
+          required: true
+          name: service_id
+          description: The id of the service.
+          schema:
+            type: string
+        - in: path
+          required: true
+          name: taxonomy_name
+          description: The taxonomy name.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Service Response
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Services
+        - Taxonomy
+  '/{taxonomy_name}/organizations/':
+    get:
+      summary: Get Organizations by Taxonomy
+      description: Get all the organizations for a taxonmy term.
+      operationId: listTaxonomyOrganizations
+      parameters:
+        - in: path
+          required: true
+          name: taxonomy_name
+          description: The taxonomy name.
+          schema:
+            type: string
+        - in: query
+          name: page
+          description: The particular page of results.
+          schema:
+            type: number
+            default: 0
+        - in: query
+          name: per_page
+          description: 'Number of records return per page, up to 100.'
+          schema:
+            type: number
+            default: 25
+        - in: query
+          name: sort_by
+          description: Which field to sort by.
+          schema:
+            type: string
+            default: name
+        - in: query
+          name: order
+          description: 'Which order to sort by (asc,desc).'
+          schema:
+            type: string
+            default: asc
+      responses:
+        '200':
+          description: Service Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/organizations'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Organizations
+  '/organizations/{organization_id}/attributes/':
+    get:
+      summary: Get Service Attributes
+      description: Gets all of the attributes for a service.
+      operationId: listOrganizationAttributes
+      parameters:
+        - in: path
+          required: true
+          name: organization_id
+          description: The id of the organization.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Service Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxonomies'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Organizations
+  '/organizations/{organization_id}/attributes/{taxonomy_name}/':
+    post:
+      summary: Add Taxonomy Keyword to Service
+      description: Associates a specific taxonomy keyword to a service.
+      operationId: addTaxonomyKeywordToOrganization
+      parameters:
+        - in: path
+          required: true
+          name: organization_id
+          description: The id of the organization.
+          schema:
+            type: string
+        - in: path
+          required: true
+          name: taxonomy_name
+          description: The taxonomy name.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Service Response
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Organizations
+        - Taxonomy
+    delete:
+      summary: Delete Taxonomy Keyword to Service
+      description: Remove a specific taxonomy keyword from a service.
+      operationId: deleteTaxonomyKeywordFromOrganization
+      parameters:
+        - in: path
+          required: true
+          name: organization_id
+          description: The id of the organization.
+          schema:
+            type: string
+        - in: path
+          required: true
+          name: taxonomy_name
+          description: The taxonomy name.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Service Response
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Organizations
+        - Taxonomy
+  '/{taxonomy_name}/locations/':
+    get:
+      summary: Get Locations by Taxonomy
+      description: Get all the locations for a taxonmy term.
+      operationId: listTaxonomyLocations
+      parameters:
+        - in: path
+          required: true
+          name: taxonomy_name
+          description: The taxonomy name.
+          schema:
+            type: string
+        - in: query
+          name: page
+          description: The particular page of results.
+          schema:
+            type: number
+            default: 0
+        - in: query
+          name: per_page
+          description: 'Number of records return per page, up to 100.'
+          schema:
+            type: number
+            default: 25
+        - in: query
+          name: sort_by
+          description: Which field to sort by.
+          schema:
+            type: string
+            default: name
+        - in: query
+          name: order
+          description: 'Which order to sort by (asc,desc).'
+          schema:
+            type: string
+            default: asc
+      responses:
+        '200':
+          description: Service Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/locations'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Locations
+  '/locations/{location_id}/attributes/':
+    get:
+      summary: Get Service Attributes
+      description: Gets all of the attributes for a service.
+      operationId: listLocationsAttributes
+      parameters:
+        - in: path
+          required: true
+          name: location_id
+          description: The id of the location.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Service Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxonomies'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Locations
+  '/locations/{location_id}/attributes/{taxonomy_name}/':
+    post:
+      summary: Add Taxonomy Keyword to Service
+      description: Associates a specific taxonomy keyword to a service.
+      operationId: addTaxonomyKeywordToLocation
+      parameters:
+        - in: path
+          required: true
+          name: location_id
+          description: The id of the location.
+          schema:
+            type: string
+        - in: path
+          required: true
+          name: taxonomy_name
+          description: The taxonomy name.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Service Response
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Locations
+        - Taxonomy
+    delete:
+      summary: Delete Taxonomy Keyword to Service
+      description: Remove a specific taxonomy keyword from a service.
+      operationId: deleteTaxonomyKeywordFromLocation
+      parameters:
+        - in: path
+          required: true
+          name: location_id
+          description: The id of the location.
+          schema:
+            type: string
+        - in: path
+          required: true
+          name: taxonomy_name
+          description: The taxonomy name.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Service Response
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/problems'
+      tags:
+        - Locations
+        - Taxonomy
+components:
+  requestBodies:
+    taxonomy:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/taxonomy'
+  securitySchemes:
+    appid:
+      type: apiKey
+      in: header
+      name: x-appid
+    appkey:
+      type: apiKey
+      in: header
+      name: x-appkey
+  schemas:
+    taxonomies:
+      type: array
+      items:
+        $ref: '#/components/schemas/taxonomy'
+    taxonomy:
+      properties:
+        id:
+          description: 'Each taxonomy term must have a unique identifier, within the scope of the dataset'
+          type: string
+        term:
+          description: The taxonomy term itself.
+          type: string
+        description:
+          description: What the term means.
+          type: string
+        parent_id:
+          description: 'If this is a child term in a hierarchical taxonomy, give the identifier of the parent category. For top-level categories, this should be left blank.'
+          type: string
+        taxonomy:
+          description: 'If this is an established taxonomy, detail which taxonomy is in use. For example, AIRS or Open Eligibility. If possible, provide a URI.'
+          type: string
+        language:
+          description: 'An ISO 639-1, or ISO 639-2 [language code](available at http://www.loc.gov/standards/iso639-2/php/code_list.php) to represent the language of the term. The three-letter codes from ISO 639-2 provide greater accuracy when describing variants of languages, which may be relevant to particular communities.'
+          type: string
+      required:
+        - id
+        - name
+        - description
+    contacts:
+      type: array
+      items:
+        $ref: '#/components/schemas/contact'
+    paymentAccepted:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each entry must have a unique identifier
+        service_id:
+          type: string
+          description: The identifier of the services for which the entry describes the accepted payment methods
+        payment:
+          type: string
+          description: The methods of payment accepted for the service
+      description: The payment_accepted table contains details of the methods of payment that can be used in order to pay for services
+    phones:
+      type: array
+      items:
+        $ref: '#/components/schemas/phone'
+    schedules:
+      type: array
+      items:
+        $ref: '#/components/schemas/schedule'
+    eligibility:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each entry must have a unique identifier
+        service_id:
+          type: string
+          description: The identifier of the service for which this entry describes the eligibility criteria
+      description: The eligibility tables contains details of the eligibility criteria for particular services
+    language:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each language must have a unique identifier
+        service_id:
+          type: string
+          description: The identifier of the service for which the entry describes the languages in which services are delivered
+        location_id:
+          type: string
+          description: The identifier of the location for which the entry describes the languages in which services are delivered
+        language:
+          type: string
+          description: 'Languages, other than English, in which the service is delivered. Languages are listed as ISO639-1 codes.'
+      description: The language table contains details of the languages that are spoken at locations or services. This does not include languages which can only be used with interpretation.
+    eligibilities:
+      type: array
+      items:
+        $ref: '#/components/schemas/eligibility'
+    program:
+      required:
+        - id
+        - name
+        - organization_id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each program must have a unique identifier.
+        organization_id:
+          type: string
+          description: Each program must belong to a single organization. The identifier of the organization should be given here.
+        name:
+          type: string
+          description: The name of the program
+        alternate_name:
+          type: string
+          description: An alternative name for the program
+      description: Some organizations organise their services into programs. A program brings together a number of related services.
+    postalAddresses:
+      type: array
+      items:
+        $ref: '#/components/schemas/postalAddress'
+    problem:
+      required:
+        - detail
+        - status
+        - title
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'A URI reference [RFC3986] that identifies the problem type.  This specification encourages that, when dereferenced, it provide human-readable documentation for the problem type (e.g., using HTML [W3C.REC-html5-20141028]).  When this member is not present, its value is assumed to be  about:blank .'
+        title:
+          type: string
+          description: 'A short, human-readable summary of the problem type.  It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization (e.g., using proactive content negotiation; see [RFC7231], Section 3.4)'''
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+        status:
+          type: string
+          description: 'The HTTP status code ([RFC7231], Section 6) generated by the origin server for this occurrence of the problem.'
+      description: The meta_table_description table contains metadata about individual tables.
+    fundings:
+      type: array
+      items:
+        $ref: '#/components/schemas/funding'
+    accessibilityForDisabilities:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each entry must have a unique identifier
+        location_id:
+          type: string
+          description: The identifier of the location for which the entry describes the accessibility provision
+        accessibility:
+          type: string
+          description: Description of assistance or infrastructure that facilitate access to clients with disabilities.
+        details:
+          type: string
+          description: Any further details relating to the relevant accessibility arrangements at this location. E.g. whether advance notice is required to use an accessibility facility.
+      description: The accessibility_for_disabilities table contains details of the arrangements for access to locations for people who have disabilities
+    contact:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each contact must have a unique identifier
+        organization_id:
+          type: string
+          description: The identifier of the organization for which this is a contact
+        service_id:
+          type: string
+          description: The identifier of the service for which this is a contact
+        service_at_location_id:
+          type: string
+          description: 'The identifier of the ''service at location'' table entry, when this contact is specific to a service in a particular location.'
+        name:
+          type: string
+          description: The name of the person
+        title:
+          type: string
+          description: The job title of the person
+        department:
+          type: string
+          description: The department that the person is part of
+        email:
+          type: string
+          description: The email address of the person
+      description: 'The contact table contains details of the named contacts for services and organizations. Note that in the HSDS data package format, if an individual is the contact for multiple services, their details may be duplicated multiple times in this table, each time with a new identifier, and with the rows containing different service ids.'
+    physicalAddresses:
+      type: array
+      items:
+        $ref: '#/components/schemas/physicalAddress'
+    physicalAddress:
+      required:
+        - address_1
+        - city
+        - country
+        - id
+        - postal_code
+        - state_province
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each physical address must have a unique identifier.
+        location_id:
+          type: string
+          description: The identifier of the location for which this is the address.
+        attention:
+          type: string
+          description: The person or entity whose attention should be sought at the location (Often included as 'care of' component of an address.)
+        address_1:
+          type: string
+          description: 'The first line(s) of the address, including office, building number and street.'
+        address_2:
+          type: string
+          description: '(Deprecated) A second (additional) line of address information. (This field is deprecated: we recommend including all address information before ''city'' as a comma or newline separated list in address_1. There is no guarantee that systems will read this line of address information.)'
+        address_3:
+          type: string
+          description: '(Deprecated) A third (additional) line of address information. (This field is deprecated: we recommend including all address information before ''city'' as a comma or newline separated list in address_1. There is no guarantee that systems will read this line of address information.)'
+        address_4:
+          type: string
+          description: '(Deprecated) The fourth (additional) line of address information. (This field is deprecated: we recommend including all address information before ''city'' as a comma or newline separated list in address_1. There is no guarantee that systems will read this line of address information.)'
+        city:
+          type: string
+          description: The city in which the address is located.
+        region:
+          type: string
+          description: The region in which the address is located (optional).
+        state_province:
+          type: string
+          description: The state or province in which the address is located.
+        postal_code:
+          type: string
+          description: The postal code for the address.
+        country:
+          type: string
+          description: The country in which the address is located. This should be given as an ISO 3361-1 country code (two letter abbreviation).
+      description: The addresses table contains the physical addresses for locations
+    programs:
+      type: array
+      items:
+        $ref: '#/components/schemas/program'
+    locations:
+      type: array
+      items:
+        $ref: '#/components/schemas/location'
+    organizations:
+      type: array
+      items:
+        $ref: '#/components/schemas/organization'
+    paymentsAccepted:
+      type: array
+      items:
+        $ref: '#/components/schemas/paymentAccepted'
+    funding:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each entry must have a unique identifier
+        organization_id:
+          type: string
+          description: The identifier of the organization in receipt of this funding.
+        service_id:
+          type: string
+          description: The identifier of the service in receipt of this funding
+        source:
+          type: string
+          description: A free text description of the source of funds for this organization or service.
+      description: The funding table describes the sources of funding for a service or organisation
+    serviceArea:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each service area must have a unique identifier
+        service_id:
+          type: string
+          description: The identifier of the service for which this entry describes the service area
+        service_area:
+          type: string
+          description: 'The geographic area where a service is available. This is a free-text description, and so may be precise or indefinite as necessary.'
+        description:
+          type: string
+          description: A more detailed description of this service area. Used to provide any additional information that cannot be communicated using the structured area and geometry fields.
+      description: The service_area table contains details of the geographic area for which a service is available.
+    accessibilitiesForDisabilities:
+      type: array
+      items:
+        $ref: '#/components/schemas/accessibilityForDisabilities'
+    serviceAreas:
+      type: array
+      items:
+        $ref: '#/components/schemas/serviceArea'
+    schedule:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each entry must have a unique identifier
+        service_id:
+          type: string
+          description: The identifier of the service for which this is the regular schedule
+        location_id:
+          type: string
+          description: The identifier of the location for which this is the regular schedule
+        service_at_location_id:
+          type: string
+          description: 'The identifier of the ''service at location'' table entry, when this schedule is specific to a service in a particular location.'
+        valid_from:
+          type: string
+          description: The date from which the schedule information is valid.
+          format: date
+        valid_to:
+          type: string
+          description: The last date on which the schedule information is valid.
+          format: date
+        dtstart:
+          type: string
+          description: 'iCal - The date of the first event is the schedule. Necessary when using the ''interval'' feature, optional otherwise.'
+          format: date
+        timezone:
+          type: number
+          description: 'The timezone that all dates are expressed as, expressed as a UTC offset. Dates are assumed to be UTC otherwise.'
+        until:
+          type: string
+          description: iCal - The date of the last occurence of the recurring event.
+          format: date
+        count:
+          type: string
+          description: 'iCal - The number of times that the event occurs. Use this instead of ''until'', if appropriate.'
+          format: date
+        wkst:
+          type: string
+          description: 'iCal - The day on which the week starts, eg MO.'
+          format: date
+        freq:
+          type: string
+          description: iCal - How often the frequency repeats. E.g. Frequency use one of WEEKLY or MONTHLY.
+        interval:
+          type: number
+          description: iCal - How often the frequency repeats. E.g. Interval 2 for Frequency WEEKLY gives Fortnightly
+        byday:
+          type: string
+          description: 'iCal - Comma seperated days of the week. E.g. SU,MO,TU,WE,TH,FR,SA. Where freq is MONTHLY each part can be preceded by a positive or negative integer to represent which occurrence in a month; e.g. 2MO is the second Monday in a month. -1FR is the last Friday'
+        byweekno:
+          type: string
+          description: iCal - Comma seperated numeric weeks of the year if freq is WEEKLY. Can be negative to represent weeks before the end of the year; e.g. -5 is the 5th to last week in a year.
+        bymonthday:
+          type: number
+          description: iCal - Comma separated numeric days of the month if frequency is MONTHLY. Can be negative to represent days before the end of the month; e.g. -5 is the 5th to last day in a month.
+        byyearday:
+          type: number
+          description: iCal - Comma separated numeric days of the month if frequency is YEARLY. Can be negative to represent days before the end of the year; e.g. -1 is the last day in a year.
+        description:
+          type: string
+          description: Human readable description of the availability of the service.
+        opens_at:
+          type: string
+          description: 'The time when a service or location opens. This should use HH:MM format and should include timezone information, either adding the suffix ''Z'' when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am EST.)'
+          format: time
+        closes_at:
+          type: string
+          description: 'The time when a service or location closes. This should use HH:MM format and should include timezone information, either adding the suffix ''Z'' when the date is in UTC, or including an offset from UTC (e.g. 09:00-05:00 for 9am EST.)'
+          format: time
+      description: The schedule table contains details of when a service or location is open. Entries are RFC 5545 RRULES.
+    languages:
+      type: array
+      items:
+        $ref: '#/components/schemas/language'
+    postalAddress:
+      required:
+        - address_1
+        - city
+        - country
+        - id
+        - postal_code
+        - state_province
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each postal address must have a unique identifier
+        location_id:
+          type: string
+          description: The identifier of the location for which this is the postal address.
+        attention:
+          type: string
+          description: The person or entity whose attention should be sought at the location (Often included as 'care of' component of an address.)
+        address_1:
+          type: string
+          description: 'The first line(s) of the address, including office, building number and street.'
+        address_2:
+          type: string
+          description: '(Deprecated) A second (additional) line of address information. (This field is deprecated: we recommend including all address information before ''city'' as a comma or newline separated list in address_1. There is no guarantee that systems will read this line of address information.)'
+        address_3:
+          type: string
+          description: '(Deprecated) A third (additional) line of address information. (This field is deprecated: we recommend including all address information before ''city'' as a comma or newline separated list in address_1. There is no guarantee that systems will read this line of address information.)'
+        address_4:
+          type: string
+          description: '(Deprecated) The fourth (additional) line of address information. (This field is deprecated: we recommend including all address information before ''city'' as a comma or newline separated list in address_1. There is no guarantee that systems will read this line of address information.)'
+        city:
+          type: string
+          description: The city in which the address is located.
+        region:
+          type: string
+          description: The region in which the address is located (optional).
+        state_province:
+          type: string
+          description: The state or province in which the address is located.
+        postal_code:
+          type: string
+          description: The postal code for the address.
+        country:
+          type: string
+          description: The country in which the address is located. This should be given as an ISO 3361-1 country code (two letter abbreviation)
+      description: The postalAddress table contains the postal addresses for mail to a certain location. This may differ from the physical location.
+    requiredDocuments:
+      type: array
+      items:
+        $ref: '#/components/schemas/requiredDocument'
+    requiredDocument:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each document must have a unique identifier
+        service_id:
+          type: string
+          description: The identifier of the service for which this entry describes the required document
+        document:
+          type: string
+          description: 'The document required to apply for or receive the service. e.g. ''Government-issued ID'', ''EU Passport'''
+      description: The required_document table contains details of any documents that are required in order to access or use services.
+    phone:
+      required:
+        - id
+        - number
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each entry must have a unique identifier
+        location_id:
+          type: string
+          description: The identifier of the location where this phone number is located
+        service_id:
+          type: string
+          description: The identifier of the service for which this is the phone number
+        organization_id:
+          type: string
+          description: The identifier of the organisation for which this is the phone number
+        contact_id:
+          type: string
+          description: The identifier of the contact for which this is the phone number
+        service_at_location_id:
+          type: string
+          description: 'The identifier of the ''service at location'' table entry, when this phone number is specific to a service in a particular location.'
+        number:
+          type: string
+          description: The phone number
+        extension:
+          type: number
+          description: The extension of the phone number
+        type:
+          type: string
+          description: 'Indicates the type of phone service, drawing from the RFC6350 list of types (text (for SMS), voice, fax, cell, video, pager, textphone).'
+        language:
+          type: string
+          description: 'A comma separated list of ISO 639-1, or ISO 639-2 [language codes](available at http://www.loc.gov/standards/iso639-2/php/code_list.php) to represent the languages available from this phone service. The three-letter codes from ISO 639-2 provide greater accuracy when describing variants of languages, which may be relevant to particular communities.'
+        description:
+          type: string
+          description: 'A description providing extra information about the phone service (e.g. any special arrangements for accessing, or details of availability at particular times.'
+        department:
+          type: string
+          description: (Deprecated) The department for which this is the phone number. This field is deprecated and will be removed in a future version of HSDS.
+      description: 'The phone table contains details of the telephone numbers are used to contact organizations, services, and locations.'
+    service:
+      required:
+        - id
+        - name
+        - organization_id
+        - status
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each service must have a unique identifier.
+        organization_id:
+          type: string
+          description: The identifier of the organization that provides this service.
+        program_id:
+          type: string
+          description: The identifier of the program this service is delivered under.
+        name:
+          type: string
+          description: The official or public name of the service.
+        alternate_name:
+          type: string
+          description: Alternative or commonly used name for a service.
+        description:
+          type: string
+          description: A description of the service.
+        url:
+          type: string
+          description: URL of the service
+        email:
+          type: string
+          description: Email address for the service
+        status:
+          type: string
+          description: The current status of the service.
+        interpretation_services:
+          type: string
+          description: A description of any interpretation services available for accessing this service.
+        application_process:
+          type: string
+          description: The steps needed to access the service.
+        wait_time:
+          type: string
+          description: Time a client may expect to wait before receiving a service.
+        fees:
+          type: string
+          description: Details of any charges for service users to access this service.
+        accreditations:
+          type: string
+          description: Details of any accreditations. Accreditation is the formal evaluation of an organization or program against best practice standards set by an accrediting organization.
+        licenses:
+          type: string
+          description: An organization may have a license issued by a government entity to operate legally. A list of any such licenses can be provided here.
+      description: Services are provided by organizations to a range of different groups. Details on where each service is delivered are contained in the services_at_location table.
+    organization:
+      required:
+        - description
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each organization must have a unique identifier.
+        name:
+          type: string
+          description: The official or public name of the organization.
+        alternate_name:
+          type: string
+          description: Alternative or commonly used name for the organization.
+        description:
+          type: string
+          description: A brief summary about the organization. It can contain markup such as HTML or Markdown.
+        email:
+          type: string
+          description: The contact e-mail address for the organization.
+        url:
+          type: string
+          description: The URL (website address) of the organization.
+        tax_status:
+          type: string
+          description: Government assigned tax designation for tax-exempt organizations.
+        tax_id:
+          type: string
+          description: A government issued identifier used for the purpose of tax administration.
+        year_incorporated:
+          type: string
+          description: The year in which the organization was legally formed.
+          format: date
+        legal_status:
+          type: string
+          description: 'The legal status defines the conditions that an organization is operating under; e.g. non-profit, private corporation or a government organization.'
+      description: The organization record is used to provide basic description and details about each organization delivering services. Each service should be linked to the organization responsible for its delivery. One organization may deliver many services.
+    services:
+      type: array
+      items:
+        $ref: '#/components/schemas/service'
+    location:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Each location must have a unique identifier
+        organization_id:
+          type: string
+          description: Each location entry should be linked to a single organization. This is the organization that is responsible for maintaining information about this location. The identifier of the organization should be given here. Details of the services the organisation delivers at this location should be provided in the services_at_location table.
+        name:
+          type: string
+          description: The name of the location
+        alternate_name:
+          type: string
+          description: An alternative name for the location
+        description:
+          type: string
+          description: A description of this location.
+        transportation:
+          type: string
+          description: A description of the access to public or private transportation to and from the location.
+        latitude:
+          type: number
+          description: Y coordinate of location expressed in decimal degrees in WGS84 datum.
+        longitude:
+          type: number
+          description: X coordinate of location expressed in decimal degrees in WGS84 datum.
+      description: 'The location tables provides details of the locations where organizations operate. Locations may be virtual, and one organization may have many locations.'
+    problems:
+      type: array
+      items:
+        $ref: '#/components/schemas/problem'

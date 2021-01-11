@@ -1,0 +1,787 @@
+openapi: 3.0.3
+info:
+  title: Human Services Data Search API
+  description: This is a complimentary API to the HSDA API focusing just on search.
+  termsOfService: https://openreferral.org/documentation/
+  contact:
+    name: Open Referral
+    url: https://openreferral.org/
+    email: info@openreferral.org
+  license:
+    name: Open Data Commons Public Domain
+    url: https://creativecommons.org/licenses/by-sa/4.0/
+  version: v2.0
+paths:
+  /search/:
+    get:
+      summary: Search
+      description: Search across organizations, locations, services, and contacts
+      operationId: search
+      parameters:
+      - name: "query"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "resources"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "page"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "per_page"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "sort_by"
+        in: "query"
+        schema:
+          type: "string"
+      - name: "order"
+        in: "query"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: Item Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/search"
+      tags:
+        - Search
+servers:
+  - url: http://hsda.search.api.adopta.agency/
+components:
+  schemas:
+    search:
+      properties:
+        organizations:
+          type: array
+          items:
+            $ref: "#/components/schemas/organization"
+        locations:
+          type: array
+          items:
+            $ref: "#/components/schemas/location"
+        services:
+          type: array
+          items:
+            $ref: "#/components/schemas/service"
+    paymentAccepted:
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each entry must have a unique identifier"
+        service_id:
+          type: "string"
+          description: "The identifier of the services for which the entry describes\
+            \ the\naccepted payment methods"
+        payment:
+          type: "string"
+          description: "The methods of payment accepted for the service"
+      description: "The payment_accepted table contains details of the methods of\
+        \ payment\nthat can be used in order to pay for services"
+    phones:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/phone"
+    schedules:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/schedule"
+    eligibility:
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each entry must have a unique identifier"
+        service_id:
+          type: "string"
+          description: "The identifier of the service for which this entry describes\
+            \ the\neligibility criteria"
+      description: "The eligibility tables contains details of the eligibility criteria\n\
+        for particular services"
+    language:
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each language must have a unique identifier"
+        service_id:
+          type: "string"
+          description: "The identifier of the service for which the entry describes\
+            \ the\nlanguages in which services are delivered"
+        location_id:
+          type: "string"
+          description: "The identifier of the location for which the entry describes\
+            \ the\nlanguages in which services are delivered"
+        language:
+          type: "string"
+          description: "Languages, other than English, in which the service is delivered.\n\
+            Languages are listed as ISO639-1 codes."
+      description: "The language table contains details of the languages that are\
+        \ spoken\nat locations or services. This does not include languages which\
+        \ can only be used\nwith interpretation."
+    eligibilities:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/eligibility"
+    program:
+      required:
+      - "id"
+      - "name"
+      - "organization_id"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each program must have a unique identifier."
+        organization_id:
+          type: "string"
+          description: "Each program must belong to a single organization. The identifier\n\
+            of the organization should be given here."
+        name:
+          type: "string"
+          description: "The name of the program"
+        alternate_name:
+          type: "string"
+          description: "An alternative name for the program"
+      description: "Some organizations organise their services into programs. A program\n\
+        brings together a number of related services."
+    postalAddresses:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/postalAddress"
+    problem:
+      required:
+      - "detail"
+      - "status"
+      - "title"
+      - "type"
+      type: "object"
+      properties:
+        type:
+          type: "string"
+          description: "A URI reference [RFC3986] that identifies the problem type.\
+            \  This\nspecification encourages that, when dereferenced, it provide\
+            \ human-readable\ndocumentation for the problem type (e.g., using HTML\
+            \ [W3C.REC-html5-20141028]).  When\nthis member is not present, its value\
+            \ is assumed to be \"about:blank\"."
+        title:
+          type: "string"
+          description: "A short, human-readable summary of the problem type.  It SHOULD\n\
+            NOT change from occurrence to occurrence of the problem, except for purposes\n\
+            of localization (e.g., using proactive content negotiation; see [RFC7231],\n\
+            Section 3.4)'"
+        detail:
+          type: "string"
+          description: "A human-readable explanation specific to this occurrence of\n\
+            the problem."
+        status:
+          type: "string"
+          description: "The HTTP status code ([RFC7231], Section 6) generated by the\n\
+            origin server for this occurrence of the problem."
+      description: "The meta_table_description table contains metadata about individual\n\
+        tables."
+    fundings:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/funding"
+    accessibilityForDisabilities:
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each entry must have a unique identifier"
+        location_id:
+          type: "string"
+          description: "The identifier of the location for which the entry describes\
+            \ the\naccessibility provision"
+        accessibility:
+          type: "string"
+          description: "Description of assistance or infrastructure that facilitate\
+            \ access\nto clients with disabilities."
+        details:
+          type: "string"
+          description: "Any further details relating to the relevant accessibility\
+            \ arrangements\nat this location. E.g. whether advance notice is required\
+            \ to use an accessibility\nfacility."
+      description: "The accessibility_for_disabilities table contains details of the\
+        \ arrangements\nfor access to locations for people who have disabilities"
+    contact:
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each contact must have a unique identifier"
+        organization_id:
+          type: "string"
+          description: "The identifier of the organization for which this is a contact"
+        service_id:
+          type: "string"
+          description: "The identifier of the service for which this is a contact"
+        service_at_location_id:
+          type: "string"
+          description: "The identifier of the 'service at location' table entry, when\
+            \ this\ncontact is specific to a service in a particular location."
+        name:
+          type: "string"
+          description: "The name of the person"
+        title:
+          type: "string"
+          description: "The job title of the person"
+        department:
+          type: "string"
+          description: "The department that the person is part of"
+        email:
+          type: "string"
+          description: "The email address of the person"
+      description: "The contact table contains details of the named contacts for services\n\
+        and organizations. Note that in the HSDS data package format, if an individual\n\
+        is the contact for multiple services, their details may be duplicated multiple\n\
+        times in this table, each time with a new identifier, and with the rows containing\n\
+        different service ids."
+    physicalAddresses:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/physicalAddress"
+    physicalAddress:
+      required:
+      - "address_1"
+      - "city"
+      - "country"
+      - "id"
+      - "postal_code"
+      - "state_province"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each physical address must have a unique identifier."
+        location_id:
+          type: "string"
+          description: "The identifier of the location for which this is the address."
+        attention:
+          type: "string"
+          description: "The person or entity whose attention should be sought at the\
+            \ location\n(Often included as 'care of' component of an address.)"
+        address_1:
+          type: "string"
+          description: "The first line(s) of the address, including office, building\
+            \ number\nand street."
+        address_2:
+          type: "string"
+          description: "(Deprecated) A second (additional) line of address information.\n\
+            (This field is deprecated: we recommend including all address information\n\
+            before 'city' as a comma or newline separated list in address_1. There\
+            \ is\nno guarantee that systems will read this line of address information.)"
+        address_3:
+          type: "string"
+          description: "(Deprecated) A third (additional) line of address information.\n\
+            (This field is deprecated: we recommend including all address information\n\
+            before 'city' as a comma or newline separated list in address_1. There\
+            \ is\nno guarantee that systems will read this line of address information.)"
+        address_4:
+          type: "string"
+          description: "(Deprecated) The fourth (additional) line of address information.\n\
+            (This field is deprecated: we recommend including all address information\n\
+            before 'city' as a comma or newline separated list in address_1. There\
+            \ is\nno guarantee that systems will read this line of address information.)"
+        city:
+          type: "string"
+          description: "The city in which the address is located."
+        region:
+          type: "string"
+          description: "The region in which the address is located (optional)."
+        state_province:
+          type: "string"
+          description: "The state or province in which the address is located."
+        postal_code:
+          type: "string"
+          description: "The postal code for the address."
+        country:
+          type: "string"
+          description: "The country in which the address is located. This should be\
+            \ given\nas an ISO 3361-1 country code (two letter abbreviation)."
+      description: "The addresses table contains the physical addresses for locations"
+    programs:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/program"
+    locations:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/location"
+    organizations:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/organization"
+    paymentsAccepted:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/paymentAccepted"
+    funding:
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each entry must have a unique identifier"
+        organization_id:
+          type: "string"
+          description: "The identifier of the organization in receipt of this funding."
+        service_id:
+          type: "string"
+          description: "The identifier of the service in receipt of this funding"
+        source:
+          type: "string"
+          description: "A free text description of the source of funds for this organization\n\
+            or service."
+      description: "The funding table describes the sources of funding for a service\
+        \ or\norganisation"
+    serviceArea:
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each service area must have a unique identifier"
+        service_id:
+          type: "string"
+          description: "The identifier of the service for which this entry describes\
+            \ the\nservice area"
+        service_area:
+          type: "string"
+          description: "The geographic area where a service is available. This is\
+            \ a free-text\ndescription, and so may be precise or indefinite as necessary."
+        description:
+          type: "string"
+          description: "A more detailed description of this service area. Used to\
+            \ provide\nany additional information that cannot be communicated using\
+            \ the structured\narea and geometry fields."
+      description: "The service_area table contains details of the geographic area\
+        \ for\nwhich a service is available."
+    Problems:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/problem"
+    accessibilitiesForDisabilities:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/accessibilityForDisabilities"
+    serviceAreas:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/serviceArea"
+    schedule:
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each entry must have a unique identifier"
+        service_id:
+          type: "string"
+          description: "The identifier of the service for which this is the regular\n\
+            schedule"
+        location_id:
+          type: "string"
+          description: "The identifier of the location for which this is the regular\n\
+            schedule"
+        service_at_location_id:
+          type: "string"
+          description: "The identifier of the 'service at location' table entry, when\
+            \ this\nschedule is specific to a service in a particular location."
+        valid_from:
+          type: "string"
+          description: "The date from which the schedule information is valid."
+          format: "date"
+        valid_to:
+          type: "string"
+          description: "The last date on which the schedule information is valid."
+          format: "date"
+        dtstart:
+          type: "string"
+          description: "iCal - The date of the first event is the schedule. Necessary\
+            \ when\nusing the 'interval' feature, optional otherwise."
+          format: "date"
+        timezone:
+          type: "number"
+          description: "The timezone that all dates are expressed as, expressed as\
+            \ a UTC\noffset. Dates are assumed to be UTC otherwise."
+        until:
+          type: "string"
+          description: "iCal - The date of the last occurence of the recurring event."
+          format: "date"
+        count:
+          type: "string"
+          description: "iCal - The number of times that the event occurs. Use this\
+            \ instead\nof 'until', if appropriate."
+          format: "date"
+        wkst:
+          type: "string"
+          description: "iCal - The day on which the week starts, eg MO."
+          format: "date"
+        freq:
+          type: "string"
+          description: "iCal - How often the frequency repeats. E.g. Frequency use\
+            \ one\nof WEEKLY or MONTHLY."
+        interval:
+          type: "number"
+          description: "iCal - How often the frequency repeats. E.g. Interval 2 for\
+            \ Frequency\nWEEKLY gives Fortnightly"
+        byday:
+          type: "string"
+          description: "iCal - Comma seperated days of the week. E.g. SU,MO,TU,WE,TH,FR,SA.\n\
+            Where freq is MONTHLY each part can be preceded by a positive or negative\n\
+            integer to represent which occurrence in a month; e.g. 2MO is the second\
+            \ Monday\nin a month. -1FR is the last Friday"
+        byweekno:
+          type: "string"
+          description: "iCal - Comma seperated numeric weeks of the year if freq is\
+            \ WEEKLY.\nCan be negative to represent weeks before the end of the year;\
+            \ e.g. -5 is\nthe 5th to last week in a year."
+        bymonthday:
+          type: "number"
+          description: "iCal - Comma separated numeric days of the month if frequency\
+            \ is\nMONTHLY. Can be negative to represent days before the end of the\
+            \ month; e.g.\n-5 is the 5th to last day in a month."
+        byyearday:
+          type: "number"
+          description: "iCal - Comma separated numeric days of the month if frequency\
+            \ is\nYEARLY. Can be negative to represent days before the end of the\
+            \ year; e.g.\n-1 is the last day in a year."
+        description:
+          type: "string"
+          description: "Human readable description of the availability of the service."
+        opens_at:
+          type: "string"
+          description: "The time when a service or location opens. This should use\
+            \ HH:MM\nformat and should include timezone information, either adding\
+            \ the suffix 'Z'\nwhen the date is in UTC, or including an offset from\
+            \ UTC (e.g. 09:00-05:00\nfor 9am EST.)"
+          format: "time"
+        closes_at:
+          type: "string"
+          description: "The time when a service or location closes. This should use\
+            \ HH:MM\nformat and should include timezone information, either adding\
+            \ the suffix 'Z'\nwhen the date is in UTC, or including an offset from\
+            \ UTC (e.g. 09:00-05:00\nfor 9am EST.)"
+          format: "time"
+      description: "The schedule table contains details of when a service or location\
+        \ is\nopen. Entries are RFC 5545 RRULES."
+    languages:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/language"
+    postalAddress:
+      required:
+      - "address_1"
+      - "city"
+      - "country"
+      - "id"
+      - "postal_code"
+      - "state_province"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each postal address must have a unique identifier"
+        location_id:
+          type: "string"
+          description: "The identifier of the location for which this is the postal\n\
+            address."
+        attention:
+          type: "string"
+          description: "The person or entity whose attention should be sought at the\
+            \ location\n(Often included as 'care of' component of an address.)"
+        address_1:
+          type: "string"
+          description: "The first line(s) of the address, including office, building\
+            \ number\nand street."
+        address_2:
+          type: "string"
+          description: "(Deprecated) A second (additional) line of address information.\n\
+            (This field is deprecated: we recommend including all address information\n\
+            before 'city' as a comma or newline separated list in address_1. There\
+            \ is\nno guarantee that systems will read this line of address information.)"
+        address_3:
+          type: "string"
+          description: "(Deprecated) A third (additional) line of address information.\n\
+            (This field is deprecated: we recommend including all address information\n\
+            before 'city' as a comma or newline separated list in address_1. There\
+            \ is\nno guarantee that systems will read this line of address information.)"
+        address_4:
+          type: "string"
+          description: "(Deprecated) The fourth (additional) line of address information.\n\
+            (This field is deprecated: we recommend including all address information\n\
+            before 'city' as a comma or newline separated list in address_1. There\
+            \ is\nno guarantee that systems will read this line of address information.)"
+        city:
+          type: "string"
+          description: "The city in which the address is located."
+        region:
+          type: "string"
+          description: "The region in which the address is located (optional)."
+        state_province:
+          type: "string"
+          description: "The state or province in which the address is located."
+        postal_code:
+          type: "string"
+          description: "The postal code for the address."
+        country:
+          type: "string"
+          description: "The country in which the address is located. This should be\
+            \ given\nas an ISO 3361-1 country code (two letter abbreviation)"
+      description: "The postalAddress table contains the postal addresses for mail\
+        \ to\na certain location. This may differ from the physical location."
+    requiredDocuments:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/requiredDocument"
+    requiredDocument:
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each document must have a unique identifier"
+        service_id:
+          type: "string"
+          description: "The identifier of the service for which this entry describes\
+            \ the\nrequired document"
+        document:
+          type: "string"
+          description: "The document required to apply for or receive the service.\
+            \ e.g.\n'Government-issued ID', 'EU Passport'"
+      description: "The required_document table contains details of any documents\
+        \ that\nare required in order to access or use services."
+    phone:
+      required:
+      - "id"
+      - "number"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each entry must have a unique identifier"
+        location_id:
+          type: "string"
+          description: "The identifier of the location where this phone number is\
+            \ located"
+        service_id:
+          type: "string"
+          description: "The identifier of the service for which this is the phone\
+            \ number"
+        organization_id:
+          type: "string"
+          description: "The identifier of the organisation for which this is the phone\n\
+            number"
+        contact_id:
+          type: "string"
+          description: "The identifier of the contact for which this is the phone\
+            \ number"
+        service_at_location_id:
+          type: "string"
+          description: "The identifier of the 'service at location' table entry, when\
+            \ this\nphone number is specific to a service in a particular location."
+        number:
+          type: "string"
+          description: "The phone number"
+        extension:
+          type: "number"
+          description: "The extension of the phone number"
+        type:
+          type: "string"
+          description: "Indicates the type of phone service, drawing from the RFC6350\
+            \ list\nof types (text (for SMS), voice, fax, cell, video, pager, textphone)."
+        language:
+          type: "string"
+          description: "A comma separated list of ISO 639-1, or ISO 639-2 [language\
+            \ codes](available\nat http://www.loc.gov/standards/iso639-2/php/code_list.php)\
+            \ to represent the\nlanguages available from this phone service. The three-letter\
+            \ codes from ISO\n639-2 provide greater accuracy when describing variants\
+            \ of languages, which\nmay be relevant to particular communities."
+        description:
+          type: "string"
+          description: "A description providing extra information about the phone\
+            \ service\n(e.g. any special arrangements for accessing, or details of\
+            \ availability at\nparticular times."
+        department:
+          type: "string"
+          description: "(Deprecated) The department for which this is the phone number.\n\
+            This field is deprecated and will be removed in a future version of HSDS."
+      description: "The phone table contains details of the telephone numbers are\
+        \ used\nto contact organizations, services, and locations."
+    service:
+      required:
+      - "id"
+      - "name"
+      - "organization_id"
+      - "status"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each service must have a unique identifier."
+        organization_id:
+          type: "string"
+          description: "The identifier of the organization that provides this service."
+        program_id:
+          type: "string"
+          description: "The identifier of the program this service is delivered under."
+        name:
+          type: "string"
+          description: "The official or public name of the service."
+        alternate_name:
+          type: "string"
+          description: "Alternative or commonly used name for a service."
+        description:
+          type: "string"
+          description: "A description of the service."
+        url:
+          type: "string"
+          description: "URL of the service"
+        email:
+          type: "string"
+          description: "Email address for the service"
+        status:
+          type: "string"
+          description: "The current status of the service."
+        interpretation_services:
+          type: "string"
+          description: "A description of any interpretation services available for\
+            \ accessing\nthis service."
+        application_process:
+          type: "string"
+          description: "The steps needed to access the service."
+        wait_time:
+          type: "string"
+          description: "Time a client may expect to wait before receiving a service."
+        fees:
+          type: "string"
+          description: "Details of any charges for service users to access this service."
+        accreditations:
+          type: "string"
+          description: "Details of any accreditations. Accreditation is the formal\
+            \ evaluation\nof an organization or program against best practice standards\
+            \ set by an accrediting\norganization."
+        licenses:
+          type: "string"
+          description: "An organization may have a license issued by a government\
+            \ entity\nto operate legally. A list of any such licenses can be provided\
+            \ here."
+      description: "Services are provided by organizations to a range of different\
+        \ groups.\nDetails on where each service is delivered are contained in the\
+        \ services_at_location\ntable."
+    organization:
+      required:
+      - "description"
+      - "id"
+      - "name"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each organization must have a unique identifier."
+        name:
+          type: "string"
+          description: "The official or public name of the organization."
+        alternate_name:
+          type: "string"
+          description: "Alternative or commonly used name for the organization."
+        description:
+          type: "string"
+          description: "A brief summary about the organization. It can contain markup\
+            \ such\nas HTML or Markdown."
+        email:
+          type: "string"
+          description: "The contact e-mail address for the organization."
+        url:
+          type: "string"
+          description: "The URL (website address) of the organization."
+        tax_status:
+          type: "string"
+          description: "Government assigned tax designation for tax-exempt organizations."
+        tax_id:
+          type: "string"
+          description: "A government issued identifier used for the purpose of tax\n\
+            administration."
+        year_incorporated:
+          type: "string"
+          description: "The year in which the organization was legally formed."
+          format: "date"
+        legal_status:
+          type: "string"
+          description: "The legal status defines the conditions that an organization\
+            \ is\noperating under; e.g. non-profit, private corporation or a government\
+            \ organization."
+      description: "The organization record is used to provide basic description and\
+        \ details\nabout each organization delivering services. Each service should\
+        \ be linked to\nthe organization responsible for its delivery. One organization\
+        \ may deliver many\nservices."
+    services:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/service"
+    location:
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Each location must have a unique identifier"
+        organization_id:
+          type: "string"
+          description: "Each location entry should be linked to a single organization.\n\
+            This is the organization that is responsible for maintaining information\
+            \ about\nthis location. The identifier of the organization should be given\
+            \ here. Details\nof the services the organisation delivers at this location\
+            \ should be provided\nin the services_at_location table."
+        name:
+          type: "string"
+          description: "The name of the location"
+        alternate_name:
+          type: "string"
+          description: "An alternative name for the location"
+        description:
+          type: "string"
+          description: "A description of this location."
+        transportation:
+          type: "string"
+          description: "A description of the access to public or private transportation\n\
+            to and from the location."
+        latitude:
+          type: "number"
+          description: "Y coordinate of location expressed in decimal degrees in WGS84\n\
+            datum."
+        longitude:
+          type: "number"
+          description: "X coordinate of location expressed in decimal degrees in WGS84\n\
+            datum."
+      description: "The location tables provides details of the locations where organizations\n\
+        operate. Locations may be virtual, and one organization may have many locations."
