@@ -11,6 +11,11 @@ info:
     name: Open Data Commons Public Domain
     url: https://creativecommons.org/licenses/by-sa/4.0/
   version: v2.0
+servers:
+- url: "{{ hsda_base_url }}"
+  variables:
+    basePath:
+      default: "/v2"
 paths:
   /search/:
     get:
@@ -49,16 +54,36 @@ paths:
       responses:
         "200":
           description: Item Response
+          headers:
+            X-pagination-page:
+                description: The current page being returned.
+                schema:
+                    type: integer
+            X-pagination-per-page:
+                description: The number of records returned per page.
+                schema:
+                    type: integer
+            X-pagination-total-pages:
+                description: The total number of available pages.
+                schema:
+                    type: integer
+            X-pagination-total-records:
+                description: The the total number of available records.
+                schema:
+                    type: integer
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: "#/components/schemas/search"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/search"
       tags:
         - Search
-servers:
-  - url: http://hsda.search.api.adopta.agency/
 components:
   schemas:
     search:

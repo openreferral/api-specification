@@ -11,18 +11,80 @@ info:
     name: Open Data Commons Public Domain
     url: 'https://creativecommons.org/licenses/by-sa/4.0/'
   version: v2.0
+servers:
+- url: "{{ hsda_base_url }}"
+  variables:
+    basePath:
+      default: "/v2"
 paths:
   /taxonomies/:
     get:
       summary: Get Taxonomy
       description: Get Taxonomy
       operationId: listTaxonomy
+      parameters:
+      - in: query
+        name: query
+        description: |-
+          A query to filter list by (up to provider to determine what to
+          search)
+        schema:
+          type: string
+      - in: query
+        name: fields
+        description: A list of fields to be returned with the response, if not included,
+          all are returned.
+        schema:
+          type: string
+      - in: query
+        name: page
+        description: The particular page of results.
+        schema:
+          type: number
+      - in: query
+        name: per_page
+        description: Number of records to return per page, up to 100.
+        schema:
+          type: number
+      - in: query
+        name: sort_by
+        description: Which field to sort by.
+        schema:
+          type: string
+      - in: query
+        name: order
+        description: Which order to sort by (asc,desc).
+        schema:
+          type: string
+      - in: query
+        name: format
+        description: |-
+          The data format of the response (csv, json, xml).
+        schema:
+          type: string
       security:
         - appid: []
         - appkey: []
       responses:
         '200':
           description: Item Response
+          headers:
+            X-pagination-page:
+                description: The current page being returned.
+                schema:
+                    type: integer
+            X-pagination-per-page:
+                description: The number of records returned per page.
+                schema:
+                    type: integer
+            X-pagination-total-pages:
+                description: The total number of available pages.
+                schema:
+                    type: integer
+            X-pagination-total-records:
+                description: The the total number of available records.
+                schema:
+                    type: integer
           content:
             application/json:
               schema:
