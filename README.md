@@ -1,3 +1,9 @@
+⚠️ **This repo has been archived, and is no longer maintained** ⚠️
+
+HSDS 3.0 introduces an API specification which replaces this one, and is versioned as part of the HSDS standard. Please check for and raise issues on the [HSDS Specification Issue tracker](https://github.com/openreferral/specification/issues).
+
+Old issues on this repository have been closed if they were addressed as part of HSDS 3.0. Issues that remain open have been documented and will be linked to from appropriate places e.g. new issues in the HSDS Specification repository, or in community forums. If you wish to explicitly restart an existing discussion from an Issue in this repo, please open a new issue in the HSDS Specification repository and link back to the issue you want to continue.
+
 ## Open Referral Human Services Data API (HSDA)
 This is the repository for managing the Open Referral Human Services Data API (HSDA), providing a common interface for accessing organizations, locations, services, and contacts for 211 human services information.
 
